@@ -1,60 +1,6 @@
 import ply.lex as lex
-
-# Reserved Keywords pertaining to our compiler 
-# Includes project-required library functions printf and scanf,
-# and sizeof support for arrays
-reserved = {
-    'if': 'IF',
-    'else': 'ELSE',
-    'for': 'FOR',
-    'while': 'WHILE',
-    'do': 'DO',
-    'goto': 'GOTO',
-    'break': 'BREAK',
-    'continue': 'CONTINUE',
-    'typedef': 'TYPEDEF',
-    'int': 'INT',
-    'char': 'CHAR',
-    'void': 'VOID',
-    'return': 'RETURN',
-    'printf': 'PRINTF',
-    'scanf': 'SCANF',
-    'sizeof': 'SIZEOF'  
-}
-
-# Token List
-tokens = [
-    'IDENTIFIER',        
-    'INTEGER_CONSTANT',  
-    'CHAR_CONSTANT',     
-    'STRING_LITERAL',
-    
-    # Arithmetic & Specific Math Operators
-    'PLUS',              
-    'MINUS',             
-    'MULTIPLY',         
-    'DIVIDE',            
-    'MODULO',            
-    
-    # Compound Assignments
-    'PLUS_ASSIGN',
-    'MINUS_ASSIGN',
-    'MUL_ASSIGN',
-    'DIV_ASSIGN',
-    'MOD_ASSIGN',
-    
-    # Unary / Pointer / Address
-    'INCREMENT',
-    'DECREMENT',
-    'ADDRESS',           # Represents '&'
-    
-    # Relational & Logical
-    'EQ', 'NE', 'LE', 'GE', 'LT', 'GT',
-    'AND', 'OR', 'NOT', 'ASSIGN',
-    
-    # Delimiters
-    'SEMI', 'COLON', 'COMMA', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET'
-] + list(reserved.values())
+from utils.token import tokens, reserved
+from utils.errors import add_lex_error
 
 # Regular Expression Rules
 # ----------------------------------------
@@ -128,11 +74,10 @@ def t_comment(t):
 t_ignore = ' \t'
 
 # Error Handling --> Stores list of all the errors encountered in the traversal
-lex_errors = []
-
 def t_error(t):
-    lex_errors.append(f"Lexical Error: Illegal character '{t.value[0]}' at line {t.lexer.lineno}")
-    t.lexer.skip(1)
-
+    add_lex_error(
+        f"Lexical Error: Illegal character '{t.value[0]}' "
+        f"at line {t.lexer.lineno}"
+    )
 # Build the lexer
 lexer = lex.lex() 
