@@ -41,37 +41,58 @@ t_LBRACE       = r'\{'
 t_RBRACE       = r'\}'
 t_LBRACKET     = r'\['
 t_RBRACKET     = r'\]'
-
 # Complex Token Rules (Functions)
+
+# Comments
+def t_comment(t):
+    r'(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)'
+    t.lexer.lineno += t.value.count('\n')
+
+# Valid String 
 def t_STRING_LITERAL(t):
     r'\"([^\\\n]|(\\.))*?\"'
     return t
 
+# Valid character 
 def t_CHAR_CONSTANT(t):
     r'\'([^\\\n]|(\\.))\''
     return t
 
+# Invalid / Unterminated String
+def t_UNTERMINATED_STRING(t):
+    r'\"([^\\\n]|(\\.))*'
+    add_lex_error(f"Unterminated string at line {t.lexer.lineno}")
+
+# Invalid / Unterminated char
+def t_UNTERMINATED_CHAR(t):
+    r"\'([^\\\n]|(\\.))*"
+    add_lex_error(f"Unterminated character constant at line {t.lexer.lineno}")
+
+
+# Invalid Identifier starting with a digit
+def t_INVALID_IDENTIFIER(t):
+    r'\d+[a-zA-Z_][a-zA-Z0-9_]*'
+    add_lex_error(f"Invalid identifier '{t.value}' at line {t.lexer.lineno}")
+
+# Identifier / Keyword Recognition
 def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
-    # Check if the identifier is a reserved keyword
     t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
+# Integer Constants
 def t_INTEGER_CONSTANT(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-# Track line numbers and ignored chars
+# Track line numbers
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-def t_comment(t):
-    r'(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)'
-    t.lexer.lineno += t.value.count('\n')
-
 t_ignore = ' \t'
+
 
 # Error Handling --> Stores list of all the errors encountered in the traversal
 def t_error(t):
@@ -79,5 +100,6 @@ def t_error(t):
         f"Lexical Error: Illegal character '{t.value[0]}' "
         f"at line {t.lexer.lineno}"
     )
+    t.lexer.skip(1)
 # Build the lexer
 lexer = lex.lex() 
