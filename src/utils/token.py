@@ -24,6 +24,7 @@ reserved = {
 tokens = [
     'IDENTIFIER',        
     'INTEGER_CONSTANT',  
+    'TYPENAME',
     'CHAR_CONSTANT',     
     'STRING_LITERAL',
     
