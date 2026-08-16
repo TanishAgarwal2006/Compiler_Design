@@ -6,6 +6,7 @@ int main()
 
     a = 10;
     b = 5;
+    a = 0x123;
 
     c = a + b;
     c = a - b;

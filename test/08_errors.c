@@ -27,11 +27,27 @@ int main()
     c = 'A;
 
 
+    // Invalid escape sequence
+    c = '\z';
+
+
+    // Empty character constant
+    c = '';
+
+
+    // Multi-character constant
+    c = 'ab';
+
+
     // Unsupported symbols
     x = 10 ^ 2;
 
     x = 5 | 3;
 
+
+    // Unterminated multiline comment
+    /*
+       This comment never closes
 
     return 0;
 }
