@@ -1,53 +1,41 @@
-# #!/bin/bash
-
-# echo "========================================"
-# echo "   Running Compiler Lexer Test Suite"
-# echo "========================================"
-
-# echo ""
-
-# for file in test/*.c
-# do
-#     echo "----------------------------------------"
-#     echo "Testing: $file"
-#     echo "----------------------------------------"
-
-#     python3 src/main.py "$file"
-
-#     echo ""
-# done
-
-
-# echo "========================================"
-# echo "   Test Suite Completed"
-# echo "========================================"
-
-# prints output to output.txt
 #!/bin/bash
+# Runs the automated test suite and generates per-case log directories under logs/
+set -u
 
-OUTPUT="output.txt"
+if [ -x "./venv/bin/python" ]; then
+    DEFAULT_PYTHON="./venv/bin/python"
+else
+    DEFAULT_PYTHON="python3"
+fi
 
-echo "========================================" > $OUTPUT
-echo "   Running Compiler Lexer Test Suite" >> $OUTPUT
-echo "========================================" >> $OUTPUT
-echo "" >> $OUTPUT
+PYTHON="${1:-$DEFAULT_PYTHON}"
 
+echo "Running automated test suite (using $PYTHON)..."
 
-for file in test/*.c
+"$PYTHON" tests/run_tests.py
+STATUS=$?
+
+echo ""
+echo "Generating per-case log files under 'logs/'..."
+
+# Clean old logs directory and create fresh base
+rm -rf logs/
+mkdir -p logs/
+
+# Process all test files to generate individual tokens.log, symbols.log, ast.log, and summary.log files
+for file in tests/phase1_lexical/valid/*.c tests/phase1_lexical/invalid/*.c \
+            tests/phase2_syntax/valid/*.c tests/phase2_syntax/invalid/*.c
 do
-    echo "----------------------------------------" >> $OUTPUT
-    echo "Testing: $file" >> $OUTPUT
-    echo "----------------------------------------" >> $OUTPUT
-
-    ./venv/bin/python src/main.py "$file" >> $OUTPUT 2>&1
-
-    echo "" >> $OUTPUT
+    "$PYTHON" src/main.py "$file" --all > /dev/null 2>&1
 done
 
+echo "Per-case single log files successfully generated in 'logs/':"
+echo "  - logs/phase1_lexical/valid/<test_name>.log"
+echo "  - logs/phase1_lexical/invalid/<test_name>.log"
+echo "  - logs/phase2_syntax/valid/<test_name>.log"
+echo "  - logs/phase2_syntax/invalid/<test_name>.log"
 
-echo "========================================" >> $OUTPUT
-echo "   Test Suite Completed" >> $OUTPUT
-echo "========================================" >> $OUTPUT
+exit $STATUS
 
 
-echo "All outputs stored in $OUTPUT"
+
