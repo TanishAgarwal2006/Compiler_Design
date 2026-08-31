@@ -39,7 +39,7 @@ from phase1_lexical_analysis.lexer import build_lexer
 from phase1_lexical_analysis.token_defs import tokens
 from common.errors import add_syntax_error
 
-
+# Operator precedence/associativity, including dangling-else resolution etc
 precedence = (
     ("nonassoc", "IFX"),
     ("nonassoc", "ELSE"),
@@ -90,6 +90,7 @@ def p_function_definition(p):
     p[0] = FunctionDefinition(p[1], p[2], p[3], p[1].line)
 
 
+# Record typedef names in the lexer so they can be recognized as TYPENAME later.
 def p_typedef_declaration(p):
     "typedef_declaration : TYPEDEF type_specifier declarator_list SEMI"
     active_lexer = p.lexer  # the lexer instance this parse() call is using
@@ -160,7 +161,7 @@ def p_function_declarator(p):
     "function_declarator : IDENTIFIER LPAREN parameter_list_opt RPAREN"
     p[0] = Declarator(p[1], kind_name="function", params=p[3], line=p.lineno(1))
 
-
+# Support multi-dimensional arrays by accumulating one dimension at a time.
 def p_array_dimensions_recursive(p):
     "array_dimensions : array_dimensions LBRACKET array_size_opt RBRACKET"
     p[0] = p[1] + [ArrayDimension(p[3], p.lineno(2))]
@@ -243,12 +244,12 @@ def p_block_item(p):
     """block_item : statement"""
     p[0] = p[1]
 
-
+# expression_opt allows standalone ';' to represent an empty statement.
 def p_expression_statement(p):
     "expression_statement : expression_opt SEMI"
     p[0] = ExpressionStatement(p[1], p.lineno(2))
 
-
+# gives unmatched if-statements lower precedence so ELSE binds to the nearest if.
 def p_selection_statement_if(p):
     "selection_statement : IF LPAREN expression RPAREN statement %prec IFX"
     p[0] = IfStatement(p[3], p[5], None, p.lineno(1))
@@ -268,7 +269,7 @@ def p_iteration_statement_do_while(p):
     "iteration_statement : DO statement WHILE LPAREN expression RPAREN SEMI"
     p[0] = DoWhileStatement(p[2], p[5], p.lineno(1))
 
-
+# All three for-loop expressions are optional, allowing forms such as for (;;).
 def p_iteration_statement_for(p):
     "iteration_statement : FOR LPAREN expression_opt SEMI expression_opt SEMI expression_opt RPAREN statement"
     p[0] = ForStatement(p[3], p[5], p[7], p[9], p.lineno(1))
@@ -416,7 +417,7 @@ def p_multiplicative_expression(p):
     else:
         p[0] = p[1]
 
-
+# explicit precedence names distinguish prefix operators from their postfix forms.
 def p_unary_expression_prefix(p):
     """unary_expression : INCREMENT unary_expression %prec PRE_INCREMENT
                         | DECREMENT unary_expression %prec PRE_DECREMENT
@@ -483,7 +484,7 @@ def p_primary_expression_identifier(p):
     "primary_expression : IDENTIFIER"
     p[0] = make_identifier(p[1], p.lineno(1))
 
-
+# treat printf/scanf as ordinary identifier expressions so they can participate in calls.
 def p_primary_expression_builtin_name(p):
     """primary_expression : PRINTF
                           | SCANF"""

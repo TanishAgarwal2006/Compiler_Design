@@ -1,9 +1,8 @@
 """
 Phase 1 - Lexical Analysis
 
-Converts raw C source text into a stream of tokens using PLY (Python Lex-Yacc).
-Exclusive lexer states are used for block comments, string literals, and
-character constants so that unterminated constructs are reported cleanly
+Converts raw C source text into a stream of tokens using PLY
+Lexer states used for - comments, strings, characters, so that unterminated constructs are reported cleanly
 instead of desynchronizing the rest of the token stream.
 """
 import ply.lex as lex

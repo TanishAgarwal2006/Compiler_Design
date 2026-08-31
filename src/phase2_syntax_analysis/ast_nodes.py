@@ -7,7 +7,6 @@ phase-2 test harness.
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
-
 @dataclass
 class ASTNode:
     kind: str
@@ -40,7 +39,7 @@ class ArrayDimension(ASTNode):
         super().__init__("ArrayDimension", line)
         self.size = size
 
-
+# a declarator can represent a variable, array, or function.
 @dataclass
 class Declarator(ASTNode):
     name: str = ""
@@ -112,7 +111,7 @@ class InitializerList(ASTNode):
         super().__init__("InitializerList", line)
         self.values = values
 
-
+# Function definitions keep the signature separate from the function body.
 @dataclass
 class FunctionDefinition(ASTNode):
     return_type: TypeSpecifier = None
@@ -228,7 +227,7 @@ class LabeledStatement(ASTNode):
         self.label = label
         self.statement = statement
 
-
+# Optional expression also represents empty statements (;).
 @dataclass
 class ExpressionStatement(ASTNode):
     expression: Optional["ASTNode"] = None

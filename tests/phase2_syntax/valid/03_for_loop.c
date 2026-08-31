@@ -4,5 +4,10 @@ int main() {
         sum += i;
     }
     printf("%d\n", sum);
+
+    // Omitted expressions in for-loop
+    for (;;) {
+        break;
+    }
     return 0;
 }

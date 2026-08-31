@@ -1,15 +1,7 @@
 """
 Phase 1 - Lexical Analysis
 Reserved keywords and the master token list for the subset of C this
-compiler supports (see the project README for the full feature list:
-arithmetic/logical operators, if/else, for, while, do-while, integer and
-char arrays, printf/scanf, function calls, goto/break/continue, recursive
-functions, typedef, and multi-dimensional arrays).
-
-NOTE: 'switch'/'case' are intentionally NOT part of this language subset -
-they were never in the project specification, so the lexer does not
-recognize them as keywords (they would lex as plain IDENTIFIER, which is
-correct - not a bug).
+compiler supports
 """
 
 reserved = {
