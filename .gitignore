@@ -2,8 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+parsetab.py
+parser.out
 
-#venv
+# Virtual environments
 venv/
 env/
 .venv/
@@ -16,3 +18,4 @@ env/
 # Generated outputs
 output.txt
 *.log
+logs/

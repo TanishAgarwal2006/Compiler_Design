@@ -1,34 +1,28 @@
-# Phase 3: Intermediate Code Generation (TAC)
+# Phase 3: Three-Address Code
 
-This module is scaffolded for Phase 3 of the compiler pipeline: translating the Abstract Syntax Tree (AST) generated in Phase 2 into **Three-Address Code (TAC)** quadruples.
+This phase is not implemented. The directory exists to keep the compiler
+pipeline organised.
 
----
+The next implementation should translate the Phase 2 AST to TAC quadruples:
 
-## 1. Planned Design & Specifications
+```text
+(op, arg1, arg2, result)
+```
 
-### TAC Quadruple Representation
-Each intermediate statement will be represented as a quadruple `(operator, arg1, arg2, result)`:
+It will need temporary and label generation, scoped symbols, expression and
+assignment lowering, control-flow jumps, array index/address calculations,
+and `param`/`call`/`return` instructions for function calls and recursion.
 
-- **Arithmetic & Logical Quadruples:** `(+, a, b, t1)`, `(*, t1, c, t2)`
-- **Temporary Allocator:** Sequence of compiler-generated temporary variables (`t1`, `t2`, `t3`, ...).
-- **Label Generation:** Unique jump targets (`L1`, `L2`, `L3`, ...).
-- **Control Flow Lowering:**
-  - `if (condition)` -> `ifFalse condition goto L1`
-  - `while` / `for` loops -> lowered to conditional jumps and loop labels.
-  - `break` / `continue` -> resolved via active loop label stack.
-- **Function Call Lowering:**
-  - `param arg1`
-  - `param arg2`
-  - `call func_name, 2`
-  - `return result`
-- **Array Address Linearization:**
-  - 1D Array: `offset = index * element_size`
-  - Multi-Dimensional Array: Row-major order offset calculation `offset = (row * num_cols + col) * element_size`.
+Recommended modules are `tac.py`, `ir_generator.py`, and `symbol_table.py`.
+Add expected-TAC tests under `tests/phase3_intermediate_code/` when the phase
+is started.
 
----
+## Intended design decisions
 
-## 2. Planned Module Layout
-
-- **`tac.py`**: Quadruple data structure and TAC string formatter.
-- **`ir_generator.py`**: AST visitor class generating TAC sequences.
-- **`run_tac.py`**: Standalone driver for Phase 3 intermediate code generation.
+| Design choice | Why it fits this compiler |
+| --- | --- |
+| Quadruples `(op, arg1, arg2, result)` | They are simple to print, test, optimise, and lower to MIPS. They also make temporary values explicit. |
+| Explicit labels and jumps | `if`, loops, `break`, `continue`, and `goto` all reduce naturally to labels, conditional jumps, and unconditional jumps. |
+| Per-function symbol scopes | TAC needs storage/type information for local variables, parameters, globals, and arrays. A scoped table is more useful than the current reporting-only classifier. |
+| Row-major array offsets | C arrays are row-major. A multidimensional access such as `a[i][j]` must be translated to a linear offset before MIPS code can load or store it. |
+| `param`, `call`, and `return` instructions | These make argument passing and results visible in the IR and provide a clear foundation for recursive MIPS calls. |

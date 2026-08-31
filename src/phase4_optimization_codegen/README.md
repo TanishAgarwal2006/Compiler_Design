@@ -1,27 +1,25 @@
-# Phase 4: Optimization & MIPS Code Generation
+# Phase 4: Optimisation and MIPS Generation
 
-This module is scaffolded for Phase 4 of the compiler pipeline: optimizing Three-Address Code (TAC) and emitting target **MIPS Assembly (`.s`)** code.
+This phase is not implemented. It will consume TAC from Phase 3 and emit MIPS
+assembly.
 
----
+The initial implementation should favour correctness over aggressive
+optimisation: create basic blocks, fold constants, remove simple dead code,
+assign temporary registers with stack spills, create a stack frame per
+function, and lower calls, arrays, and supported `printf`/`scanf` operations.
+Correct stack-frame handling is required for recursive calls.
 
-## 1. Planned Design & Specifications
+Suggested modules are `optimizer.py`, `mips_generator.py`, and
+`register_allocator.py`. Add expected assembly tests under
+`tests/phase4_optimization_codegen/`; ideally run them with SPIM, MARS, or an
+equivalent MIPS simulator.
 
-### 1.1 Optimization Passes
-- **Constant Folding:** Evaluate constant expressions at compile time (e.g., `t1 = 2 + 3` -> `t1 = 5`).
-- **Constant Propagation:** Replace variable uses with known constant values.
-- **Dead Code Elimination:** Remove unused temporaries and unreachable code blocks.
-- **Peephole Optimization:** Eliminate redundant jump sequences and duplicate memory loads.
+## Intended design decisions
 
-### 1.2 MIPS Target Code Generation
-- **Register Allocation:** Map compiler temporaries (`t1`, `t2`) to MIPS registers (`$t0`–`$t9`, `$s0`–`$s7`) with stack spilling mechanism.
-- **Stack Frame Management:** Manage function call frames, local variables, saved return addresses (`$ra`), and frame pointers (`$fp`) to support recursive function calls.
-- **System Call Lowering:** Map `printf` and `scanf` calls to MIPS MARS/SPIM environment syscalls (`li $v0, 1`, `li $v0, 4`, `li $v0, 5`).
-
----
-
-## 2. Planned Module Layout
-
-- **`optimizer.py`**: Implementation of TAC optimization passes.
-- **`mips_generator.py`**: TAC quadruple to MIPS assembly translator.
-- **`register_allocator.py`**: Register allocation and stack frame layout manager.
-- **`run_codegen.py`**: Standalone driver for Phase 4 MIPS target code generation.
+| Design choice | Why it fits this compiler |
+| --- | --- |
+| Optimise TAC, not AST | TAC exposes assignments, temporaries, and jumps directly, making constant folding and simple dead-code removal easier to implement and test. |
+| Start with simple register allocation | A fixed temporary-register pool with stack spills is easier to verify than graph colouring and is sufficient for a toy compiler. |
+| Use stack frames per function | Saving `$ra`, preserving required registers, and allocating local storage per call are necessary for nested and recursive functions. |
+| Lower I/O through MIPS syscalls | MARS/SPIM syscalls provide a practical target for the required integer/character/string I/O without linking a C standard library. |
+| Verify emitted code in a simulator | Text comparison alone cannot show whether calling convention, branches, and array addresses work at runtime. |

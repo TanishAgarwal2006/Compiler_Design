@@ -12,7 +12,6 @@ Usage:
 import os
 import sys
 
-# Ensure parent 'src' directory is in sys.path so imports work regardless of CWD
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.abspath(os.path.join(CURRENT_DIR, ".."))
 if SRC_DIR not in sys.path:
@@ -198,4 +197,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

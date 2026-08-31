@@ -1,38 +1,13 @@
-"""
-Compiler driver.
-
-Usage:
-    python src/main.py <source.c> [--tokens] [--ast] [--symbols] [--all]
-
-Flags (any combination; with none given, tokens + a success/failure summary
-are shown - the same default behaviour as before):
-    --tokens   print the Phase 1 token table
-    --ast      print the Phase 2 AST
-    --symbols  print the identifier -> role table described in
-               docs/identifier_classification.md (this is what tells you
-               whether `fib` is a function, a variable, an array, ...)
-    --all      shorthand for --tokens --ast --symbols
-
-Currently implemented: Phase 1 (lexical analysis) and Phase 2 (syntax
-analysis). Phase 3 (intermediate code generation) and Phase 4
-(optimization + MIPS code generation) are scaffolded under src/ but not
-yet implemented - see their README files.
-"""
-import os
 import sys
-
 
 from phase1_lexical_analysis.lexer import build_lexer
 from phase2_syntax_analysis.ast_nodes import format_ast
 from phase2_syntax_analysis.parser import parse_source
 from common.errors import clear_errors, lex_errors, syntax_errors
-from common.symbol_classifier import classify_program, format_symbol_table, format_enriched_token_table
+from common.symbol_classifier import format_enriched_token_table, format_symbol_table
 from common.logger import write_case_logs
 
-
-
 def read_source(filename: str) -> str:
-
     try:
         with open(filename, "r", encoding="utf-8") as source_file:
             return source_file.read()
@@ -45,14 +20,7 @@ def read_source(filename: str) -> str:
 
 
 def tokenize_source(code: str):
-    """Runs the lexer stand-alone (Phase 1 only) and returns (lexeme, type) pairs.
-
-    Uses a fresh lexer instance (see build_lexer()) so this never
-    interferes with, or is interfered by, any other tokenization/parsing
-    happening in the same process. It mirrors the parser's own dynamic
-    typedef-tracking mechanism (lexer.typedefs) so the token table always
-    matches what Phase 2 actually consumes.
-    """
+    """Return the token table for one source file."""
     lexer = build_lexer()
     lexer.lineno = 1
     lexer.input(code)
@@ -72,23 +40,6 @@ def tokenize_source(code: str):
             in_typedef = False
 
     return token_rows
-
-
-def print_tokens(token_rows) -> None:
-    print(f"{'Token':<25} {'Token_Type':<20}")
-    print("-" * 45)
-    for lexeme, token_name in token_rows:
-        print(f"{str(lexeme):<25} {token_name:<20}")
-
-
-def print_symbol_table(roles: dict) -> None:
-    if not roles:
-        print("(no identifiers declared)")
-        return
-    print(f"{'Identifier':<20} {'Role':<12}")
-    print("-" * 32)
-    for name, role in sorted(roles.items()):
-        print(f"{name:<20} {role:<12}")
 
 
 def print_errors() -> None:
@@ -126,7 +77,6 @@ def main() -> None:
     if "--all" in flags:
         flags.update({"--tokens", "--ast", "--symbols"})
 
-    # Preserve default: with no flags at all, still show tokens.
     show_tokens = "--tokens" in flags or not flags
     show_ast = "--ast" in flags
     show_symbols = "--symbols" in flags
@@ -176,7 +126,12 @@ def main() -> None:
         print("Detailed Symbol Table:")
         print(symbol_table_str)
 
-    if show_ast and ast_file_path:
+    if show_ast:
+        print()
+        print("Abstract Syntax Tree:")
+        print(ast_nodes_str)
+
+    if ast_file_path:
         with open(ast_file_path, "a", encoding="utf-8") as ast_f:
             ast_f.write(f"----------------------------------------\n")
             ast_f.write(f"AST for: {filename}\n")
@@ -185,11 +140,5 @@ def main() -> None:
 
     print(f"\n(Analysis report logged to '{log_file}')")
 
-
-
-
-
-
 if __name__ == "__main__":
     main()
-
