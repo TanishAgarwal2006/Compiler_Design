@@ -1,0 +1,9 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/invalid/bad_switch_case.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Syntax error: Syntax Error: unexpected token 'n' at line 6
+Syntax error: Syntax Error: unexpected token 'return' at line 9
+Syntax error: Syntax Error: unexpected token '}' at line 10

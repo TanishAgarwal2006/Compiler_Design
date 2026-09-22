@@ -1,0 +1,7 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase1_lexical/invalid/unterminated_block_comment.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Unterminated block comment starting at line 3

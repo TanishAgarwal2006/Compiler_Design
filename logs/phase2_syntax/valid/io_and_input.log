@@ -1,0 +1,434 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/valid/io_and_input.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         VARIABLE_NAME            
+,                         COMMA                    
+b                         VARIABLE_NAME            
+,                         COMMA                    
+sum                       VARIABLE_NAME            
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"Enter two integers: "    STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+scanf                     SCANF                    
+(                         LPAREN                   
+"%d %d"                   STRING_LITERAL           
+,                         COMMA                    
+&                         ADDRESS                  
+a                         VARIABLE_NAME            
+,                         COMMA                    
+&                         ADDRESS                  
+b                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+sum                       VARIABLE_NAME            
+=                         ASSIGN                   
+a                         VARIABLE_NAME            
++                         PLUS                     
+b                         VARIABLE_NAME            
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"Sum = %d\n"              STRING_LITERAL           
+,                         COMMA                    
+sum                       VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+n                         VARIABLE_NAME            
+,                         COMMA                    
+i                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+values                    ARRAY_NAME               
+[                         LBRACKET                 
+10                        INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"How many values? "       STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+scanf                     SCANF                    
+(                         LPAREN                   
+"%d"                      STRING_LITERAL           
+,                         COMMA                    
+&                         ADDRESS                  
+n                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+for                       FOR                      
+(                         LPAREN                   
+i                         VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+i                         VARIABLE_NAME            
+<                         LT                       
+n                         VARIABLE_NAME            
+;                         SEMI                     
+i                         VARIABLE_NAME            
+++                        INCREMENT                
+)                         RPAREN                   
+{                         LBRACE                   
+scanf                     SCANF                    
+(                         LPAREN                   
+"%d"                      STRING_LITERAL           
+,                         COMMA                    
+&                         ADDRESS                  
+values                    ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+======================================================================
+ Phase 2: Detailed Symbol Table
+======================================================================
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    variable     int        function:main                              
+b                    variable     int        function:main                              
+i                    variable     int        function:main                              
+main                 function     int        global                 params: ()          
+n                    variable     int        function:main                              
+printf               function     int        global                 params: (format, ...)
+scanf                function     int        global                 params: (format, ...)
+sum                  variable     int        function:main                              
+values               array        int        function:main          dims: [10]          
+
+======================================================================
+ Phase 2: Abstract Syntax Tree (AST)
+======================================================================
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 0
+        return_type:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarator:
+          Declarator
+            line: 3
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 3
+            items:
+              [
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 4
+                        declarator:
+                          Declarator
+                            line: 4
+                            name: a
+                            kind_name: variable,
+                      InitDeclarator
+                        line: 4
+                        declarator:
+                          Declarator
+                            line: 4
+                            name: b
+                            kind_name: variable,
+                      InitDeclarator
+                        line: 4
+                        declarator:
+                          Declarator
+                            line: 4
+                            name: sum
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 5
+                  expression:
+                    FunctionCall
+                      line: 5
+                      callee:
+                        Identifier
+                          line: 5
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 5
+                            literal_type: string
+                            value: "Enter two integers: ",
+                        ],
+                ExpressionStatement
+                  line: 6
+                  expression:
+                    FunctionCall
+                      line: 6
+                      callee:
+                        Identifier
+                          line: 6
+                          name: scanf
+                      args:
+                        [
+                          Literal
+                            line: 6
+                            literal_type: string
+                            value: "%d %d",
+                          UnaryOp
+                            line: 6
+                            operator: &
+                            operand:
+                              Identifier
+                                line: 6
+                                name: a
+                            position: prefix,
+                          UnaryOp
+                            line: 6
+                            operator: &
+                            operand:
+                              Identifier
+                                line: 6
+                                name: b
+                            position: prefix,
+                        ],
+                ExpressionStatement
+                  line: 7
+                  expression:
+                    Assignment
+                      line: 7
+                      operator: =
+                      target:
+                        Identifier
+                          line: 7
+                          name: sum
+                      value:
+                        BinaryOp
+                          line: 7
+                          operator: +
+                          left:
+                            Identifier
+                              line: 7
+                              name: a
+                          right:
+                            Identifier
+                              line: 7
+                              name: b,
+                ExpressionStatement
+                  line: 8
+                  expression:
+                    FunctionCall
+                      line: 8
+                      callee:
+                        Identifier
+                          line: 8
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 8
+                            literal_type: string
+                            value: "Sum = %d\n",
+                          Identifier
+                            line: 8
+                            name: sum,
+                        ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 10
+                        declarator:
+                          Declarator
+                            line: 10
+                            name: n
+                            kind_name: variable,
+                      InitDeclarator
+                        line: 10
+                        declarator:
+                          Declarator
+                            line: 10
+                            name: i
+                            kind_name: variable,
+                    ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 11
+                        declarator:
+                          Declarator
+                            line: 11
+                            name: values
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 11
+                                  size:
+                                    Literal
+                                      line: 11
+                                      literal_type: int
+                                      value: 10,
+                              ],
+                    ],
+                ExpressionStatement
+                  line: 12
+                  expression:
+                    FunctionCall
+                      line: 12
+                      callee:
+                        Identifier
+                          line: 12
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 12
+                            literal_type: string
+                            value: "How many values? ",
+                        ],
+                ExpressionStatement
+                  line: 13
+                  expression:
+                    FunctionCall
+                      line: 13
+                      callee:
+                        Identifier
+                          line: 13
+                          name: scanf
+                      args:
+                        [
+                          Literal
+                            line: 13
+                            literal_type: string
+                            value: "%d",
+                          UnaryOp
+                            line: 13
+                            operator: &
+                            operand:
+                              Identifier
+                                line: 13
+                                name: n
+                            position: prefix,
+                        ],
+                ForStatement
+                  line: 14
+                  init:
+                    Assignment
+                      line: 14
+                      operator: =
+                      target:
+                        Identifier
+                          line: 14
+                          name: i
+                      value:
+                        Literal
+                          line: 14
+                          literal_type: int
+                          value: 0
+                  condition:
+                    BinaryOp
+                      line: 14
+                      operator: <
+                      left:
+                        Identifier
+                          line: 14
+                          name: i
+                      right:
+                        Identifier
+                          line: 14
+                          name: n
+                  update:
+                    UnaryOp
+                      line: 14
+                      operator: ++
+                      operand:
+                        Identifier
+                          line: 14
+                          name: i
+                      position: postfix
+                  body:
+                    CompoundStatement
+                      line: 14
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 15
+                            expression:
+                              FunctionCall
+                                line: 15
+                                callee:
+                                  Identifier
+                                    line: 15
+                                    name: scanf
+                                args:
+                                  [
+                                    Literal
+                                      line: 15
+                                      literal_type: string
+                                      value: "%d",
+                                    UnaryOp
+                                      line: 15
+                                      operator: &
+                                      operand:
+                                        ArrayAccess
+                                          line: 15
+                                          array:
+                                            Identifier
+                                              line: 15
+                                              name: values
+                                          index:
+                                            Identifier
+                                              line: 15
+                                              name: i
+                                      position: prefix,
+                                  ],
+                        ],
+                ReturnStatement
+                  line: 18
+                  value:
+                    Literal
+                      line: 18
+                      literal_type: int
+                      value: 0,
+              ],
+    ]

@@ -1,0 +1,404 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/valid/declarations_and_blocks.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type               
+--------------------------------------------------
+typedef                   TYPEDEF                  
+int                       INT                      
+integer                   TYPENAME                 
+;                         SEMI                     
+typedef                   TYPEDEF                  
+char                      CHAR                     
+character                 TYPENAME                 
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+integer                   TYPENAME                 
+a                         VARIABLE_NAME            
+,                         COMMA                    
+b                         VARIABLE_NAME            
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+,                         COMMA                    
+arr1D                     ARRAY_NAME               
+[                         LBRACKET                 
+10                        INTEGER_CONSTANT         
+]                         RBRACKET                 
+,                         COMMA                    
+arr2D                     ARRAY_NAME               
+[                         LBRACKET                 
+5                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+[                         LBRACKET                 
+5                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+character                 TYPENAME                 
+str                       ARRAY_NAME               
+[                         LBRACKET                 
+20                        INTEGER_CONSTANT         
+]                         RBRACKET                 
+,                         COMMA                    
+ch                        VARIABLE_NAME            
+=                         ASSIGN                   
+'A'                       CHAR_CONSTANT            
+;                         SEMI                     
+integer                   TYPENAME                 
+counter                   VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+do                        DO                       
+{                         LBRACE                   
+arr1D                     ARRAY_NAME               
+[                         LBRACKET                 
+counter                   VARIABLE_NAME            
+]                         RBRACKET                 
+=                         ASSIGN                   
+counter                   VARIABLE_NAME            
+*                         MULTIPLY                 
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+counter                   VARIABLE_NAME            
+++                        INCREMENT                
+;                         SEMI                     
+}                         RBRACE                   
+while                     WHILE                    
+(                         LPAREN                   
+counter                   VARIABLE_NAME            
+<                         LT                       
+10                        INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+;                         SEMI                     
+;                         SEMI                     
+{                         LBRACE                   
+{                         LBRACE                   
+int                       INT                      
+nested                    VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+======================================================================
+ Phase 2: Detailed Symbol Table
+======================================================================
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    variable     integer    function:main                              
+arr1D                array        integer    function:main          dims: [10]          
+arr2D                array        integer    function:main          dims: [5][5]        
+b                    variable     integer    function:main                              
+ch                   variable     character  function:main                              
+character            typedef      char       global                                     
+counter              variable     integer    function:main                              
+integer              typedef      int        global                                     
+main                 function     int        global                 params: ()          
+nested               variable     int        function:main                              
+str                  array        character  function:main          dims: [20]          
+
+======================================================================
+ Phase 2: Abstract Syntax Tree (AST)
+======================================================================
+Program
+  declarations:
+    [
+      Declaration
+        line: 3
+        type_spec:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 3
+              declarator:
+                Declarator
+                  line: 3
+                  name: integer
+                  kind_name: variable,
+          ]
+        storage: typedef,
+      Declaration
+        line: 4
+        type_spec:
+          TypeSpecifier
+            line: 0
+            name: char
+        declarators:
+          [
+            InitDeclarator
+              line: 4
+              declarator:
+                Declarator
+                  line: 4
+                  name: character
+                  kind_name: variable,
+          ]
+        storage: typedef,
+      FunctionDefinition
+        line: 0
+        return_type:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                Declaration
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: integer
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: a
+                            kind_name: variable,
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: b
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 7
+                            literal_type: int
+                            value: 5,
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: arr1D
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 7
+                                  size:
+                                    Literal
+                                      line: 7
+                                      literal_type: int
+                                      value: 10,
+                              ],
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: arr2D
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 7
+                                  size:
+                                    Literal
+                                      line: 7
+                                      literal_type: int
+                                      value: 5,
+                                ArrayDimension
+                                  line: 7
+                                  size:
+                                    Literal
+                                      line: 7
+                                      literal_type: int
+                                      value: 5,
+                              ],
+                    ],
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: character
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: str
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 8
+                                  size:
+                                    Literal
+                                      line: 8
+                                      literal_type: int
+                                      value: 20,
+                              ],
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: ch
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 8
+                            literal_type: char
+                            value: 'A',
+                    ],
+                Declaration
+                  line: 10
+                  type_spec:
+                    TypeSpecifier
+                      line: 10
+                      name: integer
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 10
+                        declarator:
+                          Declarator
+                            line: 10
+                            name: counter
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 10
+                            literal_type: int
+                            value: 0,
+                    ],
+                DoWhileStatement
+                  line: 11
+                  body:
+                    CompoundStatement
+                      line: 11
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 12
+                            expression:
+                              Assignment
+                                line: 12
+                                operator: =
+                                target:
+                                  ArrayAccess
+                                    line: 12
+                                    array:
+                                      Identifier
+                                        line: 12
+                                        name: arr1D
+                                    index:
+                                      Identifier
+                                        line: 12
+                                        name: counter
+                                value:
+                                  BinaryOp
+                                    line: 12
+                                    operator: *
+                                    left:
+                                      Identifier
+                                        line: 12
+                                        name: counter
+                                    right:
+                                      Literal
+                                        line: 12
+                                        literal_type: int
+                                        value: 2,
+                          ExpressionStatement
+                            line: 13
+                            expression:
+                              UnaryOp
+                                line: 13
+                                operator: ++
+                                operand:
+                                  Identifier
+                                    line: 13
+                                    name: counter
+                                position: postfix,
+                        ]
+                  condition:
+                    BinaryOp
+                      line: 14
+                      operator: <
+                      left:
+                        Identifier
+                          line: 14
+                          name: counter
+                      right:
+                        Literal
+                          line: 14
+                          literal_type: int
+                          value: 10,
+                ExpressionStatement
+                  line: 16,
+                ExpressionStatement
+                  line: 17,
+                CompoundStatement
+                  line: 18
+                  items:
+                    [
+                      CompoundStatement
+                        line: 19
+                        items:
+                          [
+                            Declaration
+                              line: 0
+                              type_spec:
+                                TypeSpecifier
+                                  line: 0
+                                  name: int
+                              declarators:
+                                [
+                                  InitDeclarator
+                                    line: 20
+                                    declarator:
+                                      Declarator
+                                        line: 20
+                                        name: nested
+                                        kind_name: variable
+                                    initializer:
+                                      Literal
+                                        line: 20
+                                        literal_type: int
+                                        value: 1,
+                                ],
+                          ],
+                    ],
+                ReturnStatement
+                  line: 24
+                  value:
+                    Literal
+                      line: 24
+                      literal_type: int
+                      value: 0,
+              ],
+    ]

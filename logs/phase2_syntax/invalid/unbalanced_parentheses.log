@@ -1,0 +1,7 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/invalid/unbalanced_parentheses.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Syntax error: Syntax Error: unexpected token ';' at line 3

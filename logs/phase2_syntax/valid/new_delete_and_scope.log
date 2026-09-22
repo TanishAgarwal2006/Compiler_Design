@@ -1,0 +1,464 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/valid/new_delete_and_scope.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type               
+--------------------------------------------------
+class                     CLASS                    
+Base                      IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+value                     VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+getValue                  FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+value                     VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+class                     CLASS                    
+Derived                   IDENTIFIER               
+:                         COLON                    
+public                    PUBLIC                   
+Base                      IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+getBaseValue              FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+Base                      IDENTIFIER               
+::                        SCOPE                    
+value                     VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+*                         MULTIPLY                 
+p                         VARIABLE_NAME            
+=                         ASSIGN                   
+new                       NEW                      
+int                       INT                      
+;                         SEMI                     
+*                         MULTIPLY                 
+p                         VARIABLE_NAME            
+=                         ASSIGN                   
+42                        INTEGER_CONSTANT         
+;                         SEMI                     
+delete                    DELETE                   
+p                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+*                         MULTIPLY                 
+arr                       ARRAY_NAME               
+=                         ASSIGN                   
+new                       NEW                      
+int                       INT                      
+[                         LBRACKET                 
+10                        INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+arr                       ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+delete                    DELETE                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+arr                       ARRAY_NAME               
+;                         SEMI                     
+Derived                   IDENTIFIER               
+d                         VARIABLE_NAME            
+;                         SEMI                     
+d                         VARIABLE_NAME            
+.                         DOT                      
+value                     VARIABLE_NAME            
+=                         ASSIGN                   
+7                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+v                         VARIABLE_NAME            
+=                         ASSIGN                   
+d                         VARIABLE_NAME            
+.                         DOT                      
+getBaseValue              FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+w                         VARIABLE_NAME            
+=                         ASSIGN                   
+Derived                   IDENTIFIER               
+::                        SCOPE                    
+value                     VARIABLE_NAME            
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+======================================================================
+ Phase 2: Detailed Symbol Table
+======================================================================
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+arr                  array        int        function:main          pointer (*arr)      
+d                    variable     Derived    function:main                              
+getBaseValue         function     int        global                 params: ()          
+getValue             function     int        global                 params: ()          
+main                 function     int        global                 params: ()          
+p                    variable     int        function:main          pointer (*p)        
+v                    variable     int        function:main                              
+value                variable     int        class:Base                                 
+w                    variable     int        function:main                              
+
+======================================================================
+ Phase 2: Abstract Syntax Tree (AST)
+======================================================================
+Program
+  declarations:
+    [
+      Declaration
+        line: 3
+        type_spec:
+          ClassSpecifier
+            line: 3
+            tag: Base
+            members:
+              [
+                AccessLabel
+                  line: 4
+                  access: public,
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 5
+                        declarator:
+                          Declarator
+                            line: 5
+                            name: value
+                            kind_name: variable,
+                    ],
+                FunctionDefinition
+                  line: 0
+                  return_type:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 6
+                      name: getValue
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 6
+                      items:
+                        [
+                          ReturnStatement
+                            line: 6
+                            value:
+                              Identifier
+                                line: 6
+                                name: value,
+                        ],
+              ],
+      Declaration
+        line: 9
+        type_spec:
+          ClassSpecifier
+            line: 9
+            tag: Derived
+            bases:
+              [
+                BaseSpecifier
+                  line: 0
+                  name: Base
+                  access: public,
+              ]
+            members:
+              [
+                AccessLabel
+                  line: 10
+                  access: public,
+                FunctionDefinition
+                  line: 0
+                  return_type:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 11
+                      name: getBaseValue
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 11
+                      items:
+                        [
+                          ReturnStatement
+                            line: 11
+                            value:
+                              QualifiedName
+                                line: 11
+                                scope: Base
+                                name: value,
+                        ],
+              ],
+      FunctionDefinition
+        line: 0
+        return_type:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarator:
+          Declarator
+            line: 14
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 14
+            items:
+              [
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 15
+                        declarator:
+                          Declarator
+                            line: 15
+                            name: p
+                            kind_name: variable
+                            pointer_level: 1
+                        initializer:
+                          NewExpression
+                            line: 15
+                            type_spec:
+                              TypeSpecifier
+                                line: 0
+                                name: int,
+                    ],
+                ExpressionStatement
+                  line: 16
+                  expression:
+                    Assignment
+                      line: 16
+                      operator: =
+                      target:
+                        UnaryOp
+                          line: 16
+                          operator: *
+                          operand:
+                            Identifier
+                              line: 16
+                              name: p
+                          position: prefix
+                      value:
+                        Literal
+                          line: 16
+                          literal_type: int
+                          value: 42,
+                ExpressionStatement
+                  line: 17
+                  expression:
+                    DeleteExpression
+                      line: 17
+                      operand:
+                        Identifier
+                          line: 17
+                          name: p
+                      is_array: False,
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 19
+                        declarator:
+                          Declarator
+                            line: 19
+                            name: arr
+                            kind_name: variable
+                            pointer_level: 1
+                        initializer:
+                          NewExpression
+                            line: 19
+                            type_spec:
+                              TypeSpecifier
+                                line: 0
+                                name: int
+                            count:
+                              Literal
+                                line: 19
+                                literal_type: int
+                                value: 10,
+                    ],
+                ExpressionStatement
+                  line: 20
+                  expression:
+                    Assignment
+                      line: 20
+                      operator: =
+                      target:
+                        ArrayAccess
+                          line: 20
+                          array:
+                            Identifier
+                              line: 20
+                              name: arr
+                          index:
+                            Literal
+                              line: 20
+                              literal_type: int
+                              value: 0
+                      value:
+                        Literal
+                          line: 20
+                          literal_type: int
+                          value: 1,
+                ExpressionStatement
+                  line: 21
+                  expression:
+                    DeleteExpression
+                      line: 21
+                      operand:
+                        Identifier
+                          line: 21
+                          name: arr
+                      is_array: True,
+                Declaration
+                  line: 23
+                  type_spec:
+                    TypeSpecifier
+                      line: 23
+                      name: Derived
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 23
+                        declarator:
+                          Declarator
+                            line: 23
+                            name: d
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 24
+                  expression:
+                    Assignment
+                      line: 24
+                      operator: =
+                      target:
+                        MemberAccess
+                          line: 24
+                          target:
+                            Identifier
+                              line: 24
+                              name: d
+                          member: value
+                          is_pointer: False
+                      value:
+                        Literal
+                          line: 24
+                          literal_type: int
+                          value: 7,
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 25
+                        declarator:
+                          Declarator
+                            line: 25
+                            name: v
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 25
+                            callee:
+                              MemberAccess
+                                line: 25
+                                target:
+                                  Identifier
+                                    line: 25
+                                    name: d
+                                member: getBaseValue
+                                is_pointer: False,
+                    ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 27
+                        declarator:
+                          Declarator
+                            line: 27
+                            name: w
+                            kind_name: variable
+                        initializer:
+                          QualifiedName
+                            line: 27
+                            scope: Derived
+                            name: value,
+                    ],
+                ReturnStatement
+                  line: 29
+                  value:
+                    Literal
+                      line: 29
+                      literal_type: int
+                      value: 0,
+              ],
+    ]

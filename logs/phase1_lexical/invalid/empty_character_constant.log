@@ -1,0 +1,7 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase1_lexical/invalid/empty_character_constant.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Lexical Error: Empty character constant at line 3

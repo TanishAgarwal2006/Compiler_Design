@@ -1,0 +1,690 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/valid/structs_unions_enums.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type               
+--------------------------------------------------
+typedef                   TYPEDEF                  
+int                       INT                      
+Integer                   TYPENAME                 
+;                         SEMI                     
+typedef                   TYPEDEF                  
+char                      CHAR                     
+Letter                    TYPENAME                 
+;                         SEMI                     
+struct                    STRUCT                   
+Point                     IDENTIFIER               
+{                         LBRACE                   
+int                       INT                      
+x                         PARAMETER_NAME           
+;                         SEMI                     
+int                       INT                      
+y                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+union                     UNION                    
+Value                     IDENTIFIER               
+{                         LBRACE                   
+int                       INT                      
+i                         VARIABLE_NAME            
+;                         SEMI                     
+char                      CHAR                     
+c                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+enum                      ENUM                     
+Color                     IDENTIFIER               
+{                         LBRACE                   
+RED                       VARIABLE_NAME            
+,                         COMMA                    
+GREEN                     VARIABLE_NAME            
+,                         COMMA                    
+BLUE                      VARIABLE_NAME            
+}                         RBRACE                   
+;                         SEMI                     
+enum                      ENUM                     
+Status                    IDENTIFIER               
+{                         LBRACE                   
+OK                        VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+,                         COMMA                    
+FAIL                      VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+}                         RBRACE                   
+;                         SEMI                     
+Integer                   TYPENAME                 
+square                    FUNCTION_NAME            
+(                         LPAREN                   
+Integer                   TYPENAME                 
+x                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+x                         PARAMETER_NAME           
+*                         MULTIPLY                 
+x                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+Integer                   TYPENAME                 
+n                         VARIABLE_NAME            
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+;                         SEMI                     
+Letter                    TYPENAME                 
+grade                     VARIABLE_NAME            
+=                         ASSIGN                   
+'A'                       CHAR_CONSTANT            
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+square                    FUNCTION_NAME            
+(                         LPAREN                   
+n                         VARIABLE_NAME            
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+struct                    STRUCT                   
+Point                     IDENTIFIER               
+p1                        VARIABLE_NAME            
+;                         SEMI                     
+struct                    STRUCT                   
+Point                     IDENTIFIER               
+*                         MULTIPLY                 
+pp                        VARIABLE_NAME            
+;                         SEMI                     
+p1                        VARIABLE_NAME            
+.                         DOT                      
+x                         PARAMETER_NAME           
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+;                         SEMI                     
+p1                        VARIABLE_NAME            
+.                         DOT                      
+y                         VARIABLE_NAME            
+=                         ASSIGN                   
+4                         INTEGER_CONSTANT         
+;                         SEMI                     
+pp                        VARIABLE_NAME            
+=                         ASSIGN                   
+&                         ADDRESS                  
+p1                        VARIABLE_NAME            
+;                         SEMI                     
+pp                        VARIABLE_NAME            
+->                        ARROW                    
+x                         PARAMETER_NAME           
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+;                         SEMI                     
+enum                      ENUM                     
+Color                     IDENTIFIER               
+c                         VARIABLE_NAME            
+=                         ASSIGN                   
+RED                       VARIABLE_NAME            
+;                         SEMI                     
+enum                      ENUM                     
+Status                    IDENTIFIER               
+s                         VARIABLE_NAME            
+=                         ASSIGN                   
+FAIL                      VARIABLE_NAME            
+;                         SEMI                     
+union                     UNION                    
+Value                     IDENTIFIER               
+v                         VARIABLE_NAME            
+;                         SEMI                     
+v                         VARIABLE_NAME            
+.                         DOT                      
+i                         VARIABLE_NAME            
+=                         ASSIGN                   
+65                        INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+v                         VARIABLE_NAME            
+.                         DOT                      
+i                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+
+======================================================================
+ Phase 2: Detailed Symbol Table
+======================================================================
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+BLUE                 variable     int        global                 enum constant       
+FAIL                 variable     int        global                 enum constant       
+GREEN                variable     int        global                 enum constant       
+Integer              typedef      int        global                                     
+Letter               typedef      char       global                                     
+OK                   variable     int        global                 enum constant       
+RED                  variable     int        global                 enum constant       
+c                    variable     enum Color struct:Value                               
+grade                variable     Letter     function:main                              
+i                    variable     int        struct:Value                               
+main                 function     int        global                 params: ()          
+n                    variable     Integer    function:main                              
+p1                   variable     struct Point function:main                              
+pp                   variable     struct Point function:main          pointer (*pp)       
+printf               function     int        global                 params: (format, ...)
+s                    variable     enum Status function:main                              
+square               function     Integer    global                 params: (Integer)   
+v                    variable     union Value function:main                              
+x                    parameter    Integer    struct:Point                               
+y                    variable     int        struct:Point                               
+
+======================================================================
+ Phase 2: Abstract Syntax Tree (AST)
+======================================================================
+Program
+  declarations:
+    [
+      Declaration
+        line: 3
+        type_spec:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 3
+              declarator:
+                Declarator
+                  line: 3
+                  name: Integer
+                  kind_name: variable,
+          ]
+        storage: typedef,
+      Declaration
+        line: 4
+        type_spec:
+          TypeSpecifier
+            line: 0
+            name: char
+        declarators:
+          [
+            InitDeclarator
+              line: 4
+              declarator:
+                Declarator
+                  line: 4
+                  name: Letter
+                  kind_name: variable,
+          ]
+        storage: typedef,
+      Declaration
+        line: 6
+        type_spec:
+          StructSpecifier
+            line: 6
+            tag: Point
+            members:
+              [
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: x
+                            kind_name: variable,
+                    ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: y
+                            kind_name: variable,
+                    ],
+              ]
+            is_union: False,
+      Declaration
+        line: 11
+        type_spec:
+          UnionSpecifier
+            line: 11
+            tag: Value
+            members:
+              [
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 12
+                        declarator:
+                          Declarator
+                            line: 12
+                            name: i
+                            kind_name: variable,
+                    ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 13
+                        declarator:
+                          Declarator
+                            line: 13
+                            name: c
+                            kind_name: variable,
+                    ],
+              ]
+            is_union: True,
+      Declaration
+        line: 16
+        type_spec:
+          EnumSpecifier
+            line: 16
+            tag: Color
+            enumerators:
+              [
+                Enumerator
+                  line: 16
+                  name: RED,
+                Enumerator
+                  line: 16
+                  name: GREEN,
+                Enumerator
+                  line: 16
+                  name: BLUE,
+              ],
+      Declaration
+        line: 17
+        type_spec:
+          EnumSpecifier
+            line: 17
+            tag: Status
+            enumerators:
+              [
+                Enumerator
+                  line: 17
+                  name: OK
+                  value:
+                    Literal
+                      line: 17
+                      literal_type: int
+                      value: 0,
+                Enumerator
+                  line: 17
+                  name: FAIL
+                  value:
+                    Literal
+                      line: 17
+                      literal_type: int
+                      value: 1,
+              ],
+      FunctionDefinition
+        line: 19
+        return_type:
+          TypeSpecifier
+            line: 19
+            name: Integer
+        declarator:
+          Declarator
+            line: 19
+            name: square
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 19
+                  type_spec:
+                    TypeSpecifier
+                      line: 19
+                      name: Integer
+                  declarator:
+                    Declarator
+                      line: 19
+                      name: x
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 19
+            items:
+              [
+                ReturnStatement
+                  line: 20
+                  value:
+                    BinaryOp
+                      line: 20
+                      operator: *
+                      left:
+                        Identifier
+                          line: 20
+                          name: x
+                      right:
+                        Identifier
+                          line: 20
+                          name: x,
+              ],
+      FunctionDefinition
+        line: 0
+        return_type:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarator:
+          Declarator
+            line: 23
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 23
+            items:
+              [
+                Declaration
+                  line: 24
+                  type_spec:
+                    TypeSpecifier
+                      line: 24
+                      name: Integer
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 24
+                        declarator:
+                          Declarator
+                            line: 24
+                            name: n
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 24
+                            literal_type: int
+                            value: 5,
+                    ],
+                Declaration
+                  line: 25
+                  type_spec:
+                    TypeSpecifier
+                      line: 25
+                      name: Letter
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 25
+                        declarator:
+                          Declarator
+                            line: 25
+                            name: grade
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 25
+                            literal_type: char
+                            value: 'A',
+                    ],
+                ExpressionStatement
+                  line: 26
+                  expression:
+                    FunctionCall
+                      line: 26
+                      callee:
+                        Identifier
+                          line: 26
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 26
+                            literal_type: string
+                            value: "%d\n",
+                          FunctionCall
+                            line: 26
+                            callee:
+                              Identifier
+                                line: 26
+                                name: square
+                            args:
+                              [
+                                Identifier
+                                  line: 26
+                                  name: n,
+                              ],
+                        ],
+                Declaration
+                  line: 28
+                  type_spec:
+                    StructSpecifier
+                      line: 28
+                      tag: Point
+                      is_union: False
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 28
+                        declarator:
+                          Declarator
+                            line: 28
+                            name: p1
+                            kind_name: variable,
+                    ],
+                Declaration
+                  line: 29
+                  type_spec:
+                    StructSpecifier
+                      line: 29
+                      tag: Point
+                      is_union: False
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 29
+                        declarator:
+                          Declarator
+                            line: 29
+                            name: pp
+                            kind_name: variable
+                            pointer_level: 1,
+                    ],
+                ExpressionStatement
+                  line: 30
+                  expression:
+                    Assignment
+                      line: 30
+                      operator: =
+                      target:
+                        MemberAccess
+                          line: 30
+                          target:
+                            Identifier
+                              line: 30
+                              name: p1
+                          member: x
+                          is_pointer: False
+                      value:
+                        Literal
+                          line: 30
+                          literal_type: int
+                          value: 3,
+                ExpressionStatement
+                  line: 31
+                  expression:
+                    Assignment
+                      line: 31
+                      operator: =
+                      target:
+                        MemberAccess
+                          line: 31
+                          target:
+                            Identifier
+                              line: 31
+                              name: p1
+                          member: y
+                          is_pointer: False
+                      value:
+                        Literal
+                          line: 31
+                          literal_type: int
+                          value: 4,
+                ExpressionStatement
+                  line: 32
+                  expression:
+                    Assignment
+                      line: 32
+                      operator: =
+                      target:
+                        Identifier
+                          line: 32
+                          name: pp
+                      value:
+                        UnaryOp
+                          line: 32
+                          operator: &
+                          operand:
+                            Identifier
+                              line: 32
+                              name: p1
+                          position: prefix,
+                ExpressionStatement
+                  line: 33
+                  expression:
+                    Assignment
+                      line: 33
+                      operator: =
+                      target:
+                        MemberAccess
+                          line: 33
+                          target:
+                            Identifier
+                              line: 33
+                              name: pp
+                          member: x
+                          is_pointer: True
+                      value:
+                        Literal
+                          line: 33
+                          literal_type: int
+                          value: 5,
+                Declaration
+                  line: 35
+                  type_spec:
+                    EnumSpecifier
+                      line: 35
+                      tag: Color
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 35
+                        declarator:
+                          Declarator
+                            line: 35
+                            name: c
+                            kind_name: variable
+                        initializer:
+                          Identifier
+                            line: 35
+                            name: RED,
+                    ],
+                Declaration
+                  line: 36
+                  type_spec:
+                    EnumSpecifier
+                      line: 36
+                      tag: Status
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 36
+                        declarator:
+                          Declarator
+                            line: 36
+                            name: s
+                            kind_name: variable
+                        initializer:
+                          Identifier
+                            line: 36
+                            name: FAIL,
+                    ],
+                Declaration
+                  line: 38
+                  type_spec:
+                    UnionSpecifier
+                      line: 38
+                      tag: Value
+                      is_union: True
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 38
+                        declarator:
+                          Declarator
+                            line: 38
+                            name: v
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 39
+                  expression:
+                    Assignment
+                      line: 39
+                      operator: =
+                      target:
+                        MemberAccess
+                          line: 39
+                          target:
+                            Identifier
+                              line: 39
+                              name: v
+                          member: i
+                          is_pointer: False
+                      value:
+                        Literal
+                          line: 39
+                          literal_type: int
+                          value: 65,
+                ReturnStatement
+                  line: 41
+                  value:
+                    MemberAccess
+                      line: 41
+                      target:
+                        Identifier
+                          line: 41
+                          name: v
+                      member: i
+                      is_pointer: False,
+              ],
+    ]

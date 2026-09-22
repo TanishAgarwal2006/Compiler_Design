@@ -1,0 +1,7 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase1_lexical/invalid/malformed_float.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Lexical Error: Malformed floating-point literal '1.2.3' at line 3

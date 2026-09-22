@@ -1,0 +1,7 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase1_lexical/invalid/multi_character_constant.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Lexical Error: Multi-character constant 'AB' at line 3 (only single characters are allowed)

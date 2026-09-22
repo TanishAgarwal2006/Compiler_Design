@@ -1,0 +1,7 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase1_lexical/invalid/invalid_octal_literal.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Lexical Error: Invalid octal literal '089' at line 3

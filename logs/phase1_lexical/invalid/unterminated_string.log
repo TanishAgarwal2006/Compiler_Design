@@ -1,0 +1,7 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase1_lexical/invalid/unterminated_string.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Lexical Error: Unterminated string literal at line 3

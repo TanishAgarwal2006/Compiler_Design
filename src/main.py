@@ -27,6 +27,7 @@ def tokenize_source(code: str):
 
     token_rows = []
     in_typedef = False
+    brace_depth = 0
     while True:
         tok = lexer.token()
         if not tok:
@@ -34,9 +35,16 @@ def tokenize_source(code: str):
         token_rows.append((tok.value, tok.type))
         if tok.type == "TYPEDEF":
             in_typedef = True
-        elif in_typedef and tok.type == "IDENTIFIER":
+        elif tok.type == "LBRACE":
+            brace_depth += 1
+        elif tok.type == "RBRACE":
+            brace_depth -= 1
+        elif in_typedef and brace_depth == 0 and tok.type == "IDENTIFIER":
+            # Only the name at the end of the typedef (brace depth back to 0)
+            # is the type being introduced - a member inside "typedef struct
+            # { ... } P;" must stay an ordinary IDENTIFIER, not a TYPENAME.
             lexer.typedefs.add(tok.value)
-        if tok.type == "SEMI":
+        if tok.type == "SEMI" and brace_depth == 0:
             in_typedef = False
 
     return token_rows

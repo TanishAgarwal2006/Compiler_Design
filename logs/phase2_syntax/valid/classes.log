@@ -1,0 +1,324 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/valid/classes.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type               
+--------------------------------------------------
+class                     CLASS                    
+Animal                    IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+age                       VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+getAge                    FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+age                       VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+protected                 PROTECTED                
+:                         COLON                    
+int                       INT                      
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+private                   PRIVATE                  
+:                         COLON                    
+char                      CHAR                     
+name                      ARRAY_NAME               
+[                         LBRACKET                 
+20                        INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+class                     CLASS                    
+Dog                       IDENTIFIER               
+:                         COLON                    
+public                    PUBLIC                   
+Animal                    IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+legs                      VARIABLE_NAME            
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+Dog                       IDENTIFIER               
+d                         VARIABLE_NAME            
+;                         SEMI                     
+d                         VARIABLE_NAME            
+.                         DOT                      
+age                       VARIABLE_NAME            
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+d                         VARIABLE_NAME            
+.                         DOT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+
+======================================================================
+ Phase 2: Detailed Symbol Table
+======================================================================
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+age                  variable     int        class:Animal                               
+bark                 function     int        global                 params: ()          
+d                    variable     Dog        function:main                              
+getAge               function     int        global                 params: ()          
+legs                 variable     int        class:Animal                               
+main                 function     int        global                 params: ()          
+name                 array        char       class:Animal           dims: [20]          
+
+======================================================================
+ Phase 2: Abstract Syntax Tree (AST)
+======================================================================
+Program
+  declarations:
+    [
+      Declaration
+        line: 3
+        type_spec:
+          ClassSpecifier
+            line: 3
+            tag: Animal
+            members:
+              [
+                AccessLabel
+                  line: 4
+                  access: public,
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 5
+                        declarator:
+                          Declarator
+                            line: 5
+                            name: age
+                            kind_name: variable,
+                    ],
+                FunctionDefinition
+                  line: 0
+                  return_type:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 6
+                      name: getAge
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 6
+                      items:
+                        [
+                          ReturnStatement
+                            line: 6
+                            value:
+                              Identifier
+                                line: 6
+                                name: age,
+                        ],
+                AccessLabel
+                  line: 7
+                  access: protected,
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: legs
+                            kind_name: variable,
+                    ],
+                AccessLabel
+                  line: 9
+                  access: private,
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 10
+                        declarator:
+                          Declarator
+                            line: 10
+                            name: name
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 10
+                                  size:
+                                    Literal
+                                      line: 10
+                                      literal_type: int
+                                      value: 20,
+                              ],
+                    ],
+              ],
+      Declaration
+        line: 13
+        type_spec:
+          ClassSpecifier
+            line: 13
+            tag: Dog
+            bases:
+              [
+                BaseSpecifier
+                  line: 0
+                  name: Animal
+                  access: public,
+              ]
+            members:
+              [
+                AccessLabel
+                  line: 14
+                  access: public,
+                FunctionDefinition
+                  line: 0
+                  return_type:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 15
+                      name: bark
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 15
+                      items:
+                        [
+                          ReturnStatement
+                            line: 15
+                            value:
+                              BinaryOp
+                                line: 15
+                                operator: +
+                                left:
+                                  Identifier
+                                    line: 15
+                                    name: legs
+                                right:
+                                  Literal
+                                    line: 15
+                                    literal_type: int
+                                    value: 1,
+                        ],
+              ],
+      FunctionDefinition
+        line: 0
+        return_type:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarator:
+          Declarator
+            line: 18
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 18
+            items:
+              [
+                Declaration
+                  line: 19
+                  type_spec:
+                    TypeSpecifier
+                      line: 19
+                      name: Dog
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 19
+                        declarator:
+                          Declarator
+                            line: 19
+                            name: d
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 20
+                  expression:
+                    Assignment
+                      line: 20
+                      operator: =
+                      target:
+                        MemberAccess
+                          line: 20
+                          target:
+                            Identifier
+                              line: 20
+                              name: d
+                          member: age
+                          is_pointer: False
+                      value:
+                        Literal
+                          line: 20
+                          literal_type: int
+                          value: 3,
+                ReturnStatement
+                  line: 21
+                  value:
+                    FunctionCall
+                      line: 21
+                      callee:
+                        MemberAccess
+                          line: 21
+                          target:
+                            Identifier
+                              line: 21
+                              name: d
+                          member: bark
+                          is_pointer: False,
+              ],
+    ]

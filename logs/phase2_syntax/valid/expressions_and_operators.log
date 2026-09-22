@@ -1,0 +1,666 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/valid/expressions_and_operators.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         VARIABLE_NAME            
+=                         ASSIGN                   
+12                        INTEGER_CONSTANT         
+,                         COMMA                    
+b                         VARIABLE_NAME            
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+,                         COMMA                    
+r                         VARIABLE_NAME            
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+a                         VARIABLE_NAME            
++                         PLUS                     
+b                         VARIABLE_NAME            
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+a                         VARIABLE_NAME            
+-                         MINUS                    
+b                         VARIABLE_NAME            
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+a                         VARIABLE_NAME            
+*                         MULTIPLY                 
+b                         VARIABLE_NAME            
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+a                         VARIABLE_NAME            
+/                         DIVIDE                   
+b                         VARIABLE_NAME            
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+a                         VARIABLE_NAME            
+%                         MODULO                   
+b                         VARIABLE_NAME            
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+(                         LPAREN                   
+a                         VARIABLE_NAME            
+>                         GT                       
+b                         VARIABLE_NAME            
+)                         RPAREN                   
+&&                        AND                      
+(                         LPAREN                   
+a                         VARIABLE_NAME            
+!=                        NE                       
+0                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+(                         LPAREN                   
+a                         VARIABLE_NAME            
+<                         LT                       
+b                         VARIABLE_NAME            
+)                         RPAREN                   
+||                        OR                       
+(                         LPAREN                   
+b                         VARIABLE_NAME            
+==                        EQ                       
+5                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+!                         NOT                      
+r                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+c                         VARIABLE_NAME            
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+,                         COMMA                    
+d                         VARIABLE_NAME            
+=                         ASSIGN                   
+4                         INTEGER_CONSTANT         
+;                         SEMI                     
+a                         VARIABLE_NAME            
+=                         ASSIGN                   
+b                         VARIABLE_NAME            
+=                         ASSIGN                   
+c                         VARIABLE_NAME            
+=                         ASSIGN                   
+d                         VARIABLE_NAME            
++                         PLUS                     
+5                         INTEGER_CONSTANT         
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+a                         VARIABLE_NAME            
++                         PLUS                     
+b                         VARIABLE_NAME            
+*                         MULTIPLY                 
+c                         VARIABLE_NAME            
+==                        EQ                       
+d                         VARIABLE_NAME            
+-                         MINUS                    
+1                         INTEGER_CONSTANT         
+&&                        AND                      
+c                         VARIABLE_NAME            
+<                         LT                       
+d                         VARIABLE_NAME            
+||                        OR                       
+!                         NOT                      
+a                         VARIABLE_NAME            
+;                         SEMI                     
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+-                         MINUS                    
+a                         VARIABLE_NAME            
++                         PLUS                     
++                         PLUS                     
+b                         VARIABLE_NAME            
+-                         MINUS                    
+--                        DECREMENT                
+c                         VARIABLE_NAME            
+;                         SEMI                     
+a                         VARIABLE_NAME            
++=                        PLUS_ASSIGN              
+b                         VARIABLE_NAME            
+*=                        MUL_ASSIGN               
+c                         VARIABLE_NAME            
+-=                        MINUS_ASSIGN             
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+======================================================================
+ Phase 2: Detailed Symbol Table
+======================================================================
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    variable     int        function:main                              
+b                    variable     int        function:main                              
+c                    variable     int        function:main                              
+d                    variable     int        function:main                              
+main                 function     int        global                 params: ()          
+r                    variable     int        function:main                              
+
+======================================================================
+ Phase 2: Abstract Syntax Tree (AST)
+======================================================================
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 0
+        return_type:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarator:
+          Declarator
+            line: 3
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 3
+            items:
+              [
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 4
+                        declarator:
+                          Declarator
+                            line: 4
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 4
+                            literal_type: int
+                            value: 12,
+                      InitDeclarator
+                        line: 4
+                        declarator:
+                          Declarator
+                            line: 4
+                            name: b
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 4
+                            literal_type: int
+                            value: 5,
+                      InitDeclarator
+                        line: 4
+                        declarator:
+                          Declarator
+                            line: 4
+                            name: r
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 5
+                  expression:
+                    Assignment
+                      line: 5
+                      operator: =
+                      target:
+                        Identifier
+                          line: 5
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 5
+                          operator: +
+                          left:
+                            Identifier
+                              line: 5
+                              name: a
+                          right:
+                            Identifier
+                              line: 5
+                              name: b,
+                ExpressionStatement
+                  line: 6
+                  expression:
+                    Assignment
+                      line: 6
+                      operator: =
+                      target:
+                        Identifier
+                          line: 6
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 6
+                          operator: -
+                          left:
+                            Identifier
+                              line: 6
+                              name: a
+                          right:
+                            Identifier
+                              line: 6
+                              name: b,
+                ExpressionStatement
+                  line: 7
+                  expression:
+                    Assignment
+                      line: 7
+                      operator: =
+                      target:
+                        Identifier
+                          line: 7
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 7
+                          operator: *
+                          left:
+                            Identifier
+                              line: 7
+                              name: a
+                          right:
+                            Identifier
+                              line: 7
+                              name: b,
+                ExpressionStatement
+                  line: 8
+                  expression:
+                    Assignment
+                      line: 8
+                      operator: =
+                      target:
+                        Identifier
+                          line: 8
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 8
+                          operator: /
+                          left:
+                            Identifier
+                              line: 8
+                              name: a
+                          right:
+                            Identifier
+                              line: 8
+                              name: b,
+                ExpressionStatement
+                  line: 9
+                  expression:
+                    Assignment
+                      line: 9
+                      operator: =
+                      target:
+                        Identifier
+                          line: 9
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 9
+                          operator: %
+                          left:
+                            Identifier
+                              line: 9
+                              name: a
+                          right:
+                            Identifier
+                              line: 9
+                              name: b,
+                ExpressionStatement
+                  line: 10
+                  expression:
+                    Assignment
+                      line: 10
+                      operator: =
+                      target:
+                        Identifier
+                          line: 10
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 10
+                          operator: &&
+                          left:
+                            BinaryOp
+                              line: 10
+                              operator: >
+                              left:
+                                Identifier
+                                  line: 10
+                                  name: a
+                              right:
+                                Identifier
+                                  line: 10
+                                  name: b
+                          right:
+                            BinaryOp
+                              line: 10
+                              operator: !=
+                              left:
+                                Identifier
+                                  line: 10
+                                  name: a
+                              right:
+                                Literal
+                                  line: 10
+                                  literal_type: int
+                                  value: 0,
+                ExpressionStatement
+                  line: 11
+                  expression:
+                    Assignment
+                      line: 11
+                      operator: =
+                      target:
+                        Identifier
+                          line: 11
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 11
+                          operator: ||
+                          left:
+                            BinaryOp
+                              line: 11
+                              operator: <
+                              left:
+                                Identifier
+                                  line: 11
+                                  name: a
+                              right:
+                                Identifier
+                                  line: 11
+                                  name: b
+                          right:
+                            BinaryOp
+                              line: 11
+                              operator: ==
+                              left:
+                                Identifier
+                                  line: 11
+                                  name: b
+                              right:
+                                Literal
+                                  line: 11
+                                  literal_type: int
+                                  value: 5,
+                ExpressionStatement
+                  line: 12
+                  expression:
+                    Assignment
+                      line: 12
+                      operator: =
+                      target:
+                        Identifier
+                          line: 12
+                          name: r
+                      value:
+                        UnaryOp
+                          line: 12
+                          operator: !
+                          operand:
+                            Identifier
+                              line: 12
+                              name: r
+                          position: prefix,
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 14
+                        declarator:
+                          Declarator
+                            line: 14
+                            name: c
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 14
+                            literal_type: int
+                            value: 3,
+                      InitDeclarator
+                        line: 14
+                        declarator:
+                          Declarator
+                            line: 14
+                            name: d
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 14
+                            literal_type: int
+                            value: 4,
+                    ],
+                ExpressionStatement
+                  line: 17
+                  expression:
+                    Assignment
+                      line: 17
+                      operator: =
+                      target:
+                        Identifier
+                          line: 17
+                          name: a
+                      value:
+                        Assignment
+                          line: 17
+                          operator: =
+                          target:
+                            Identifier
+                              line: 17
+                              name: b
+                          value:
+                            Assignment
+                              line: 17
+                              operator: =
+                              target:
+                                Identifier
+                                  line: 17
+                                  name: c
+                              value:
+                                BinaryOp
+                                  line: 17
+                                  operator: +
+                                  left:
+                                    Identifier
+                                      line: 17
+                                      name: d
+                                  right:
+                                    Literal
+                                      line: 17
+                                      literal_type: int
+                                      value: 5,
+                ExpressionStatement
+                  line: 20
+                  expression:
+                    Assignment
+                      line: 20
+                      operator: =
+                      target:
+                        Identifier
+                          line: 20
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 20
+                          operator: ||
+                          left:
+                            BinaryOp
+                              line: 20
+                              operator: &&
+                              left:
+                                BinaryOp
+                                  line: 20
+                                  operator: ==
+                                  left:
+                                    BinaryOp
+                                      line: 20
+                                      operator: +
+                                      left:
+                                        Identifier
+                                          line: 20
+                                          name: a
+                                      right:
+                                        BinaryOp
+                                          line: 20
+                                          operator: *
+                                          left:
+                                            Identifier
+                                              line: 20
+                                              name: b
+                                          right:
+                                            Identifier
+                                              line: 20
+                                              name: c
+                                  right:
+                                    BinaryOp
+                                      line: 20
+                                      operator: -
+                                      left:
+                                        Identifier
+                                          line: 20
+                                          name: d
+                                      right:
+                                        Literal
+                                          line: 20
+                                          literal_type: int
+                                          value: 1
+                              right:
+                                BinaryOp
+                                  line: 20
+                                  operator: <
+                                  left:
+                                    Identifier
+                                      line: 20
+                                      name: c
+                                  right:
+                                    Identifier
+                                      line: 20
+                                      name: d
+                          right:
+                            UnaryOp
+                              line: 20
+                              operator: !
+                              operand:
+                                Identifier
+                                  line: 20
+                                  name: a
+                              position: prefix,
+                ExpressionStatement
+                  line: 23
+                  expression:
+                    Assignment
+                      line: 23
+                      operator: =
+                      target:
+                        Identifier
+                          line: 23
+                          name: r
+                      value:
+                        BinaryOp
+                          line: 23
+                          operator: -
+                          left:
+                            BinaryOp
+                              line: 23
+                              operator: +
+                              left:
+                                UnaryOp
+                                  line: 23
+                                  operator: -
+                                  operand:
+                                    Identifier
+                                      line: 23
+                                      name: a
+                                  position: prefix
+                              right:
+                                UnaryOp
+                                  line: 23
+                                  operator: +
+                                  operand:
+                                    Identifier
+                                      line: 23
+                                      name: b
+                                  position: prefix
+                          right:
+                            UnaryOp
+                              line: 23
+                              operator: --
+                              operand:
+                                Identifier
+                                  line: 23
+                                  name: c
+                              position: prefix,
+                ExpressionStatement
+                  line: 26
+                  expression:
+                    Assignment
+                      line: 26
+                      operator: +=
+                      target:
+                        Identifier
+                          line: 26
+                          name: a
+                      value:
+                        Assignment
+                          line: 26
+                          operator: *=
+                          target:
+                            Identifier
+                              line: 26
+                              name: b
+                          value:
+                            Assignment
+                              line: 26
+                              operator: -=
+                              target:
+                                Identifier
+                                  line: 26
+                                  name: c
+                              value:
+                                Literal
+                                  line: 26
+                                  literal_type: int
+                                  value: 1,
+                ReturnStatement
+                  line: 28
+                  value:
+                    Literal
+                      line: 28
+                      literal_type: int
+                      value: 0,
+              ],
+    ]

@@ -1,0 +1,9 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/invalid/missing_condition_parens.c
+======================================================================
+
+STATUS: [ERRORS DETECTED]
+-----------------------------------
+Syntax error: Syntax Error: unexpected token 'x' at line 4
+Syntax error: Syntax Error: unexpected token 'return' at line 7
+Syntax error: Syntax Error: unexpected token '}' at line 8

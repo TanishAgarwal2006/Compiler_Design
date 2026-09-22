@@ -1,0 +1,48 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase1_lexical/valid/string_and_char_literals.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type          
+---------------------------------------------
+int                       INT                 
+main                      IDENTIFIER          
+(                         LPAREN              
+)                         RPAREN              
+{                         LBRACE              
+char                      CHAR                
+newline                   IDENTIFIER          
+=                         ASSIGN              
+'\n'                      CHAR_CONSTANT       
+;                         SEMI                
+char                      CHAR                
+tab                       IDENTIFIER          
+=                         ASSIGN              
+'\t'                      CHAR_CONSTANT       
+;                         SEMI                
+char                      CHAR                
+quote                     IDENTIFIER          
+=                         ASSIGN              
+'\''                      CHAR_CONSTANT       
+;                         SEMI                
+char                      CHAR                
+letter                    IDENTIFIER          
+=                         ASSIGN              
+'A'                       CHAR_CONSTANT       
+;                         SEMI                
+char                      CHAR                
+msg                       IDENTIFIER          
+[                         LBRACKET            
+20                        INTEGER_CONSTANT    
+]                         RBRACKET            
+=                         ASSIGN              
+"hello, world!\n"         STRING_LITERAL      
+;                         SEMI                
+return                    RETURN              
+0                         INTEGER_CONSTANT    
+;                         SEMI                
+}                         RBRACE              

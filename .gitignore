@@ -15,7 +15,3 @@ env/
 .idea/
 
 
-# Generated outputs
-output.txt
-*.log
-logs/

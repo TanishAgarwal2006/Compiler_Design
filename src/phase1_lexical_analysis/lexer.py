@@ -152,6 +152,63 @@ def t_CHAR_error(t):
     t.lexer.skip(1)
 
 
+# ---------------------------------------------------------------------------
+# Preprocessor directives
+#
+# This compiler has no preprocessor pass, but real C sources always open with
+# "#include <stdio.h>". Rather than choking on '#' as an illegal character,
+# Phase 1 recognises a directive, records it on the lexer for reporting, and
+# consumes the whole line so the token stream stays clean. Unknown directives
+# are still reported as lexical errors.
+# ---------------------------------------------------------------------------
+_KNOWN_DIRECTIVES = {
+    "include", "define", "undef", "ifdef", "ifndef", "if", "else",
+    "elif", "endif", "pragma", "line", "error", "warning",
+}
+
+
+def t_PREPROCESSOR(t):
+    r"\#[ \t]*[A-Za-z_][A-Za-z_0-9]*[^\n]*"
+    body = t.value[1:].strip()
+    name = body.split()[0] if body.split() else ""
+    if name not in _KNOWN_DIRECTIVES:
+        add_lex_error(f"Lexical Error: Unknown preprocessor directive '#{name}' at line {t.lexer.lineno}")
+        return
+    if not hasattr(t.lexer, "directives"):
+        t.lexer.directives = []
+    t.lexer.directives.append((t.lexer.lineno, "#" + body))
+    # directive consumed; no token reaches the parser
+
+
+def t_STRAY_HASH(t):
+    r"\#"
+    add_lex_error(f"Lexical Error: Stray '#' at line {t.lexer.lineno}")
+
+
+# ---------------------------------------------------------------------------
+# Numeric literals
+#
+# Floating-point rules are declared before the integer rules so that "3.14"
+# and "2e10" are never split into an integer, a dot and another integer.
+# ---------------------------------------------------------------------------
+
+def t_INVALID_FLOAT(t):
+    r"(?:\d+\.\d*|\.\d+)(?:\.[0-9.]*)|(?:\d+\.?\d*|\.\d+)[eE][+-]?(?![0-9+\-])"
+    add_lex_error(f"Lexical Error: Malformed floating-point literal '{t.value}' at line {t.lexer.lineno}")
+
+
+def t_FLOAT_CONSTANT(t):
+    r"(?:\d+\.\d*(?:[eE][+-]?\d+)?|\.\d+(?:[eE][+-]?\d+)?|\d+[eE][+-]?\d+)[fFlL]?"
+    text = t.value
+    suffix = ""
+    if text[-1] in "fFlL":
+        suffix = text[-1]
+        text = text[:-1]
+    t.value = float(text)
+    t.float_suffix = suffix
+    return t
+
+
 # Base-specific integer rules precede the decimal rule.
 
 def t_INTEGER_HEX(t):
@@ -203,8 +260,17 @@ t_MINUS_ASSIGN = r"-="
 t_MUL_ASSIGN = r"\*="
 t_DIV_ASSIGN = r"/="
 t_MOD_ASSIGN = r"%="
+t_AND_ASSIGN = r"&="
+t_OR_ASSIGN = r"\|="
+t_XOR_ASSIGN = r"\^="
+t_LSHIFT_ASSIGN = r"<<="
+t_RSHIFT_ASSIGN = r">>="
 t_INCREMENT = r"\+\+"
 t_DECREMENT = r"--"
+t_ELLIPSIS = r"\.\.\."  # must be tried before t_DOT ('.')
+t_SCOPE = r"::"  # C++ scope resolution; must be tried before t_COLON (':')
+t_ARROW = r"->"  # must be tried before MINUS ('-') and t_DOT ('.')
+t_DOT = r"\."
 t_PLUS = r"\+"
 t_MINUS = r"-"
 t_MULTIPLY = r"\*"
@@ -214,13 +280,19 @@ t_EQ = r"=="
 t_NE = r"!="
 t_LE = r"<="
 t_GE = r">="
+t_LSHIFT = r"<<"  # must be tried before t_LT ('<')
+t_RSHIFT = r">>"  # must be tried before t_GT ('>')
 t_LT = r"<"
 t_GT = r">"
 t_AND = r"&&"
 t_OR = r"\|\|"
+t_BIT_OR = r"\|"
+t_BIT_XOR = r"\^"
+t_BIT_NOT = r"~"
 t_NOT = r"!"
 t_ASSIGN = r"="
 t_ADDRESS = r"&"
+t_QUESTION = r"\?"
 t_SEMI = r";"
 t_COLON = r":"
 t_COMMA = r","
@@ -245,10 +317,17 @@ def t_error(t):
     t.lexer.skip(1)
 
 
+# Predefined typenames available without an explicit typedef, mirroring the
+# handful of library types a <stdio.h>-free toy compiler still needs to
+# recognize (e.g. "FILE *fp = fopen(...)" for file manipulation).
+_BUILTIN_TYPEDEFS = {"FILE", "size_t", "ptrdiff_t", "va_list"}
+
+
 def build_lexer():
     """Create an isolated lexer for one source input."""
     new_lexer = lex.lex()
-    new_lexer.typedefs = set()
+    new_lexer.typedefs = set(_BUILTIN_TYPEDEFS)
+    new_lexer.directives = []
     return new_lexer
 
 

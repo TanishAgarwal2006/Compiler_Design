@@ -1,0 +1,45 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase1_lexical/valid/numeric_literals.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type          
+---------------------------------------------
+int                       INT                 
+main                      IDENTIFIER          
+(                         LPAREN              
+)                         RPAREN              
+{                         LBRACE              
+int                       INT                 
+dec                       IDENTIFIER          
+=                         ASSIGN              
+42                        INTEGER_CONSTANT    
+;                         SEMI                
+int                       INT                 
+hex                       IDENTIFIER          
+=                         ASSIGN              
+42                        INTEGER_CONSTANT    
+;                         SEMI                
+int                       INT                 
+oct                       IDENTIFIER          
+=                         ASSIGN              
+42                        INTEGER_CONSTANT    
+;                         SEMI                
+int                       INT                 
+bin                       IDENTIFIER          
+=                         ASSIGN              
+42                        INTEGER_CONSTANT    
+;                         SEMI                
+int                       INT                 
+zero                      IDENTIFIER          
+=                         ASSIGN              
+0                         INTEGER_CONSTANT    
+;                         SEMI                
+return                    RETURN              
+0                         INTEGER_CONSTANT    
+;                         SEMI                
+}                         RBRACE              

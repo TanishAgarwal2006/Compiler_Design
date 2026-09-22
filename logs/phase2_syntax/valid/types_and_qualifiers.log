@@ -1,0 +1,521 @@
+======================================================================
+ Compiler Analysis Report for: tests/phase2_syntax/valid/types_and_qualifiers.c
+======================================================================
+
+STATUS: [SUCCESS / PASSED]
+
+======================================================================
+ Phase 1: Tokenization Output
+======================================================================
+Token                     Token_Type               
+--------------------------------------------------
+extern                    EXTERN                   
+int                       INT                      
+shared_counter            VARIABLE_NAME            
+;                         SEMI                     
+static                    STATIC                   
+int                       INT                      
+local_counter             VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+double                    DOUBLE                   
+average                   FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+double                    DOUBLE                   
+total                     VARIABLE_NAME            
+=                         ASSIGN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         PARAMETER_NAME           
+;                         SEMI                     
+return                    RETURN                   
+total                     VARIABLE_NAME            
+/                         DIVIDE                   
+2.0                       FLOAT_CONSTANT           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+float                     FLOAT                    
+f                         VARIABLE_NAME            
+=                         ASSIGN                   
+3.14                      FLOAT_CONSTANT           
+;                         SEMI                     
+double                    DOUBLE                   
+d                         VARIABLE_NAME            
+=                         ASSIGN                   
+0.0025                    FLOAT_CONSTANT           
+;                         SEMI                     
+unsigned                  UNSIGNED                 
+long                      LONG                     
+int                       INT                      
+big                       VARIABLE_NAME            
+=                         ASSIGN                   
+4000000                   INTEGER_CONSTANT         
+;                         SEMI                     
+const                     CONST                    
+short                     SHORT                    
+s                         VARIABLE_NAME            
+=                         ASSIGN                   
+12                        INTEGER_CONSTANT         
+;                         SEMI                     
+signed                    SIGNED                   
+char                      CHAR                     
+c                         VARIABLE_NAME            
+=                         ASSIGN                   
+'a'                       CHAR_CONSTANT            
+;                         SEMI                     
+const                     CONST                    
+int                       INT                      
+limit                     VARIABLE_NAME            
+=                         ASSIGN                   
+10                        INTEGER_CONSTANT         
+;                         SEMI                     
+bool                      BOOL                     
+flag                      VARIABLE_NAME            
+=                         ASSIGN                   
+true                      TRUE_KW                  
+;                         SEMI                     
+flag                      VARIABLE_NAME            
+=                         ASSIGN                   
+false                     FALSE_KW                 
+;                         SEMI                     
+d                         VARIABLE_NAME            
+=                         ASSIGN                   
+average                   FUNCTION_NAME            
+(                         LPAREN                   
+4                         INTEGER_CONSTANT         
+,                         COMMA                    
+6                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+local_counter             VARIABLE_NAME            
+=                         ASSIGN                   
+limit                     VARIABLE_NAME            
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%f %f\n"                 STRING_LITERAL           
+,                         COMMA                    
+f                         VARIABLE_NAME            
+,                         COMMA                    
+d                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+local_counter             VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+
+======================================================================
+ Phase 2: Detailed Symbol Table
+======================================================================
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    parameter    int        function:average                           
+average              function     double     global                 params: (int, int)  
+b                    parameter    int        function:average                           
+big                  variable     unsigned long int function:main                              
+c                    variable     signed char function:main                              
+d                    variable     double     function:main                              
+f                    variable     float      function:main                              
+flag                 variable     bool       function:main                              
+limit                variable     const int  function:main                              
+local_counter        variable     int        global                 static              
+main                 function     int        global                 params: ()          
+printf               function     int        global                 params: (format, ...)
+s                    variable     const short function:main                              
+shared_counter       variable     int        global                                     
+total                variable     double     function:average                           
+
+======================================================================
+ Phase 2: Abstract Syntax Tree (AST)
+======================================================================
+Program
+  declarations:
+    [
+      Declaration
+        line: 0
+        type_spec:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 5
+              declarator:
+                Declarator
+                  line: 5
+                  name: shared_counter
+                  kind_name: variable,
+          ]
+        storage: extern,
+      Declaration
+        line: 0
+        type_spec:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 6
+              declarator:
+                Declarator
+                  line: 6
+                  name: local_counter
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 6
+                  literal_type: int
+                  value: 0,
+          ]
+        storage: static,
+      FunctionDefinition
+        line: 0
+        return_type:
+          TypeSpecifier
+            line: 0
+            name: double
+        declarator:
+          Declarator
+            line: 8
+            name: average
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 8
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 8
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 8
+            items:
+              [
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: double
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 9
+                        declarator:
+                          Declarator
+                            line: 9
+                            name: total
+                            kind_name: variable
+                        initializer:
+                          BinaryOp
+                            line: 9
+                            operator: +
+                            left:
+                              Identifier
+                                line: 9
+                                name: a
+                            right:
+                              Identifier
+                                line: 9
+                                name: b,
+                    ],
+                ReturnStatement
+                  line: 10
+                  value:
+                    BinaryOp
+                      line: 10
+                      operator: /
+                      left:
+                        Identifier
+                          line: 10
+                          name: total
+                      right:
+                        Literal
+                          line: 10
+                          literal_type: float
+                          value: 2.0,
+              ],
+      FunctionDefinition
+        line: 0
+        return_type:
+          TypeSpecifier
+            line: 0
+            name: int
+        declarator:
+          Declarator
+            line: 13
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 13
+            items:
+              [
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 14
+                        declarator:
+                          Declarator
+                            line: 14
+                            name: f
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 14
+                            literal_type: float
+                            value: 3.14,
+                    ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: double
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 15
+                        declarator:
+                          Declarator
+                            line: 15
+                            name: d
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 15
+                            literal_type: float
+                            value: 0.0025,
+                    ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: unsigned long int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 16
+                        declarator:
+                          Declarator
+                            line: 16
+                            name: big
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 16
+                            literal_type: int
+                            value: 4000000,
+                    ],
+                Declaration
+                  line: 17
+                  type_spec:
+                    TypeSpecifier
+                      line: 17
+                      name: const short
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 17
+                        declarator:
+                          Declarator
+                            line: 17
+                            name: s
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 17
+                            literal_type: int
+                            value: 12,
+                    ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: signed char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 18
+                        declarator:
+                          Declarator
+                            line: 18
+                            name: c
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 18
+                            literal_type: char
+                            value: 'a',
+                    ],
+                Declaration
+                  line: 19
+                  type_spec:
+                    TypeSpecifier
+                      line: 19
+                      name: const int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 19
+                        declarator:
+                          Declarator
+                            line: 19
+                            name: limit
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 19
+                            literal_type: int
+                            value: 10,
+                    ],
+                Declaration
+                  line: 0
+                  type_spec:
+                    TypeSpecifier
+                      line: 0
+                      name: bool
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 20
+                        declarator:
+                          Declarator
+                            line: 20
+                            name: flag
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 20
+                            literal_type: bool
+                            value: true,
+                    ],
+                ExpressionStatement
+                  line: 21
+                  expression:
+                    Assignment
+                      line: 21
+                      operator: =
+                      target:
+                        Identifier
+                          line: 21
+                          name: flag
+                      value:
+                        Literal
+                          line: 21
+                          literal_type: bool
+                          value: false,
+                ExpressionStatement
+                  line: 23
+                  expression:
+                    Assignment
+                      line: 23
+                      operator: =
+                      target:
+                        Identifier
+                          line: 23
+                          name: d
+                      value:
+                        FunctionCall
+                          line: 23
+                          callee:
+                            Identifier
+                              line: 23
+                              name: average
+                          args:
+                            [
+                              Literal
+                                line: 23
+                                literal_type: int
+                                value: 4,
+                              Literal
+                                line: 23
+                                literal_type: int
+                                value: 6,
+                            ],
+                ExpressionStatement
+                  line: 24
+                  expression:
+                    Assignment
+                      line: 24
+                      operator: =
+                      target:
+                        Identifier
+                          line: 24
+                          name: local_counter
+                      value:
+                        Identifier
+                          line: 24
+                          name: limit,
+                ExpressionStatement
+                  line: 25
+                  expression:
+                    FunctionCall
+                      line: 25
+                      callee:
+                        Identifier
+                          line: 25
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 25
+                            literal_type: string
+                            value: "%f %f\n",
+                          Identifier
+                            line: 25
+                            name: f,
+                          Identifier
+                            line: 25
+                            name: d,
+                        ],
+                ReturnStatement
+                  line: 26
+                  value:
+                    Identifier
+                      line: 26
+                      name: local_counter,
+              ],
+    ]
