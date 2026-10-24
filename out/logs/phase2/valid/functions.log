@@ -1,0 +1,1867 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+subtract                  FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
+-                         MINUS                    
+b                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+factorial                 FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+n                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+if                        IF                       
+(                         LPAREN                   
+n                         PARAMETER_NAME           
+<=                        LE                       
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+n                         PARAMETER_NAME           
+*                         MULTIPLY                 
+factorial                 FUNCTION_NAME            
+(                         LPAREN                   
+n                         PARAMETER_NAME           
+-                         MINUS                    
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+fibonacci                 FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+n                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+if                        IF                       
+(                         LPAREN                   
+n                         PARAMETER_NAME           
+<=                        LE                       
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+n                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+fibonacci                 FUNCTION_NAME            
+(                         LPAREN                   
+n                         PARAMETER_NAME           
+-                         MINUS                    
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
++                         PLUS                     
+fibonacci                 FUNCTION_NAME            
+(                         LPAREN                   
+n                         PARAMETER_NAME           
+-                         MINUS                    
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+multiply                  FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+,                         COMMA                    
+int                       INT                      
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+multiply                  FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
+*                         MULTIPLY                 
+b                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+get_answer                FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+42                        INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+result                    VARIABLE_NAME            
+=                         ASSIGN                   
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+3                         INTEGER_CONSTANT         
+,                         COMMA                    
+4                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+result                    VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+factorial                 FUNCTION_NAME            
+(                         LPAREN                   
+5                         INTEGER_CONSTANT         
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+fibonacci                 FUNCTION_NAME            
+(                         LPAREN                   
+10                        INTEGER_CONSTANT         
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+multiply                  FUNCTION_NAME            
+(                         LPAREN                   
+3                         INTEGER_CONSTANT         
+,                         COMMA                    
+4                         INTEGER_CONSTANT         
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+get_answer                FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+(                         LPAREN                   
+*                         MULTIPLY                 
+op                        FUNCTION_NAME            
+)                         RPAREN                   
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+;                         SEMI                     
+op                        FUNCTION_NAME            
+=                         ASSIGN                   
+add                       FUNCTION_NAME            
+;                         SEMI                     
+result                    VARIABLE_NAME            
+=                         ASSIGN                   
+op                        FUNCTION_NAME            
+(                         LPAREN                   
+3                         INTEGER_CONSTANT         
+,                         COMMA                    
+4                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+op                        FUNCTION_NAME            
+=                         ASSIGN                   
+subtract                  FUNCTION_NAME            
+;                         SEMI                     
+result                    VARIABLE_NAME            
+=                         ASSIGN                   
+op                        FUNCTION_NAME            
+(                         LPAREN                   
+10                        INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+result                    VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+goto                      GOTO                     
+done                      LABEL_NAME               
+;                         SEMI                     
+int                       INT                      
+x                         VARIABLE_NAME            
+;                         SEMI                     
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+done                      LABEL_NAME               
+:                         COLON                    
+return                    RETURN                   
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+c                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         PARAMETER_NAME           
++                         PLUS                     
+c                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+combine                   FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+combine                   FUNCTION_NAME            
+(                         LPAREN                   
+char                      CHAR                     
+a                         PARAMETER_NAME           
+,                         COMMA                    
+char                      CHAR                     
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+r1                        VARIABLE_NAME            
+;                         SEMI                     
+r1                        VARIABLE_NAME            
+=                         ASSIGN                   
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+r2                        VARIABLE_NAME            
+;                         SEMI                     
+r2                        VARIABLE_NAME            
+=                         ASSIGN                   
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+,                         COMMA                    
+3                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+r3                        VARIABLE_NAME            
+;                         SEMI                     
+r3                        VARIABLE_NAME            
+=                         ASSIGN                   
+combine                   FUNCTION_NAME            
+(                         LPAREN                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+char                      CHAR                     
+x                         VARIABLE_NAME            
+;                         SEMI                     
+char                      CHAR                     
+y                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+r4                        VARIABLE_NAME            
+;                         SEMI                     
+r4                        VARIABLE_NAME            
+=                         ASSIGN                   
+combine                   FUNCTION_NAME            
+(                         LPAREN                   
+x                         VARIABLE_NAME            
+,                         COMMA                    
+y                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    parameter    char       function:add                               
+add                  function     int        global                 params: (int, int)  
+b                    parameter    char       function:add                               
+c                    parameter    int        function:add                               
+combine              function     int        global                 params: (int, int)  
+done                 label        void       function:main                              
+factorial            function     int        global                 params: (int)       
+fibonacci            function     int        global                 params: (int)       
+get_answer           function     int        global                 params: (void)      
+main                 function     int        global                 params: (void)      
+multiply             function     int        global                 params: ()          
+n                    parameter    int        function:factorial                         
+op                   function     int        function:main          function pointer    
+printf               function     int        global                 params: (format, ...)
+r1                   variable     int        function:main                              
+r2                   variable     int        function:main                              
+r3                   variable     int        function:main                              
+r4                   variable     int        function:main                              
+result               variable     int        function:main                              
+subtract             function     int        global                 params: (int, int)  
+x                    variable     char       function:main                              
+y                    variable     char       function:main                              
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 7
+        return_type:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarator:
+          Declarator
+            line: 7
+            name: add
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 7
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 7
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 7
+            items:
+              [
+                ReturnStatement
+                  line: 8
+                  value:
+                    BinaryOp
+                      line: 8
+                      operator: +
+                      left:
+                        Identifier
+                          line: 8
+                          name: a
+                      right:
+                        Identifier
+                          line: 8
+                          name: b,
+              ],
+      FunctionDefinition
+        line: 11
+        return_type:
+          TypeSpecifier
+            line: 11
+            name: int
+        declarator:
+          Declarator
+            line: 11
+            name: subtract
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 11
+                  type_spec:
+                    TypeSpecifier
+                      line: 11
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 11
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 11
+                  type_spec:
+                    TypeSpecifier
+                      line: 11
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 11
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 11
+            items:
+              [
+                ReturnStatement
+                  line: 12
+                  value:
+                    BinaryOp
+                      line: 12
+                      operator: -
+                      left:
+                        Identifier
+                          line: 12
+                          name: a
+                      right:
+                        Identifier
+                          line: 12
+                          name: b,
+              ],
+      FunctionDefinition
+        line: 15
+        return_type:
+          TypeSpecifier
+            line: 15
+            name: int
+        declarator:
+          Declarator
+            line: 15
+            name: factorial
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 15
+                  type_spec:
+                    TypeSpecifier
+                      line: 15
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 15
+                      name: n
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 15
+            items:
+              [
+                IfStatement
+                  line: 16
+                  condition:
+                    BinaryOp
+                      line: 16
+                      operator: <=
+                      left:
+                        Identifier
+                          line: 16
+                          name: n
+                      right:
+                        Literal
+                          line: 16
+                          literal_type: int
+                          value: 1
+                  then_branch:
+                    CompoundStatement
+                      line: 16
+                      items:
+                        [
+                          ReturnStatement
+                            line: 17
+                            value:
+                              Literal
+                                line: 17
+                                literal_type: int
+                                value: 1,
+                        ],
+                ReturnStatement
+                  line: 19
+                  value:
+                    BinaryOp
+                      line: 19
+                      operator: *
+                      left:
+                        Identifier
+                          line: 19
+                          name: n
+                      right:
+                        FunctionCall
+                          line: 19
+                          callee:
+                            Identifier
+                              line: 19
+                              name: factorial
+                          args:
+                            [
+                              BinaryOp
+                                line: 19
+                                operator: -
+                                left:
+                                  Identifier
+                                    line: 19
+                                    name: n
+                                right:
+                                  Literal
+                                    line: 19
+                                    literal_type: int
+                                    value: 1,
+                            ],
+              ],
+      FunctionDefinition
+        line: 22
+        return_type:
+          TypeSpecifier
+            line: 22
+            name: int
+        declarator:
+          Declarator
+            line: 22
+            name: fibonacci
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 22
+                  type_spec:
+                    TypeSpecifier
+                      line: 22
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 22
+                      name: n
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 22
+            items:
+              [
+                IfStatement
+                  line: 23
+                  condition:
+                    BinaryOp
+                      line: 23
+                      operator: <=
+                      left:
+                        Identifier
+                          line: 23
+                          name: n
+                      right:
+                        Literal
+                          line: 23
+                          literal_type: int
+                          value: 1
+                  then_branch:
+                    CompoundStatement
+                      line: 23
+                      items:
+                        [
+                          ReturnStatement
+                            line: 24
+                            value:
+                              Identifier
+                                line: 24
+                                name: n,
+                        ],
+                ReturnStatement
+                  line: 26
+                  value:
+                    BinaryOp
+                      line: 26
+                      operator: +
+                      left:
+                        FunctionCall
+                          line: 26
+                          callee:
+                            Identifier
+                              line: 26
+                              name: fibonacci
+                          args:
+                            [
+                              BinaryOp
+                                line: 26
+                                operator: -
+                                left:
+                                  Identifier
+                                    line: 26
+                                    name: n
+                                right:
+                                  Literal
+                                    line: 26
+                                    literal_type: int
+                                    value: 1,
+                            ]
+                      right:
+                        FunctionCall
+                          line: 26
+                          callee:
+                            Identifier
+                              line: 26
+                              name: fibonacci
+                          args:
+                            [
+                              BinaryOp
+                                line: 26
+                                operator: -
+                                left:
+                                  Identifier
+                                    line: 26
+                                    name: n
+                                right:
+                                  Literal
+                                    line: 26
+                                    literal_type: int
+                                    value: 2,
+                            ],
+              ],
+      Declaration
+        line: 30
+        type_spec:
+          TypeSpecifier
+            line: 30
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 30
+              declarator:
+                Declarator
+                  line: 30
+                  name: multiply
+                  kind_name: function
+                  params:
+                    [
+                      Parameter
+                        line: 30
+                        type_spec:
+                          TypeSpecifier
+                            line: 30
+                            name: int,
+                      Parameter
+                        line: 30
+                        type_spec:
+                          TypeSpecifier
+                            line: 30
+                            name: int,
+                    ],
+          ],
+      FunctionDefinition
+        line: 31
+        return_type:
+          TypeSpecifier
+            line: 31
+            name: int
+        declarator:
+          Declarator
+            line: 31
+            name: multiply
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 31
+                  type_spec:
+                    TypeSpecifier
+                      line: 31
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 31
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 31
+                  type_spec:
+                    TypeSpecifier
+                      line: 31
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 31
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 31
+            items:
+              [
+                ReturnStatement
+                  line: 32
+                  value:
+                    BinaryOp
+                      line: 32
+                      operator: *
+                      left:
+                        Identifier
+                          line: 32
+                          name: a
+                      right:
+                        Identifier
+                          line: 32
+                          name: b,
+              ],
+      FunctionDefinition
+        line: 35
+        return_type:
+          TypeSpecifier
+            line: 35
+            name: int
+        declarator:
+          Declarator
+            line: 35
+            name: get_answer
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 35
+                  type_spec:
+                    TypeSpecifier
+                      line: 35
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 35
+            items:
+              [
+                ReturnStatement
+                  line: 36
+                  value:
+                    Literal
+                      line: 36
+                      literal_type: int
+                      value: 42,
+              ],
+      FunctionDefinition
+        line: 39
+        return_type:
+          TypeSpecifier
+            line: 39
+            name: int
+        declarator:
+          Declarator
+            line: 39
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 39
+                  type_spec:
+                    TypeSpecifier
+                      line: 39
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 39
+            items:
+              [
+                Declaration
+                  line: 40
+                  type_spec:
+                    TypeSpecifier
+                      line: 40
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 40
+                        declarator:
+                          Declarator
+                            line: 40
+                            name: result
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 40
+                            callee:
+                              Identifier
+                                line: 40
+                                name: add
+                            args:
+                              [
+                                Literal
+                                  line: 40
+                                  literal_type: int
+                                  value: 3,
+                                Literal
+                                  line: 40
+                                  literal_type: int
+                                  value: 4,
+                              ],
+                    ],
+                ExpressionStatement
+                  line: 41
+                  expression:
+                    FunctionCall
+                      line: 41
+                      callee:
+                        Identifier
+                          line: 41
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 41
+                            literal_type: string
+                            value: "%d\n",
+                          Identifier
+                            line: 41
+                            name: result,
+                        ],
+                ExpressionStatement
+                  line: 42
+                  expression:
+                    FunctionCall
+                      line: 42
+                      callee:
+                        Identifier
+                          line: 42
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 42
+                            literal_type: string
+                            value: "%d\n",
+                          FunctionCall
+                            line: 42
+                            callee:
+                              Identifier
+                                line: 42
+                                name: factorial
+                            args:
+                              [
+                                Literal
+                                  line: 42
+                                  literal_type: int
+                                  value: 5,
+                              ],
+                        ],
+                ExpressionStatement
+                  line: 43
+                  expression:
+                    FunctionCall
+                      line: 43
+                      callee:
+                        Identifier
+                          line: 43
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 43
+                            literal_type: string
+                            value: "%d\n",
+                          FunctionCall
+                            line: 43
+                            callee:
+                              Identifier
+                                line: 43
+                                name: fibonacci
+                            args:
+                              [
+                                Literal
+                                  line: 43
+                                  literal_type: int
+                                  value: 10,
+                              ],
+                        ],
+                ExpressionStatement
+                  line: 44
+                  expression:
+                    FunctionCall
+                      line: 44
+                      callee:
+                        Identifier
+                          line: 44
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 44
+                            literal_type: string
+                            value: "%d\n",
+                          FunctionCall
+                            line: 44
+                            callee:
+                              Identifier
+                                line: 44
+                                name: multiply
+                            args:
+                              [
+                                Literal
+                                  line: 44
+                                  literal_type: int
+                                  value: 3,
+                                Literal
+                                  line: 44
+                                  literal_type: int
+                                  value: 4,
+                              ],
+                        ],
+                ExpressionStatement
+                  line: 45
+                  expression:
+                    FunctionCall
+                      line: 45
+                      callee:
+                        Identifier
+                          line: 45
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 45
+                            literal_type: string
+                            value: "%d\n",
+                          FunctionCall
+                            line: 45
+                            callee:
+                              Identifier
+                                line: 45
+                                name: get_answer,
+                        ],
+                Declaration
+                  line: 47
+                  type_spec:
+                    TypeSpecifier
+                      line: 47
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 47
+                        declarator:
+                          Declarator
+                            line: 47
+                            name: op
+                            kind_name: function_pointer
+                            params:
+                              [
+                                Parameter
+                                  line: 47
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 47
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 47
+                                      name: a
+                                      kind_name: variable,
+                                Parameter
+                                  line: 47
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 47
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 47
+                                      name: b
+                                      kind_name: variable,
+                              ]
+                            pointer_level: 1,
+                    ],
+                ExpressionStatement
+                  line: 48
+                  expression:
+                    Assignment
+                      line: 48
+                      operator: =
+                      target:
+                        Identifier
+                          line: 48
+                          name: op
+                      value:
+                        Identifier
+                          line: 48
+                          name: add,
+                ExpressionStatement
+                  line: 49
+                  expression:
+                    Assignment
+                      line: 49
+                      operator: =
+                      target:
+                        Identifier
+                          line: 49
+                          name: result
+                      value:
+                        FunctionCall
+                          line: 49
+                          callee:
+                            Identifier
+                              line: 49
+                              name: op
+                          args:
+                            [
+                              Literal
+                                line: 49
+                                literal_type: int
+                                value: 3,
+                              Literal
+                                line: 49
+                                literal_type: int
+                                value: 4,
+                            ],
+                ExpressionStatement
+                  line: 50
+                  expression:
+                    Assignment
+                      line: 50
+                      operator: =
+                      target:
+                        Identifier
+                          line: 50
+                          name: op
+                      value:
+                        Identifier
+                          line: 50
+                          name: subtract,
+                ExpressionStatement
+                  line: 51
+                  expression:
+                    Assignment
+                      line: 51
+                      operator: =
+                      target:
+                        Identifier
+                          line: 51
+                          name: result
+                      value:
+                        FunctionCall
+                          line: 51
+                          callee:
+                            Identifier
+                              line: 51
+                              name: op
+                          args:
+                            [
+                              Literal
+                                line: 51
+                                literal_type: int
+                                value: 10,
+                              Literal
+                                line: 51
+                                literal_type: int
+                                value: 2,
+                            ],
+                ReturnStatement
+                  line: 53
+                  value:
+                    Identifier
+                      line: 53
+                      name: result,
+              ],
+      FunctionDefinition
+        line: 59
+        return_type:
+          TypeSpecifier
+            line: 59
+            name: int
+        declarator:
+          Declarator
+            line: 59
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 59
+            items:
+              [
+                JumpStatement
+                  line: 60
+                  keyword: goto
+                  target: done,
+                Declaration
+                  line: 61
+                  type_spec:
+                    TypeSpecifier
+                      line: 61
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 61
+                        declarator:
+                          Declarator
+                            line: 61
+                            name: x
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 62
+                  expression:
+                    Assignment
+                      line: 62
+                      operator: =
+                      target:
+                        Identifier
+                          line: 62
+                          name: x
+                      value:
+                        Literal
+                          line: 62
+                          literal_type: int
+                          value: 1,
+                LabeledStatement
+                  line: 63
+                  label: done
+                  statement:
+                    ReturnStatement
+                      line: 64
+                      value:
+                        FunctionCall
+                          line: 64
+                          callee:
+                            Identifier
+                              line: 64
+                              name: add
+                          args:
+                            [
+                              Literal
+                                line: 64
+                                literal_type: int
+                                value: 1,
+                              Literal
+                                line: 64
+                                literal_type: int
+                                value: 2,
+                            ],
+              ],
+      FunctionDefinition
+        line: 67
+        return_type:
+          TypeSpecifier
+            line: 67
+            name: int
+        declarator:
+          Declarator
+            line: 67
+            name: add
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 67
+                  type_spec:
+                    TypeSpecifier
+                      line: 67
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 67
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 67
+                  type_spec:
+                    TypeSpecifier
+                      line: 67
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 67
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 67
+            items:
+              [
+                ReturnStatement
+                  line: 68
+                  value:
+                    BinaryOp
+                      line: 68
+                      operator: +
+                      left:
+                        Identifier
+                          line: 68
+                          name: a
+                      right:
+                        Identifier
+                          line: 68
+                          name: b,
+              ],
+      FunctionDefinition
+        line: 74
+        return_type:
+          TypeSpecifier
+            line: 74
+            name: int
+        declarator:
+          Declarator
+            line: 74
+            name: add
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 74
+                  type_spec:
+                    TypeSpecifier
+                      line: 74
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 74
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 74
+                  type_spec:
+                    TypeSpecifier
+                      line: 74
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 74
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 74
+            items:
+              [
+                ReturnStatement
+                  line: 75
+                  value:
+                    BinaryOp
+                      line: 75
+                      operator: +
+                      left:
+                        Identifier
+                          line: 75
+                          name: a
+                      right:
+                        Identifier
+                          line: 75
+                          name: b,
+              ],
+      FunctionDefinition
+        line: 77
+        return_type:
+          TypeSpecifier
+            line: 77
+            name: int
+        declarator:
+          Declarator
+            line: 77
+            name: add
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 77
+                  type_spec:
+                    TypeSpecifier
+                      line: 77
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 77
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 77
+                  type_spec:
+                    TypeSpecifier
+                      line: 77
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 77
+                      name: b
+                      kind_name: variable,
+                Parameter
+                  line: 77
+                  type_spec:
+                    TypeSpecifier
+                      line: 77
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 77
+                      name: c
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 77
+            items:
+              [
+                ReturnStatement
+                  line: 78
+                  value:
+                    BinaryOp
+                      line: 78
+                      operator: +
+                      left:
+                        BinaryOp
+                          line: 78
+                          operator: +
+                          left:
+                            Identifier
+                              line: 78
+                              name: a
+                          right:
+                            Identifier
+                              line: 78
+                              name: b
+                      right:
+                        Identifier
+                          line: 78
+                          name: c,
+              ],
+      FunctionDefinition
+        line: 81
+        return_type:
+          TypeSpecifier
+            line: 81
+            name: int
+        declarator:
+          Declarator
+            line: 81
+            name: combine
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 81
+                  type_spec:
+                    TypeSpecifier
+                      line: 81
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 81
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 81
+                  type_spec:
+                    TypeSpecifier
+                      line: 81
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 81
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 81
+            items:
+              [
+                ReturnStatement
+                  line: 82
+                  value:
+                    BinaryOp
+                      line: 82
+                      operator: +
+                      left:
+                        Identifier
+                          line: 82
+                          name: a
+                      right:
+                        Identifier
+                          line: 82
+                          name: b,
+              ],
+      FunctionDefinition
+        line: 84
+        return_type:
+          TypeSpecifier
+            line: 84
+            name: int
+        declarator:
+          Declarator
+            line: 84
+            name: combine
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 84
+                  type_spec:
+                    TypeSpecifier
+                      line: 84
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 84
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 84
+                  type_spec:
+                    TypeSpecifier
+                      line: 84
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 84
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 84
+            items:
+              [
+                ReturnStatement
+                  line: 85
+                  value:
+                    BinaryOp
+                      line: 85
+                      operator: +
+                      left:
+                        Identifier
+                          line: 85
+                          name: a
+                      right:
+                        Identifier
+                          line: 85
+                          name: b,
+              ],
+      FunctionDefinition
+        line: 88
+        return_type:
+          TypeSpecifier
+            line: 88
+            name: int
+        declarator:
+          Declarator
+            line: 88
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 88
+            items:
+              [
+                Declaration
+                  line: 89
+                  type_spec:
+                    TypeSpecifier
+                      line: 89
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 89
+                        declarator:
+                          Declarator
+                            line: 89
+                            name: r1
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 90
+                  expression:
+                    Assignment
+                      line: 90
+                      operator: =
+                      target:
+                        Identifier
+                          line: 90
+                          name: r1
+                      value:
+                        FunctionCall
+                          line: 90
+                          callee:
+                            Identifier
+                              line: 90
+                              name: add
+                          args:
+                            [
+                              Literal
+                                line: 90
+                                literal_type: int
+                                value: 1,
+                              Literal
+                                line: 90
+                                literal_type: int
+                                value: 2,
+                            ],
+                Declaration
+                  line: 91
+                  type_spec:
+                    TypeSpecifier
+                      line: 91
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 91
+                        declarator:
+                          Declarator
+                            line: 91
+                            name: r2
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 92
+                  expression:
+                    Assignment
+                      line: 92
+                      operator: =
+                      target:
+                        Identifier
+                          line: 92
+                          name: r2
+                      value:
+                        FunctionCall
+                          line: 92
+                          callee:
+                            Identifier
+                              line: 92
+                              name: add
+                          args:
+                            [
+                              Literal
+                                line: 92
+                                literal_type: int
+                                value: 1,
+                              Literal
+                                line: 92
+                                literal_type: int
+                                value: 2,
+                              Literal
+                                line: 92
+                                literal_type: int
+                                value: 3,
+                            ],
+                Declaration
+                  line: 94
+                  type_spec:
+                    TypeSpecifier
+                      line: 94
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 94
+                        declarator:
+                          Declarator
+                            line: 94
+                            name: r3
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 95
+                  expression:
+                    Assignment
+                      line: 95
+                      operator: =
+                      target:
+                        Identifier
+                          line: 95
+                          name: r3
+                      value:
+                        FunctionCall
+                          line: 95
+                          callee:
+                            Identifier
+                              line: 95
+                              name: combine
+                          args:
+                            [
+                              Literal
+                                line: 95
+                                literal_type: int
+                                value: 1,
+                              Literal
+                                line: 95
+                                literal_type: int
+                                value: 2,
+                            ],
+                Declaration
+                  line: 96
+                  type_spec:
+                    TypeSpecifier
+                      line: 96
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 96
+                        declarator:
+                          Declarator
+                            line: 96
+                            name: x
+                            kind_name: variable,
+                    ],
+                Declaration
+                  line: 97
+                  type_spec:
+                    TypeSpecifier
+                      line: 97
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 97
+                        declarator:
+                          Declarator
+                            line: 97
+                            name: y
+                            kind_name: variable,
+                    ],
+                Declaration
+                  line: 98
+                  type_spec:
+                    TypeSpecifier
+                      line: 98
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 98
+                        declarator:
+                          Declarator
+                            line: 98
+                            name: r4
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 99
+                  expression:
+                    Assignment
+                      line: 99
+                      operator: =
+                      target:
+                        Identifier
+                          line: 99
+                          name: r4
+                      value:
+                        FunctionCall
+                          line: 99
+                          callee:
+                            Identifier
+                              line: 99
+                              name: combine
+                          args:
+                            [
+                              Identifier
+                                line: 99
+                                name: x,
+                              Identifier
+                                line: 99
+                                name: y,
+                            ],
+                ReturnStatement
+                  line: 101
+                  value:
+                    Literal
+                      line: 101
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase2_syntax/valid/functions.c:47: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+    47 |     int (*op)(int a, int b);
+test/phase2_syntax/valid/functions.c:48: semantic error: function 'add' used as a value (call it with parentheses)
+    48 |     op = add;
+test/phase2_syntax/valid/functions.c:49: semantic error: 'op' is not a function
+    49 |     result = op(3, 4);
+test/phase2_syntax/valid/functions.c:50: semantic error: function 'subtract' used as a value (call it with parentheses)
+    50 |     op = subtract;
+test/phase2_syntax/valid/functions.c:51: semantic error: 'op' is not a function
+    51 |     result = op(10, 2);
+test/phase2_syntax/valid/functions.c:59: semantic error: redefinition of function 'main'
+    59 | int main() {
+test/phase2_syntax/valid/functions.c:67: semantic error: redefinition of function 'add'
+    67 | int add(int a, int b) {
+test/phase2_syntax/valid/functions.c:74: semantic error: redefinition of function 'add'
+    74 | int add(int a, int b) {
+test/phase2_syntax/valid/functions.c:77: semantic error: conflicting types for 'add' (previous: (int, int) -> int)
+    77 | int add(int a, int b, int c) {
+test/phase2_syntax/valid/functions.c:84: semantic error: conflicting types for 'combine' (previous: (int, int) -> int)
+    84 | int combine(char a, char b) {
+test/phase2_syntax/valid/functions.c:88: semantic error: redefinition of function 'main'
+    88 | int main() {
+11 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase2_syntax/valid/functions.c:47: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+    47 |     int (*op)(int a, int b);
+test/phase2_syntax/valid/functions.c:48: semantic error: function 'add' used as a value (call it with parentheses)
+    48 |     op = add;
+test/phase2_syntax/valid/functions.c:49: semantic error: 'op' is not a function
+    49 |     result = op(3, 4);
+test/phase2_syntax/valid/functions.c:50: semantic error: function 'subtract' used as a value (call it with parentheses)
+    50 |     op = subtract;
+test/phase2_syntax/valid/functions.c:51: semantic error: 'op' is not a function
+    51 |     result = op(10, 2);
+test/phase2_syntax/valid/functions.c:59: semantic error: redefinition of function 'main'
+    59 | int main() {
+test/phase2_syntax/valid/functions.c:67: semantic error: redefinition of function 'add'
+    67 | int add(int a, int b) {
+test/phase2_syntax/valid/functions.c:74: semantic error: redefinition of function 'add'
+    74 | int add(int a, int b) {
+test/phase2_syntax/valid/functions.c:77: semantic error: conflicting types for 'add' (previous: (int, int) -> int)
+    77 | int add(int a, int b, int c) {
+test/phase2_syntax/valid/functions.c:84: semantic error: conflicting types for 'combine' (previous: (int, int) -> int)
+    84 | int combine(char a, char b) {
+test/phase2_syntax/valid/functions.c:88: semantic error: redefinition of function 'main'
+    88 | int main() {
+11 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

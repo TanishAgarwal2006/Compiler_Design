@@ -1,0 +1,867 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+static                    STATIC                   
+int                       INT                      
+counter                   VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+classify                  FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+n                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+switch                    SWITCH                   
+(                         LPAREN                   
+n                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+case                      CASE                     
+0                         INTEGER_CONSTANT         
+:                         COLON                    
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+case                      CASE                     
+1                         INTEGER_CONSTANT         
+:                         COLON                    
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+default                   DEFAULT                  
+:                         COLON                    
+break                     BREAK                    
+;                         SEMI                     
+}                         RBRACE                   
+for                       FOR                      
+(                         LPAREN                   
+counter                   VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+counter                   VARIABLE_NAME            
+<                         LT                       
+n                         PARAMETER_NAME           
+;                         SEMI                     
+counter                   VARIABLE_NAME            
+++                        INCREMENT                
+)                         RPAREN                   
+{                         LBRACE                   
+if                        IF                       
+(                         LPAREN                   
+counter                   VARIABLE_NAME            
+==                        EQ                       
+5                         INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+continue                  CONTINUE                 
+;                         SEMI                     
+}                         RBRACE                   
+if                        IF                       
+(                         LPAREN                   
+counter                   VARIABLE_NAME            
+==                        EQ                       
+8                         INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+break                     BREAK                    
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+while                     WHILE                    
+(                         LPAREN                   
+counter                   VARIABLE_NAME            
+>                         GT                       
+0                         INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+counter                   VARIABLE_NAME            
+--                        DECREMENT                
+;                         SEMI                     
+}                         RBRACE                   
+do                        DO                       
+{                         LBRACE                   
+counter                   VARIABLE_NAME            
+++                        INCREMENT                
+;                         SEMI                     
+}                         RBRACE                   
+while                     WHILE                    
+(                         LPAREN                   
+counter                   VARIABLE_NAME            
+<                         LT                       
+n                         PARAMETER_NAME           
+)                         RPAREN                   
+;                         SEMI                     
+counter                   VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+until                     UNTIL                    
+(                         LPAREN                   
+counter                   VARIABLE_NAME            
+>=                        GE                       
+n                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+counter                   VARIABLE_NAME            
+++                        INCREMENT                
+;                         SEMI                     
+if                        IF                       
+(                         LPAREN                   
+counter                   VARIABLE_NAME            
+==                        EQ                       
+100                       INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+goto                      GOTO                     
+done                      LABEL_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+done                      LABEL_NAME               
+:                         COLON                    
+return                    RETURN                   
+counter                   VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+i                         VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+float                     FLOAT                    
+pi                        VARIABLE_NAME            
+=                         ASSIGN                   
+3.14159                   FLOAT_CONSTANT           
+;                         SEMI                     
+float                     FLOAT                    
+small                     VARIABLE_NAME            
+=                         ASSIGN                   
+0.0015                    FLOAT_CONSTANT           
+;                         SEMI                     
+int                       INT                      
+mask                      VARIABLE_NAME            
+=                         ASSIGN                   
+31                        INTEGER_CONSTANT         
+;                         SEMI                     
+char                      CHAR                     
+newline                   VARIABLE_NAME            
+=                         ASSIGN                   
+'\n'                      CHAR_CONSTANT            
+;                         SEMI                     
+char                      CHAR                     
+*                         MULTIPLY                 
+msg                       VARIABLE_NAME            
+=                         ASSIGN                   
+"hello, world\n"          STRING_LITERAL           
+;                         SEMI                     
+until                     UNTIL                    
+(                         LPAREN                   
+i                         VARIABLE_NAME            
+>=                        GE                       
+5                         INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+i                         VARIABLE_NAME            
+=                         ASSIGN                   
+i                         VARIABLE_NAME            
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+classify             function     int        global                 params: (int)       
+counter              variable     int        global                 static              
+done                 label        void       function:classify                          
+i                    variable     int        function:main                              
+main                 function     int        global                 params: ()          
+mask                 variable     int        function:main                              
+msg                  variable     char       function:main          pointer (*msg)      
+n                    parameter    int        function:classify                          
+newline              variable     char       function:main                              
+pi                   variable     float      function:main                              
+small                variable     float      function:main                              
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 5
+        type_spec:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 5
+              declarator:
+                Declarator
+                  line: 5
+                  name: counter
+                  kind_name: variable,
+          ]
+        storage: static,
+      FunctionDefinition
+        line: 7
+        return_type:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarator:
+          Declarator
+            line: 7
+            name: classify
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 7
+                      name: n
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 7
+            items:
+              [
+                SwitchStatement
+                  line: 8
+                  expression:
+                    Identifier
+                      line: 8
+                      name: n
+                  cases:
+                    [
+                      SwitchCase
+                        line: 9
+                        value:
+                          Literal
+                            line: 9
+                            literal_type: int
+                            value: 0
+                        body:
+                          [
+                            ReturnStatement
+                              line: 10
+                              value:
+                                Literal
+                                  line: 10
+                                  literal_type: int
+                                  value: 0,
+                          ],
+                      SwitchCase
+                        line: 11
+                        value:
+                          Literal
+                            line: 11
+                            literal_type: int
+                            value: 1
+                        body:
+                          [
+                            ReturnStatement
+                              line: 12
+                              value:
+                                Literal
+                                  line: 12
+                                  literal_type: int
+                                  value: 1,
+                          ],
+                      SwitchCase
+                        line: 13
+                        body:
+                          [
+                            JumpStatement
+                              line: 14
+                              keyword: break,
+                          ],
+                    ],
+                ForStatement
+                  line: 17
+                  init:
+                    Assignment
+                      line: 17
+                      operator: =
+                      target:
+                        Identifier
+                          line: 17
+                          name: counter
+                      value:
+                        Literal
+                          line: 17
+                          literal_type: int
+                          value: 0
+                  condition:
+                    BinaryOp
+                      line: 17
+                      operator: <
+                      left:
+                        Identifier
+                          line: 17
+                          name: counter
+                      right:
+                        Identifier
+                          line: 17
+                          name: n
+                  update:
+                    UnaryOp
+                      line: 17
+                      operator: ++
+                      operand:
+                        Identifier
+                          line: 17
+                          name: counter
+                      position: postfix
+                  body:
+                    CompoundStatement
+                      line: 17
+                      items:
+                        [
+                          IfStatement
+                            line: 18
+                            condition:
+                              BinaryOp
+                                line: 18
+                                operator: ==
+                                left:
+                                  Identifier
+                                    line: 18
+                                    name: counter
+                                right:
+                                  Literal
+                                    line: 18
+                                    literal_type: int
+                                    value: 5
+                            then_branch:
+                              CompoundStatement
+                                line: 18
+                                items:
+                                  [
+                                    JumpStatement
+                                      line: 19
+                                      keyword: continue,
+                                  ],
+                          IfStatement
+                            line: 21
+                            condition:
+                              BinaryOp
+                                line: 21
+                                operator: ==
+                                left:
+                                  Identifier
+                                    line: 21
+                                    name: counter
+                                right:
+                                  Literal
+                                    line: 21
+                                    literal_type: int
+                                    value: 8
+                            then_branch:
+                              CompoundStatement
+                                line: 21
+                                items:
+                                  [
+                                    JumpStatement
+                                      line: 22
+                                      keyword: break,
+                                  ],
+                        ],
+                WhileStatement
+                  line: 26
+                  condition:
+                    BinaryOp
+                      line: 26
+                      operator: >
+                      left:
+                        Identifier
+                          line: 26
+                          name: counter
+                      right:
+                        Literal
+                          line: 26
+                          literal_type: int
+                          value: 0
+                  body:
+                    CompoundStatement
+                      line: 26
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 27
+                            expression:
+                              UnaryOp
+                                line: 27
+                                operator: --
+                                operand:
+                                  Identifier
+                                    line: 27
+                                    name: counter
+                                position: postfix,
+                        ],
+                DoWhileStatement
+                  line: 30
+                  body:
+                    CompoundStatement
+                      line: 30
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 31
+                            expression:
+                              UnaryOp
+                                line: 31
+                                operator: ++
+                                operand:
+                                  Identifier
+                                    line: 31
+                                    name: counter
+                                position: postfix,
+                        ]
+                  condition:
+                    BinaryOp
+                      line: 32
+                      operator: <
+                      left:
+                        Identifier
+                          line: 32
+                          name: counter
+                      right:
+                        Identifier
+                          line: 32
+                          name: n,
+                ExpressionStatement
+                  line: 34
+                  expression:
+                    Assignment
+                      line: 34
+                      operator: =
+                      target:
+                        Identifier
+                          line: 34
+                          name: counter
+                      value:
+                        Literal
+                          line: 34
+                          literal_type: int
+                          value: 0,
+                UntilStatement
+                  line: 35
+                  condition:
+                    BinaryOp
+                      line: 35
+                      operator: >=
+                      left:
+                        Identifier
+                          line: 35
+                          name: counter
+                      right:
+                        Identifier
+                          line: 35
+                          name: n
+                  body:
+                    CompoundStatement
+                      line: 35
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 36
+                            expression:
+                              UnaryOp
+                                line: 36
+                                operator: ++
+                                operand:
+                                  Identifier
+                                    line: 36
+                                    name: counter
+                                position: postfix,
+                          IfStatement
+                            line: 37
+                            condition:
+                              BinaryOp
+                                line: 37
+                                operator: ==
+                                left:
+                                  Identifier
+                                    line: 37
+                                    name: counter
+                                right:
+                                  Literal
+                                    line: 37
+                                    literal_type: int
+                                    value: 100
+                            then_branch:
+                              CompoundStatement
+                                line: 37
+                                items:
+                                  [
+                                    JumpStatement
+                                      line: 38
+                                      keyword: goto
+                                      target: done,
+                                  ],
+                        ],
+                LabeledStatement
+                  line: 42
+                  label: done
+                  statement:
+                    ReturnStatement
+                      line: 43
+                      value:
+                        Identifier
+                          line: 43
+                          name: counter,
+              ],
+      FunctionDefinition
+        line: 47
+        return_type:
+          TypeSpecifier
+            line: 47
+            name: int
+        declarator:
+          Declarator
+            line: 47
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 47
+            items:
+              [
+                Declaration
+                  line: 48
+                  type_spec:
+                    TypeSpecifier
+                      line: 48
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 48
+                        declarator:
+                          Declarator
+                            line: 48
+                            name: i
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 48
+                            literal_type: int
+                            value: 0,
+                    ],
+                Declaration
+                  line: 49
+                  type_spec:
+                    TypeSpecifier
+                      line: 49
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 49
+                        declarator:
+                          Declarator
+                            line: 49
+                            name: pi
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 49
+                            literal_type: float
+                            value: 3.14159,
+                    ],
+                Declaration
+                  line: 50
+                  type_spec:
+                    TypeSpecifier
+                      line: 50
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 50
+                        declarator:
+                          Declarator
+                            line: 50
+                            name: small
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 50
+                            literal_type: float
+                            value: 0.0015,
+                    ],
+                Declaration
+                  line: 51
+                  type_spec:
+                    TypeSpecifier
+                      line: 51
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 51
+                        declarator:
+                          Declarator
+                            line: 51
+                            name: mask
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 51
+                            literal_type: int
+                            value: 31,
+                    ],
+                Declaration
+                  line: 52
+                  type_spec:
+                    TypeSpecifier
+                      line: 52
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 52
+                        declarator:
+                          Declarator
+                            line: 52
+                            name: newline
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 52
+                            literal_type: char
+                            value: '\n',
+                    ],
+                Declaration
+                  line: 53
+                  type_spec:
+                    TypeSpecifier
+                      line: 53
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 53
+                        declarator:
+                          Declarator
+                            line: 53
+                            name: msg
+                            kind_name: variable
+                            pointer_level: 1
+                        initializer:
+                          Literal
+                            line: 53
+                            literal_type: string
+                            value: "hello, world\n",
+                    ],
+                UntilStatement
+                  line: 55
+                  condition:
+                    BinaryOp
+                      line: 55
+                      operator: >=
+                      left:
+                        Identifier
+                          line: 55
+                          name: i
+                      right:
+                        Literal
+                          line: 55
+                          literal_type: int
+                          value: 5
+                  body:
+                    CompoundStatement
+                      line: 55
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 56
+                            expression:
+                              Assignment
+                                line: 56
+                                operator: =
+                                target:
+                                  Identifier
+                                    line: 56
+                                    name: i
+                                value:
+                                  BinaryOp
+                                    line: 56
+                                    operator: +
+                                    left:
+                                      Identifier
+                                        line: 56
+                                        name: i
+                                    right:
+                                      Literal
+                                        line: 56
+                                        literal_type: int
+                                        value: 1,
+                        ],
+                ReturnStatement
+                  line: 59
+                  value:
+                    Literal
+                      line: 59
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  name     type  size  offset  line
+  -------  ----  ----  ------  ----
+  counter  int   4     0       5   
+
+Functions
+  name      signature     frame  defined  line
+  --------  ------------  -----  -------  ----
+  classify  (int) -> int  4      yes      7   
+  main      () -> int     24     yes      47  
+
+Function classify: parameters and locals (frame size 4 bytes)
+  ir name  source  kind   type  size  offset  line
+  -------  ------  -----  ----  ----  ------  ----
+  n        n       param  int   4     0       7   
+
+Function main: parameters and locals (frame size 24 bytes)
+  ir name  source   kind   type   size  offset  line
+  -------  -------  -----  -----  ----  ------  ----
+  i        i        local  int    4     0       48  
+  pi       pi       local  float  4     4       49  
+  small    small    local  float  4     8       50  
+  mask     mask     local  int    4     12      51  
+  newline  newline  local  char   1     16      52  
+  msg      msg      local  char*  4     20      53  
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+.data
+str0: "hello, world\n"
+global counter : int
+.text
+func classify(int n) : int
+    temp t1:int, t2:int, t3:int, t4:int, t5:int
+    t1 = n
+    if t1 == 0 goto L2
+    if t1 == 1 goto L3
+    goto L4
+L2:
+    return 0
+L3:
+    return 1
+L4:
+    goto L1
+L1:
+    counter = 0
+L5:
+    if counter < n goto L6
+    goto L8
+L6:
+    if counter == 5 goto L9
+    goto L10
+L9:
+    goto L7
+L10:
+    if counter == 8 goto L11
+    goto L12
+L11:
+    goto L8
+L12:
+L7:
+    t2 = counter + 1
+    counter = t2
+    goto L5
+L8:
+L13:
+    if counter > 0 goto L14
+    goto L15
+L14:
+    t3 = counter - 1
+    counter = t3
+    goto L13
+L15:
+L16:
+    t4 = counter + 1
+    counter = t4
+L17:
+    if counter < n goto L16
+    goto L18
+L18:
+    counter = 0
+L19:
+    if counter >= n goto L21
+    goto L20
+L20:
+    t5 = counter + 1
+    counter = t5
+    if counter == 100 goto L22
+    goto L23
+L22:
+    goto L_classify_done
+L23:
+    goto L19
+L21:
+L_classify_done:
+    return counter
+endfunc
+
+func main() : int
+    local int i
+    local float pi
+    local float small
+    local int mask
+    local char newline
+    local str msg
+    temp t1:int
+    i = 0
+    pi = 3.141590118408203
+    small = 0.001500000013038516
+    mask = 31
+    newline = 10
+    msg = str0
+L24:
+    if i >= 5 goto L26
+    goto L25
+L25:
+    t1 = i + 1
+    i = t1
+    goto L24
+L26:
+    return 0
+endfunc
+######## run

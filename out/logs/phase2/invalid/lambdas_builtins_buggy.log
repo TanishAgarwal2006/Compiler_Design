@@ -1,0 +1,68 @@
+######## --all
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:19: syntax error: unexpected token ';'
+    19 |     auto f = [x y](int a) { return a + x + y; };
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:19: syntax error: unexpected token 'y'
+    19 |     auto f = [x y](int a) { return a + x + y; };
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:25: syntax error: unexpected token ';'
+    25 |     int b = (a > 0) ? 1 ;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:30: syntax error: unexpected token ';'
+    30 |     goto ;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:35: syntax error: unexpected token ';'
+    35 |     printf("hello, %d", 5;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:41: syntax error: unexpected token ','
+    41 |     scanf(, &x);
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:47: syntax error: unexpected token ','
+    47 |     int *p = malloc(,);
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:52: syntax error: unexpected token ';'
+    52 |     fprintf(stdout_placeholder, "x = %d", 3;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:57: syntax error: unexpected token ';'
+    57 |     int s = sizeof(int;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:63: syntax error: unexpected token ';'
+    63 |     int *p = new;
+10 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:19: syntax error: unexpected token ';'
+    19 |     auto f = [x y](int a) { return a + x + y; };
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:19: syntax error: unexpected token 'y'
+    19 |     auto f = [x y](int a) { return a + x + y; };
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:25: syntax error: unexpected token ';'
+    25 |     int b = (a > 0) ? 1 ;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:30: syntax error: unexpected token ';'
+    30 |     goto ;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:35: syntax error: unexpected token ';'
+    35 |     printf("hello, %d", 5;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:41: syntax error: unexpected token ','
+    41 |     scanf(, &x);
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:47: syntax error: unexpected token ','
+    47 |     int *p = malloc(,);
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:52: syntax error: unexpected token ';'
+    52 |     fprintf(stdout_placeholder, "x = %d", 3;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:57: syntax error: unexpected token ';'
+    57 |     int s = sizeof(int;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:63: syntax error: unexpected token ';'
+    63 |     int *p = new;
+10 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:19: syntax error: unexpected token ';'
+    19 |     auto f = [x y](int a) { return a + x + y; };
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:19: syntax error: unexpected token 'y'
+    19 |     auto f = [x y](int a) { return a + x + y; };
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:25: syntax error: unexpected token ';'
+    25 |     int b = (a > 0) ? 1 ;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:30: syntax error: unexpected token ';'
+    30 |     goto ;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:35: syntax error: unexpected token ';'
+    35 |     printf("hello, %d", 5;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:41: syntax error: unexpected token ','
+    41 |     scanf(, &x);
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:47: syntax error: unexpected token ','
+    47 |     int *p = malloc(,);
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:52: syntax error: unexpected token ';'
+    52 |     fprintf(stdout_placeholder, "x = %d", 3;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:57: syntax error: unexpected token ';'
+    57 |     int s = sizeof(int;
+test/phase2_syntax/invalid/lambdas_builtins_buggy.c:63: syntax error: unexpected token ';'
+    63 |     int *p = new;
+10 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

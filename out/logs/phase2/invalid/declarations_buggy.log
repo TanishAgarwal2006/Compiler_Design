@@ -1,0 +1,80 @@
+######## --all
+test/phase2_syntax/invalid/declarations_buggy.c:20: syntax error: unexpected token 'int' (is a ';' missing at the end of line 20?)
+    20 | int a
+test/phase2_syntax/invalid/declarations_buggy.c:33: syntax error: unexpected token ';'
+    33 | static;
+test/phase2_syntax/invalid/declarations_buggy.c:37: syntax error: unexpected token ';'
+    37 | int c = ;
+test/phase2_syntax/invalid/declarations_buggy.c:42: syntax error: unexpected token 'd'
+    42 | Whatsit d;
+test/phase2_syntax/invalid/declarations_buggy.c:46: syntax error: unexpected token ';'
+    46 | int e, ;
+test/phase2_syntax/invalid/declarations_buggy.c:52: syntax error: unexpected token ';'
+    52 | typedef int;
+test/phase2_syntax/invalid/declarations_buggy.c:56: syntax error: unexpected token ';'
+    56 | int arr1[3] = {1, 2, 3;
+test/phase2_syntax/invalid/declarations_buggy.c:60: syntax error: unexpected token ','
+    60 | int arr2[3] = {1, , 3};
+test/phase2_syntax/invalid/declarations_buggy.c:65: syntax error: unexpected token '='
+    65 | global_undeclared_but_thats_not_the_point = 2;
+test/phase2_syntax/invalid/declarations_buggy.c:70: syntax error: unexpected token ';'
+    70 |     int *p = &;
+test/phase2_syntax/invalid/declarations_buggy.c:74: syntax error: unexpected token ';'
+    74 |     int m[2][3;
+test/phase2_syntax/invalid/declarations_buggy.c:78: syntax error: unexpected token ';'
+    78 |     int y = (int ;
+12 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/declarations_buggy.c:20: syntax error: unexpected token 'int' (is a ';' missing at the end of line 20?)
+    20 | int a
+test/phase2_syntax/invalid/declarations_buggy.c:33: syntax error: unexpected token ';'
+    33 | static;
+test/phase2_syntax/invalid/declarations_buggy.c:37: syntax error: unexpected token ';'
+    37 | int c = ;
+test/phase2_syntax/invalid/declarations_buggy.c:42: syntax error: unexpected token 'd'
+    42 | Whatsit d;
+test/phase2_syntax/invalid/declarations_buggy.c:46: syntax error: unexpected token ';'
+    46 | int e, ;
+test/phase2_syntax/invalid/declarations_buggy.c:52: syntax error: unexpected token ';'
+    52 | typedef int;
+test/phase2_syntax/invalid/declarations_buggy.c:56: syntax error: unexpected token ';'
+    56 | int arr1[3] = {1, 2, 3;
+test/phase2_syntax/invalid/declarations_buggy.c:60: syntax error: unexpected token ','
+    60 | int arr2[3] = {1, , 3};
+test/phase2_syntax/invalid/declarations_buggy.c:65: syntax error: unexpected token '='
+    65 | global_undeclared_but_thats_not_the_point = 2;
+test/phase2_syntax/invalid/declarations_buggy.c:70: syntax error: unexpected token ';'
+    70 |     int *p = &;
+test/phase2_syntax/invalid/declarations_buggy.c:74: syntax error: unexpected token ';'
+    74 |     int m[2][3;
+test/phase2_syntax/invalid/declarations_buggy.c:78: syntax error: unexpected token ';'
+    78 |     int y = (int ;
+12 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/declarations_buggy.c:20: syntax error: unexpected token 'int' (is a ';' missing at the end of line 20?)
+    20 | int a
+test/phase2_syntax/invalid/declarations_buggy.c:33: syntax error: unexpected token ';'
+    33 | static;
+test/phase2_syntax/invalid/declarations_buggy.c:37: syntax error: unexpected token ';'
+    37 | int c = ;
+test/phase2_syntax/invalid/declarations_buggy.c:42: syntax error: unexpected token 'd'
+    42 | Whatsit d;
+test/phase2_syntax/invalid/declarations_buggy.c:46: syntax error: unexpected token ';'
+    46 | int e, ;
+test/phase2_syntax/invalid/declarations_buggy.c:52: syntax error: unexpected token ';'
+    52 | typedef int;
+test/phase2_syntax/invalid/declarations_buggy.c:56: syntax error: unexpected token ';'
+    56 | int arr1[3] = {1, 2, 3;
+test/phase2_syntax/invalid/declarations_buggy.c:60: syntax error: unexpected token ','
+    60 | int arr2[3] = {1, , 3};
+test/phase2_syntax/invalid/declarations_buggy.c:65: syntax error: unexpected token '='
+    65 | global_undeclared_but_thats_not_the_point = 2;
+test/phase2_syntax/invalid/declarations_buggy.c:70: syntax error: unexpected token ';'
+    70 |     int *p = &;
+test/phase2_syntax/invalid/declarations_buggy.c:74: syntax error: unexpected token ';'
+    74 |     int m[2][3;
+test/phase2_syntax/invalid/declarations_buggy.c:78: syntax error: unexpected token ';'
+    78 |     int y = (int ;
+12 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

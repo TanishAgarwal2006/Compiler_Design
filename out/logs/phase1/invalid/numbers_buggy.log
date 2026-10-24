@@ -1,0 +1,62 @@
+######## --all
+test/phase1_lexical/invalid/numbers_buggy.c:3: lexical error: Invalid octal literal '089'
+     3 | int a = 089;            // 1: octal literal with digit 8
+test/phase1_lexical/invalid/numbers_buggy.c:4: lexical error: Invalid binary literal (digits 0 and 1 only, at least one needed): '0b1102'
+     4 | int b = 0b1102;         // 2: binary literal with digit 2
+test/phase1_lexical/invalid/numbers_buggy.c:5: lexical error: Invalid hex literal (digits 0-9 and a-f only, at least one needed): '0x'
+     5 | int c = 0x;             // 3: hex literal without digits
+test/phase1_lexical/invalid/numbers_buggy.c:6: lexical error: Invalid binary literal (digits 0 and 1 only, at least one needed): '0b'
+     6 | int d = 0b;             // 4: binary literal without digits
+test/phase1_lexical/invalid/numbers_buggy.c:7: lexical error: Malformed floating-point literal '1.2.3'
+     7 | float e = 1.2.3;        // 5: two decimal points
+test/phase1_lexical/invalid/numbers_buggy.c:8: lexical error: Malformed floating-point literal '1e'
+     8 | float f = 1e;           // 6: exponent without digits
+test/phase1_lexical/invalid/numbers_buggy.c:9: lexical error: Invalid number (letters directly after digits are only allowed as the suffixes u, l, ul, ll, f): '12abc'
+     9 | int g = 12abc;          // 7: letters glued to a number
+test/phase1_lexical/invalid/numbers_buggy.c:10: lexical error: Invalid hex literal (digits 0-9 and a-f only, at least one needed): '0xFG'
+    10 | int h = 0xFG;           // 8: bad hex digit
+test/phase1_lexical/invalid/numbers_buggy.c:11: lexical error: Invalid number (letters directly after digits are only allowed as the suffixes u, l, ul, ll, f): '45UU'
+    11 | int i = 45UU;           // 9: bad suffix
+9 errors found. No output was produced.
+######## --semantic
+test/phase1_lexical/invalid/numbers_buggy.c:3: lexical error: Invalid octal literal '089'
+     3 | int a = 089;            // 1: octal literal with digit 8
+test/phase1_lexical/invalid/numbers_buggy.c:4: lexical error: Invalid binary literal (digits 0 and 1 only, at least one needed): '0b1102'
+     4 | int b = 0b1102;         // 2: binary literal with digit 2
+test/phase1_lexical/invalid/numbers_buggy.c:5: lexical error: Invalid hex literal (digits 0-9 and a-f only, at least one needed): '0x'
+     5 | int c = 0x;             // 3: hex literal without digits
+test/phase1_lexical/invalid/numbers_buggy.c:6: lexical error: Invalid binary literal (digits 0 and 1 only, at least one needed): '0b'
+     6 | int d = 0b;             // 4: binary literal without digits
+test/phase1_lexical/invalid/numbers_buggy.c:7: lexical error: Malformed floating-point literal '1.2.3'
+     7 | float e = 1.2.3;        // 5: two decimal points
+test/phase1_lexical/invalid/numbers_buggy.c:8: lexical error: Malformed floating-point literal '1e'
+     8 | float f = 1e;           // 6: exponent without digits
+test/phase1_lexical/invalid/numbers_buggy.c:9: lexical error: Invalid number (letters directly after digits are only allowed as the suffixes u, l, ul, ll, f): '12abc'
+     9 | int g = 12abc;          // 7: letters glued to a number
+test/phase1_lexical/invalid/numbers_buggy.c:10: lexical error: Invalid hex literal (digits 0-9 and a-f only, at least one needed): '0xFG'
+    10 | int h = 0xFG;           // 8: bad hex digit
+test/phase1_lexical/invalid/numbers_buggy.c:11: lexical error: Invalid number (letters directly after digits are only allowed as the suffixes u, l, ul, ll, f): '45UU'
+    11 | int i = 45UU;           // 9: bad suffix
+9 errors found. No output was produced.
+######## --tac
+test/phase1_lexical/invalid/numbers_buggy.c:3: lexical error: Invalid octal literal '089'
+     3 | int a = 089;            // 1: octal literal with digit 8
+test/phase1_lexical/invalid/numbers_buggy.c:4: lexical error: Invalid binary literal (digits 0 and 1 only, at least one needed): '0b1102'
+     4 | int b = 0b1102;         // 2: binary literal with digit 2
+test/phase1_lexical/invalid/numbers_buggy.c:5: lexical error: Invalid hex literal (digits 0-9 and a-f only, at least one needed): '0x'
+     5 | int c = 0x;             // 3: hex literal without digits
+test/phase1_lexical/invalid/numbers_buggy.c:6: lexical error: Invalid binary literal (digits 0 and 1 only, at least one needed): '0b'
+     6 | int d = 0b;             // 4: binary literal without digits
+test/phase1_lexical/invalid/numbers_buggy.c:7: lexical error: Malformed floating-point literal '1.2.3'
+     7 | float e = 1.2.3;        // 5: two decimal points
+test/phase1_lexical/invalid/numbers_buggy.c:8: lexical error: Malformed floating-point literal '1e'
+     8 | float f = 1e;           // 6: exponent without digits
+test/phase1_lexical/invalid/numbers_buggy.c:9: lexical error: Invalid number (letters directly after digits are only allowed as the suffixes u, l, ul, ll, f): '12abc'
+     9 | int g = 12abc;          // 7: letters glued to a number
+test/phase1_lexical/invalid/numbers_buggy.c:10: lexical error: Invalid hex literal (digits 0-9 and a-f only, at least one needed): '0xFG'
+    10 | int h = 0xFG;           // 8: bad hex digit
+test/phase1_lexical/invalid/numbers_buggy.c:11: lexical error: Invalid number (letters directly after digits are only allowed as the suffixes u, l, ul, ll, f): '45UU'
+    11 | int i = 45UU;           // 9: bad suffix
+9 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

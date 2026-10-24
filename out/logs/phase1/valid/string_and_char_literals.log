@@ -1,0 +1,14 @@
+######## --all
+test/phase1_lexical/valid/string_and_char_literals.c:13: syntax error: unexpected token '"b"'
+    13 | char *joined = "a" "b";          /* two literals side by side: two tokens */
+1 error found. No output was produced.
+######## --semantic
+test/phase1_lexical/valid/string_and_char_literals.c:13: syntax error: unexpected token '"b"'
+    13 | char *joined = "a" "b";          /* two literals side by side: two tokens */
+1 error found. No output was produced.
+######## --tac
+test/phase1_lexical/valid/string_and_char_literals.c:13: syntax error: unexpected token '"b"'
+    13 | char *joined = "a" "b";          /* two literals side by side: two tokens */
+1 error found. No output was produced.
+######## run
+(not compiled: see the errors above)

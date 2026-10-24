@@ -1,0 +1,20 @@
+######## --all
+test/phase2_syntax/invalid/do_while_recovery_buggy.c:44: syntax error: unexpected token 'return' (is a ';' missing at the end of line 44?)
+    44 |     } while (a < 10)   /* <-- missing ';' */
+test/phase2_syntax/invalid/do_while_recovery_buggy.c:47: syntax error: unexpected token '}'
+    47 | }
+2 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/do_while_recovery_buggy.c:44: syntax error: unexpected token 'return' (is a ';' missing at the end of line 44?)
+    44 |     } while (a < 10)   /* <-- missing ';' */
+test/phase2_syntax/invalid/do_while_recovery_buggy.c:47: syntax error: unexpected token '}'
+    47 | }
+2 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/do_while_recovery_buggy.c:44: syntax error: unexpected token 'return' (is a ';' missing at the end of line 44?)
+    44 |     } while (a < 10)   /* <-- missing ';' */
+test/phase2_syntax/invalid/do_while_recovery_buggy.c:47: syntax error: unexpected token '}'
+    47 | }
+2 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

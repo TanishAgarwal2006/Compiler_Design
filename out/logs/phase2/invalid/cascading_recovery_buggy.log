@@ -1,0 +1,74 @@
+######## --all
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:29: syntax error: unexpected token 'int' (is a ';' missing at the end of line 29?)
+    29 | int b
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:31: syntax error: unexpected token ';'
+    31 | int d = ;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:32: syntax error: unexpected token ';'
+    32 | int e, ;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:33: syntax error: unexpected token ';'
+    33 | int f[3] = {1, 2, 3;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:34: syntax error: unexpected token ','
+    34 | int g[3] = {1, , 3};
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:39: syntax error: unexpected token '{'
+    39 |     if (x > 0 {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:43: syntax error: unexpected token 'while'
+    43 |     while (x > 0 {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:47: syntax error: unexpected token '++'
+    47 |     for (x = 0 x < 10; x++) {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:47: syntax error: unexpected token 'for'
+    47 |     for (x = 0 x < 10; x++) {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:51: syntax error: unexpected token 'switch'
+    51 |     switch (x {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:55: syntax error: unexpected token 'return'
+    55 |     return 0;
+11 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:29: syntax error: unexpected token 'int' (is a ';' missing at the end of line 29?)
+    29 | int b
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:31: syntax error: unexpected token ';'
+    31 | int d = ;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:32: syntax error: unexpected token ';'
+    32 | int e, ;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:33: syntax error: unexpected token ';'
+    33 | int f[3] = {1, 2, 3;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:34: syntax error: unexpected token ','
+    34 | int g[3] = {1, , 3};
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:39: syntax error: unexpected token '{'
+    39 |     if (x > 0 {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:43: syntax error: unexpected token 'while'
+    43 |     while (x > 0 {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:47: syntax error: unexpected token '++'
+    47 |     for (x = 0 x < 10; x++) {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:47: syntax error: unexpected token 'for'
+    47 |     for (x = 0 x < 10; x++) {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:51: syntax error: unexpected token 'switch'
+    51 |     switch (x {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:55: syntax error: unexpected token 'return'
+    55 |     return 0;
+11 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:29: syntax error: unexpected token 'int' (is a ';' missing at the end of line 29?)
+    29 | int b
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:31: syntax error: unexpected token ';'
+    31 | int d = ;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:32: syntax error: unexpected token ';'
+    32 | int e, ;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:33: syntax error: unexpected token ';'
+    33 | int f[3] = {1, 2, 3;
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:34: syntax error: unexpected token ','
+    34 | int g[3] = {1, , 3};
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:39: syntax error: unexpected token '{'
+    39 |     if (x > 0 {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:43: syntax error: unexpected token 'while'
+    43 |     while (x > 0 {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:47: syntax error: unexpected token '++'
+    47 |     for (x = 0 x < 10; x++) {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:47: syntax error: unexpected token 'for'
+    47 |     for (x = 0 x < 10; x++) {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:51: syntax error: unexpected token 'switch'
+    51 |     switch (x {
+test/phase2_syntax/invalid/cascading_recovery_buggy.c:55: syntax error: unexpected token 'return'
+    55 |     return 0;
+11 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

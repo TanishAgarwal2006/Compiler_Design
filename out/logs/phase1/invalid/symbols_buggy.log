@@ -1,0 +1,32 @@
+######## --all
+test/phase1_lexical/invalid/symbols_buggy.c:3: lexical error: Illegal character '@'
+     3 |     int a = 5 @ 3;          // 1: @
+test/phase1_lexical/invalid/symbols_buggy.c:4: lexical error: Illegal character '$'
+     4 |     int b = a $ 2;          // 2: $
+test/phase1_lexical/invalid/symbols_buggy.c:5: lexical error: Illegal character '`'
+     5 |     int c = `a`;            // 3: backquote
+test/phase1_lexical/invalid/symbols_buggy.c:6: lexical error: Illegal character '\'
+     6 |     int d = a \ 2;          // 4: backslash outside a literal
+4 errors found. No output was produced.
+######## --semantic
+test/phase1_lexical/invalid/symbols_buggy.c:3: lexical error: Illegal character '@'
+     3 |     int a = 5 @ 3;          // 1: @
+test/phase1_lexical/invalid/symbols_buggy.c:4: lexical error: Illegal character '$'
+     4 |     int b = a $ 2;          // 2: $
+test/phase1_lexical/invalid/symbols_buggy.c:5: lexical error: Illegal character '`'
+     5 |     int c = `a`;            // 3: backquote
+test/phase1_lexical/invalid/symbols_buggy.c:6: lexical error: Illegal character '\'
+     6 |     int d = a \ 2;          // 4: backslash outside a literal
+4 errors found. No output was produced.
+######## --tac
+test/phase1_lexical/invalid/symbols_buggy.c:3: lexical error: Illegal character '@'
+     3 |     int a = 5 @ 3;          // 1: @
+test/phase1_lexical/invalid/symbols_buggy.c:4: lexical error: Illegal character '$'
+     4 |     int b = a $ 2;          // 2: $
+test/phase1_lexical/invalid/symbols_buggy.c:5: lexical error: Illegal character '`'
+     5 |     int c = `a`;            // 3: backquote
+test/phase1_lexical/invalid/symbols_buggy.c:6: lexical error: Illegal character '\'
+     6 |     int d = a \ 2;          // 4: backslash outside a literal
+4 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

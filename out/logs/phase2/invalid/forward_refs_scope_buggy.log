@@ -1,0 +1,56 @@
+######## --all
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:22: syntax error: unexpected token 'later' (is a ';' missing at the end of line 22?)
+    22 |     goto later
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:29: syntax error: unexpected token 'int'
+    29 |     goto int;
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:36: syntax error: unexpected token 'a' (is a ';' missing at the end of line 36?)
+    36 | skip
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:44: syntax error: unexpected token ';'
+    44 |     int r = later_defined_fn(1, 2;
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:59: syntax error: unexpected token 'feed'
+    59 | T05_Cta feed(int amount) {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:69: syntax error: unexpected token '('
+    69 | int T06_Dog::(int volume) {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:79: syntax error: unexpected token '{'
+    79 | int T07_Bird::fly(int speed {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:90: syntax error: unexpected token ';'
+    90 |     int v = T08_Util::;
+8 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:22: syntax error: unexpected token 'later' (is a ';' missing at the end of line 22?)
+    22 |     goto later
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:29: syntax error: unexpected token 'int'
+    29 |     goto int;
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:36: syntax error: unexpected token 'a' (is a ';' missing at the end of line 36?)
+    36 | skip
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:44: syntax error: unexpected token ';'
+    44 |     int r = later_defined_fn(1, 2;
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:59: syntax error: unexpected token 'feed'
+    59 | T05_Cta feed(int amount) {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:69: syntax error: unexpected token '('
+    69 | int T06_Dog::(int volume) {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:79: syntax error: unexpected token '{'
+    79 | int T07_Bird::fly(int speed {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:90: syntax error: unexpected token ';'
+    90 |     int v = T08_Util::;
+8 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:22: syntax error: unexpected token 'later' (is a ';' missing at the end of line 22?)
+    22 |     goto later
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:29: syntax error: unexpected token 'int'
+    29 |     goto int;
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:36: syntax error: unexpected token 'a' (is a ';' missing at the end of line 36?)
+    36 | skip
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:44: syntax error: unexpected token ';'
+    44 |     int r = later_defined_fn(1, 2;
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:59: syntax error: unexpected token 'feed'
+    59 | T05_Cta feed(int amount) {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:69: syntax error: unexpected token '('
+    69 | int T06_Dog::(int volume) {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:79: syntax error: unexpected token '{'
+    79 | int T07_Bird::fly(int speed {
+test/phase2_syntax/invalid/forward_refs_scope_buggy.c:90: syntax error: unexpected token ';'
+    90 |     int v = T08_Util::;
+8 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

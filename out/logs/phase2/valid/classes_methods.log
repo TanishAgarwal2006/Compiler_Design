@@ -1,0 +1,1289 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+class                     CLASS                    
+Animal                    IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+age                       VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+getAge                    FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+age                       VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+protected                 PROTECTED                
+:                         COLON                    
+int                       INT                      
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+private                   PRIVATE                  
+:                         COLON                    
+char                      CHAR                     
+name                      ARRAY_NAME               
+[                         LBRACKET                 
+20                        INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+class                     CLASS                    
+Dog                       FUNCTION_NAME            
+:                         COLON                    
+public                    PUBLIC                   
+Animal                    IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+legs                      VARIABLE_NAME            
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+Dog                       FUNCTION_NAME            
+d                         VARIABLE_NAME            
+;                         SEMI                     
+d                         VARIABLE_NAME            
+.                         DOT                      
+age                       VARIABLE_NAME            
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+d                         VARIABLE_NAME            
+.                         DOT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+class                     CLASS                    
+Dog                       FUNCTION_NAME            
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+this                      THIS                     
+->                        ARROW                    
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+legCount                  FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+Dog                       FUNCTION_NAME            
+::                        SCOPE                    
+legCount                  FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+this                      THIS                     
+->                        ARROW                    
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+class                     CLASS                    
+Animal                    IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+class                     CLASS                    
+Dog                       FUNCTION_NAME            
+:                         COLON                    
+public                    PUBLIC                   
+Animal                    IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+Dog                       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+n                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+legs                      VARIABLE_NAME            
+=                         ASSIGN                   
+n                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+~                         BIT_NOT                  
+Dog                       FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+}                         RBRACE                   
+int                       INT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+bool                      BOOL                     
+flag                      VARIABLE_NAME            
+;                         SEMI                     
+flag                      VARIABLE_NAME            
+=                         ASSIGN                   
+true                      TRUE_KW                  
+;                         SEMI                     
+const                     CONST                    
+int                       INT                      
+limit                     VARIABLE_NAME            
+=                         ASSIGN                   
+10                        INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+*                         MULTIPLY                 
+p                         VARIABLE_NAME            
+;                         SEMI                     
+p                         VARIABLE_NAME            
+=                         ASSIGN                   
+new                       NEW                      
+int                       INT                      
+;                         SEMI                     
+delete                    DELETE                   
+p                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+arr                       ARRAY_NAME               
+[                         LBRACKET                 
+5                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+int                       INT                      
+sz                        VARIABLE_NAME            
+;                         SEMI                     
+sz                        VARIABLE_NAME            
+=                         ASSIGN                   
+sizeof                    SIZEOF                   
+(                         LPAREN                   
+arr                       ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+sz2                       VARIABLE_NAME            
+;                         SEMI                     
+sz2                       VARIABLE_NAME            
+=                         ASSIGN                   
+sizeof                    SIZEOF                   
+(                         LPAREN                   
+int                       INT                      
+)                         RPAREN                   
+;                         SEMI                     
+Dog                       FUNCTION_NAME            
+d                         VARIABLE_NAME            
+;                         SEMI                     
+d                         VARIABLE_NAME            
+.                         DOT                      
+legs                      VARIABLE_NAME            
+=                         ASSIGN                   
+4                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+legs                      VARIABLE_NAME            
+=                         ASSIGN                   
+d                         VARIABLE_NAME            
+.                         DOT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+class                     CLASS                    
+Dog                       FUNCTION_NAME            
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+Dog                       FUNCTION_NAME            
+::                        SCOPE                    
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+legs                      VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+Dog                       FUNCTION_NAME            
+d                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+b                         VARIABLE_NAME            
+;                         SEMI                     
+b                         VARIABLE_NAME            
+=                         ASSIGN                   
+d                         VARIABLE_NAME            
+.                         DOT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+Dog                  function     int        global                 params: (int)       
+age                  variable     int        class:Animal                               
+arr                  array        int        function:main          dims: [5]           
+b                    variable     int        function:main                              
+bark                 function     int        global                 params: ()          
+d                    variable     Dog        function:main                              
+flag                 variable     bool       function:main                              
+getAge               function     int        global                 params: ()          
+legCount             function     int        global                 params: ()          
+legs                 variable     int        class:Animal                               
+limit                variable     const int  function:main                              
+main                 function     int        global                 params: ()          
+n                    parameter    int        function:Dog                               
+name                 array        char       class:Animal           dims: [20]          
+p                    variable     int        function:main          pointer (*p)        
+sz                   variable     int        function:main                              
+sz2                  variable     int        function:main                              
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 7
+        type_spec:
+          ClassSpecifier
+            line: 7
+            tag: Animal
+            members:
+              [
+                AccessLabel
+                  line: 8
+                  access: public,
+                Declaration
+                  line: 9
+                  type_spec:
+                    TypeSpecifier
+                      line: 9
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 9
+                        declarator:
+                          Declarator
+                            line: 9
+                            name: age
+                            kind_name: variable,
+                    ],
+                FunctionDefinition
+                  line: 10
+                  return_type:
+                    TypeSpecifier
+                      line: 10
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 10
+                      name: getAge
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 10
+                      items:
+                        [
+                          ReturnStatement
+                            line: 10
+                            value:
+                              Identifier
+                                line: 10
+                                name: age,
+                        ],
+                AccessLabel
+                  line: 11
+                  access: protected,
+                Declaration
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 12
+                        declarator:
+                          Declarator
+                            line: 12
+                            name: legs
+                            kind_name: variable,
+                    ],
+                AccessLabel
+                  line: 13
+                  access: private,
+                Declaration
+                  line: 14
+                  type_spec:
+                    TypeSpecifier
+                      line: 14
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 14
+                        declarator:
+                          Declarator
+                            line: 14
+                            name: name
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 14
+                                  size:
+                                    Literal
+                                      line: 14
+                                      literal_type: int
+                                      value: 20,
+                              ],
+                    ],
+              ],
+      Declaration
+        line: 17
+        type_spec:
+          ClassSpecifier
+            line: 17
+            tag: Dog
+            bases:
+              [
+                BaseSpecifier
+                  line: 0
+                  name: Animal
+                  access: public,
+              ]
+            members:
+              [
+                AccessLabel
+                  line: 18
+                  access: public,
+                FunctionDefinition
+                  line: 19
+                  return_type:
+                    TypeSpecifier
+                      line: 19
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 19
+                      name: bark
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 19
+                      items:
+                        [
+                          ReturnStatement
+                            line: 19
+                            value:
+                              BinaryOp
+                                line: 19
+                                operator: +
+                                left:
+                                  Identifier
+                                    line: 19
+                                    name: legs
+                                right:
+                                  Literal
+                                    line: 19
+                                    literal_type: int
+                                    value: 1,
+                        ],
+              ],
+      FunctionDefinition
+        line: 22
+        return_type:
+          TypeSpecifier
+            line: 22
+            name: int
+        declarator:
+          Declarator
+            line: 22
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 22
+            items:
+              [
+                Declaration
+                  line: 23
+                  type_spec:
+                    TypeSpecifier
+                      line: 23
+                      name: Dog
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 23
+                        declarator:
+                          Declarator
+                            line: 23
+                            name: d
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 24
+                  expression:
+                    Assignment
+                      line: 24
+                      operator: =
+                      target:
+                        MemberAccess
+                          line: 24
+                          target:
+                            Identifier
+                              line: 24
+                              name: d
+                          member: age
+                          is_pointer: False
+                      value:
+                        Literal
+                          line: 24
+                          literal_type: int
+                          value: 3,
+                ReturnStatement
+                  line: 25
+                  value:
+                    FunctionCall
+                      line: 25
+                      callee:
+                        MemberAccess
+                          line: 25
+                          target:
+                            Identifier
+                              line: 25
+                              name: d
+                          member: bark
+                          is_pointer: False,
+              ],
+      Declaration
+        line: 31
+        type_spec:
+          ClassSpecifier
+            line: 31
+            tag: Dog
+            members:
+              [
+                AccessLabel
+                  line: 32
+                  access: public,
+                Declaration
+                  line: 33
+                  type_spec:
+                    TypeSpecifier
+                      line: 33
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 33
+                        declarator:
+                          Declarator
+                            line: 33
+                            name: legs
+                            kind_name: variable,
+                    ],
+                FunctionDefinition
+                  line: 34
+                  return_type:
+                    TypeSpecifier
+                      line: 34
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 34
+                      name: bark
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 34
+                      items:
+                        [
+                          ReturnStatement
+                            line: 35
+                            value:
+                              MemberAccess
+                                line: 35
+                                target:
+                                  ThisExpression
+                                    line: 35
+                                member: legs
+                                is_pointer: True,
+                        ],
+                Declaration
+                  line: 37
+                  type_spec:
+                    TypeSpecifier
+                      line: 37
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 37
+                        declarator:
+                          Declarator
+                            line: 37
+                            name: legCount
+                            kind_name: function,
+                    ],
+              ],
+      FunctionDefinition
+        line: 40
+        return_type:
+          TypeSpecifier
+            line: 40
+            name: int
+        declarator:
+          Declarator
+            line: 40
+            name: legCount
+            kind_name: function
+            scope: Dog
+        body:
+          CompoundStatement
+            line: 40
+            items:
+              [
+                ReturnStatement
+                  line: 41
+                  value:
+                    MemberAccess
+                      line: 41
+                      target:
+                        ThisExpression
+                          line: 41
+                      member: legs
+                      is_pointer: True,
+              ],
+      FunctionDefinition
+        line: 44
+        return_type:
+          TypeSpecifier
+            line: 44
+            name: int
+        declarator:
+          Declarator
+            line: 44
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 44
+            items:
+              [
+                ReturnStatement
+                  line: 45
+                  value:
+                    Literal
+                      line: 45
+                      literal_type: int
+                      value: 0,
+              ],
+      Declaration
+        line: 51
+        type_spec:
+          ClassSpecifier
+            line: 51
+            tag: Animal
+            members:
+              [
+                AccessLabel
+                  line: 52
+                  access: public,
+                Declaration
+                  line: 53
+                  type_spec:
+                    TypeSpecifier
+                      line: 53
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 53
+                        declarator:
+                          Declarator
+                            line: 53
+                            name: legs
+                            kind_name: variable,
+                    ],
+              ],
+      Declaration
+        line: 56
+        type_spec:
+          ClassSpecifier
+            line: 56
+            tag: Dog
+            bases:
+              [
+                BaseSpecifier
+                  line: 0
+                  name: Animal
+                  access: public,
+              ]
+            members:
+              [
+                AccessLabel
+                  line: 57
+                  access: public,
+                FunctionDefinition
+                  line: 58
+                  declarator:
+                    Declarator
+                      line: 58
+                      name: Dog
+                      kind_name: constructor
+                      params:
+                        [
+                          Parameter
+                            line: 58
+                            type_spec:
+                              TypeSpecifier
+                                line: 58
+                                name: int
+                            declarator:
+                              Declarator
+                                line: 58
+                                name: n
+                                kind_name: variable,
+                        ]
+                  body:
+                    CompoundStatement
+                      line: 58
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 59
+                            expression:
+                              Assignment
+                                line: 59
+                                operator: =
+                                target:
+                                  Identifier
+                                    line: 59
+                                    name: legs
+                                value:
+                                  Identifier
+                                    line: 59
+                                    name: n,
+                        ],
+                FunctionDefinition
+                  line: 61
+                  declarator:
+                    Declarator
+                      line: 61
+                      name: Dog
+                      kind_name: destructor
+                  body:
+                    CompoundStatement
+                      line: 61,
+                FunctionDefinition
+                  line: 63
+                  return_type:
+                    TypeSpecifier
+                      line: 63
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 63
+                      name: bark
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 63
+                      items:
+                        [
+                          ReturnStatement
+                            line: 64
+                            value:
+                              Identifier
+                                line: 64
+                                name: legs,
+                        ],
+              ],
+      FunctionDefinition
+        line: 68
+        return_type:
+          TypeSpecifier
+            line: 68
+            name: int
+        declarator:
+          Declarator
+            line: 68
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 68
+            items:
+              [
+                Declaration
+                  line: 69
+                  type_spec:
+                    TypeSpecifier
+                      line: 69
+                      name: bool
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 69
+                        declarator:
+                          Declarator
+                            line: 69
+                            name: flag
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 70
+                  expression:
+                    Assignment
+                      line: 70
+                      operator: =
+                      target:
+                        Identifier
+                          line: 70
+                          name: flag
+                      value:
+                        Literal
+                          line: 70
+                          literal_type: bool
+                          value: true,
+                Declaration
+                  line: 71
+                  type_spec:
+                    TypeSpecifier
+                      line: 71
+                      name: const int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 71
+                        declarator:
+                          Declarator
+                            line: 71
+                            name: limit
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 71
+                            literal_type: int
+                            value: 10,
+                    ],
+                Declaration
+                  line: 73
+                  type_spec:
+                    TypeSpecifier
+                      line: 73
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 73
+                        declarator:
+                          Declarator
+                            line: 73
+                            name: p
+                            kind_name: variable
+                            pointer_level: 1,
+                    ],
+                ExpressionStatement
+                  line: 74
+                  expression:
+                    Assignment
+                      line: 74
+                      operator: =
+                      target:
+                        Identifier
+                          line: 74
+                          name: p
+                      value:
+                        NewExpression
+                          line: 74
+                          type_spec:
+                            TypeSpecifier
+                              line: 74
+                              name: int,
+                ExpressionStatement
+                  line: 75
+                  expression:
+                    DeleteExpression
+                      line: 75
+                      operand:
+                        Identifier
+                          line: 75
+                          name: p
+                      is_array: False,
+                Declaration
+                  line: 77
+                  type_spec:
+                    TypeSpecifier
+                      line: 77
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 77
+                        declarator:
+                          Declarator
+                            line: 77
+                            name: arr
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 77
+                                  size:
+                                    Literal
+                                      line: 77
+                                      literal_type: int
+                                      value: 5,
+                              ],
+                    ],
+                Declaration
+                  line: 78
+                  type_spec:
+                    TypeSpecifier
+                      line: 78
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 78
+                        declarator:
+                          Declarator
+                            line: 78
+                            name: sz
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 79
+                  expression:
+                    Assignment
+                      line: 79
+                      operator: =
+                      target:
+                        Identifier
+                          line: 79
+                          name: sz
+                      value:
+                        UnaryOp
+                          line: 79
+                          operator: sizeof
+                          operand:
+                            Identifier
+                              line: 79
+                              name: arr
+                          position: prefix,
+                Declaration
+                  line: 80
+                  type_spec:
+                    TypeSpecifier
+                      line: 80
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 80
+                        declarator:
+                          Declarator
+                            line: 80
+                            name: sz2
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 81
+                  expression:
+                    Assignment
+                      line: 81
+                      operator: =
+                      target:
+                        Identifier
+                          line: 81
+                          name: sz2
+                      value:
+                        UnaryOp
+                          line: 81
+                          operator: sizeof
+                          operand:
+                            TypeSpecifier
+                              line: 81
+                              name: int
+                          position: prefix,
+                Declaration
+                  line: 83
+                  type_spec:
+                    TypeSpecifier
+                      line: 83
+                      name: Dog
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 83
+                        declarator:
+                          Declarator
+                            line: 83
+                            name: d
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 84
+                  expression:
+                    Assignment
+                      line: 84
+                      operator: =
+                      target:
+                        MemberAccess
+                          line: 84
+                          target:
+                            Identifier
+                              line: 84
+                              name: d
+                          member: legs
+                          is_pointer: False
+                      value:
+                        Literal
+                          line: 84
+                          literal_type: int
+                          value: 4,
+                Declaration
+                  line: 85
+                  type_spec:
+                    TypeSpecifier
+                      line: 85
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 85
+                        declarator:
+                          Declarator
+                            line: 85
+                            name: legs
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 86
+                  expression:
+                    Assignment
+                      line: 86
+                      operator: =
+                      target:
+                        Identifier
+                          line: 86
+                          name: legs
+                      value:
+                        FunctionCall
+                          line: 86
+                          callee:
+                            MemberAccess
+                              line: 86
+                              target:
+                                Identifier
+                                  line: 86
+                                  name: d
+                              member: bark
+                              is_pointer: False,
+                ReturnStatement
+                  line: 88
+                  value:
+                    Literal
+                      line: 88
+                      literal_type: int
+                      value: 0,
+              ],
+      Declaration
+        line: 94
+        type_spec:
+          ClassSpecifier
+            line: 94
+            tag: Dog
+            members:
+              [
+                AccessLabel
+                  line: 95
+                  access: public,
+                Declaration
+                  line: 96
+                  type_spec:
+                    TypeSpecifier
+                      line: 96
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 96
+                        declarator:
+                          Declarator
+                            line: 96
+                            name: legs
+                            kind_name: variable,
+                    ],
+                Declaration
+                  line: 97
+                  type_spec:
+                    TypeSpecifier
+                      line: 97
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 97
+                        declarator:
+                          Declarator
+                            line: 97
+                            name: bark
+                            kind_name: function,
+                    ],
+              ],
+      FunctionDefinition
+        line: 100
+        return_type:
+          TypeSpecifier
+            line: 100
+            name: int
+        declarator:
+          Declarator
+            line: 100
+            name: bark
+            kind_name: function
+            scope: Dog
+        body:
+          CompoundStatement
+            line: 100
+            items:
+              [
+                ReturnStatement
+                  line: 101
+                  value:
+                    Identifier
+                      line: 101
+                      name: legs,
+              ],
+      FunctionDefinition
+        line: 104
+        return_type:
+          TypeSpecifier
+            line: 104
+            name: int
+        declarator:
+          Declarator
+            line: 104
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 104
+            items:
+              [
+                Declaration
+                  line: 105
+                  type_spec:
+                    TypeSpecifier
+                      line: 105
+                      name: Dog
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 105
+                        declarator:
+                          Declarator
+                            line: 105
+                            name: d
+                            kind_name: variable,
+                    ],
+                Declaration
+                  line: 106
+                  type_spec:
+                    TypeSpecifier
+                      line: 106
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 106
+                        declarator:
+                          Declarator
+                            line: 106
+                            name: b
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 107
+                  expression:
+                    Assignment
+                      line: 107
+                      operator: =
+                      target:
+                        Identifier
+                          line: 107
+                          name: b
+                      value:
+                        FunctionCall
+                          line: 107
+                          callee:
+                            MemberAccess
+                              line: 107
+                              target:
+                                Identifier
+                                  line: 107
+                                  name: d
+                              member: bark
+                              is_pointer: False,
+                ReturnStatement
+                  line: 108
+                  value:
+                    Literal
+                      line: 108
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase2_syntax/valid/classes_methods.c:7: semantic error: unsupported feature: classes
+     7 | class Animal {
+test/phase2_syntax/valid/classes_methods.c:17: semantic error: unsupported feature: classes
+    17 | class Dog : public Animal {
+test/phase2_syntax/valid/classes_methods.c:24: semantic error: unsupported feature: member access ('.' and '->')
+    24 |     d.age = 3;
+test/phase2_syntax/valid/classes_methods.c:25: semantic error: unsupported feature: member function calls ('.' and '->')
+    25 |     return d.bark();
+test/phase2_syntax/valid/classes_methods.c:31: semantic error: unsupported feature: classes
+    31 | class Dog {
+test/phase2_syntax/valid/classes_methods.c:40: semantic error: unsupported feature: member functions, constructors and destructors
+    40 | int Dog::legCount() {
+test/phase2_syntax/valid/classes_methods.c:44: semantic error: redefinition of function 'main'
+    44 | int main() {
+test/phase2_syntax/valid/classes_methods.c:51: semantic error: unsupported feature: classes
+    51 | class Animal {
+test/phase2_syntax/valid/classes_methods.c:56: semantic error: unsupported feature: classes
+    56 | class Dog : public Animal {
+test/phase2_syntax/valid/classes_methods.c:68: semantic error: redefinition of function 'main'
+    68 | int main() {
+test/phase2_syntax/valid/classes_methods.c:94: semantic error: unsupported feature: classes
+    94 | class Dog {
+test/phase2_syntax/valid/classes_methods.c:100: semantic error: unsupported feature: member functions, constructors and destructors
+   100 | int Dog::bark() {
+test/phase2_syntax/valid/classes_methods.c:104: semantic error: redefinition of function 'main'
+   104 | int main() {
+13 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase2_syntax/valid/classes_methods.c:7: semantic error: unsupported feature: classes
+     7 | class Animal {
+test/phase2_syntax/valid/classes_methods.c:17: semantic error: unsupported feature: classes
+    17 | class Dog : public Animal {
+test/phase2_syntax/valid/classes_methods.c:24: semantic error: unsupported feature: member access ('.' and '->')
+    24 |     d.age = 3;
+test/phase2_syntax/valid/classes_methods.c:25: semantic error: unsupported feature: member function calls ('.' and '->')
+    25 |     return d.bark();
+test/phase2_syntax/valid/classes_methods.c:31: semantic error: unsupported feature: classes
+    31 | class Dog {
+test/phase2_syntax/valid/classes_methods.c:40: semantic error: unsupported feature: member functions, constructors and destructors
+    40 | int Dog::legCount() {
+test/phase2_syntax/valid/classes_methods.c:44: semantic error: redefinition of function 'main'
+    44 | int main() {
+test/phase2_syntax/valid/classes_methods.c:51: semantic error: unsupported feature: classes
+    51 | class Animal {
+test/phase2_syntax/valid/classes_methods.c:56: semantic error: unsupported feature: classes
+    56 | class Dog : public Animal {
+test/phase2_syntax/valid/classes_methods.c:68: semantic error: redefinition of function 'main'
+    68 | int main() {
+test/phase2_syntax/valid/classes_methods.c:94: semantic error: unsupported feature: classes
+    94 | class Dog {
+test/phase2_syntax/valid/classes_methods.c:100: semantic error: unsupported feature: member functions, constructors and destructors
+   100 | int Dog::bark() {
+test/phase2_syntax/valid/classes_methods.c:104: semantic error: redefinition of function 'main'
+   104 | int main() {
+13 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

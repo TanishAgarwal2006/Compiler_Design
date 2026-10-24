@@ -1,0 +1,14 @@
+######## --all
+test/phase1_lexical/invalid/char_eof_buggy.c:2: lexical error: Unterminated character constant at EOF (started at line 2)
+     2 | char c = 'x
+1 error found. No output was produced.
+######## --semantic
+test/phase1_lexical/invalid/char_eof_buggy.c:2: lexical error: Unterminated character constant at EOF (started at line 2)
+     2 | char c = 'x
+1 error found. No output was produced.
+######## --tac
+test/phase1_lexical/invalid/char_eof_buggy.c:2: lexical error: Unterminated character constant at EOF (started at line 2)
+     2 | char c = 'x
+1 error found. No output was produced.
+######## run
+(not compiled: see the errors above)

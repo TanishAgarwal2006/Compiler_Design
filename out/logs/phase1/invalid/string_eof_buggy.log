@@ -1,0 +1,14 @@
+######## --all
+test/phase1_lexical/invalid/string_eof_buggy.c:2: lexical error: Unterminated string literal
+     2 | char *s = "never closed
+1 error found. No output was produced.
+######## --semantic
+test/phase1_lexical/invalid/string_eof_buggy.c:2: lexical error: Unterminated string literal
+     2 | char *s = "never closed
+1 error found. No output was produced.
+######## --tac
+test/phase1_lexical/invalid/string_eof_buggy.c:2: lexical error: Unterminated string literal
+     2 | char *s = "never closed
+1 error found. No output was produced.
+######## run
+(not compiled: see the errors above)

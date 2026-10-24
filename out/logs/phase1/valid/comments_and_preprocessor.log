@@ -1,0 +1,235 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+a                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+b                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+c                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+d                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+e                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+f                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+g                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    variable     int        global                                     
+b                    variable     int        global                                     
+c                    variable     int        global                                     
+d                    variable     int        global                                     
+e                    variable     int        global                                     
+f                    variable     int        global                                     
+g                    variable     int        global                                     
+main                 function     int        global                 params: ()          
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 21
+        type_spec:
+          TypeSpecifier
+            line: 21
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 21
+              declarator:
+                Declarator
+                  line: 21
+                  name: a
+                  kind_name: variable,
+          ],
+      Declaration
+        line: 22
+        type_spec:
+          TypeSpecifier
+            line: 22
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 22
+              declarator:
+                Declarator
+                  line: 22
+                  name: b
+                  kind_name: variable,
+          ],
+      Declaration
+        line: 26
+        type_spec:
+          TypeSpecifier
+            line: 26
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 26
+              declarator:
+                Declarator
+                  line: 26
+                  name: c
+                  kind_name: variable,
+          ],
+      Declaration
+        line: 27
+        type_spec:
+          TypeSpecifier
+            line: 27
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 27
+              declarator:
+                Declarator
+                  line: 27
+                  name: d
+                  kind_name: variable,
+          ],
+      Declaration
+        line: 29
+        type_spec:
+          TypeSpecifier
+            line: 29
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 29
+              declarator:
+                Declarator
+                  line: 29
+                  name: e
+                  kind_name: variable,
+          ],
+      Declaration
+        line: 30
+        type_spec:
+          TypeSpecifier
+            line: 30
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 30
+              declarator:
+                Declarator
+                  line: 30
+                  name: f
+                  kind_name: variable,
+          ],
+      Declaration
+        line: 31
+        type_spec:
+          TypeSpecifier
+            line: 31
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 31
+              declarator:
+                Declarator
+                  line: 31
+                  name: g
+                  kind_name: variable,
+          ],
+      FunctionDefinition
+        line: 32
+        return_type:
+          TypeSpecifier
+            line: 32
+            name: int
+        declarator:
+          Declarator
+            line: 32
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 32
+            items:
+              [
+                ReturnStatement
+                  line: 32
+                  value:
+                    Literal
+                      line: 32
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  name  type  size  offset  line
+  ----  ----  ----  ------  ----
+  a     int   4     0       21  
+  b     int   4     4       22  
+  c     int   4     8       26  
+  d     int   4     12      27  
+  e     int   4     16      29  
+  f     int   4     20      30  
+  g     int   4     24      31  
+
+Functions
+  name  signature  frame  defined  line
+  ----  ---------  -----  -------  ----
+  main  () -> int  0      yes      32  
+
+Function main: parameters and locals (frame size 0 bytes)
+  (none)
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+.data
+global a : int
+global b : int
+global c : int
+global d : int
+global e : int
+global f : int
+global g : int
+.text
+func main() : int
+    return 0
+endfunc
+######## run

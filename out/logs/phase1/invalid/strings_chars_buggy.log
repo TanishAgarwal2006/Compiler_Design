@@ -1,0 +1,68 @@
+######## --all
+test/phase1_lexical/invalid/strings_chars_buggy.c:3: lexical error: Empty character constant
+     3 | char a = '';                  // 1: empty character constant
+test/phase1_lexical/invalid/strings_chars_buggy.c:4: lexical error: Multi-character constant 'AB' (only single characters are allowed)
+     4 | char b = 'AB';                // 2: more than one character
+test/phase1_lexical/invalid/strings_chars_buggy.c:5: lexical error: Invalid escape sequence '\q' in character constant
+     5 | char c = '\q';                // 3: unknown escape in a character
+test/phase1_lexical/invalid/strings_chars_buggy.c:6: lexical error: Unterminated character constant
+     6 | char d = 'a;                  // 4: character not closed
+test/phase1_lexical/invalid/strings_chars_buggy.c:7: lexical error: Unterminated string literal
+     7 | char *e = "oops;              // 5: string not closed
+test/phase1_lexical/invalid/strings_chars_buggy.c:8: lexical error: Invalid escape sequence '\x' in string literal
+     8 | char *f = "bad \xz escape";   // 6: \x without hex digits
+test/phase1_lexical/invalid/strings_chars_buggy.c:9: lexical error: Invalid escape sequence '\8' in string literal
+     9 | char *g = "bad \89 escape";   // 7: \8 is not an escape
+test/phase1_lexical/invalid/strings_chars_buggy.c:10: lexical error: Invalid escape sequence '\q' in string literal
+    10 | char *h = "bad \q escape";    // 8: unknown escape in a string
+test/phase1_lexical/invalid/strings_chars_buggy.c:12: lexical error: Multi-character constant '\n\n' (only single characters are allowed)
+    12 | char i = '\n\n';              // 9: two escapes in one character
+test/phase1_lexical/invalid/strings_chars_buggy.c:13: lexical error: Non-ASCII character 'é' in character constant
+    13 | char j = 'é';                 // 10: non-ASCII character
+10 errors found. No output was produced.
+######## --semantic
+test/phase1_lexical/invalid/strings_chars_buggy.c:3: lexical error: Empty character constant
+     3 | char a = '';                  // 1: empty character constant
+test/phase1_lexical/invalid/strings_chars_buggy.c:4: lexical error: Multi-character constant 'AB' (only single characters are allowed)
+     4 | char b = 'AB';                // 2: more than one character
+test/phase1_lexical/invalid/strings_chars_buggy.c:5: lexical error: Invalid escape sequence '\q' in character constant
+     5 | char c = '\q';                // 3: unknown escape in a character
+test/phase1_lexical/invalid/strings_chars_buggy.c:6: lexical error: Unterminated character constant
+     6 | char d = 'a;                  // 4: character not closed
+test/phase1_lexical/invalid/strings_chars_buggy.c:7: lexical error: Unterminated string literal
+     7 | char *e = "oops;              // 5: string not closed
+test/phase1_lexical/invalid/strings_chars_buggy.c:8: lexical error: Invalid escape sequence '\x' in string literal
+     8 | char *f = "bad \xz escape";   // 6: \x without hex digits
+test/phase1_lexical/invalid/strings_chars_buggy.c:9: lexical error: Invalid escape sequence '\8' in string literal
+     9 | char *g = "bad \89 escape";   // 7: \8 is not an escape
+test/phase1_lexical/invalid/strings_chars_buggy.c:10: lexical error: Invalid escape sequence '\q' in string literal
+    10 | char *h = "bad \q escape";    // 8: unknown escape in a string
+test/phase1_lexical/invalid/strings_chars_buggy.c:12: lexical error: Multi-character constant '\n\n' (only single characters are allowed)
+    12 | char i = '\n\n';              // 9: two escapes in one character
+test/phase1_lexical/invalid/strings_chars_buggy.c:13: lexical error: Non-ASCII character 'é' in character constant
+    13 | char j = 'é';                 // 10: non-ASCII character
+10 errors found. No output was produced.
+######## --tac
+test/phase1_lexical/invalid/strings_chars_buggy.c:3: lexical error: Empty character constant
+     3 | char a = '';                  // 1: empty character constant
+test/phase1_lexical/invalid/strings_chars_buggy.c:4: lexical error: Multi-character constant 'AB' (only single characters are allowed)
+     4 | char b = 'AB';                // 2: more than one character
+test/phase1_lexical/invalid/strings_chars_buggy.c:5: lexical error: Invalid escape sequence '\q' in character constant
+     5 | char c = '\q';                // 3: unknown escape in a character
+test/phase1_lexical/invalid/strings_chars_buggy.c:6: lexical error: Unterminated character constant
+     6 | char d = 'a;                  // 4: character not closed
+test/phase1_lexical/invalid/strings_chars_buggy.c:7: lexical error: Unterminated string literal
+     7 | char *e = "oops;              // 5: string not closed
+test/phase1_lexical/invalid/strings_chars_buggy.c:8: lexical error: Invalid escape sequence '\x' in string literal
+     8 | char *f = "bad \xz escape";   // 6: \x without hex digits
+test/phase1_lexical/invalid/strings_chars_buggy.c:9: lexical error: Invalid escape sequence '\8' in string literal
+     9 | char *g = "bad \89 escape";   // 7: \8 is not an escape
+test/phase1_lexical/invalid/strings_chars_buggy.c:10: lexical error: Invalid escape sequence '\q' in string literal
+    10 | char *h = "bad \q escape";    // 8: unknown escape in a string
+test/phase1_lexical/invalid/strings_chars_buggy.c:12: lexical error: Multi-character constant '\n\n' (only single characters are allowed)
+    12 | char i = '\n\n';              // 9: two escapes in one character
+test/phase1_lexical/invalid/strings_chars_buggy.c:13: lexical error: Non-ASCII character 'é' in character constant
+    13 | char j = 'é';                 // 10: non-ASCII character
+10 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

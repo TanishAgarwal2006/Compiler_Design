@@ -1,0 +1,74 @@
+######## --all
+test/phase2_syntax/invalid/file_io_buggy.c:13: syntax error: unexpected token 'f' (is a ';' missing at the end of line 13?)
+    13 |     FILE *f
+test/phase2_syntax/invalid/file_io_buggy.c:20: syntax error: unexpected token ';'
+    20 |     f = fopen("data.txt", "r";
+test/phase2_syntax/invalid/file_io_buggy.c:26: syntax error: unexpected token ','
+    26 |     f = fopen(, "r");
+test/phase2_syntax/invalid/file_io_buggy.c:35: syntax error: unexpected token 'f'
+    35 |     fclose f;
+test/phase2_syntax/invalid/file_io_buggy.c:42: syntax error: unexpected token ';'
+    42 |     fread(buf, 4, 10, f;
+test/phase2_syntax/invalid/file_io_buggy.c:49: syntax error: unexpected token ')'
+    49 |     fwrite(buf, 4, 10, f, );
+test/phase2_syntax/invalid/file_io_buggy.c:55: syntax error: unexpected token ';'
+    55 |     fprintf(f, "x = %d", 3;
+test/phase2_syntax/invalid/file_io_buggy.c:62: syntax error: unexpected token ','
+    62 |     fscanf(, f, "%d", &x);
+test/phase2_syntax/invalid/file_io_buggy.c:69: syntax error: unexpected token ';'
+    69 |     fgets(buf, 100, f;
+test/phase2_syntax/invalid/file_io_buggy.c:75: syntax error: unexpected token ')'
+    75 |     fputs("hello", f, );
+test/phase2_syntax/invalid/file_io_buggy.c:83: syntax error: unexpected token ')'
+    83 |     done = feof(f,);
+11 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/file_io_buggy.c:13: syntax error: unexpected token 'f' (is a ';' missing at the end of line 13?)
+    13 |     FILE *f
+test/phase2_syntax/invalid/file_io_buggy.c:20: syntax error: unexpected token ';'
+    20 |     f = fopen("data.txt", "r";
+test/phase2_syntax/invalid/file_io_buggy.c:26: syntax error: unexpected token ','
+    26 |     f = fopen(, "r");
+test/phase2_syntax/invalid/file_io_buggy.c:35: syntax error: unexpected token 'f'
+    35 |     fclose f;
+test/phase2_syntax/invalid/file_io_buggy.c:42: syntax error: unexpected token ';'
+    42 |     fread(buf, 4, 10, f;
+test/phase2_syntax/invalid/file_io_buggy.c:49: syntax error: unexpected token ')'
+    49 |     fwrite(buf, 4, 10, f, );
+test/phase2_syntax/invalid/file_io_buggy.c:55: syntax error: unexpected token ';'
+    55 |     fprintf(f, "x = %d", 3;
+test/phase2_syntax/invalid/file_io_buggy.c:62: syntax error: unexpected token ','
+    62 |     fscanf(, f, "%d", &x);
+test/phase2_syntax/invalid/file_io_buggy.c:69: syntax error: unexpected token ';'
+    69 |     fgets(buf, 100, f;
+test/phase2_syntax/invalid/file_io_buggy.c:75: syntax error: unexpected token ')'
+    75 |     fputs("hello", f, );
+test/phase2_syntax/invalid/file_io_buggy.c:83: syntax error: unexpected token ')'
+    83 |     done = feof(f,);
+11 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/file_io_buggy.c:13: syntax error: unexpected token 'f' (is a ';' missing at the end of line 13?)
+    13 |     FILE *f
+test/phase2_syntax/invalid/file_io_buggy.c:20: syntax error: unexpected token ';'
+    20 |     f = fopen("data.txt", "r";
+test/phase2_syntax/invalid/file_io_buggy.c:26: syntax error: unexpected token ','
+    26 |     f = fopen(, "r");
+test/phase2_syntax/invalid/file_io_buggy.c:35: syntax error: unexpected token 'f'
+    35 |     fclose f;
+test/phase2_syntax/invalid/file_io_buggy.c:42: syntax error: unexpected token ';'
+    42 |     fread(buf, 4, 10, f;
+test/phase2_syntax/invalid/file_io_buggy.c:49: syntax error: unexpected token ')'
+    49 |     fwrite(buf, 4, 10, f, );
+test/phase2_syntax/invalid/file_io_buggy.c:55: syntax error: unexpected token ';'
+    55 |     fprintf(f, "x = %d", 3;
+test/phase2_syntax/invalid/file_io_buggy.c:62: syntax error: unexpected token ','
+    62 |     fscanf(, f, "%d", &x);
+test/phase2_syntax/invalid/file_io_buggy.c:69: syntax error: unexpected token ';'
+    69 |     fgets(buf, 100, f;
+test/phase2_syntax/invalid/file_io_buggy.c:75: syntax error: unexpected token ')'
+    75 |     fputs("hello", f, );
+test/phase2_syntax/invalid/file_io_buggy.c:83: syntax error: unexpected token ')'
+    83 |     done = feof(f,);
+11 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

@@ -1,0 +1,80 @@
+######## --all
+test/phase2_syntax/invalid/statements_expressions_buggy.c:9: syntax error: unexpected token 'return' (is a ';' missing at the end of line 9?)
+     9 |     a = a + 1
+test/phase2_syntax/invalid/statements_expressions_buggy.c:15: syntax error: unexpected token 'return' (is a ';' missing at the end of line 15?)
+    15 |     int x = 1
+test/phase2_syntax/invalid/statements_expressions_buggy.c:22: syntax error: unexpected token ')'
+    22 |     return f(1, );
+test/phase2_syntax/invalid/statements_expressions_buggy.c:27: syntax error: unexpected token ','
+    27 |     return f(1,, 2);
+test/phase2_syntax/invalid/statements_expressions_buggy.c:32: syntax error: unexpected token ';'
+    32 |     return f(1, 2;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:37: syntax error: unexpected token ')'
+    37 |     return (a + 1));
+test/phase2_syntax/invalid/statements_expressions_buggy.c:42: syntax error: unexpected token ';'
+    42 |     return (a + 1;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:47: syntax error: unexpected token ')'
+    47 |     int x = ();
+test/phase2_syntax/invalid/statements_expressions_buggy.c:53: syntax error: unexpected token ';'
+    53 |     return a + ;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:58: syntax error: unexpected token ';'
+    58 |     delete[ p;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:63: syntax error: unexpected token ';'
+    63 |     delete[];
+test/phase2_syntax/invalid/statements_expressions_buggy.c:73: syntax error: unexpected token '}' (is a ';' missing at the end of line 73?)
+    73 |     return a + 1
+12 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/statements_expressions_buggy.c:9: syntax error: unexpected token 'return' (is a ';' missing at the end of line 9?)
+     9 |     a = a + 1
+test/phase2_syntax/invalid/statements_expressions_buggy.c:15: syntax error: unexpected token 'return' (is a ';' missing at the end of line 15?)
+    15 |     int x = 1
+test/phase2_syntax/invalid/statements_expressions_buggy.c:22: syntax error: unexpected token ')'
+    22 |     return f(1, );
+test/phase2_syntax/invalid/statements_expressions_buggy.c:27: syntax error: unexpected token ','
+    27 |     return f(1,, 2);
+test/phase2_syntax/invalid/statements_expressions_buggy.c:32: syntax error: unexpected token ';'
+    32 |     return f(1, 2;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:37: syntax error: unexpected token ')'
+    37 |     return (a + 1));
+test/phase2_syntax/invalid/statements_expressions_buggy.c:42: syntax error: unexpected token ';'
+    42 |     return (a + 1;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:47: syntax error: unexpected token ')'
+    47 |     int x = ();
+test/phase2_syntax/invalid/statements_expressions_buggy.c:53: syntax error: unexpected token ';'
+    53 |     return a + ;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:58: syntax error: unexpected token ';'
+    58 |     delete[ p;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:63: syntax error: unexpected token ';'
+    63 |     delete[];
+test/phase2_syntax/invalid/statements_expressions_buggy.c:73: syntax error: unexpected token '}' (is a ';' missing at the end of line 73?)
+    73 |     return a + 1
+12 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/statements_expressions_buggy.c:9: syntax error: unexpected token 'return' (is a ';' missing at the end of line 9?)
+     9 |     a = a + 1
+test/phase2_syntax/invalid/statements_expressions_buggy.c:15: syntax error: unexpected token 'return' (is a ';' missing at the end of line 15?)
+    15 |     int x = 1
+test/phase2_syntax/invalid/statements_expressions_buggy.c:22: syntax error: unexpected token ')'
+    22 |     return f(1, );
+test/phase2_syntax/invalid/statements_expressions_buggy.c:27: syntax error: unexpected token ','
+    27 |     return f(1,, 2);
+test/phase2_syntax/invalid/statements_expressions_buggy.c:32: syntax error: unexpected token ';'
+    32 |     return f(1, 2;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:37: syntax error: unexpected token ')'
+    37 |     return (a + 1));
+test/phase2_syntax/invalid/statements_expressions_buggy.c:42: syntax error: unexpected token ';'
+    42 |     return (a + 1;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:47: syntax error: unexpected token ')'
+    47 |     int x = ();
+test/phase2_syntax/invalid/statements_expressions_buggy.c:53: syntax error: unexpected token ';'
+    53 |     return a + ;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:58: syntax error: unexpected token ';'
+    58 |     delete[ p;
+test/phase2_syntax/invalid/statements_expressions_buggy.c:63: syntax error: unexpected token ';'
+    63 |     delete[];
+test/phase2_syntax/invalid/statements_expressions_buggy.c:73: syntax error: unexpected token '}' (is a ';' missing at the end of line 73?)
+    73 |     return a + 1
+12 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

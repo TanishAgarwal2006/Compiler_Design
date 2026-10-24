@@ -1,0 +1,26 @@
+######## --all
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:2: lexical error: Unknown preprocessor directive '#includ'
+     2 | #includ <stdio.h>     // 1: unknown directive
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:3: lexical error: Stray '#'
+     3 | #                     // 2: a lone '#' is a stray '#'
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:7: lexical error: Unterminated block comment
+     7 | /* 3: this comment is never closed, so it swallows the rest of the file
+3 errors found. No output was produced.
+######## --semantic
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:2: lexical error: Unknown preprocessor directive '#includ'
+     2 | #includ <stdio.h>     // 1: unknown directive
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:3: lexical error: Stray '#'
+     3 | #                     // 2: a lone '#' is a stray '#'
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:7: lexical error: Unterminated block comment
+     7 | /* 3: this comment is never closed, so it swallows the rest of the file
+3 errors found. No output was produced.
+######## --tac
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:2: lexical error: Unknown preprocessor directive '#includ'
+     2 | #includ <stdio.h>     // 1: unknown directive
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:3: lexical error: Stray '#'
+     3 | #                     // 2: a lone '#' is a stray '#'
+test/phase1_lexical/invalid/preprocessor_comments_buggy.c:7: lexical error: Unterminated block comment
+     7 | /* 3: this comment is never closed, so it swallows the rest of the file
+3 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

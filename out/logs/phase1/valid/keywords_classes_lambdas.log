@@ -1,0 +1,1025 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+class                     CLASS                    
+Animal                    IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+age                       VARIABLE_NAME            
+;                         SEMI                     
+void                      VOID                     
+setAge                    FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+this                      THIS                     
+->                        ARROW                    
+age                       VARIABLE_NAME            
+=                         ASSIGN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+getAge                    FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+this                      THIS                     
+->                        ARROW                    
+age                       VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+auto                      AUTO                     
+ageGetter                 FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+[                         LBRACKET                 
+this                      THIS                     
+]                         RBRACKET                 
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+this                      THIS                     
+->                        ARROW                    
+age                       VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+}                         RBRACE                   
+private                   PRIVATE                  
+:                         COLON                    
+int                       INT                      
+secretId                  VARIABLE_NAME            
+;                         SEMI                     
+protected                 PROTECTED                
+:                         COLON                    
+int                       INT                      
+sharedValue               VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+class                     CLASS                    
+Dog                       IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+Animal                    IDENTIFIER               
+base                      VARIABLE_NAME            
+;                         SEMI                     
+void                      VOID                     
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+this                      THIS                     
+->                        ARROW                    
+base                      VARIABLE_NAME            
+.                         DOT                      
+age                       VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+Animal                    IDENTIFIER               
+a                         PARAMETER_NAME           
+;                         SEMI                     
+a                         PARAMETER_NAME           
+.                         DOT                      
+setAge                    FUNCTION_NAME            
+(                         LPAREN                   
+5                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+Dog                       IDENTIFIER               
+d                         VARIABLE_NAME            
+;                         SEMI                     
+d                         VARIABLE_NAME            
+.                         DOT                      
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+Animal                    IDENTIFIER               
+::                        SCOPE                    
+setAge                    FUNCTION_NAME            
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+auto                      AUTO                     
+add                       VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+x                         IDENTIFIER               
+,                         COMMA                    
+int                       INT                      
+y                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+x                         IDENTIFIER               
++                         PLUS                     
+y                         IDENTIFIER               
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+byRef                     VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+&                         ADDRESS                  
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+x                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+x                         IDENTIFIER               
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+byValue                   VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+=                         ASSIGN                   
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+x                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+x                         IDENTIFIER               
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+a                         PARAMETER_NAME           
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+b                         VARIABLE_NAME            
+=                         ASSIGN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+auto                      AUTO                     
+mixedCapture              VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+a                         PARAMETER_NAME           
+,                         COMMA                    
+&                         ADDRESS                  
+b                         VARIABLE_NAME            
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+z                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         VARIABLE_NAME            
++                         PLUS                     
+z                         IDENTIFIER               
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+withReturnType            VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+x                         IDENTIFIER               
+)                         RPAREN                   
+->                        ARROW                    
+int                       INT                      
+{                         LBRACE                   
+return                    RETURN                   
+x                         IDENTIFIER               
+*                         MULTIPLY                 
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    parameter    int        function:setAge                            
+add                  variable     auto       function:main                              
+age                  variable     int        class:Animal                               
+ageGetter            function     auto       global                 params: ()          
+b                    variable     int        function:main                              
+bark                 function     void       global                 params: ()          
+base                 variable     Animal     class:Dog                                  
+byRef                variable     auto       function:main                              
+byValue              variable     auto       function:main                              
+d                    variable     Dog        function:main                              
+getAge               function     int        global                 params: ()          
+main                 function     int        global                 params: ()          
+mixedCapture         variable     auto       function:main                              
+secretId             variable     int        class:Animal                               
+setAge               function     void       global                 params: (int)       
+sharedValue          variable     int        class:Animal                               
+withReturnType       variable     auto       function:main                              
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 12
+        type_spec:
+          ClassSpecifier
+            line: 12
+            tag: Animal
+            members:
+              [
+                AccessLabel
+                  line: 13
+                  access: public,
+                Declaration
+                  line: 14
+                  type_spec:
+                    TypeSpecifier
+                      line: 14
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 14
+                        declarator:
+                          Declarator
+                            line: 14
+                            name: age
+                            kind_name: variable,
+                    ],
+                FunctionDefinition
+                  line: 16
+                  return_type:
+                    TypeSpecifier
+                      line: 16
+                      name: void
+                  declarator:
+                    Declarator
+                      line: 16
+                      name: setAge
+                      kind_name: function
+                      params:
+                        [
+                          Parameter
+                            line: 16
+                            type_spec:
+                              TypeSpecifier
+                                line: 16
+                                name: int
+                            declarator:
+                              Declarator
+                                line: 16
+                                name: a
+                                kind_name: variable,
+                        ]
+                  body:
+                    CompoundStatement
+                      line: 16
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 17
+                            expression:
+                              Assignment
+                                line: 17
+                                operator: =
+                                target:
+                                  MemberAccess
+                                    line: 17
+                                    target:
+                                      ThisExpression
+                                        line: 17
+                                    member: age
+                                    is_pointer: True
+                                value:
+                                  Identifier
+                                    line: 17
+                                    name: a,
+                        ],
+                FunctionDefinition
+                  line: 20
+                  return_type:
+                    TypeSpecifier
+                      line: 20
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 20
+                      name: getAge
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 20
+                      items:
+                        [
+                          ReturnStatement
+                            line: 21
+                            value:
+                              MemberAccess
+                                line: 21
+                                target:
+                                  ThisExpression
+                                    line: 21
+                                member: age
+                                is_pointer: True,
+                        ],
+                FunctionDefinition
+                  line: 24
+                  return_type:
+                    TypeSpecifier
+                      line: 24
+                      name: auto
+                  declarator:
+                    Declarator
+                      line: 24
+                      name: ageGetter
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 24
+                      items:
+                        [
+                          ReturnStatement
+                            line: 25
+                            value:
+                              LambdaExpression
+                                line: 25
+                                captures:
+                                  [
+                                    this,
+                                  ]
+                                body:
+                                  CompoundStatement
+                                    line: 25
+                                    items:
+                                      [
+                                        ReturnStatement
+                                          line: 25
+                                          value:
+                                            MemberAccess
+                                              line: 25
+                                              target:
+                                                ThisExpression
+                                                  line: 25
+                                              member: age
+                                              is_pointer: True,
+                                      ],
+                        ],
+                AccessLabel
+                  line: 28
+                  access: private,
+                Declaration
+                  line: 29
+                  type_spec:
+                    TypeSpecifier
+                      line: 29
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 29
+                        declarator:
+                          Declarator
+                            line: 29
+                            name: secretId
+                            kind_name: variable,
+                    ],
+                AccessLabel
+                  line: 31
+                  access: protected,
+                Declaration
+                  line: 32
+                  type_spec:
+                    TypeSpecifier
+                      line: 32
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 32
+                        declarator:
+                          Declarator
+                            line: 32
+                            name: sharedValue
+                            kind_name: variable,
+                    ],
+              ],
+      Declaration
+        line: 35
+        type_spec:
+          ClassSpecifier
+            line: 35
+            tag: Dog
+            members:
+              [
+                AccessLabel
+                  line: 36
+                  access: public,
+                Declaration
+                  line: 37
+                  type_spec:
+                    TypeSpecifier
+                      line: 37
+                      name: Animal
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 37
+                        declarator:
+                          Declarator
+                            line: 37
+                            name: base
+                            kind_name: variable,
+                    ],
+                FunctionDefinition
+                  line: 39
+                  return_type:
+                    TypeSpecifier
+                      line: 39
+                      name: void
+                  declarator:
+                    Declarator
+                      line: 39
+                      name: bark
+                      kind_name: function
+                  body:
+                    CompoundStatement
+                      line: 39
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 40
+                            expression:
+                              Assignment
+                                line: 40
+                                operator: =
+                                target:
+                                  MemberAccess
+                                    line: 40
+                                    target:
+                                      MemberAccess
+                                        line: 40
+                                        target:
+                                          ThisExpression
+                                            line: 40
+                                        member: base
+                                        is_pointer: True
+                                    member: age
+                                    is_pointer: False
+                                value:
+                                  Literal
+                                    line: 40
+                                    literal_type: int
+                                    value: 1,
+                        ],
+              ],
+      FunctionDefinition
+        line: 44
+        return_type:
+          TypeSpecifier
+            line: 44
+            name: int
+        declarator:
+          Declarator
+            line: 44
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 44
+            items:
+              [
+                Declaration
+                  line: 45
+                  type_spec:
+                    TypeSpecifier
+                      line: 45
+                      name: Animal
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 45
+                        declarator:
+                          Declarator
+                            line: 45
+                            name: a
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 46
+                  expression:
+                    FunctionCall
+                      line: 46
+                      callee:
+                        MemberAccess
+                          line: 46
+                          target:
+                            Identifier
+                              line: 46
+                              name: a
+                          member: setAge
+                          is_pointer: False
+                      args:
+                        [
+                          Literal
+                            line: 46
+                            literal_type: int
+                            value: 5,
+                        ],
+                Declaration
+                  line: 48
+                  type_spec:
+                    TypeSpecifier
+                      line: 48
+                      name: Dog
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 48
+                        declarator:
+                          Declarator
+                            line: 48
+                            name: d
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 49
+                  expression:
+                    FunctionCall
+                      line: 49
+                      callee:
+                        MemberAccess
+                          line: 49
+                          target:
+                            Identifier
+                              line: 49
+                              name: d
+                          member: bark
+                          is_pointer: False,
+                ExpressionStatement
+                  line: 51
+                  expression:
+                    QualifiedName
+                      line: 51
+                      scope: Animal
+                      name: setAge,
+                ReturnStatement
+                  line: 53
+                  value:
+                    Literal
+                      line: 53
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 65
+        return_type:
+          TypeSpecifier
+            line: 65
+            name: int
+        declarator:
+          Declarator
+            line: 65
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 65
+            items:
+              [
+                Declaration
+                  line: 66
+                  type_spec:
+                    TypeSpecifier
+                      line: 66
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 66
+                        declarator:
+                          Declarator
+                            line: 66
+                            name: add
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 66
+                            params:
+                              [
+                                Parameter
+                                  line: 66
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 66
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 66
+                                      name: x
+                                      kind_name: variable,
+                                Parameter
+                                  line: 66
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 66
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 66
+                                      name: y
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 66
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 67
+                                      value:
+                                        BinaryOp
+                                          line: 67
+                                          operator: +
+                                          left:
+                                            Identifier
+                                              line: 67
+                                              name: x
+                                          right:
+                                            Identifier
+                                              line: 67
+                                              name: y,
+                                  ],
+                    ],
+                Declaration
+                  line: 70
+                  type_spec:
+                    TypeSpecifier
+                      line: 70
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 70
+                        declarator:
+                          Declarator
+                            line: 70
+                            name: byRef
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 70
+                            captures:
+                              [
+                                &,
+                              ]
+                            params:
+                              [
+                                Parameter
+                                  line: 70
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 70
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 70
+                                      name: x
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 70
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 71
+                                      value:
+                                        BinaryOp
+                                          line: 71
+                                          operator: +
+                                          left:
+                                            Identifier
+                                              line: 71
+                                              name: x
+                                          right:
+                                            Literal
+                                              line: 71
+                                              literal_type: int
+                                              value: 1,
+                                  ],
+                    ],
+                Declaration
+                  line: 74
+                  type_spec:
+                    TypeSpecifier
+                      line: 74
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 74
+                        declarator:
+                          Declarator
+                            line: 74
+                            name: byValue
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 74
+                            captures:
+                              [
+                                =,
+                              ]
+                            params:
+                              [
+                                Parameter
+                                  line: 74
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 74
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 74
+                                      name: x
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 74
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 75
+                                      value:
+                                        BinaryOp
+                                          line: 75
+                                          operator: +
+                                          left:
+                                            Identifier
+                                              line: 75
+                                              name: x
+                                          right:
+                                            Literal
+                                              line: 75
+                                              literal_type: int
+                                              value: 1,
+                                  ],
+                    ],
+                Declaration
+                  line: 78
+                  type_spec:
+                    TypeSpecifier
+                      line: 78
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 78
+                        declarator:
+                          Declarator
+                            line: 78
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 78
+                            literal_type: int
+                            value: 1,
+                    ],
+                Declaration
+                  line: 79
+                  type_spec:
+                    TypeSpecifier
+                      line: 79
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 79
+                        declarator:
+                          Declarator
+                            line: 79
+                            name: b
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 79
+                            literal_type: int
+                            value: 2,
+                    ],
+                Declaration
+                  line: 80
+                  type_spec:
+                    TypeSpecifier
+                      line: 80
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 80
+                        declarator:
+                          Declarator
+                            line: 80
+                            name: mixedCapture
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 80
+                            captures:
+                              [
+                                a,
+                                &b,
+                              ]
+                            params:
+                              [
+                                Parameter
+                                  line: 80
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 80
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 80
+                                      name: z
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 80
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 81
+                                      value:
+                                        BinaryOp
+                                          line: 81
+                                          operator: +
+                                          left:
+                                            BinaryOp
+                                              line: 81
+                                              operator: +
+                                              left:
+                                                Identifier
+                                                  line: 81
+                                                  name: a
+                                              right:
+                                                Identifier
+                                                  line: 81
+                                                  name: b
+                                          right:
+                                            Identifier
+                                              line: 81
+                                              name: z,
+                                  ],
+                    ],
+                Declaration
+                  line: 84
+                  type_spec:
+                    TypeSpecifier
+                      line: 84
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 84
+                        declarator:
+                          Declarator
+                            line: 84
+                            name: withReturnType
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 84
+                            params:
+                              [
+                                Parameter
+                                  line: 84
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 84
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 84
+                                      name: x
+                                      kind_name: variable,
+                              ]
+                            return_type:
+                              TypeSpecifier
+                                line: 84
+                                name: int
+                            body:
+                              CompoundStatement
+                                line: 84
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 85
+                                      value:
+                                        BinaryOp
+                                          line: 85
+                                          operator: *
+                                          left:
+                                            Identifier
+                                              line: 85
+                                              name: x
+                                          right:
+                                            Literal
+                                              line: 85
+                                              literal_type: int
+                                              value: 2,
+                                  ],
+                    ],
+                ReturnStatement
+                  line: 88
+                  value:
+                    Literal
+                      line: 88
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase1_lexical/valid/keywords_classes_lambdas.c:12: semantic error: unsupported feature: classes
+    12 | class Animal {
+test/phase1_lexical/valid/keywords_classes_lambdas.c:35: semantic error: unsupported feature: classes
+    35 | class Dog {
+test/phase1_lexical/valid/keywords_classes_lambdas.c:46: semantic error: unsupported feature: member function calls ('.' and '->')
+    46 |     a.setAge(5);
+test/phase1_lexical/valid/keywords_classes_lambdas.c:49: semantic error: unsupported feature: member function calls ('.' and '->')
+    49 |     d.bark();
+test/phase1_lexical/valid/keywords_classes_lambdas.c:51: semantic error: unsupported feature: scope resolution ('::')
+    51 |     Animal::setAge;
+test/phase1_lexical/valid/keywords_classes_lambdas.c:65: semantic error: redefinition of function 'main'
+    65 | int main() {
+6 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase1_lexical/valid/keywords_classes_lambdas.c:12: semantic error: unsupported feature: classes
+    12 | class Animal {
+test/phase1_lexical/valid/keywords_classes_lambdas.c:35: semantic error: unsupported feature: classes
+    35 | class Dog {
+test/phase1_lexical/valid/keywords_classes_lambdas.c:46: semantic error: unsupported feature: member function calls ('.' and '->')
+    46 |     a.setAge(5);
+test/phase1_lexical/valid/keywords_classes_lambdas.c:49: semantic error: unsupported feature: member function calls ('.' and '->')
+    49 |     d.bark();
+test/phase1_lexical/valid/keywords_classes_lambdas.c:51: semantic error: unsupported feature: scope resolution ('::')
+    51 |     Animal::setAge;
+test/phase1_lexical/valid/keywords_classes_lambdas.c:65: semantic error: redefinition of function 'main'
+    65 | int main() {
+6 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

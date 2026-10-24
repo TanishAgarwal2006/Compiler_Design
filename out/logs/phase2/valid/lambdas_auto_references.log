@@ -1,0 +1,1221 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+global_counter            VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+void                      VOID                     
+by_reference              FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+&                         ADDRESS                  
+value                     PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+value                     PARAMETER_NAME           
+=                         ASSIGN                   
+value                     PARAMETER_NAME           
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+&                         ADDRESS                  
+identity                  FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+&                         ADDRESS                  
+v                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+v                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+auto                      AUTO                     
+add                       FUNCTION_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+x                         IDENTIFIER               
+,                         COMMA                    
+int                       INT                      
+y                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+x                         IDENTIFIER               
++                         PLUS                     
+y                         IDENTIFIER               
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+by_ref                    VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+&                         ADDRESS                  
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+x                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+x                         IDENTIFIER               
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+by_value                  VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+=                         ASSIGN                   
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+x                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+x                         IDENTIFIER               
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+a                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+b                         VARIABLE_NAME            
+=                         ASSIGN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+auto                      AUTO                     
+mixed                     FUNCTION_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+a                         VARIABLE_NAME            
+,                         COMMA                    
+&                         ADDRESS                  
+b                         VARIABLE_NAME            
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+z                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         VARIABLE_NAME            
++                         PLUS                     
+b                         VARIABLE_NAME            
++                         PLUS                     
+z                         IDENTIFIER               
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+with_type                 VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+x                         IDENTIFIER               
+)                         RPAREN                   
+->                        ARROW                    
+int                       INT                      
+{                         LBRACE                   
+return                    RETURN                   
+x                         IDENTIFIER               
+*                         MULTIPLY                 
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+no_params                 VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+{                         LBRACE                   
+return                    RETURN                   
+7                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+capture_this              VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+this                      THIS                     
+]                         RBRACKET                 
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+capture_all_but           VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+=                         ASSIGN                   
+,                         COMMA                    
+&                         ADDRESS                  
+b                         VARIABLE_NAME            
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+q                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+q                         IDENTIFIER               
++                         PLUS                     
+b                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+auto                      AUTO                     
+nested                    VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+n                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+auto                      AUTO                     
+inner                     IDENTIFIER               
+=                         ASSIGN                   
+[                         LBRACKET                 
+n                         IDENTIFIER               
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+m                         IDENTIFIER               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+n                         IDENTIFIER               
++                         PLUS                     
+m                         IDENTIFIER               
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+return                    RETURN                   
+inner                     IDENTIFIER               
+(                         LPAREN                   
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+&                         ADDRESS                  
+ref                       VARIABLE_NAME            
+=                         ASSIGN                   
+a                         VARIABLE_NAME            
+;                         SEMI                     
+const                     CONST                    
+int                       INT                      
+&                         ADDRESS                  
+cref                      VARIABLE_NAME            
+=                         ASSIGN                   
+b                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+result                    VARIABLE_NAME            
+=                         ASSIGN                   
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
++                         PLUS                     
+mixed                     FUNCTION_NAME            
+(                         LPAREN                   
+3                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+result                    VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    variable     int        function:main                              
+add                  function     auto       function:main                              
+b                    variable     int        function:main                              
+by_ref               variable     auto       function:main                              
+by_reference         function     void       global                 params: (int)       
+by_value             variable     auto       function:main                              
+capture_all_but      variable     auto       function:main                              
+capture_this         variable     auto       function:main                              
+cref                 variable     const int  function:main                              
+global_counter       variable     int        global                                     
+identity             function     int        global                 params: (int)       
+main                 function     int        global                 params: ()          
+mixed                function     auto       function:main                              
+nested               variable     auto       function:main                              
+no_params            variable     auto       function:main                              
+ref                  variable     int        function:main                              
+result               variable     int        function:main                              
+v                    parameter    int        function:identity                          
+value                parameter    int        function:by_reference                      
+with_type            variable     auto       function:main                              
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 2
+        type_spec:
+          TypeSpecifier
+            line: 2
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 2
+              declarator:
+                Declarator
+                  line: 2
+                  name: global_counter
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 2
+                  literal_type: int
+                  value: 0,
+          ],
+      FunctionDefinition
+        line: 4
+        return_type:
+          TypeSpecifier
+            line: 4
+            name: void
+        declarator:
+          Declarator
+            line: 4
+            name: by_reference
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 4
+                  type_spec:
+                    TypeSpecifier
+                      line: 4
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 4
+                      name: value
+                      kind_name: variable
+                      is_reference: True,
+              ]
+        body:
+          CompoundStatement
+            line: 4
+            items:
+              [
+                ExpressionStatement
+                  line: 4
+                  expression:
+                    Assignment
+                      line: 4
+                      operator: =
+                      target:
+                        Identifier
+                          line: 4
+                          name: value
+                      value:
+                        BinaryOp
+                          line: 4
+                          operator: +
+                          left:
+                            Identifier
+                              line: 4
+                              name: value
+                          right:
+                            Literal
+                              line: 4
+                              literal_type: int
+                              value: 1,
+              ],
+      FunctionDefinition
+        line: 5
+        return_type:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarator:
+          Declarator
+            line: 5
+            name: identity
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 5
+                  type_spec:
+                    TypeSpecifier
+                      line: 5
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 5
+                      name: v
+                      kind_name: variable
+                      is_reference: True,
+              ]
+            is_reference: True
+        body:
+          CompoundStatement
+            line: 5
+            items:
+              [
+                ReturnStatement
+                  line: 5
+                  value:
+                    Identifier
+                      line: 5
+                      name: v,
+              ],
+      FunctionDefinition
+        line: 7
+        return_type:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarator:
+          Declarator
+            line: 7
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 7
+            items:
+              [
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: add
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 8
+                            params:
+                              [
+                                Parameter
+                                  line: 8
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 8
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 8
+                                      name: x
+                                      kind_name: variable,
+                                Parameter
+                                  line: 8
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 8
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 8
+                                      name: y
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 8
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 8
+                                      value:
+                                        BinaryOp
+                                          line: 8
+                                          operator: +
+                                          left:
+                                            Identifier
+                                              line: 8
+                                              name: x
+                                          right:
+                                            Identifier
+                                              line: 8
+                                              name: y,
+                                  ],
+                    ],
+                Declaration
+                  line: 9
+                  type_spec:
+                    TypeSpecifier
+                      line: 9
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 9
+                        declarator:
+                          Declarator
+                            line: 9
+                            name: by_ref
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 9
+                            captures:
+                              [
+                                &,
+                              ]
+                            params:
+                              [
+                                Parameter
+                                  line: 9
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 9
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 9
+                                      name: x
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 9
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 9
+                                      value:
+                                        BinaryOp
+                                          line: 9
+                                          operator: +
+                                          left:
+                                            Identifier
+                                              line: 9
+                                              name: x
+                                          right:
+                                            Literal
+                                              line: 9
+                                              literal_type: int
+                                              value: 1,
+                                  ],
+                    ],
+                Declaration
+                  line: 10
+                  type_spec:
+                    TypeSpecifier
+                      line: 10
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 10
+                        declarator:
+                          Declarator
+                            line: 10
+                            name: by_value
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 10
+                            captures:
+                              [
+                                =,
+                              ]
+                            params:
+                              [
+                                Parameter
+                                  line: 10
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 10
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 10
+                                      name: x
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 10
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 10
+                                      value:
+                                        BinaryOp
+                                          line: 10
+                                          operator: +
+                                          left:
+                                            Identifier
+                                              line: 10
+                                              name: x
+                                          right:
+                                            Literal
+                                              line: 10
+                                              literal_type: int
+                                              value: 1,
+                                  ],
+                    ],
+                Declaration
+                  line: 11
+                  type_spec:
+                    TypeSpecifier
+                      line: 11
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 11
+                        declarator:
+                          Declarator
+                            line: 11
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 11
+                            literal_type: int
+                            value: 1,
+                    ],
+                Declaration
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 12
+                        declarator:
+                          Declarator
+                            line: 12
+                            name: b
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 12
+                            literal_type: int
+                            value: 2,
+                    ],
+                Declaration
+                  line: 13
+                  type_spec:
+                    TypeSpecifier
+                      line: 13
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 13
+                        declarator:
+                          Declarator
+                            line: 13
+                            name: mixed
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 13
+                            captures:
+                              [
+                                a,
+                                &b,
+                              ]
+                            params:
+                              [
+                                Parameter
+                                  line: 13
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 13
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 13
+                                      name: z
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 13
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 13
+                                      value:
+                                        BinaryOp
+                                          line: 13
+                                          operator: +
+                                          left:
+                                            BinaryOp
+                                              line: 13
+                                              operator: +
+                                              left:
+                                                Identifier
+                                                  line: 13
+                                                  name: a
+                                              right:
+                                                Identifier
+                                                  line: 13
+                                                  name: b
+                                          right:
+                                            Identifier
+                                              line: 13
+                                              name: z,
+                                  ],
+                    ],
+                Declaration
+                  line: 14
+                  type_spec:
+                    TypeSpecifier
+                      line: 14
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 14
+                        declarator:
+                          Declarator
+                            line: 14
+                            name: with_type
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 14
+                            params:
+                              [
+                                Parameter
+                                  line: 14
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 14
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 14
+                                      name: x
+                                      kind_name: variable,
+                              ]
+                            return_type:
+                              TypeSpecifier
+                                line: 14
+                                name: int
+                            body:
+                              CompoundStatement
+                                line: 14
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 14
+                                      value:
+                                        BinaryOp
+                                          line: 14
+                                          operator: *
+                                          left:
+                                            Identifier
+                                              line: 14
+                                              name: x
+                                          right:
+                                            Literal
+                                              line: 14
+                                              literal_type: int
+                                              value: 2,
+                                  ],
+                    ],
+                Declaration
+                  line: 15
+                  type_spec:
+                    TypeSpecifier
+                      line: 15
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 15
+                        declarator:
+                          Declarator
+                            line: 15
+                            name: no_params
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 15
+                            body:
+                              CompoundStatement
+                                line: 15
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 15
+                                      value:
+                                        Literal
+                                          line: 15
+                                          literal_type: int
+                                          value: 7,
+                                  ],
+                    ],
+                Declaration
+                  line: 16
+                  type_spec:
+                    TypeSpecifier
+                      line: 16
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 16
+                        declarator:
+                          Declarator
+                            line: 16
+                            name: capture_this
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 16
+                            captures:
+                              [
+                                this,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 16
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 16
+                                      value:
+                                        Literal
+                                          line: 16
+                                          literal_type: int
+                                          value: 1,
+                                  ],
+                    ],
+                Declaration
+                  line: 17
+                  type_spec:
+                    TypeSpecifier
+                      line: 17
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 17
+                        declarator:
+                          Declarator
+                            line: 17
+                            name: capture_all_but
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 17
+                            captures:
+                              [
+                                =,
+                                &b,
+                              ]
+                            params:
+                              [
+                                Parameter
+                                  line: 17
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 17
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 17
+                                      name: q
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 17
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 17
+                                      value:
+                                        BinaryOp
+                                          line: 17
+                                          operator: +
+                                          left:
+                                            Identifier
+                                              line: 17
+                                              name: q
+                                          right:
+                                            Identifier
+                                              line: 17
+                                              name: b,
+                                  ],
+                    ],
+                Declaration
+                  line: 18
+                  type_spec:
+                    TypeSpecifier
+                      line: 18
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 18
+                        declarator:
+                          Declarator
+                            line: 18
+                            name: nested
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 18
+                            params:
+                              [
+                                Parameter
+                                  line: 18
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 18
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 18
+                                      name: n
+                                      kind_name: variable,
+                              ]
+                            body:
+                              CompoundStatement
+                                line: 18
+                                items:
+                                  [
+                                    Declaration
+                                      line: 18
+                                      type_spec:
+                                        TypeSpecifier
+                                          line: 18
+                                          name: auto
+                                      declarators:
+                                        [
+                                          InitDeclarator
+                                            line: 18
+                                            declarator:
+                                              Declarator
+                                                line: 18
+                                                name: inner
+                                                kind_name: variable
+                                            initializer:
+                                              LambdaExpression
+                                                line: 18
+                                                captures:
+                                                  [
+                                                    n,
+                                                  ]
+                                                params:
+                                                  [
+                                                    Parameter
+                                                      line: 18
+                                                      type_spec:
+                                                        TypeSpecifier
+                                                          line: 18
+                                                          name: int
+                                                      declarator:
+                                                        Declarator
+                                                          line: 18
+                                                          name: m
+                                                          kind_name: variable,
+                                                  ]
+                                                body:
+                                                  CompoundStatement
+                                                    line: 18
+                                                    items:
+                                                      [
+                                                        ReturnStatement
+                                                          line: 18
+                                                          value:
+                                                            BinaryOp
+                                                              line: 18
+                                                              operator: +
+                                                              left:
+                                                                Identifier
+                                                                  line: 18
+                                                                  name: n
+                                                              right:
+                                                                Identifier
+                                                                  line: 18
+                                                                  name: m,
+                                                      ],
+                                        ],
+                                    ReturnStatement
+                                      line: 18
+                                      value:
+                                        FunctionCall
+                                          line: 18
+                                          callee:
+                                            Identifier
+                                              line: 18
+                                              name: inner
+                                          args:
+                                            [
+                                              Literal
+                                                line: 18
+                                                literal_type: int
+                                                value: 2,
+                                            ],
+                                  ],
+                    ],
+                Declaration
+                  line: 19
+                  type_spec:
+                    TypeSpecifier
+                      line: 19
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 19
+                        declarator:
+                          Declarator
+                            line: 19
+                            name: ref
+                            kind_name: variable
+                            is_reference: True
+                        initializer:
+                          Identifier
+                            line: 19
+                            name: a,
+                    ],
+                Declaration
+                  line: 20
+                  type_spec:
+                    TypeSpecifier
+                      line: 20
+                      name: const int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 20
+                        declarator:
+                          Declarator
+                            line: 20
+                            name: cref
+                            kind_name: variable
+                            is_reference: True
+                        initializer:
+                          Identifier
+                            line: 20
+                            name: b,
+                    ],
+                Declaration
+                  line: 21
+                  type_spec:
+                    TypeSpecifier
+                      line: 21
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 21
+                        declarator:
+                          Declarator
+                            line: 21
+                            name: result
+                            kind_name: variable
+                        initializer:
+                          BinaryOp
+                            line: 21
+                            operator: +
+                            left:
+                              FunctionCall
+                                line: 21
+                                callee:
+                                  Identifier
+                                    line: 21
+                                    name: add
+                                args:
+                                  [
+                                    Literal
+                                      line: 21
+                                      literal_type: int
+                                      value: 1,
+                                    Literal
+                                      line: 21
+                                      literal_type: int
+                                      value: 2,
+                                  ]
+                            right:
+                              FunctionCall
+                                line: 21
+                                callee:
+                                  Identifier
+                                    line: 21
+                                    name: mixed
+                                args:
+                                  [
+                                    Literal
+                                      line: 21
+                                      literal_type: int
+                                      value: 3,
+                                  ],
+                    ],
+                ReturnStatement
+                  line: 22
+                  value:
+                    Identifier
+                      line: 22
+                      name: result,
+              ],
+    ]
+######## --semantic
+test/phase2_syntax/valid/lambdas_auto_references.c:4: semantic error: unsupported feature: references ('&' in the declaration of 'value')
+     4 | void by_reference(int &value) { value = value + 1; }
+test/phase2_syntax/valid/lambdas_auto_references.c:5: semantic error: unsupported feature: references ('&' in the declaration of 'identity')
+     5 | int &identity(int &v) { return v; }
+test/phase2_syntax/valid/lambdas_auto_references.c:5: semantic error: unsupported feature: references ('&' in the declaration of 'v')
+     5 | int &identity(int &v) { return v; }
+test/phase2_syntax/valid/lambdas_auto_references.c:8: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+     8 |     auto add = [](int x, int y) { return x + y; };
+test/phase2_syntax/valid/lambdas_auto_references.c:8: semantic error: unsupported feature: lambda functions
+     8 |     auto add = [](int x, int y) { return x + y; };
+test/phase2_syntax/valid/lambdas_auto_references.c:9: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+     9 |     auto by_ref = [&](int x) { return x + 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:9: semantic error: unsupported feature: lambda functions
+     9 |     auto by_ref = [&](int x) { return x + 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:10: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    10 |     auto by_value = [=](int x) { return x + 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:10: semantic error: unsupported feature: lambda functions
+    10 |     auto by_value = [=](int x) { return x + 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:13: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    13 |     auto mixed = [a, &b](int z) { return a + b + z; };
+test/phase2_syntax/valid/lambdas_auto_references.c:13: semantic error: unsupported feature: lambda functions
+    13 |     auto mixed = [a, &b](int z) { return a + b + z; };
+test/phase2_syntax/valid/lambdas_auto_references.c:14: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    14 |     auto with_type = [](int x) -> int { return x * 2; };
+test/phase2_syntax/valid/lambdas_auto_references.c:14: semantic error: unsupported feature: lambda functions
+    14 |     auto with_type = [](int x) -> int { return x * 2; };
+test/phase2_syntax/valid/lambdas_auto_references.c:15: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    15 |     auto no_params = [] { return 7; };
+test/phase2_syntax/valid/lambdas_auto_references.c:15: semantic error: unsupported feature: lambda functions
+    15 |     auto no_params = [] { return 7; };
+test/phase2_syntax/valid/lambdas_auto_references.c:16: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    16 |     auto capture_this = [this]() { return 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:16: semantic error: unsupported feature: lambda functions
+    16 |     auto capture_this = [this]() { return 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:17: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    17 |     auto capture_all_but = [=, &b](int q) { return q + b; };
+test/phase2_syntax/valid/lambdas_auto_references.c:17: semantic error: unsupported feature: lambda functions
+    17 |     auto capture_all_but = [=, &b](int q) { return q + b; };
+test/phase2_syntax/valid/lambdas_auto_references.c:18: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    18 |     auto nested = [](int n) { auto inner = [n](int m) { return n + m; }; return inner(2); };
+test/phase2_syntax/valid/lambdas_auto_references.c:18: semantic error: unsupported feature: lambda functions
+    18 |     auto nested = [](int n) { auto inner = [n](int m) { return n + m; }; return inner(2); };
+test/phase2_syntax/valid/lambdas_auto_references.c:19: semantic error: unsupported feature: references ('&' in the declaration of 'ref')
+    19 |     int &ref = a;
+test/phase2_syntax/valid/lambdas_auto_references.c:20: semantic error: unsupported feature: references ('&' in the declaration of 'cref')
+    20 |     const int &cref = b;
+test/phase2_syntax/valid/lambdas_auto_references.c:21: semantic error: 'add' is not a function
+    21 |     int result = add(1, 2) + mixed(3);
+test/phase2_syntax/valid/lambdas_auto_references.c:21: semantic error: 'mixed' is not a function
+    21 |     int result = add(1, 2) + mixed(3);
+25 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase2_syntax/valid/lambdas_auto_references.c:4: semantic error: unsupported feature: references ('&' in the declaration of 'value')
+     4 | void by_reference(int &value) { value = value + 1; }
+test/phase2_syntax/valid/lambdas_auto_references.c:5: semantic error: unsupported feature: references ('&' in the declaration of 'identity')
+     5 | int &identity(int &v) { return v; }
+test/phase2_syntax/valid/lambdas_auto_references.c:5: semantic error: unsupported feature: references ('&' in the declaration of 'v')
+     5 | int &identity(int &v) { return v; }
+test/phase2_syntax/valid/lambdas_auto_references.c:8: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+     8 |     auto add = [](int x, int y) { return x + y; };
+test/phase2_syntax/valid/lambdas_auto_references.c:8: semantic error: unsupported feature: lambda functions
+     8 |     auto add = [](int x, int y) { return x + y; };
+test/phase2_syntax/valid/lambdas_auto_references.c:9: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+     9 |     auto by_ref = [&](int x) { return x + 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:9: semantic error: unsupported feature: lambda functions
+     9 |     auto by_ref = [&](int x) { return x + 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:10: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    10 |     auto by_value = [=](int x) { return x + 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:10: semantic error: unsupported feature: lambda functions
+    10 |     auto by_value = [=](int x) { return x + 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:13: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    13 |     auto mixed = [a, &b](int z) { return a + b + z; };
+test/phase2_syntax/valid/lambdas_auto_references.c:13: semantic error: unsupported feature: lambda functions
+    13 |     auto mixed = [a, &b](int z) { return a + b + z; };
+test/phase2_syntax/valid/lambdas_auto_references.c:14: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    14 |     auto with_type = [](int x) -> int { return x * 2; };
+test/phase2_syntax/valid/lambdas_auto_references.c:14: semantic error: unsupported feature: lambda functions
+    14 |     auto with_type = [](int x) -> int { return x * 2; };
+test/phase2_syntax/valid/lambdas_auto_references.c:15: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    15 |     auto no_params = [] { return 7; };
+test/phase2_syntax/valid/lambdas_auto_references.c:15: semantic error: unsupported feature: lambda functions
+    15 |     auto no_params = [] { return 7; };
+test/phase2_syntax/valid/lambdas_auto_references.c:16: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    16 |     auto capture_this = [this]() { return 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:16: semantic error: unsupported feature: lambda functions
+    16 |     auto capture_this = [this]() { return 1; };
+test/phase2_syntax/valid/lambdas_auto_references.c:17: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    17 |     auto capture_all_but = [=, &b](int q) { return q + b; };
+test/phase2_syntax/valid/lambdas_auto_references.c:17: semantic error: unsupported feature: lambda functions
+    17 |     auto capture_all_but = [=, &b](int q) { return q + b; };
+test/phase2_syntax/valid/lambdas_auto_references.c:18: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    18 |     auto nested = [](int n) { auto inner = [n](int m) { return n + m; }; return inner(2); };
+test/phase2_syntax/valid/lambdas_auto_references.c:18: semantic error: unsupported feature: lambda functions
+    18 |     auto nested = [](int n) { auto inner = [n](int m) { return n + m; }; return inner(2); };
+test/phase2_syntax/valid/lambdas_auto_references.c:19: semantic error: unsupported feature: references ('&' in the declaration of 'ref')
+    19 |     int &ref = a;
+test/phase2_syntax/valid/lambdas_auto_references.c:20: semantic error: unsupported feature: references ('&' in the declaration of 'cref')
+    20 |     const int &cref = b;
+test/phase2_syntax/valid/lambdas_auto_references.c:21: semantic error: 'add' is not a function
+    21 |     int result = add(1, 2) + mixed(3);
+test/phase2_syntax/valid/lambdas_auto_references.c:21: semantic error: 'mixed' is not a function
+    21 |     int result = add(1, 2) + mixed(3);
+25 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

@@ -1,0 +1,68 @@
+######## --all
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:8: syntax error: unexpected token ';'
+     8 |     int arr[5;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:14: syntax error: unexpected token ';'
+    14 |     int m[2][3;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:21: syntax error: unexpected token ';'
+    21 |     arr[2 = 9;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:27: syntax error: unexpected token ';'
+    27 |     int *p = &;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:34: syntax error: unexpected token ';'
+    34 |     *p = ;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:40: syntax error: unexpected token '('
+    40 |     int (*fp(int, int);
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:47: syntax error: unexpected token ';'
+    47 |     int (*fp)(int a, int b;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:55: syntax error: unexpected token '='
+    55 |     * = x;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:61: syntax error: unexpected token 'x' (is a ';' missing at the end of line 61?)
+    61 |     int y = (int
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:67: syntax error: unexpected token ')'
+    67 |     int s = sizeof();
+10 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:8: syntax error: unexpected token ';'
+     8 |     int arr[5;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:14: syntax error: unexpected token ';'
+    14 |     int m[2][3;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:21: syntax error: unexpected token ';'
+    21 |     arr[2 = 9;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:27: syntax error: unexpected token ';'
+    27 |     int *p = &;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:34: syntax error: unexpected token ';'
+    34 |     *p = ;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:40: syntax error: unexpected token '('
+    40 |     int (*fp(int, int);
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:47: syntax error: unexpected token ';'
+    47 |     int (*fp)(int a, int b;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:55: syntax error: unexpected token '='
+    55 |     * = x;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:61: syntax error: unexpected token 'x' (is a ';' missing at the end of line 61?)
+    61 |     int y = (int
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:67: syntax error: unexpected token ')'
+    67 |     int s = sizeof();
+10 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:8: syntax error: unexpected token ';'
+     8 |     int arr[5;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:14: syntax error: unexpected token ';'
+    14 |     int m[2][3;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:21: syntax error: unexpected token ';'
+    21 |     arr[2 = 9;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:27: syntax error: unexpected token ';'
+    27 |     int *p = &;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:34: syntax error: unexpected token ';'
+    34 |     *p = ;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:40: syntax error: unexpected token '('
+    40 |     int (*fp(int, int);
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:47: syntax error: unexpected token ';'
+    47 |     int (*fp)(int a, int b;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:55: syntax error: unexpected token '='
+    55 |     * = x;
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:61: syntax error: unexpected token 'x' (is a ';' missing at the end of line 61?)
+    61 |     int y = (int
+test/phase2_syntax/invalid/arrays_pointers_buggy.c:67: syntax error: unexpected token ')'
+    67 |     int s = sizeof();
+10 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

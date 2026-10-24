@@ -1,0 +1,1222 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+typedef                   TYPEDEF                  
+int                       INT                      
+MyInt                     TYPENAME                 
+;                         SEMI                     
+int                       INT                      
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+b                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
++                         PLUS                     
+b                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+sum                       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+count                     PARAMETER_NAME           
+,                         COMMA                    
+...                       ELLIPSIS                 
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+total                     VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+total                     VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+void                      VOID                     
+increment                 FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+&                         ADDRESS                  
+value                     PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+value                     PARAMETER_NAME           
+=                         ASSIGN                   
+value                     PARAMETER_NAME           
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+argc                      PARAMETER_NAME           
+,                         COMMA                    
+char                      CHAR                     
+*                         MULTIPLY                 
+*                         MULTIPLY                 
+argv                      ARRAY_NAME               
+)                         RPAREN                   
+{                         LBRACE                   
+MyInt                     TYPENAME                 
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+;                         SEMI                     
+MyInt                     TYPENAME                 
+y                         VARIABLE_NAME            
+=                         ASSIGN                   
+10                        INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+z                         VARIABLE_NAME            
+=                         ASSIGN                   
+add                       FUNCTION_NAME            
+(                         LPAREN                   
+x                         VARIABLE_NAME            
+,                         COMMA                    
+y                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+total                     VARIABLE_NAME            
+=                         ASSIGN                   
+sum                       FUNCTION_NAME            
+(                         LPAREN                   
+3                         INTEGER_CONSTANT         
+,                         COMMA                    
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+,                         COMMA                    
+3                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+*                         MULTIPLY                 
+heap                      ARRAY_NAME               
+=                         ASSIGN                   
+(                         LPAREN                   
+int                       INT                      
+*                         MULTIPLY                 
+)                         RPAREN                   
+malloc                    FUNCTION_NAME            
+(                         LPAREN                   
+10                        INTEGER_CONSTANT         
+*                         MULTIPLY                 
+sizeof                    SIZEOF                   
+(                         LPAREN                   
+int                       INT                      
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+heap                      ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+42                        INTEGER_CONSTANT         
+;                         SEMI                     
+free                      FUNCTION_NAME            
+(                         LPAREN                   
+heap                      ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+increment                 FUNCTION_NAME            
+(                         LPAREN                   
+z                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+if                        IF                       
+(                         LPAREN                   
+argc                      PARAMETER_NAME           
+>                         GT                       
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+printf                    PRINTF                   
+(                         LPAREN                   
+"%s\n"                    STRING_LITERAL           
+,                         COMMA                    
+argv                      ARRAY_NAME               
+[                         LBRACKET                 
+1                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+FILE                      TYPENAME                 
+*                         MULTIPLY                 
+fp                        VARIABLE_NAME            
+;                         SEMI                     
+char                      CHAR                     
+buffer                    ARRAY_NAME               
+[                         LBRACKET                 
+100                       INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+int                       INT                      
+value                     PARAMETER_NAME           
+;                         SEMI                     
+fp                        VARIABLE_NAME            
+=                         ASSIGN                   
+fopen                     FUNCTION_NAME            
+(                         LPAREN                   
+"data.txt"                STRING_LITERAL           
+,                         COMMA                    
+"r"                       STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+if                        IF                       
+(                         LPAREN                   
+fp                        VARIABLE_NAME            
+)                         RPAREN                   
+{                         LBRACE                   
+fgets                     FUNCTION_NAME            
+(                         LPAREN                   
+buffer                    ARRAY_NAME               
+,                         COMMA                    
+100                       INTEGER_CONSTANT         
+,                         COMMA                    
+fp                        VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+fscanf                    FUNCTION_NAME            
+(                         LPAREN                   
+fp                        VARIABLE_NAME            
+,                         COMMA                    
+"%d"                      STRING_LITERAL           
+,                         COMMA                    
+&                         ADDRESS                  
+value                     PARAMETER_NAME           
+)                         RPAREN                   
+;                         SEMI                     
+while                     WHILE                    
+(                         LPAREN                   
+!                         NOT                      
+feof                      FUNCTION_NAME            
+(                         LPAREN                   
+fp                        VARIABLE_NAME            
+)                         RPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+fread                     FUNCTION_NAME            
+(                         LPAREN                   
+buffer                    ARRAY_NAME               
+,                         COMMA                    
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+100                       INTEGER_CONSTANT         
+,                         COMMA                    
+fp                        VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+fclose                    FUNCTION_NAME            
+(                         LPAREN                   
+fp                        VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+fp                        VARIABLE_NAME            
+=                         ASSIGN                   
+fopen                     FUNCTION_NAME            
+(                         LPAREN                   
+"out.txt"                 STRING_LITERAL           
+,                         COMMA                    
+"w"                       STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+fputs                     FUNCTION_NAME            
+(                         LPAREN                   
+"hello"                   STRING_LITERAL           
+,                         COMMA                    
+fp                        VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+fprintf                   FUNCTION_NAME            
+(                         LPAREN                   
+fp                        VARIABLE_NAME            
+,                         COMMA                    
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+value                     PARAMETER_NAME           
+)                         RPAREN                   
+;                         SEMI                     
+fwrite                    FUNCTION_NAME            
+(                         LPAREN                   
+buffer                    ARRAY_NAME               
+,                         COMMA                    
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+100                       INTEGER_CONSTANT         
+,                         COMMA                    
+fp                        VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+fclose                    FUNCTION_NAME            
+(                         LPAREN                   
+fp                        VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+MyInt                typedef      int        global                                     
+a                    parameter    int        function:add                               
+add                  function     int        global                 params: (int, int)  
+argc                 parameter    int        function:main                              
+argv                 array        char       function:main          pointer (**argv)    
+b                    parameter    int        function:add                               
+buffer               array        char       function:main          dims: [100]         
+count                parameter    int        function:sum                               
+fclose               function     int        function:main                              
+feof                 function     int        function:main                              
+fgets                function     int        function:main                              
+fopen                function     int        function:main                              
+fp                   variable     FILE       function:main          pointer (*fp)       
+fprintf              function     int        function:main                              
+fputs                function     int        function:main                              
+fread                function     int        function:main                              
+free                 function     int        function:main                              
+fscanf               function     int        function:main                              
+fwrite               function     int        function:main                              
+heap                 array        int        function:main          pointer (*heap)     
+increment            function     void       global                 params: (int)       
+main                 function     int        global                 params: (int, char) 
+malloc               function     int        function:main                              
+printf               function     int        global                 params: (format, ...)
+sum                  function     int        global                 params: (int, ...)  
+total                variable     int        function:sum                               
+value                parameter    int        function:increment                         
+x                    variable     MyInt      function:main                              
+y                    variable     MyInt      function:main                              
+z                    variable     int        function:main                              
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 5
+        type_spec:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 5
+              declarator:
+                Declarator
+                  line: 5
+                  name: MyInt
+                  kind_name: variable,
+          ]
+        storage: typedef,
+      FunctionDefinition
+        line: 7
+        return_type:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarator:
+          Declarator
+            line: 7
+            name: add
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 7
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 7
+                      name: b
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 7
+            items:
+              [
+                ReturnStatement
+                  line: 8
+                  value:
+                    BinaryOp
+                      line: 8
+                      operator: +
+                      left:
+                        Identifier
+                          line: 8
+                          name: a
+                      right:
+                        Identifier
+                          line: 8
+                          name: b,
+              ],
+      FunctionDefinition
+        line: 11
+        return_type:
+          TypeSpecifier
+            line: 11
+            name: int
+        declarator:
+          Declarator
+            line: 11
+            name: sum
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 11
+                  type_spec:
+                    TypeSpecifier
+                      line: 11
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 11
+                      name: count
+                      kind_name: variable,
+                VarArgsParameter
+                  line: 11,
+              ]
+        body:
+          CompoundStatement
+            line: 11
+            items:
+              [
+                Declaration
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 12
+                        declarator:
+                          Declarator
+                            line: 12
+                            name: total
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 12
+                            literal_type: int
+                            value: 0,
+                    ],
+                ReturnStatement
+                  line: 13
+                  value:
+                    Identifier
+                      line: 13
+                      name: total,
+              ],
+      FunctionDefinition
+        line: 16
+        return_type:
+          TypeSpecifier
+            line: 16
+            name: void
+        declarator:
+          Declarator
+            line: 16
+            name: increment
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 16
+                  type_spec:
+                    TypeSpecifier
+                      line: 16
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 16
+                      name: value
+                      kind_name: variable
+                      is_reference: True,
+              ]
+        body:
+          CompoundStatement
+            line: 16
+            items:
+              [
+                ExpressionStatement
+                  line: 17
+                  expression:
+                    Assignment
+                      line: 17
+                      operator: =
+                      target:
+                        Identifier
+                          line: 17
+                          name: value
+                      value:
+                        BinaryOp
+                          line: 17
+                          operator: +
+                          left:
+                            Identifier
+                              line: 17
+                              name: value
+                          right:
+                            Literal
+                              line: 17
+                              literal_type: int
+                              value: 1,
+              ],
+      FunctionDefinition
+        line: 20
+        return_type:
+          TypeSpecifier
+            line: 20
+            name: int
+        declarator:
+          Declarator
+            line: 20
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 20
+                  type_spec:
+                    TypeSpecifier
+                      line: 20
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 20
+                      name: argc
+                      kind_name: variable,
+                Parameter
+                  line: 20
+                  type_spec:
+                    TypeSpecifier
+                      line: 20
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 20
+                      name: argv
+                      kind_name: variable
+                      pointer_level: 2,
+              ]
+        body:
+          CompoundStatement
+            line: 20
+            items:
+              [
+                Declaration
+                  line: 21
+                  type_spec:
+                    TypeSpecifier
+                      line: 21
+                      name: MyInt
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 21
+                        declarator:
+                          Declarator
+                            line: 21
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 21
+                            literal_type: int
+                            value: 5,
+                    ],
+                Declaration
+                  line: 22
+                  type_spec:
+                    TypeSpecifier
+                      line: 22
+                      name: MyInt
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 22
+                        declarator:
+                          Declarator
+                            line: 22
+                            name: y
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 22
+                            literal_type: int
+                            value: 10,
+                    ],
+                Declaration
+                  line: 23
+                  type_spec:
+                    TypeSpecifier
+                      line: 23
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 23
+                        declarator:
+                          Declarator
+                            line: 23
+                            name: z
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 23
+                            callee:
+                              Identifier
+                                line: 23
+                                name: add
+                            args:
+                              [
+                                Identifier
+                                  line: 23
+                                  name: x,
+                                Identifier
+                                  line: 23
+                                  name: y,
+                              ],
+                    ],
+                Declaration
+                  line: 25
+                  type_spec:
+                    TypeSpecifier
+                      line: 25
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 25
+                        declarator:
+                          Declarator
+                            line: 25
+                            name: total
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 25
+                            callee:
+                              Identifier
+                                line: 25
+                                name: sum
+                            args:
+                              [
+                                Literal
+                                  line: 25
+                                  literal_type: int
+                                  value: 3,
+                                Literal
+                                  line: 25
+                                  literal_type: int
+                                  value: 1,
+                                Literal
+                                  line: 25
+                                  literal_type: int
+                                  value: 2,
+                                Literal
+                                  line: 25
+                                  literal_type: int
+                                  value: 3,
+                              ],
+                    ],
+                Declaration
+                  line: 27
+                  type_spec:
+                    TypeSpecifier
+                      line: 27
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 27
+                        declarator:
+                          Declarator
+                            line: 27
+                            name: heap
+                            kind_name: variable
+                            pointer_level: 1
+                        initializer:
+                          CastExpression
+                            line: 27
+                            type_spec:
+                              TypeSpecifier
+                                line: 27
+                                name: int
+                            pointer_level: 1
+                            operand:
+                              FunctionCall
+                                line: 27
+                                callee:
+                                  Identifier
+                                    line: 27
+                                    name: malloc
+                                args:
+                                  [
+                                    BinaryOp
+                                      line: 27
+                                      operator: *
+                                      left:
+                                        Literal
+                                          line: 27
+                                          literal_type: int
+                                          value: 10
+                                      right:
+                                        UnaryOp
+                                          line: 27
+                                          operator: sizeof
+                                          operand:
+                                            TypeSpecifier
+                                              line: 27
+                                              name: int
+                                          position: prefix,
+                                  ],
+                    ],
+                ExpressionStatement
+                  line: 28
+                  expression:
+                    Assignment
+                      line: 28
+                      operator: =
+                      target:
+                        ArrayAccess
+                          line: 28
+                          array:
+                            Identifier
+                              line: 28
+                              name: heap
+                          index:
+                            Literal
+                              line: 28
+                              literal_type: int
+                              value: 0
+                      value:
+                        Literal
+                          line: 28
+                          literal_type: int
+                          value: 42,
+                ExpressionStatement
+                  line: 29
+                  expression:
+                    FunctionCall
+                      line: 29
+                      callee:
+                        Identifier
+                          line: 29
+                          name: free
+                      args:
+                        [
+                          Identifier
+                            line: 29
+                            name: heap,
+                        ],
+                ExpressionStatement
+                  line: 31
+                  expression:
+                    FunctionCall
+                      line: 31
+                      callee:
+                        Identifier
+                          line: 31
+                          name: increment
+                      args:
+                        [
+                          Identifier
+                            line: 31
+                            name: z,
+                        ],
+                IfStatement
+                  line: 33
+                  condition:
+                    BinaryOp
+                      line: 33
+                      operator: >
+                      left:
+                        Identifier
+                          line: 33
+                          name: argc
+                      right:
+                        Literal
+                          line: 33
+                          literal_type: int
+                          value: 1
+                  then_branch:
+                    CompoundStatement
+                      line: 33
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 34
+                            expression:
+                              FunctionCall
+                                line: 34
+                                callee:
+                                  Identifier
+                                    line: 34
+                                    name: printf
+                                args:
+                                  [
+                                    Literal
+                                      line: 34
+                                      literal_type: string
+                                      value: "%s\n",
+                                    ArrayAccess
+                                      line: 34
+                                      array:
+                                        Identifier
+                                          line: 34
+                                          name: argv
+                                      index:
+                                        Literal
+                                          line: 34
+                                          literal_type: int
+                                          value: 1,
+                                  ],
+                        ],
+                ReturnStatement
+                  line: 37
+                  value:
+                    Literal
+                      line: 37
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 47
+        return_type:
+          TypeSpecifier
+            line: 47
+            name: int
+        declarator:
+          Declarator
+            line: 47
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 47
+            items:
+              [
+                Declaration
+                  line: 48
+                  type_spec:
+                    TypeSpecifier
+                      line: 48
+                      name: FILE
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 48
+                        declarator:
+                          Declarator
+                            line: 48
+                            name: fp
+                            kind_name: variable
+                            pointer_level: 1,
+                    ],
+                Declaration
+                  line: 49
+                  type_spec:
+                    TypeSpecifier
+                      line: 49
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 49
+                        declarator:
+                          Declarator
+                            line: 49
+                            name: buffer
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 49
+                                  size:
+                                    Literal
+                                      line: 49
+                                      literal_type: int
+                                      value: 100,
+                              ],
+                    ],
+                Declaration
+                  line: 50
+                  type_spec:
+                    TypeSpecifier
+                      line: 50
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 50
+                        declarator:
+                          Declarator
+                            line: 50
+                            name: value
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 52
+                  expression:
+                    Assignment
+                      line: 52
+                      operator: =
+                      target:
+                        Identifier
+                          line: 52
+                          name: fp
+                      value:
+                        FunctionCall
+                          line: 52
+                          callee:
+                            Identifier
+                              line: 52
+                              name: fopen
+                          args:
+                            [
+                              Literal
+                                line: 52
+                                literal_type: string
+                                value: "data.txt",
+                              Literal
+                                line: 52
+                                literal_type: string
+                                value: "r",
+                            ],
+                IfStatement
+                  line: 53
+                  condition:
+                    Identifier
+                      line: 53
+                      name: fp
+                  then_branch:
+                    CompoundStatement
+                      line: 53
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 54
+                            expression:
+                              FunctionCall
+                                line: 54
+                                callee:
+                                  Identifier
+                                    line: 54
+                                    name: fgets
+                                args:
+                                  [
+                                    Identifier
+                                      line: 54
+                                      name: buffer,
+                                    Literal
+                                      line: 54
+                                      literal_type: int
+                                      value: 100,
+                                    Identifier
+                                      line: 54
+                                      name: fp,
+                                  ],
+                          ExpressionStatement
+                            line: 55
+                            expression:
+                              FunctionCall
+                                line: 55
+                                callee:
+                                  Identifier
+                                    line: 55
+                                    name: fscanf
+                                args:
+                                  [
+                                    Identifier
+                                      line: 55
+                                      name: fp,
+                                    Literal
+                                      line: 55
+                                      literal_type: string
+                                      value: "%d",
+                                    UnaryOp
+                                      line: 55
+                                      operator: &
+                                      operand:
+                                        Identifier
+                                          line: 55
+                                          name: value
+                                      position: prefix,
+                                  ],
+                          WhileStatement
+                            line: 56
+                            condition:
+                              UnaryOp
+                                line: 56
+                                operator: !
+                                operand:
+                                  FunctionCall
+                                    line: 56
+                                    callee:
+                                      Identifier
+                                        line: 56
+                                        name: feof
+                                    args:
+                                      [
+                                        Identifier
+                                          line: 56
+                                          name: fp,
+                                      ]
+                                position: prefix
+                            body:
+                              CompoundStatement
+                                line: 56
+                                items:
+                                  [
+                                    ExpressionStatement
+                                      line: 57
+                                      expression:
+                                        FunctionCall
+                                          line: 57
+                                          callee:
+                                            Identifier
+                                              line: 57
+                                              name: fread
+                                          args:
+                                            [
+                                              Identifier
+                                                line: 57
+                                                name: buffer,
+                                              Literal
+                                                line: 57
+                                                literal_type: int
+                                                value: 1,
+                                              Literal
+                                                line: 57
+                                                literal_type: int
+                                                value: 100,
+                                              Identifier
+                                                line: 57
+                                                name: fp,
+                                            ],
+                                  ],
+                          ExpressionStatement
+                            line: 59
+                            expression:
+                              FunctionCall
+                                line: 59
+                                callee:
+                                  Identifier
+                                    line: 59
+                                    name: fclose
+                                args:
+                                  [
+                                    Identifier
+                                      line: 59
+                                      name: fp,
+                                  ],
+                        ],
+                ExpressionStatement
+                  line: 62
+                  expression:
+                    Assignment
+                      line: 62
+                      operator: =
+                      target:
+                        Identifier
+                          line: 62
+                          name: fp
+                      value:
+                        FunctionCall
+                          line: 62
+                          callee:
+                            Identifier
+                              line: 62
+                              name: fopen
+                          args:
+                            [
+                              Literal
+                                line: 62
+                                literal_type: string
+                                value: "out.txt",
+                              Literal
+                                line: 62
+                                literal_type: string
+                                value: "w",
+                            ],
+                ExpressionStatement
+                  line: 63
+                  expression:
+                    FunctionCall
+                      line: 63
+                      callee:
+                        Identifier
+                          line: 63
+                          name: fputs
+                      args:
+                        [
+                          Literal
+                            line: 63
+                            literal_type: string
+                            value: "hello",
+                          Identifier
+                            line: 63
+                            name: fp,
+                        ],
+                ExpressionStatement
+                  line: 64
+                  expression:
+                    FunctionCall
+                      line: 64
+                      callee:
+                        Identifier
+                          line: 64
+                          name: fprintf
+                      args:
+                        [
+                          Identifier
+                            line: 64
+                            name: fp,
+                          Literal
+                            line: 64
+                            literal_type: string
+                            value: "%d\n",
+                          Identifier
+                            line: 64
+                            name: value,
+                        ],
+                ExpressionStatement
+                  line: 65
+                  expression:
+                    FunctionCall
+                      line: 65
+                      callee:
+                        Identifier
+                          line: 65
+                          name: fwrite
+                      args:
+                        [
+                          Identifier
+                            line: 65
+                            name: buffer,
+                          Literal
+                            line: 65
+                            literal_type: int
+                            value: 1,
+                          Literal
+                            line: 65
+                            literal_type: int
+                            value: 100,
+                          Identifier
+                            line: 65
+                            name: fp,
+                        ],
+                ExpressionStatement
+                  line: 66
+                  expression:
+                    FunctionCall
+                      line: 66
+                      callee:
+                        Identifier
+                          line: 66
+                          name: fclose
+                      args:
+                        [
+                          Identifier
+                            line: 66
+                            name: fp,
+                        ],
+                ReturnStatement
+                  line: 68
+                  value:
+                    Literal
+                      line: 68
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:11: semantic error: unsupported feature: variadic functions
+    11 | int sum(int count, ...) {
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:16: semantic error: unsupported feature: references ('&' in the declaration of 'value')
+    16 | void increment(int &value) {
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:25: semantic error: call to undeclared function 'sum'
+    25 |     int total = sum(3, 1, 2, 3);
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:27: semantic error: unsupported feature: casts to pointer types
+    27 |     int *heap = (int *) malloc(10 * sizeof(int));
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:27: semantic error: unsupported feature: dynamic memory ('malloc')
+    27 |     int *heap = (int *) malloc(10 * sizeof(int));
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:27: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+    27 |     int *heap = (int *) malloc(10 * sizeof(int));
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:29: semantic error: unsupported feature: dynamic memory ('free')
+    29 |     free(heap);
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:47: semantic error: conflicting types for 'main' (previous: (int, char*[]) -> int)
+    47 | int main() {
+8 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:11: semantic error: unsupported feature: variadic functions
+    11 | int sum(int count, ...) {
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:16: semantic error: unsupported feature: references ('&' in the declaration of 'value')
+    16 | void increment(int &value) {
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:25: semantic error: call to undeclared function 'sum'
+    25 |     int total = sum(3, 1, 2, 3);
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:27: semantic error: unsupported feature: casts to pointer types
+    27 |     int *heap = (int *) malloc(10 * sizeof(int));
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:27: semantic error: unsupported feature: dynamic memory ('malloc')
+    27 |     int *heap = (int *) malloc(10 * sizeof(int));
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:27: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+    27 |     int *heap = (int *) malloc(10 * sizeof(int));
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:29: semantic error: unsupported feature: dynamic memory ('free')
+    29 |     free(heap);
+test/phase1_lexical/valid/keywords_functions_memory_file_io.c:47: semantic error: conflicting types for 'main' (previous: (int, char*[]) -> int)
+    47 | int main() {
+8 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

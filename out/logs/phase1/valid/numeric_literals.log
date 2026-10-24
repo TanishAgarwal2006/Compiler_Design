@@ -1,0 +1,830 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+decimal                   VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+,                         COMMA                    
+d1                        VARIABLE_NAME            
+=                         ASSIGN                   
+7                         INTEGER_CONSTANT         
+,                         COMMA                    
+d2                        VARIABLE_NAME            
+=                         ASSIGN                   
+1234567890                INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+hex_lower                 VARIABLE_NAME            
+=                         ASSIGN                   
+255                       INTEGER_CONSTANT         
+,                         COMMA                    
+hex_upper                 VARIABLE_NAME            
+=                         ASSIGN                   
+255                       INTEGER_CONSTANT         
+,                         COMMA                    
+hex_mixed                 VARIABLE_NAME            
+=                         ASSIGN                   
+3735928559                INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+binary                    VARIABLE_NAME            
+=                         ASSIGN                   
+11                        INTEGER_CONSTANT         
+,                         COMMA                    
+binary_upper              VARIABLE_NAME            
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+octal                     VARIABLE_NAME            
+=                         ASSIGN                   
+15                        INTEGER_CONSTANT         
+,                         COMMA                    
+octal_zero_zero           VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+,                         COMMA                    
+octal_big                 VARIABLE_NAME            
+=                         ASSIGN                   
+511                       INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+s1                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s2                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s3                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s4                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s5                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s6                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s7                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s8                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s9                        VARIABLE_NAME            
+=                         ASSIGN                   
+45                        INTEGER_CONSTANT         
+,                         COMMA                    
+s10                       VARIABLE_NAME            
+=                         ASSIGN                   
+31                        INTEGER_CONSTANT         
+;                         SEMI                     
+float                     FLOAT                    
+f1                        VARIABLE_NAME            
+=                         ASSIGN                   
+3.14                      FLOAT_CONSTANT           
+,                         COMMA                    
+f2                        VARIABLE_NAME            
+=                         ASSIGN                   
+0.5                       FLOAT_CONSTANT           
+,                         COMMA                    
+f3                        VARIABLE_NAME            
+=                         ASSIGN                   
+5.0                       FLOAT_CONSTANT           
+,                         COMMA                    
+f4                        VARIABLE_NAME            
+=                         ASSIGN                   
+1000.0                    FLOAT_CONSTANT           
+,                         COMMA                    
+f5                        VARIABLE_NAME            
+=                         ASSIGN                   
+0.25                      FLOAT_CONSTANT           
+,                         COMMA                    
+f6                        VARIABLE_NAME            
+=                         ASSIGN                   
+100.0                     FLOAT_CONSTANT           
+,                         COMMA                    
+f7                        VARIABLE_NAME            
+=                         ASSIGN                   
+1.5                       FLOAT_CONSTANT           
+,                         COMMA                    
+f8                        VARIABLE_NAME            
+=                         ASSIGN                   
+2.0                       FLOAT_CONSTANT           
+,                         COMMA                    
+f9                        VARIABLE_NAME            
+=                         ASSIGN                   
+300.0                     FLOAT_CONSTANT           
+,                         COMMA                    
+f10                       VARIABLE_NAME            
+=                         ASSIGN                   
+0.0                       FLOAT_CONSTANT           
+;                         SEMI                     
+int                       INT                      
+a                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
++                         PLUS                     
+2                         INTEGER_CONSTANT         
+,                         COMMA                    
+b                         VARIABLE_NAME            
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+-                         MINUS                    
+4                         INTEGER_CONSTANT         
+,                         COMMA                    
+c                         VARIABLE_NAME            
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+*                         MULTIPLY                 
+6                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    variable     int        global                                     
+b                    variable     int        global                                     
+binary               variable     int        global                                     
+binary_upper         variable     int        global                                     
+c                    variable     int        global                                     
+d1                   variable     int        global                                     
+d2                   variable     int        global                                     
+decimal              variable     int        global                                     
+f1                   variable     float      global                                     
+f10                  variable     float      global                                     
+f2                   variable     float      global                                     
+f3                   variable     float      global                                     
+f4                   variable     float      global                                     
+f5                   variable     float      global                                     
+f6                   variable     float      global                                     
+f7                   variable     float      global                                     
+f8                   variable     float      global                                     
+f9                   variable     float      global                                     
+hex_lower            variable     int        global                                     
+hex_mixed            variable     int        global                                     
+hex_upper            variable     int        global                                     
+main                 function     int        global                 params: ()          
+octal                variable     int        global                                     
+octal_big            variable     int        global                                     
+octal_zero_zero      variable     int        global                                     
+s1                   variable     int        global                                     
+s10                  variable     int        global                                     
+s2                   variable     int        global                                     
+s3                   variable     int        global                                     
+s4                   variable     int        global                                     
+s5                   variable     int        global                                     
+s6                   variable     int        global                                     
+s7                   variable     int        global                                     
+s8                   variable     int        global                                     
+s9                   variable     int        global                                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 2
+        type_spec:
+          TypeSpecifier
+            line: 2
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 2
+              declarator:
+                Declarator
+                  line: 2
+                  name: decimal
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 2
+                  literal_type: int
+                  value: 0,
+            InitDeclarator
+              line: 2
+              declarator:
+                Declarator
+                  line: 2
+                  name: d1
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 2
+                  literal_type: int
+                  value: 7,
+            InitDeclarator
+              line: 2
+              declarator:
+                Declarator
+                  line: 2
+                  name: d2
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 2
+                  literal_type: int
+                  value: 1234567890,
+          ],
+      Declaration
+        line: 3
+        type_spec:
+          TypeSpecifier
+            line: 3
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 3
+              declarator:
+                Declarator
+                  line: 3
+                  name: hex_lower
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 3
+                  literal_type: int
+                  value: 255,
+            InitDeclarator
+              line: 3
+              declarator:
+                Declarator
+                  line: 3
+                  name: hex_upper
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 3
+                  literal_type: int
+                  value: 255,
+            InitDeclarator
+              line: 3
+              declarator:
+                Declarator
+                  line: 3
+                  name: hex_mixed
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 3
+                  literal_type: int
+                  value: 3735928559,
+          ],
+      Declaration
+        line: 4
+        type_spec:
+          TypeSpecifier
+            line: 4
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 4
+              declarator:
+                Declarator
+                  line: 4
+                  name: binary
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 4
+                  literal_type: int
+                  value: 11,
+            InitDeclarator
+              line: 4
+              declarator:
+                Declarator
+                  line: 4
+                  name: binary_upper
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 4
+                  literal_type: int
+                  value: 3,
+          ],
+      Declaration
+        line: 5
+        type_spec:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 5
+              declarator:
+                Declarator
+                  line: 5
+                  name: octal
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 5
+                  literal_type: int
+                  value: 15,
+            InitDeclarator
+              line: 5
+              declarator:
+                Declarator
+                  line: 5
+                  name: octal_zero_zero
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 5
+                  literal_type: int
+                  value: 0,
+            InitDeclarator
+              line: 5
+              declarator:
+                Declarator
+                  line: 5
+                  name: octal_big
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 5
+                  literal_type: int
+                  value: 511,
+          ],
+      Declaration
+        line: 7
+        type_spec:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s1
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s2
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s3
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s4
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s5
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s6
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s7
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s8
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s9
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 45,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: s10
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 7
+                  literal_type: int
+                  value: 31,
+          ],
+      Declaration
+        line: 9
+        type_spec:
+          TypeSpecifier
+            line: 9
+            name: float
+        declarators:
+          [
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f1
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 3.14,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f2
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 0.5,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f3
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 5.0,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f4
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 1000.0,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f5
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 0.25,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f6
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 100.0,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f7
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 1.5,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f8
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 2.0,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f9
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 300.0,
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: f10
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: float
+                  value: 0.0,
+          ],
+      Declaration
+        line: 10
+        type_spec:
+          TypeSpecifier
+            line: 10
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 10
+              declarator:
+                Declarator
+                  line: 10
+                  name: a
+                  kind_name: variable
+              initializer:
+                BinaryOp
+                  line: 10
+                  operator: +
+                  left:
+                    Literal
+                      line: 10
+                      literal_type: int
+                      value: 1
+                  right:
+                    Literal
+                      line: 10
+                      literal_type: int
+                      value: 2,
+            InitDeclarator
+              line: 10
+              declarator:
+                Declarator
+                  line: 10
+                  name: b
+                  kind_name: variable
+              initializer:
+                BinaryOp
+                  line: 10
+                  operator: -
+                  left:
+                    Literal
+                      line: 10
+                      literal_type: int
+                      value: 3
+                  right:
+                    Literal
+                      line: 10
+                      literal_type: int
+                      value: 4,
+            InitDeclarator
+              line: 10
+              declarator:
+                Declarator
+                  line: 10
+                  name: c
+                  kind_name: variable
+              initializer:
+                BinaryOp
+                  line: 10
+                  operator: *
+                  left:
+                    Literal
+                      line: 10
+                      literal_type: int
+                      value: 5
+                  right:
+                    Literal
+                      line: 10
+                      literal_type: int
+                      value: 6,
+          ],
+      FunctionDefinition
+        line: 11
+        return_type:
+          TypeSpecifier
+            line: 11
+            name: int
+        declarator:
+          Declarator
+            line: 11
+            name: main
+            kind_name: function
+        body:
+          CompoundStatement
+            line: 11
+            items:
+              [
+                ReturnStatement
+                  line: 11
+                  value:
+                    Literal
+                      line: 11
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  name             type   size  offset  line
+  ---------------  -----  ----  ------  ----
+  decimal          int    4     0       2   
+  d1               int    4     4       2   
+  d2               int    4     8       2   
+  hex_lower        int    4     12      3   
+  hex_upper        int    4     16      3   
+  hex_mixed        int    4     20      3   
+  binary           int    4     24      4   
+  binary_upper     int    4     28      4   
+  octal            int    4     32      5   
+  octal_zero_zero  int    4     36      5   
+  octal_big        int    4     40      5   
+  s1               int    4     44      7   
+  s2               int    4     48      7   
+  s3               int    4     52      7   
+  s4               int    4     56      7   
+  s5               int    4     60      7   
+  s6               int    4     64      7   
+  s7               int    4     68      7   
+  s8               int    4     72      7   
+  s9               int    4     76      7   
+  s10              int    4     80      7   
+  f1               float  4     84      9   
+  f2               float  4     88      9   
+  f3               float  4     92      9   
+  f4               float  4     96      9   
+  f5               float  4     100     9   
+  f6               float  4     104     9   
+  f7               float  4     108     9   
+  f8               float  4     112     9   
+  f9               float  4     116     9   
+  f10              float  4     120     9   
+  a                int    4     124     10  
+  b                int    4     128     10  
+  c                int    4     132     10  
+
+Functions
+  name  signature  frame  defined  line
+  ----  ---------  -----  -------  ----
+  main  () -> int  0      yes      11  
+
+Function main: parameters and locals (frame size 0 bytes)
+  (none)
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+.data
+global decimal : int = 0
+global d1 : int = 7
+global d2 : int = 1234567890
+global hex_lower : int = 255
+global hex_upper : int = 255
+global hex_mixed : int = -559038737
+global binary : int = 11
+global binary_upper : int = 3
+global octal : int = 15
+global octal_zero_zero : int = 0
+global octal_big : int = 511
+global s1 : int = 45
+global s2 : int = 45
+global s3 : int = 45
+global s4 : int = 45
+global s5 : int = 45
+global s6 : int = 45
+global s7 : int = 45
+global s8 : int = 45
+global s9 : int = 45
+global s10 : int = 31
+global f1 : float = 3.140000104904175
+global f2 : float = 0.5
+global f3 : float = 5.0
+global f4 : float = 1000.0
+global f5 : float = 0.25
+global f6 : float = 100.0
+global f7 : float = 1.5
+global f8 : float = 2.0
+global f9 : float = 300.0
+global f10 : float = 0.0
+global a : int = 3
+global b : int = -1
+global c : int = 30
+.text
+func main() : int
+    return 0
+endfunc
+######## run

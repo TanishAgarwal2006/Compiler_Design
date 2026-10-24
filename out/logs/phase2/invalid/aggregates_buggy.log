@@ -1,0 +1,110 @@
+######## --all
+test/phase2_syntax/invalid/aggregates_buggy.c:12: syntax error: unexpected token ';'
+    12 | ;
+test/phase2_syntax/invalid/aggregates_buggy.c:16: syntax error: unexpected token 'int' (is a ';' missing at the end of line 16?)
+    16 |     int x1
+test/phase2_syntax/invalid/aggregates_buggy.c:18: syntax error: unexpected token ';'
+    18 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:21: syntax error: unexpected token 'BLUE'
+    21 | enum T03_Color { RED, GREEN BLUE };
+test/phase2_syntax/invalid/aggregates_buggy.c:25: syntax error: unexpected token 'float' (is a ';' missing at the end of line 25?)
+    25 |     int i
+test/phase2_syntax/invalid/aggregates_buggy.c:27: syntax error: unexpected token ';'
+    27 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:30: syntax error: unexpected token '{'
+    30 | class T05_Bad : {
+test/phase2_syntax/invalid/aggregates_buggy.c:32: syntax error: unexpected token ';'
+    32 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:35: syntax error: unexpected token '{'
+    35 | class T06_Bad2 : public {
+test/phase2_syntax/invalid/aggregates_buggy.c:37: syntax error: unexpected token ';'
+    37 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:41: syntax error: unexpected token 'public' (is a ';' missing at the end of line 41?)
+    41 |    anything inside a class/struct/union body, not here */
+test/phase2_syntax/invalid/aggregates_buggy.c:48: syntax error: unexpected token '{'
+    48 |     T08_Widget(int w, int h {
+test/phase2_syntax/invalid/aggregates_buggy.c:51: syntax error: unexpected token ';'
+    51 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:51: syntax error: unexpected token '}'
+    51 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:56: syntax error: unexpected token '('
+    56 |     ~() {
+test/phase2_syntax/invalid/aggregates_buggy.c:59: syntax error: unexpected token ';'
+    59 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:59: syntax error: unexpected token '}'
+    59 | };
+17 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/aggregates_buggy.c:12: syntax error: unexpected token ';'
+    12 | ;
+test/phase2_syntax/invalid/aggregates_buggy.c:16: syntax error: unexpected token 'int' (is a ';' missing at the end of line 16?)
+    16 |     int x1
+test/phase2_syntax/invalid/aggregates_buggy.c:18: syntax error: unexpected token ';'
+    18 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:21: syntax error: unexpected token 'BLUE'
+    21 | enum T03_Color { RED, GREEN BLUE };
+test/phase2_syntax/invalid/aggregates_buggy.c:25: syntax error: unexpected token 'float' (is a ';' missing at the end of line 25?)
+    25 |     int i
+test/phase2_syntax/invalid/aggregates_buggy.c:27: syntax error: unexpected token ';'
+    27 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:30: syntax error: unexpected token '{'
+    30 | class T05_Bad : {
+test/phase2_syntax/invalid/aggregates_buggy.c:32: syntax error: unexpected token ';'
+    32 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:35: syntax error: unexpected token '{'
+    35 | class T06_Bad2 : public {
+test/phase2_syntax/invalid/aggregates_buggy.c:37: syntax error: unexpected token ';'
+    37 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:41: syntax error: unexpected token 'public' (is a ';' missing at the end of line 41?)
+    41 |    anything inside a class/struct/union body, not here */
+test/phase2_syntax/invalid/aggregates_buggy.c:48: syntax error: unexpected token '{'
+    48 |     T08_Widget(int w, int h {
+test/phase2_syntax/invalid/aggregates_buggy.c:51: syntax error: unexpected token ';'
+    51 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:51: syntax error: unexpected token '}'
+    51 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:56: syntax error: unexpected token '('
+    56 |     ~() {
+test/phase2_syntax/invalid/aggregates_buggy.c:59: syntax error: unexpected token ';'
+    59 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:59: syntax error: unexpected token '}'
+    59 | };
+17 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/aggregates_buggy.c:12: syntax error: unexpected token ';'
+    12 | ;
+test/phase2_syntax/invalid/aggregates_buggy.c:16: syntax error: unexpected token 'int' (is a ';' missing at the end of line 16?)
+    16 |     int x1
+test/phase2_syntax/invalid/aggregates_buggy.c:18: syntax error: unexpected token ';'
+    18 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:21: syntax error: unexpected token 'BLUE'
+    21 | enum T03_Color { RED, GREEN BLUE };
+test/phase2_syntax/invalid/aggregates_buggy.c:25: syntax error: unexpected token 'float' (is a ';' missing at the end of line 25?)
+    25 |     int i
+test/phase2_syntax/invalid/aggregates_buggy.c:27: syntax error: unexpected token ';'
+    27 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:30: syntax error: unexpected token '{'
+    30 | class T05_Bad : {
+test/phase2_syntax/invalid/aggregates_buggy.c:32: syntax error: unexpected token ';'
+    32 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:35: syntax error: unexpected token '{'
+    35 | class T06_Bad2 : public {
+test/phase2_syntax/invalid/aggregates_buggy.c:37: syntax error: unexpected token ';'
+    37 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:41: syntax error: unexpected token 'public' (is a ';' missing at the end of line 41?)
+    41 |    anything inside a class/struct/union body, not here */
+test/phase2_syntax/invalid/aggregates_buggy.c:48: syntax error: unexpected token '{'
+    48 |     T08_Widget(int w, int h {
+test/phase2_syntax/invalid/aggregates_buggy.c:51: syntax error: unexpected token ';'
+    51 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:51: syntax error: unexpected token '}'
+    51 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:56: syntax error: unexpected token '('
+    56 |     ~() {
+test/phase2_syntax/invalid/aggregates_buggy.c:59: syntax error: unexpected token ';'
+    59 | };
+test/phase2_syntax/invalid/aggregates_buggy.c:59: syntax error: unexpected token '}'
+    59 | };
+17 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

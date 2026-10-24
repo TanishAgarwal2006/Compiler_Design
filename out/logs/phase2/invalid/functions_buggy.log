@@ -1,0 +1,44 @@
+######## --all
+test/phase2_syntax/invalid/functions_buggy.c:10: syntax error: unexpected token '('
+    10 | missing_return_type() {
+test/phase2_syntax/invalid/functions_buggy.c:15: syntax error: unexpected token ')'
+    15 | int t02_trailing_comma_param(int a, ) {
+test/phase2_syntax/invalid/functions_buggy.c:20: syntax error: unexpected token 'a'
+    20 | int t03_untyped_param(a, int b) {
+test/phase2_syntax/invalid/functions_buggy.c:26: syntax error: unexpected token '...'
+    26 | int t04_ellipsis_with_no_params(...) {
+test/phase2_syntax/invalid/functions_buggy.c:31: syntax error: unexpected token '{'
+    31 | int t05_missing_close_paren(int a, int b {
+test/phase2_syntax/invalid/functions_buggy.c:43: syntax error: unexpected end of file, a '}' or ';' is probably missing
+    43 | 
+6 errors found. No output was produced.
+######## --semantic
+test/phase2_syntax/invalid/functions_buggy.c:10: syntax error: unexpected token '('
+    10 | missing_return_type() {
+test/phase2_syntax/invalid/functions_buggy.c:15: syntax error: unexpected token ')'
+    15 | int t02_trailing_comma_param(int a, ) {
+test/phase2_syntax/invalid/functions_buggy.c:20: syntax error: unexpected token 'a'
+    20 | int t03_untyped_param(a, int b) {
+test/phase2_syntax/invalid/functions_buggy.c:26: syntax error: unexpected token '...'
+    26 | int t04_ellipsis_with_no_params(...) {
+test/phase2_syntax/invalid/functions_buggy.c:31: syntax error: unexpected token '{'
+    31 | int t05_missing_close_paren(int a, int b {
+test/phase2_syntax/invalid/functions_buggy.c:43: syntax error: unexpected end of file, a '}' or ';' is probably missing
+    43 | 
+6 errors found. No output was produced.
+######## --tac
+test/phase2_syntax/invalid/functions_buggy.c:10: syntax error: unexpected token '('
+    10 | missing_return_type() {
+test/phase2_syntax/invalid/functions_buggy.c:15: syntax error: unexpected token ')'
+    15 | int t02_trailing_comma_param(int a, ) {
+test/phase2_syntax/invalid/functions_buggy.c:20: syntax error: unexpected token 'a'
+    20 | int t03_untyped_param(a, int b) {
+test/phase2_syntax/invalid/functions_buggy.c:26: syntax error: unexpected token '...'
+    26 | int t04_ellipsis_with_no_params(...) {
+test/phase2_syntax/invalid/functions_buggy.c:31: syntax error: unexpected token '{'
+    31 | int t05_missing_close_paren(int a, int b {
+test/phase2_syntax/invalid/functions_buggy.c:43: syntax error: unexpected end of file, a '}' or ';' is probably missing
+    43 | 
+6 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)
