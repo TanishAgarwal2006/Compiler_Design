@@ -1,0 +1,73 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+f                         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+f                    function     int        global                 params: (void)      
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 2
+        return_type:
+          TypeSpecifier
+            line: 2
+            name: int
+        declarator:
+          Declarator
+            line: 2
+            name: f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 2
+                  type_spec:
+                    TypeSpecifier
+                      line: 2
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 2
+            items:
+              [
+                ReturnStatement
+                  line: 3
+                  value:
+                    Literal
+                      line: 3
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/declarations/missing_main_buggy.c:1: semantic error: no 'main' function defined
+     1 | // Expected error: no 'main' function defined
+1 error found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/declarations/missing_main_buggy.c:1: semantic error: no 'main' function defined
+     1 | // Expected error: no 'main' function defined
+1 error found. No output was produced.
+######## run
+(not compiled: see the errors above)

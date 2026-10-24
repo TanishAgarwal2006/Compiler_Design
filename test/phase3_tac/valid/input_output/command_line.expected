@@ -1,0 +1,6 @@
+argc=5
+arg 1: 12 first=1
+arg 2: -5 first=-
+arg 3: abc first=a
+arg 4: 7 first=7
+total=14

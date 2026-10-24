@@ -1,0 +1,794 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+arg_type_mismatch_f       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_arg_type_mismatch     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+b                         ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+return                    RETURN                   
+arg_type_mismatch_f       FUNCTION_NAME            
+(                         LPAREN                   
+b                         ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+call_too_many_args_f      FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_call_too_many_args    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+call_too_many_args_f      FUNCTION_NAME            
+(                         LPAREN                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_call_undeclared_function FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+foo                       FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+missing_return_value_f    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_missing_return_value  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+missing_return_value_f    FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+return_type_mismatch_f    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+"hi"                      STRING_LITERAL           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_return_type_mismatch  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+return_type_mismatch_f    FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+void                      VOID                     
+return_value_in_void_f    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_return_value_in_void  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return_value_in_void_f    FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+wrong_arg_count_f         FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_wrong_arg_count       FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+wrong_arg_count_f         FUNCTION_NAME            
+(                         LPAREN                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    parameter    int        function:arg_type_mismatch_f                     
+arg_type_mismatch_f  function     int        global                 params: (int)       
+b                    array        int        function:bug_arg_type_mismatch dims: [2]           
+bug_arg_type_mismatch function     int        global                 params: (void)      
+bug_call_too_many_args function     int        global                 params: (void)      
+bug_call_undeclared_function function     int        global                 params: (void)      
+bug_missing_return_value function     int        global                 params: (void)      
+bug_return_type_mismatch function     int        global                 params: (void)      
+bug_return_value_in_void function     int        global                 params: (void)      
+bug_wrong_arg_count  function     int        global                 params: (void)      
+call_too_many_args_f function     int        global                 params: (int)       
+foo                  function     int        function:bug_call_undeclared_function                     
+main                 function     int        global                 params: (void)      
+missing_return_value_f function     int        global                 params: (void)      
+return_type_mismatch_f function     int        global                 params: (void)      
+return_value_in_void_f function     void       global                 params: (void)      
+wrong_arg_count_f    function     int        global                 params: (int)       
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: arg_type_mismatch_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 6
+                      name: a
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                ReturnStatement
+                  line: 6
+                  value:
+                    Identifier
+                      line: 6
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 7
+        return_type:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarator:
+          Declarator
+            line: 7
+            name: bug_arg_type_mismatch
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 7
+            items:
+              [
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: b
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 8
+                                  size:
+                                    Literal
+                                      line: 8
+                                      literal_type: int
+                                      value: 2,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 9
+                  value:
+                    FunctionCall
+                      line: 9
+                      callee:
+                        Identifier
+                          line: 9
+                          name: arg_type_mismatch_f
+                      args:
+                        [
+                          Identifier
+                            line: 9
+                            name: b,
+                        ],
+              ],
+      FunctionDefinition
+        line: 13
+        return_type:
+          TypeSpecifier
+            line: 13
+            name: int
+        declarator:
+          Declarator
+            line: 13
+            name: call_too_many_args_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 13
+                  type_spec:
+                    TypeSpecifier
+                      line: 13
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 13
+                      name: a
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 13
+            items:
+              [
+                ReturnStatement
+                  line: 13
+                  value:
+                    Identifier
+                      line: 13
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 13
+        return_type:
+          TypeSpecifier
+            line: 13
+            name: int
+        declarator:
+          Declarator
+            line: 13
+            name: bug_call_too_many_args
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 13
+                  type_spec:
+                    TypeSpecifier
+                      line: 13
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 13
+            items:
+              [
+                ReturnStatement
+                  line: 13
+                  value:
+                    FunctionCall
+                      line: 13
+                      callee:
+                        Identifier
+                          line: 13
+                          name: call_too_many_args_f
+                      args:
+                        [
+                          Literal
+                            line: 13
+                            literal_type: int
+                            value: 1,
+                          Literal
+                            line: 13
+                            literal_type: int
+                            value: 2,
+                        ],
+              ],
+      FunctionDefinition
+        line: 16
+        return_type:
+          TypeSpecifier
+            line: 16
+            name: int
+        declarator:
+          Declarator
+            line: 16
+            name: bug_call_undeclared_function
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 16
+                  type_spec:
+                    TypeSpecifier
+                      line: 16
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 16
+            items:
+              [
+                ExpressionStatement
+                  line: 17
+                  expression:
+                    FunctionCall
+                      line: 17
+                      callee:
+                        Identifier
+                          line: 17
+                          name: foo,
+                ReturnStatement
+                  line: 18
+                  value:
+                    Literal
+                      line: 18
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 22
+        return_type:
+          TypeSpecifier
+            line: 22
+            name: int
+        declarator:
+          Declarator
+            line: 22
+            name: missing_return_value_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 22
+                  type_spec:
+                    TypeSpecifier
+                      line: 22
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 22
+            items:
+              [
+                ReturnStatement
+                  line: 23,
+              ],
+      FunctionDefinition
+        line: 25
+        return_type:
+          TypeSpecifier
+            line: 25
+            name: int
+        declarator:
+          Declarator
+            line: 25
+            name: bug_missing_return_value
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 25
+                  type_spec:
+                    TypeSpecifier
+                      line: 25
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 25
+            items:
+              [
+                ReturnStatement
+                  line: 26
+                  value:
+                    FunctionCall
+                      line: 26
+                      callee:
+                        Identifier
+                          line: 26
+                          name: missing_return_value_f,
+              ],
+      FunctionDefinition
+        line: 30
+        return_type:
+          TypeSpecifier
+            line: 30
+            name: int
+        declarator:
+          Declarator
+            line: 30
+            name: return_type_mismatch_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 30
+                  type_spec:
+                    TypeSpecifier
+                      line: 30
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 30
+            items:
+              [
+                ReturnStatement
+                  line: 31
+                  value:
+                    Literal
+                      line: 31
+                      literal_type: string
+                      value: "hi",
+              ],
+      FunctionDefinition
+        line: 33
+        return_type:
+          TypeSpecifier
+            line: 33
+            name: int
+        declarator:
+          Declarator
+            line: 33
+            name: bug_return_type_mismatch
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 33
+                  type_spec:
+                    TypeSpecifier
+                      line: 33
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 33
+            items:
+              [
+                ReturnStatement
+                  line: 34
+                  value:
+                    FunctionCall
+                      line: 34
+                      callee:
+                        Identifier
+                          line: 34
+                          name: return_type_mismatch_f,
+              ],
+      FunctionDefinition
+        line: 38
+        return_type:
+          TypeSpecifier
+            line: 38
+            name: void
+        declarator:
+          Declarator
+            line: 38
+            name: return_value_in_void_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 38
+                  type_spec:
+                    TypeSpecifier
+                      line: 38
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 38
+            items:
+              [
+                ReturnStatement
+                  line: 39
+                  value:
+                    Literal
+                      line: 39
+                      literal_type: int
+                      value: 1,
+              ],
+      FunctionDefinition
+        line: 41
+        return_type:
+          TypeSpecifier
+            line: 41
+            name: int
+        declarator:
+          Declarator
+            line: 41
+            name: bug_return_value_in_void
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 41
+                  type_spec:
+                    TypeSpecifier
+                      line: 41
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 41
+            items:
+              [
+                ExpressionStatement
+                  line: 42
+                  expression:
+                    FunctionCall
+                      line: 42
+                      callee:
+                        Identifier
+                          line: 42
+                          name: return_value_in_void_f,
+                ReturnStatement
+                  line: 43
+                  value:
+                    Literal
+                      line: 43
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 47
+        return_type:
+          TypeSpecifier
+            line: 47
+            name: int
+        declarator:
+          Declarator
+            line: 47
+            name: wrong_arg_count_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 47
+                  type_spec:
+                    TypeSpecifier
+                      line: 47
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 47
+                      name: a
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 47
+            items:
+              [
+                ReturnStatement
+                  line: 47
+                  value:
+                    Identifier
+                      line: 47
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 48
+        return_type:
+          TypeSpecifier
+            line: 48
+            name: int
+        declarator:
+          Declarator
+            line: 48
+            name: bug_wrong_arg_count
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 48
+                  type_spec:
+                    TypeSpecifier
+                      line: 48
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 48
+            items:
+              [
+                ReturnStatement
+                  line: 49
+                  value:
+                    FunctionCall
+                      line: 49
+                      callee:
+                        Identifier
+                          line: 49
+                          name: wrong_arg_count_f
+                      args:
+                        [
+                          Literal
+                            line: 49
+                            literal_type: int
+                            value: 1,
+                          Literal
+                            line: 49
+                            literal_type: int
+                            value: 2,
+                        ],
+              ],
+      FunctionDefinition
+        line: 52
+        return_type:
+          TypeSpecifier
+            line: 52
+            name: int
+        declarator:
+          Declarator
+            line: 52
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 52
+                  type_spec:
+                    TypeSpecifier
+                      line: 52
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 52
+            items:
+              [
+                ReturnStatement
+                  line: 52
+                  value:
+                    Literal
+                      line: 52
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/functions/functions_buggy.c:9: semantic error: argument 1 of 'arg_type_mismatch_f': cannot pass int[2] where int is expected
+     9 |     return arg_type_mismatch_f(b);
+test/phase3_tac/invalid/functions/functions_buggy.c:13: semantic error: function 'call_too_many_args_f' expects 1 argument(s) but 2 were given
+    13 | int call_too_many_args_f(int a) { return a; } int bug_call_too_many_args(void) { return call_too_many_args_f(1, 2); }
+test/phase3_tac/invalid/functions/functions_buggy.c:17: semantic error: call to undeclared function 'foo'
+    17 |     foo();
+test/phase3_tac/invalid/functions/functions_buggy.c:23: semantic error: non-void function 'missing_return_value_f' should return a value
+    23 |     return;
+test/phase3_tac/invalid/functions/functions_buggy.c:31: semantic error: cannot return a value of type char* from function 'return_type_mismatch_f' returning int
+    31 |     return "hi";
+test/phase3_tac/invalid/functions/functions_buggy.c:39: semantic error: void function 'return_value_in_void_f' should not return a value
+    39 |     return 1;
+test/phase3_tac/invalid/functions/functions_buggy.c:49: semantic error: function 'wrong_arg_count_f' expects 1 argument(s) but 2 were given
+    49 |     return wrong_arg_count_f(1, 2);
+7 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/functions/functions_buggy.c:9: semantic error: argument 1 of 'arg_type_mismatch_f': cannot pass int[2] where int is expected
+     9 |     return arg_type_mismatch_f(b);
+test/phase3_tac/invalid/functions/functions_buggy.c:13: semantic error: function 'call_too_many_args_f' expects 1 argument(s) but 2 were given
+    13 | int call_too_many_args_f(int a) { return a; } int bug_call_too_many_args(void) { return call_too_many_args_f(1, 2); }
+test/phase3_tac/invalid/functions/functions_buggy.c:17: semantic error: call to undeclared function 'foo'
+    17 |     foo();
+test/phase3_tac/invalid/functions/functions_buggy.c:23: semantic error: non-void function 'missing_return_value_f' should return a value
+    23 |     return;
+test/phase3_tac/invalid/functions/functions_buggy.c:31: semantic error: cannot return a value of type char* from function 'return_type_mismatch_f' returning int
+    31 |     return "hi";
+test/phase3_tac/invalid/functions/functions_buggy.c:39: semantic error: void function 'return_value_in_void_f' should not return a value
+    39 |     return 1;
+test/phase3_tac/invalid/functions/functions_buggy.c:49: semantic error: function 'wrong_arg_count_f' expects 1 argument(s) but 2 were given
+    49 |     return wrong_arg_count_f(1, 2);
+7 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

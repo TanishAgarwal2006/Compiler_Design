@@ -1,0 +1,329 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+i                         VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+s                         VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+until                     UNTIL                    
+(                         LPAREN                   
+i                         VARIABLE_NAME            
+==                        EQ                       
+5                         INTEGER_CONSTANT         
+)                         RPAREN                   
+{                         LBRACE                   
+s                         VARIABLE_NAME            
++=                        PLUS_ASSIGN              
+i                         VARIABLE_NAME            
+;                         SEMI                     
+i                         VARIABLE_NAME            
+++                        INCREMENT                
+;                         SEMI                     
+}                         RBRACE                   
+do                        DO                       
+{                         LBRACE                   
+s                         VARIABLE_NAME            
++=                        PLUS_ASSIGN              
+10                        INTEGER_CONSTANT         
+;                         SEMI                     
+i                         VARIABLE_NAME            
+--                        DECREMENT                
+;                         SEMI                     
+}                         RBRACE                   
+until                     UNTIL                    
+(                         LPAREN                   
+i                         VARIABLE_NAME            
+<=                        LE                       
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+s                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+i                    variable     int        function:main                              
+main                 function     int        global                 params: (void)      
+printf               function     int        global                 params: (format, ...)
+s                    variable     int        function:main                              
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                Declaration
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: i
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 7
+                            literal_type: int
+                            value: 0,
+                    ],
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: s
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 8
+                            literal_type: int
+                            value: 0,
+                    ],
+                UntilStatement
+                  line: 9
+                  condition:
+                    BinaryOp
+                      line: 9
+                      operator: ==
+                      left:
+                        Identifier
+                          line: 9
+                          name: i
+                      right:
+                        Literal
+                          line: 9
+                          literal_type: int
+                          value: 5
+                  body:
+                    CompoundStatement
+                      line: 9
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 10
+                            expression:
+                              Assignment
+                                line: 10
+                                operator: +=
+                                target:
+                                  Identifier
+                                    line: 10
+                                    name: s
+                                value:
+                                  Identifier
+                                    line: 10
+                                    name: i,
+                          ExpressionStatement
+                            line: 11
+                            expression:
+                              UnaryOp
+                                line: 11
+                                operator: ++
+                                operand:
+                                  Identifier
+                                    line: 11
+                                    name: i
+                                position: postfix,
+                        ],
+                DoUntilStatement
+                  line: 13
+                  body:
+                    CompoundStatement
+                      line: 13
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 14
+                            expression:
+                              Assignment
+                                line: 14
+                                operator: +=
+                                target:
+                                  Identifier
+                                    line: 14
+                                    name: s
+                                value:
+                                  Literal
+                                    line: 14
+                                    literal_type: int
+                                    value: 10,
+                          ExpressionStatement
+                            line: 15
+                            expression:
+                              UnaryOp
+                                line: 15
+                                operator: --
+                                operand:
+                                  Identifier
+                                    line: 15
+                                    name: i
+                                position: postfix,
+                        ]
+                  condition:
+                    BinaryOp
+                      line: 16
+                      operator: <=
+                      left:
+                        Identifier
+                          line: 16
+                          name: i
+                      right:
+                        Literal
+                          line: 16
+                          literal_type: int
+                          value: 2,
+                ExpressionStatement
+                  line: 17
+                  expression:
+                    FunctionCall
+                      line: 17
+                      callee:
+                        Identifier
+                          line: 17
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 17
+                            literal_type: string
+                            value: "%d\n",
+                          Identifier
+                            line: 17
+                            name: s,
+                        ],
+                ReturnStatement
+                  line: 18
+                  value:
+                    Literal
+                      line: 18
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  (none)
+
+Functions
+  name  signature  frame  defined  line
+  ----  ---------  -----  -------  ----
+  main  () -> int  8      yes      6   
+
+Function main: parameters and locals (frame size 8 bytes)
+  ir name  source  kind   type  size  offset  line
+  -------  ------  -----  ----  ----  ------  ----
+  i        i       local  int   4     0       7   
+  s        s       local  int   4     4       8   
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+.data
+str0: "\n"
+.text
+func main() : int
+    local int i
+    local int s
+    temp t1:int, t2:int, t3:int, t4:int
+    i = 0
+    s = 0
+L1:
+    if i == 5 goto L3
+    goto L2
+L2:
+    t1 = s + i
+    s = t1
+    t2 = i + 1
+    i = t2
+    goto L1
+L3:
+L4:
+    t3 = s + 10
+    s = t3
+    t4 = i - 1
+    i = t4
+L5:
+    if i <= 2 goto L6
+    goto L4
+L6:
+    param s
+    call print_int, 1
+    param str0
+    call print_str, 1
+    return 0
+endfunc
+######## run
+40

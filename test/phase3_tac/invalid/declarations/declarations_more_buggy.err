@@ -1,0 +1,8 @@
+unknown enum 'Nope'
+braces around scalar initializer of 'x'
+'bug_name_clash' redeclared as a different kind of symbol
+parameter cannot have type void
+parameter name omitted in definition of 'bug_unnamed_param'
+duplicate parameter 'a'
+function 'bug_function_returns_array' cannot return an array
+redeclaration of 'taken'

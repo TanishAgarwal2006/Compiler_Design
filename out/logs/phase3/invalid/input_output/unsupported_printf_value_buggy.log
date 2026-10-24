@@ -1,0 +1,131 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+n                         VARIABLE_NAME            
+=                         ASSIGN                   
+printf                    PRINTF                   
+(                         LPAREN                   
+"hi\n"                    STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+main                 function     int        global                 params: (void)      
+n                    variable     int        function:main                              
+printf               function     int        global                 params: (format, ...)
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 4
+        return_type:
+          TypeSpecifier
+            line: 4
+            name: int
+        declarator:
+          Declarator
+            line: 4
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 4
+                  type_spec:
+                    TypeSpecifier
+                      line: 4
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 4
+            items:
+              [
+                Declaration
+                  line: 5
+                  type_spec:
+                    TypeSpecifier
+                      line: 5
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 5
+                        declarator:
+                          Declarator
+                            line: 5
+                            name: n
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 5
+                            callee:
+                              Identifier
+                                line: 5
+                                name: printf
+                            args:
+                              [
+                                Literal
+                                  line: 5
+                                  literal_type: string
+                                  value: "hi\n",
+                              ],
+                    ],
+                ReturnStatement
+                  line: 6
+                  value:
+                    Literal
+                      line: 6
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  (none)
+
+Functions
+  name  signature  frame  defined  line
+  ----  ---------  -----  -------  ----
+  main  () -> int  4      yes      4   
+
+Function main: parameters and locals (frame size 4 bytes)
+  ir name  source  kind   type  size  offset  line
+  -------  ------  -----  ----  ----  ------  ----
+  n        n       local  int   4     0       5   
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+test/phase3_tac/invalid/input_output/unsupported_printf_value_buggy.c:5: semantic error: unsupported feature: using the value returned by printf
+     5 |     int n = printf("hi\n");
+1 error found. No output was produced.
+######## run
+(not compiled: see the errors above)

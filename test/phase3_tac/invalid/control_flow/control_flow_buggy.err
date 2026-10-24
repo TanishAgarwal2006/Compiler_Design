@@ -1,0 +1,9 @@
+'break' outside a loop or switch
+case value must be a constant expression
+'continue' outside a loop
+'continue' outside a loop
+duplicate case value 1
+duplicate 'default'
+duplicate label 'again'
+goto to undefined label 'nowhere'
+goto to undefined label 'L'

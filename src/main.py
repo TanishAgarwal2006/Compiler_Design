@@ -1,22 +1,23 @@
+"""Compiler driver: C source in, three-address-code (IR) file out.
+
+    python3 src/main.py prog.c -o prog.ir     compile to an IR file
+    python3 src/main.py prog.c --tac          print the IR
+    python3 src/main.py prog.c --tokens --ast --symbols --semantic   show a stage
+
+Exit code 0 = success, 1 = the program has an error (printed to stderr, no IR written).
+"""
+import argparse
+import os
 import sys
 
 from phase1_lexical_analysis.lexer import build_lexer
 from phase2_syntax_analysis.ast_nodes import format_ast
 from phase2_syntax_analysis.parser import parse_source
-from common.errors import clear_errors, lex_errors, syntax_errors
+from common.errors import clear_errors, lex_errors, syntax_errors, semantic_errors, format_errors
 from common.symbol_classifier import format_enriched_token_table, format_symbol_table
-from common.logger import write_case_logs
-
-def read_source(filename: str) -> str:
-    try:
-        with open(filename, "r", encoding="utf-8") as source_file:
-            return source_file.read()
-    except FileNotFoundError:
-        print(f"Error: The file '{filename}' was not found.")
-        sys.exit(1)
-    except OSError as exc:
-        print(f"Error reading file '{filename}': {exc}")
-        sys.exit(1)
+from phase3_intermediate_code.semantic_analyzer import analyze, format_semantic
+from phase3_intermediate_code.ir_generator import generate, GenError
+from phase3_intermediate_code.tac import format_module
 
 
 def tokenize_source(code: str):
@@ -50,103 +51,87 @@ def tokenize_source(code: str):
     return token_rows
 
 
-def print_errors() -> None:
-    if lex_errors:
-        print("--- Lexical Errors Detected ---")
-        for err in lex_errors:
-            print(err)
-    if syntax_errors:
-        print("--- Syntax Errors Detected ---")
-        for err in syntax_errors:
-            print(err)
+def fail(filename: str, code: str) -> None:
+    print(format_errors(filename, code), file=sys.stderr)
+    sys.exit(1)
 
 
 def main() -> None:
-    if len(sys.argv) < 2:
-        print("Usage: python src/main.py <source_file> [--tokens] [--ast] [--symbols] [--all] [--ast-file <file>]")
-        sys.exit(1)
+    ap = argparse.ArgumentParser(description="Toy C compiler front end (C subset -> three-address code)")
+    ap.add_argument("source", help="C source file")
+    ap.add_argument("-o", dest="ir_path", metavar="FILE.ir", help="write the IR to this file (implies --tac)")
+    for flag, text in (("tokens", "print the token table"), ("ast", "print the syntax tree"),
+                       ("symbols", "print the symbol report"), ("semantic", "print the scoped symbol table"),
+                       ("tac", "generate IR (printed unless -o is given)"), ("all", "tokens + ast + symbols")):
+        ap.add_argument("--" + flag, action="store_true", help=text)
+    a = ap.parse_args()
 
-    filename = sys.argv[1]
-    raw_args = sys.argv[2:]
-    flags = set()
-    ast_file_path = None
+    try:
+        with open(a.source, encoding="utf-8") as f:
+            code = f.read()
+    except OSError as exc:
+        sys.exit(f"cannot read '{a.source}': {exc.strerror}")
 
-    idx = 0
-    while idx < len(raw_args):
-        arg = raw_args[idx]
-        if arg == "--ast-file" and idx + 1 < len(raw_args):
-            ast_file_path = raw_args[idx + 1]
-            flags.add("--ast")
-            idx += 2
-        else:
-            flags.add(arg)
-            idx += 1
+    run_tac = a.tac or bool(a.ir_path)
+    shown = a.tokens or a.ast or a.symbols or a.semantic or a.all
+    show_tokens = a.tokens or a.all or not (shown or run_tac)
+    show_ast, show_symbols = a.ast or a.all, a.symbols or a.all
+    run_semantic = a.semantic or run_tac
 
-    if "--all" in flags:
-        flags.update({"--tokens", "--ast", "--symbols"})
-
-    show_tokens = "--tokens" in flags or not flags
-    show_ast = "--ast" in flags
-    show_symbols = "--symbols" in flags
-
-    code = read_source(filename)
     clear_errors()
-
     token_rows = tokenize_source(code)
     if lex_errors:
-        err_msg = "\n".join(lex_errors)
-        write_case_logs(filename, errors_str=err_msg)
-        print_errors()
-        sys.exit(1)
-
+        fail(a.source, code)
+    if a.tokens and not (a.all or show_ast or show_symbols or run_semantic or run_tac):
+        # Phase 1 on its own: tokens only, the parser is not run.
+        print("Token table (lexical analysis):")
+        print("=" * 55)
+        print(f"{'Lexeme':<28}Token")
+        for lexeme, ttype in token_rows:
+            print(f"{str(lexeme):<28}{ttype}")
+        print(f"\n{len(token_rows)} tokens, no lexical errors")
+        return
     ast = parse_source(code)
     if lex_errors or syntax_errors or ast is None:
-        err_lines = []
-        if lex_errors:
-            err_lines.extend([f"Lex error: {e}" for e in lex_errors])
-        if syntax_errors:
-            err_lines.extend([f"Syntax error: {e}" for e in syntax_errors])
-        write_case_logs(filename, errors_str="\n".join(err_lines))
-        print_errors()
-        sys.exit(1)
-
-    enriched_tokens_str = format_enriched_token_table(token_rows, ast)
-    symbol_table_str = format_symbol_table(ast)
-    ast_nodes_str = format_ast(ast)
-
-    log_file = write_case_logs(
-        filename,
-        tokens_str=enriched_tokens_str,
-        symbols_str=symbol_table_str,
-        ast_str=ast_nodes_str,
-    )
+        fail(a.source, code)
 
     if show_tokens:
-        print("Enriched Token Table (Phase 1 Lexical Analysis + Phase 2 Classification):")
+        print("Token table (lexical analysis + classification):")
         print("=" * 55)
-        print(enriched_tokens_str)
-        print()
+        print(format_enriched_token_table(token_rows, ast))
+    if not run_tac or shown:
+        print("\nSyntax analysis: OK")
 
-    print("Syntax analysis successful.")
+    if run_semantic:
+        result = analyze(ast)
+        if semantic_errors:
+            fail(a.source, code)
+        if not run_tac or shown:
+            print("Semantic analysis: OK\n")
+        if a.semantic:
+            print(format_semantic(result))
+
+    if run_tac:
+        try:
+            ir_text = format_module(generate(ast, result))
+        except GenError as exc:
+            semantic_errors.append(f"semantic error at line {exc.line}: {exc.message}")
+            fail(a.source, code)
+        if a.ir_path:
+            os.makedirs(os.path.dirname(a.ir_path) or ".", exist_ok=True)
+            with open(a.ir_path, "w", encoding="utf-8") as f:
+                f.write(ir_text)
+            print(f"IR written to {a.ir_path}")
+        else:
+            print(ir_text, end="")
 
     if show_symbols:
-        print()
-        print("Detailed Symbol Table:")
-        print(symbol_table_str)
-
+        print("\nSymbol report:")
+        print(format_symbol_table(ast))
     if show_ast:
-        print()
-        print("Abstract Syntax Tree:")
-        print(ast_nodes_str)
+        print("\nAbstract syntax tree:")
+        print(format_ast(ast))
 
-    if ast_file_path:
-        with open(ast_file_path, "a", encoding="utf-8") as ast_f:
-            ast_f.write(f"----------------------------------------\n")
-            ast_f.write(f"AST for: {filename}\n")
-            ast_f.write(f"----------------------------------------\n")
-            ast_f.write(ast_nodes_str + "\n\n")
-
-    print(f"\n(Analysis report logged to '{log_file}')")
 
 if __name__ == "__main__":
     main()

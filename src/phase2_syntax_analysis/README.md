@@ -1,82 +1,47 @@
-# Phase 2: Syntax Analysis
+# Phase 2: Syntax analysis (checking the grammar and building the program tree)
 
-`parser.py` defines the PLY LALR grammar for the project's C subset (plus a
-small C++-flavoured object extension). A successful parse returns the
-dataclass-based AST defined in `ast_nodes.py`. Syntax and lexical errors are
-collected and reported with line information.
+**Job:** take the tokens and check that they follow the grammar of the language. If they do, build a *tree* of the program (the AST):
+for `a = b + 1;` the tree has an "assignment" node with `a` on one side and an "addition" node on the other. Later phases walk this tree
+instead of reading text again. If the grammar is broken, report each mistake with its line number.
 
-The grammar handles: declarations, typedef names, array declarators and
-initialisers (including multidimensional arrays), pointers (including
-multi-level and function pointers), `struct`/`union`/`enum`, `class` with
-access labels and inheritance, functions with parameters (including
-variadic `...`) and calls, expressions with full precedence (arithmetic,
-relational, logical, bitwise, ternary), every loop form (`for`, `while`,
-`do`-`while`, `until`, `do`-`until`), `switch`/`case`/`default`,
-conditionals, labels, and jump statements (`goto`/`break`/`continue`). It
-parses the language; it does not yet perform type checking, declaration
-checking, or function argument validation.
+| File | What it does |
+| --- | --- |
+| `parser.py` | the grammar rules, written with PLY (`ply.yacc`). Each rule that matches builds one tree node |
+| `ast_nodes.py` | one small class per kind of tree node, and `format_ast()` that prints the tree |
+| `../common/symbol_classifier.py` | only labels names (function, variable, array...) for the printed reports; never used to check the program |
 
-After parsing, `common/symbol_classifier.py` walks the AST to label
-identifiers as functions, variables, arrays, parameters, typedefs, or
-labels. This is a reporting aid, not a complete semantic symbol table.
+**Run it:** `bin/tacgen prog.c` (check only), `--ast` (print the tree), `--symbols` (labelled names).
 
-## Parsing method
+## What the grammar covers
+- Declarations: variables, multi-dimensional arrays, initialiser lists, `typedef`, `enum`, `struct`/`union`, `const`, `volatile`, `static`, `extern`.
+- Functions: parameters, prototypes, calls, pointer- and reference-returning functions, function pointers, variadic `...`.
+- Every expression operator with the correct priority, casts, `sizeof`, `?:`, comma, `new`, `delete`, `Class::name`, member access `.` and `->`.
+- Statements: `if/else`, `for` (with or without a declaration), `while`, `do-while`, `until`, `do-until`, `switch/case/default`, labels, `goto`, `break`, `continue`, `return`.
+- C++-style extras: classes with access labels and base classes, constructors, destructors, methods defined outside the class (`int Dog::bark() {}`),
+  `this`, lambdas (`[a, &b](int x) -> int { ... }`), `auto`, references (`int &r`).
 
-PLY builds an LALR parser from the production functions in `parser.py`. Each
-reduction creates an AST node instead of immediately evaluating code.
-Operator precedence is declared from assignment through ternary, logical,
-bitwise, relational, additive, multiplicative, unary, and postfix
-expressions. A separate precedence level for `IFX` resolves the usual
-dangling-`else` ambiguity by attaching `else` to the nearest unmatched `if`
-— this is the one shift/reduce conflict PLY reports when building the
-grammar, and it's expected.
+The compiler cannot *compile* many of these (pointers, classes, lambdas...). The parser accepts them anyway so that Phase 3 can answer
+`unsupported feature: ...`, which is clearer than a syntax error.
+Parsing only proves that the words are in a legal order. It does not check that names are declared or that types match; that is Phase 3.
 
-### Error recovery
+## How it works
+- PLY builds the parser from the rules in `parser.py` (an LALR(1) table). PLY writes `parsetab.py` and `parser.out` next to `parser.py` as caches; they are not part of the project.
+- Operator priority is declared once: assignment is lowest, then `?:`, `||`, `&&`, `|`, `^`, `&`, equality, comparison, shifts, `+ -`, `* / %`, unary, postfix.
+- `if (a) if (b) x; else y;`: the `else` belongs to the nearest `if` (settled by a priority rule, so PLY reports no conflict).
+- A typedef name or class name is remembered by the lexer as soon as it is declared, so `Node *next;` inside `class Node { ... }` already sees `Node` as a type.
 
-`p_error` reports the offending token but deliberately does **not** call
-`parser.errok()` itself. Two panic-mode recovery productions —
-`statement : error SEMI` and `external_declaration : error SEMI` — let PLY's
-default error handling do its job: silently discard tokens (no further
-messages) until it reaches a `;` it can shift, then resume parsing from
-there and call `errok()` in that production's own action. This means one
-real mistake is reported once and parsing continues at the next statement,
-instead of reporting an error for every subsequent token until end of file.
-A single mistake with structural knock-on effects (e.g. a missing `)`
-before a `{`) can still legitimately produce more than one reported error —
-that's the parser correctly noticing a second, real point of confusion
-downstream, not a cascade of noise.
+## Syntax errors
+- Each error shows the line and the source text. A statement that lacks its `;` is reported at the line that needs it:
+  `unexpected token 'return' (is a ';' missing at the end of line 3?)`.
+- Recovery: after an error the parser skips to the next `;` or `}` and carries on, so one mistake is usually reported once and later mistakes are still found.
+  The tree can then be incomplete, so the compiler never goes on to Phase 3 when Phase 1 or 2 found an error. One broken block can still cause a second message for its closing `}`.
+- If the file ends too early (a missing `}`) the message says so.
 
-## Design decisions and C-specific implementation choices
-
-| Implementation choice | Standard C behaviour | Choice in this project and reason |
-| --- | --- | --- |
-| AST instead of direct evaluation | A compiler normally represents the parsed program internally before later stages analyse or translate it. | Every production creates dataclass AST nodes. TAC generation can therefore traverse a stable program representation rather than reparsing source text. |
-| Function calls are syntax-only | Real C checks whether a called function exists and whether argument types/count match its declaration. | The parser accepts a callable expression with zero or more arguments. Existence, type compatibility, and return type are deferred to semantic analysis. This also permits recursive-call syntax. |
-| `break`, `continue`, and `goto` are syntax-only | C requires `break`/`continue` inside suitable loops/switches and requires every `goto` target to exist in the same function. | These constructs are parsed and stored in the AST. Loop/switch-context and label-target validation are not implemented yet; Phase 3 will also need this information to emit jumps. |
-| Array dimensions are expressions | C supports constant expressions and, in some versions, variable-length arrays with detailed constraints. | One or more bracketed expressions are preserved as `ArrayDimension` AST nodes. The parser does not calculate sizes, verify dimensions, or lay out array memory. |
-| Array initialisers are structural | C has detailed array-initialiser, aggregate, and string-literal rules. | Nested brace lists are represented as `InitializerList` nodes. Compatibility between declared type, dimension, and initializer is a later semantic check. |
-| Pointers via a single recursive declarator rule | C declarators nest `*` around an identifier/array/function form. | `declarator : MULTIPLY declarator` wraps and increments a `pointer_level` on whatever inner declarator it wraps, so `int **pp`, `int *arr[3]`, and plain identifiers share one rule instead of three parallel ones. |
-| `struct`/`union`/`enum` reuse `declaration` for members | C repeats its declaration grammar inside aggregate bodies. | Struct/union members are parsed with the same `type_specifier declarator_list SEMI` production used at statement level, avoiding a second declaration grammar. |
-| `class` accepts multiple base classes but has no vtable semantics | C++ inheritance participates in dynamic dispatch via vtables. | The grammar accepts `class C : public A, public B { ... }` and access labels, giving a syntax-and-AST-level object subset. There is no virtual-dispatch semantics behind it. |
-| `printf`/`scanf` need no headers | Real C normally obtains their declarations from `<stdio.h>`. | Their dedicated lexical tokens are converted back to callable identifier nodes in the AST. This allows required I/O syntax without preprocessing or system headers. |
-| No preprocessor | Standard C source may use `#include`, macros, and conditional compilation before parsing. | The input is parsed directly; preprocessor directives are recognised and consumed at the lexer level but have no macro-expansion effect. |
-| Parse success is not program correctness | A C compiler performs many semantic checks after parsing. | Success means the token sequence matches this grammar. It does not guarantee declared identifiers, valid types, valid return statements, or legal control-flow placement. |
-
-## Use
-
-```bash
-python3 src/phase2_syntax_analysis/run_parser.py path/to/program.c
-python3 src/phase2_syntax_analysis/run_parser.py path/to/program.c \
-  --ast-file ast.txt --symbol-file symbols.txt
-make parse FILE=path/to/program.c
-make parse-phase2
-make parse-all
-```
-
-The runner prints a parse result and symbol table, writes requested output
-files, and stores a per-case report in `logs/`. On a file with syntax
-errors, the log includes the error list and, when panic-mode recovery
-managed to rebuild enough of the tree, a "Partial AST" section.
-
-PLY may generate `parsetab.py` and `parser.out` while constructing the
-parser. They are caches, not source files, and are ignored by Git.
+## Choices
+| Choice | Reason |
+| --- | --- |
+| build a tree, do not generate code while parsing | Phase 3 can check types first and generate code in a second walk |
+| calls, `break`, `continue`, `goto` are only checked for grammar here | names, types and loop context need declarations: Phase 3 |
+| array sizes are kept as expressions | Phase 3 works out the numbers |
+| `printf`/`scanf` are ordinary call nodes | no header files needed |
+| `case`/`default` are only allowed inside a `switch` | they are part of the switch rule |

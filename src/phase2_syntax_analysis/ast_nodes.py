@@ -49,6 +49,7 @@ class Declarator(ASTNode):
     params: Optional[list["Parameter"]] = None
     pointer_level: int = 0
     is_reference: bool = False
+    scope: Optional[str] = None      # class name in "int Dog::bark()"
 
     def __init__(
         self,
@@ -59,6 +60,7 @@ class Declarator(ASTNode):
         pointer_level: int = 0,
         is_reference: bool = False,
         line: Optional[int] = None,
+        scope: Optional[str] = None,
     ):
         super().__init__("Declarator", line)
         self.name = name
@@ -67,6 +69,7 @@ class Declarator(ASTNode):
         self.params = params
         self.pointer_level = pointer_level
         self.is_reference = is_reference
+        self.scope = scope
 
 
 @dataclass
@@ -601,3 +604,27 @@ class QualifiedName(ASTNode):
         super().__init__("QualifiedName", line)
         self.scope = scope
         self.name = name
+
+
+@dataclass
+class ThisExpression(ASTNode):
+    """The keyword "this" inside a member function."""
+    def __init__(self, line: Optional[int] = None):
+        super().__init__("ThisExpression", line)
+
+
+@dataclass
+class LambdaExpression(ASTNode):
+    """"[captures](params) -> type { body }". captures is a list of strings
+    such as "x", "&y", "&", "=" or "this"; return_type is None when omitted."""
+    captures: list = field(default_factory=list)
+    params: list = field(default_factory=list)
+    return_type: Optional[ASTNode] = None
+    body: Optional[ASTNode] = None
+
+    def __init__(self, captures, params, return_type, body, line: Optional[int] = None):
+        super().__init__("LambdaExpression", line)
+        self.captures = captures
+        self.params = params
+        self.return_type = return_type
+        self.body = body

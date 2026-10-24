@@ -1,0 +1,14 @@
+cannot assign to an array
+read-only variable 'k'
+cannot assign to this expression
+cannot assign to an array
+cannot initialize 'b' of type bool with a value of type char*
+cannot initialize 'c' of type char
+condition of 'if' must be
+division by zero
+operator '&' needs int or char operands
+cannot apply '++'
+operator '%' needs int or char operands
+switch expression must be an int or char
+cannot pass void where int is expected
+with a value of type void

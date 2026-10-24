@@ -1,0 +1,14 @@
+conflicting types for 'conflicting_prototype_f'
+redeclaration of 'A'
+extern variable 'x' is declared but never defined
+not a constant expression
+redeclaration of 'a'
+undeclared identifier 'b'
+undeclared identifier 'undefined_name'
+redeclaration of 'a'
+redeclaration of 'a'
+redefinition of function 'redefinition_function_f'
+'atoi' is a reserved name
+use of undeclared identifier 'y'
+use of undeclared identifier 'a'
+variable 'v' declared void

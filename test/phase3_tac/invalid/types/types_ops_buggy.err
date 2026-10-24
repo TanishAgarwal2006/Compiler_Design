@@ -1,0 +1,13 @@
+function 'target' used as a value (call it with parentheses)
+cannot assign a value of type char* to int
+operator '+=' needs an int, char or float variable (got char*)
+operator '%=' needs int or char operands (got float and int)
+operator '~' needs an int or char operand (got float)
+operator '-' needs an int, char or float operand (got char*)
+cannot apply '++' to char*
+sizeof applied to void
+branches of '?:' have incompatible types char* and int
+cannot cast to type void
+void value used in operator '+'
+void value used in operator '-'
+division by zero

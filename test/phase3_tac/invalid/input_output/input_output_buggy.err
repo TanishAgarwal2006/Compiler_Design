@@ -1,0 +1,7 @@
+printf format has 2 conversion(s) but 1 argument(s)
+must be a string literal
+printf %d cannot print a value of type float
+unsupported format specifier '%.2f'
+needs the address of a variable
+scanf format has 1 conversion(s) but 0 argument(s)
+scanf %d needs the address of a int variable

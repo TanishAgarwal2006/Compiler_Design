@@ -1,0 +1,445 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+argc                      PARAMETER_NAME           
+,                         COMMA                    
+char                      CHAR                     
+*                         MULTIPLY                 
+argv                      ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+i                         VARIABLE_NAME            
+,                         COMMA                    
+total                     VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"argc=%d\n"               STRING_LITERAL           
+,                         COMMA                    
+argc                      PARAMETER_NAME           
+)                         RPAREN                   
+;                         SEMI                     
+for                       FOR                      
+(                         LPAREN                   
+i                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+i                         VARIABLE_NAME            
+<                         LT                       
+argc                      PARAMETER_NAME           
+;                         SEMI                     
+i                         VARIABLE_NAME            
+++                        INCREMENT                
+)                         RPAREN                   
+{                         LBRACE                   
+total                     VARIABLE_NAME            
++=                        PLUS_ASSIGN              
+atoi                      FUNCTION_NAME            
+(                         LPAREN                   
+argv                      ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"arg %d: %s first=%c\n"   STRING_LITERAL           
+,                         COMMA                    
+i                         VARIABLE_NAME            
+,                         COMMA                    
+argv                      ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+,                         COMMA                    
+argv                      ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+printf                    PRINTF                   
+(                         LPAREN                   
+"total=%d\n"              STRING_LITERAL           
+,                         COMMA                    
+total                     VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+argc                 parameter    int        function:main                              
+argv                 array        char       function:main          pointer (*argv)     
+atoi                 function     int        function:main                              
+i                    variable     int        function:main                              
+main                 function     int        global                 params: (int, char) 
+printf               function     int        global                 params: (format, ...)
+total                variable     int        function:main                              
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 6
+                      name: argc
+                      kind_name: variable,
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 6
+                      name: argv
+                      kind_name: array
+                      dimensions:
+                        [
+                          ArrayDimension
+                            line: 6,
+                        ]
+                      pointer_level: 1,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                Declaration
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: i
+                            kind_name: variable,
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: total
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 7
+                            literal_type: int
+                            value: 0,
+                    ],
+                ExpressionStatement
+                  line: 8
+                  expression:
+                    FunctionCall
+                      line: 8
+                      callee:
+                        Identifier
+                          line: 8
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 8
+                            literal_type: string
+                            value: "argc=%d\n",
+                          Identifier
+                            line: 8
+                            name: argc,
+                        ],
+                ForStatement
+                  line: 9
+                  init:
+                    Assignment
+                      line: 9
+                      operator: =
+                      target:
+                        Identifier
+                          line: 9
+                          name: i
+                      value:
+                        Literal
+                          line: 9
+                          literal_type: int
+                          value: 1
+                  condition:
+                    BinaryOp
+                      line: 9
+                      operator: <
+                      left:
+                        Identifier
+                          line: 9
+                          name: i
+                      right:
+                        Identifier
+                          line: 9
+                          name: argc
+                  update:
+                    UnaryOp
+                      line: 9
+                      operator: ++
+                      operand:
+                        Identifier
+                          line: 9
+                          name: i
+                      position: postfix
+                  body:
+                    CompoundStatement
+                      line: 9
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 10
+                            expression:
+                              Assignment
+                                line: 10
+                                operator: +=
+                                target:
+                                  Identifier
+                                    line: 10
+                                    name: total
+                                value:
+                                  FunctionCall
+                                    line: 10
+                                    callee:
+                                      Identifier
+                                        line: 10
+                                        name: atoi
+                                    args:
+                                      [
+                                        ArrayAccess
+                                          line: 10
+                                          array:
+                                            Identifier
+                                              line: 10
+                                              name: argv
+                                          index:
+                                            Identifier
+                                              line: 10
+                                              name: i,
+                                      ],
+                          ExpressionStatement
+                            line: 11
+                            expression:
+                              FunctionCall
+                                line: 11
+                                callee:
+                                  Identifier
+                                    line: 11
+                                    name: printf
+                                args:
+                                  [
+                                    Literal
+                                      line: 11
+                                      literal_type: string
+                                      value: "arg %d: %s first=%c\n",
+                                    Identifier
+                                      line: 11
+                                      name: i,
+                                    ArrayAccess
+                                      line: 11
+                                      array:
+                                        Identifier
+                                          line: 11
+                                          name: argv
+                                      index:
+                                        Identifier
+                                          line: 11
+                                          name: i,
+                                    ArrayAccess
+                                      line: 11
+                                      array:
+                                        ArrayAccess
+                                          line: 11
+                                          array:
+                                            Identifier
+                                              line: 11
+                                              name: argv
+                                          index:
+                                            Identifier
+                                              line: 11
+                                              name: i
+                                      index:
+                                        Literal
+                                          line: 11
+                                          literal_type: int
+                                          value: 0,
+                                  ],
+                        ],
+                ExpressionStatement
+                  line: 13
+                  expression:
+                    FunctionCall
+                      line: 13
+                      callee:
+                        Identifier
+                          line: 13
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 13
+                            literal_type: string
+                            value: "total=%d\n",
+                          Identifier
+                            line: 13
+                            name: total,
+                        ],
+                ReturnStatement
+                  line: 14
+                  value:
+                    Literal
+                      line: 14
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  (none)
+
+Functions
+  name  signature              frame  defined  line
+  ----  ---------------------  -----  -------  ----
+  main  (int, char*[]) -> int  16     yes      6   
+
+Function main: parameters and locals (frame size 16 bytes)
+  ir name  source  kind   type     size  offset  line
+  -------  ------  -----  -------  ----  ------  ----
+  argc     argc    param  int      4     0       6   
+  argv     argv    param  char*[]  4     4       6   
+  i        i       local  int      4     8       7   
+  total    total   local  int      4     12      7   
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+.data
+str0: "argc="
+str1: "\n"
+str2: "arg "
+str3: ": "
+str4: " first="
+str5: "total="
+.text
+func main(int argc, str argv[]) : int
+    local int i
+    local int total
+    temp t1:int, t2:str, t3:int, t4:int, t5:int, t6:str, t7:int, t8:str
+    temp t9:char, t10:int
+    total = 0
+    param str0
+    call print_str, 1
+    param argc
+    call print_int, 1
+    param str1
+    call print_str, 1
+    i = 1
+L1:
+    if i < argc goto L2
+    goto L4
+L2:
+    t1 = i * 4
+    t2 = argv[t1]
+    param t2
+    t3 = call atoi, 1
+    t4 = total + t3
+    total = t4
+    t5 = i * 4
+    t6 = argv[t5]
+    t7 = i * 4
+    t8 = argv[t7]
+    t9 = t8[0]
+    param str2
+    call print_str, 1
+    param i
+    call print_int, 1
+    param str3
+    call print_str, 1
+    param t6
+    call print_str, 1
+    param str4
+    call print_str, 1
+    param t9
+    call print_char, 1
+    param str1
+    call print_str, 1
+L3:
+    t10 = i + 1
+    i = t10
+    goto L1
+L4:
+    param str5
+    call print_str, 1
+    param total
+    call print_int, 1
+    param str1
+    call print_str, 1
+    return 0
+endfunc
+######## run
+argc=5
+arg 1: 12 first=1
+arg 2: -5 first=-
+arg 3: abc first=a
+arg 4: 7 first=7
+total=14

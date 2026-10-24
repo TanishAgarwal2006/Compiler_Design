@@ -11,7 +11,7 @@ Correct stack-frame handling is required for recursive calls.
 
 Suggested modules are `optimizer.py`, `mips_generator.py`, and
 `register_allocator.py`. Add expected assembly tests under
-`tests/phase4_optimization_codegen/`; ideally run them with SPIM, MARS, or an
+`test/phase4_optimization_codegen/`; ideally run them with SPIM, MARS, or an
 equivalent MIPS simulator.
 
 ## Intended design decisions

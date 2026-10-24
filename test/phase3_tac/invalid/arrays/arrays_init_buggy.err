@@ -1,0 +1,15 @@
+array size missing for dimension 2 of 'a'
+array 'a' of void
+array 'a' needs a brace-enclosed initializer
+cannot initialize array 'a' of type int[3] with a string
+mixed nested and flat initializers for 'a' are not supported
+too many braces in initializer of 'a'
+too many initializers for 'a'
+too many initializers for 'a'
+too many initializers for 'a'
+too many braces in initializer of 'a'
+mixed nested and flat initializers for 'a' are not supported
+cannot initialize element of 'a' (int) with a value of type char*
+initializer element of global 'bug_global_not_constant' is not constant
+cannot initialize 'bug_global_string_from_int' of type char* with a value of type int
+initializer of global 'bug_global_string_from_variable' must be a string literal

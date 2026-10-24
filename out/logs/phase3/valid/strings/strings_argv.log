@@ -1,0 +1,1800 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+char                      CHAR                     
+*                         MULTIPLY                 
+greeting                  VARIABLE_NAME            
+=                         ASSIGN                   
+"hello"                   STRING_LITERAL           
+;                         SEMI                     
+char                      CHAR                     
+msg                       ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+=                         ASSIGN                   
+"world"                   STRING_LITERAL           
+;                         SEMI                     
+int                       INT                      
+len                       FUNCTION_NAME            
+(                         LPAREN                   
+char                      CHAR                     
+*                         MULTIPLY                 
+s                         ARRAY_NAME               
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+n                         VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+while                     WHILE                    
+(                         LPAREN                   
+s                         ARRAY_NAME               
+[                         LBRACKET                 
+n                         VARIABLE_NAME            
+]                         RBRACKET                 
+)                         RPAREN                   
+n                         VARIABLE_NAME            
+++                        INCREMENT                
+;                         SEMI                     
+return                    RETURN                   
+n                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+same                      FUNCTION_NAME            
+(                         LPAREN                   
+char                      CHAR                     
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+,                         COMMA                    
+char                      CHAR                     
+b                         ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+i                         VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+while                     WHILE                    
+(                         LPAREN                   
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+&&                        AND                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+==                        EQ                       
+b                         ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+)                         RPAREN                   
+i                         VARIABLE_NAME            
+++                        INCREMENT                
+;                         SEMI                     
+return                    RETURN                   
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+==                        EQ                       
+b                         ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+;                         SEMI                     
+}                         RBRACE                   
+void                      VOID                     
+rev                       FUNCTION_NAME            
+(                         LPAREN                   
+char                      CHAR                     
+s                         ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+n                         VARIABLE_NAME            
+=                         ASSIGN                   
+len                       FUNCTION_NAME            
+(                         LPAREN                   
+s                         ARRAY_NAME               
+)                         RPAREN                   
+,                         COMMA                    
+i                         VARIABLE_NAME            
+;                         SEMI                     
+for                       FOR                      
+(                         LPAREN                   
+i                         VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+i                         VARIABLE_NAME            
+<                         LT                       
+n                         VARIABLE_NAME            
+/                         DIVIDE                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+i                         VARIABLE_NAME            
+++                        INCREMENT                
+)                         RPAREN                   
+{                         LBRACE                   
+char                      CHAR                     
+t                         VARIABLE_NAME            
+=                         ASSIGN                   
+s                         ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+;                         SEMI                     
+s                         ARRAY_NAME               
+[                         LBRACKET                 
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+=                         ASSIGN                   
+s                         ARRAY_NAME               
+[                         LBRACKET                 
+n                         VARIABLE_NAME            
+-                         MINUS                    
+1                         INTEGER_CONSTANT         
+-                         MINUS                    
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+;                         SEMI                     
+s                         ARRAY_NAME               
+[                         LBRACKET                 
+n                         VARIABLE_NAME            
+-                         MINUS                    
+1                         INTEGER_CONSTANT         
+-                         MINUS                    
+i                         VARIABLE_NAME            
+]                         RBRACKET                 
+=                         ASSIGN                   
+t                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+argc                      PARAMETER_NAME           
+,                         COMMA                    
+char                      CHAR                     
+*                         MULTIPLY                 
+argv                      ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+)                         RPAREN                   
+{                         LBRACE                   
+char                      CHAR                     
+*                         MULTIPLY                 
+p                         ARRAY_NAME               
+=                         ASSIGN                   
+"literal"                 STRING_LITERAL           
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%s %d %c\n"              STRING_LITERAL           
+,                         COMMA                    
+p                         ARRAY_NAME               
+,                         COMMA                    
+len                       FUNCTION_NAME            
+(                         LPAREN                   
+p                         ARRAY_NAME               
+)                         RPAREN                   
+,                         COMMA                    
+p                         ARRAY_NAME               
+[                         LBRACKET                 
+1                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%s %s %d\n"              STRING_LITERAL           
+,                         COMMA                    
+greeting                  VARIABLE_NAME            
+,                         COMMA                    
+msg                       ARRAY_NAME               
+,                         COMMA                    
+len                       FUNCTION_NAME            
+(                         LPAREN                   
+msg                       ARRAY_NAME               
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+char                      CHAR                     
+buf                       ARRAY_NAME               
+[                         LBRACKET                 
+20                        INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+"abcdef"                  STRING_LITERAL           
+;                         SEMI                     
+rev                       FUNCTION_NAME            
+(                         LPAREN                   
+buf                       ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%s\n"                    STRING_LITERAL           
+,                         COMMA                    
+buf                       ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d %d\n"                 STRING_LITERAL           
+,                         COMMA                    
+same                      FUNCTION_NAME            
+(                         LPAREN                   
+"ab"                      STRING_LITERAL           
+,                         COMMA                    
+"ab"                      STRING_LITERAL           
+)                         RPAREN                   
+,                         COMMA                    
+same                      FUNCTION_NAME            
+(                         LPAREN                   
+"ab"                      STRING_LITERAL           
+,                         COMMA                    
+"ac"                      STRING_LITERAL           
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+char                      CHAR                     
+*                         MULTIPLY                 
+q                         ARRAY_NAME               
+=                         ASSIGN                   
+greeting                  VARIABLE_NAME            
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%c\n"                    STRING_LITERAL           
+,                         COMMA                    
+q                         ARRAY_NAME               
+[                         LBRACKET                 
+4                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%s\n"                    STRING_LITERAL           
+,                         COMMA                    
+"a\tb\\c\"d"              STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+argc                      PARAMETER_NAME           
+)                         RPAREN                   
+;                         SEMI                     
+if                        IF                       
+(                         LPAREN                   
+argc                      PARAMETER_NAME           
+>                         GT                       
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+printf                    PRINTF                   
+(                         LPAREN                   
+"%s %d\n"                 STRING_LITERAL           
+,                         COMMA                    
+argv                      ARRAY_NAME               
+[                         LBRACKET                 
+1                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+,                         COMMA                    
+atoi                      FUNCTION_NAME            
+(                         LPAREN                   
+argv                      ARRAY_NAME               
+[                         LBRACKET                 
+1                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+)                         RPAREN                   
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+char                      CHAR                     
+e                         ARRAY_NAME               
+[                         LBRACKET                 
+1                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+""                        STRING_LITERAL           
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"[%s] %d\n"               STRING_LITERAL           
+,                         COMMA                    
+e                         ARRAY_NAME               
+,                         COMMA                    
+len                       FUNCTION_NAME            
+(                         LPAREN                   
+e                         ARRAY_NAME               
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%s"                      STRING_LITERAL           
+,                         COMMA                    
+"no newline"              STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"\n"                      STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+atoi                      FUNCTION_NAME            
+(                         LPAREN                   
+"  -42abc"                STRING_LITERAL           
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+atoi                      FUNCTION_NAME            
+(                         LPAREN                   
+"abc"                     STRING_LITERAL           
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    array        char       function:same                              
+argc                 parameter    int        function:main                              
+argv                 array        char       function:main          pointer (*argv)     
+atoi                 function     int        function:main                              
+b                    array        char       function:same                              
+buf                  array        char       function:main          dims: [20]          
+e                    array        char       function:main          dims: [1]           
+greeting             variable     char       global                 pointer (*greeting) 
+i                    variable     int        function:same                              
+len                  function     int        global                 params: (char)      
+main                 function     int        global                 params: (int, char) 
+msg                  array        char       global                 dims: []            
+n                    variable     int        function:len                               
+p                    array        char       function:main          pointer (*p)        
+printf               function     int        global                 params: (format, ...)
+q                    array        char       function:main          pointer (*q)        
+rev                  function     void       global                 params: (char)      
+s                    array        char       function:len           pointer (*s)        
+same                 function     int        global                 params: (char, char)
+t                    variable     char       function:rev                               
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 2
+        type_spec:
+          TypeSpecifier
+            line: 2
+            name: char
+        declarators:
+          [
+            InitDeclarator
+              line: 2
+              declarator:
+                Declarator
+                  line: 2
+                  name: greeting
+                  kind_name: variable
+                  pointer_level: 1
+              initializer:
+                Literal
+                  line: 2
+                  literal_type: string
+                  value: "hello",
+          ],
+      Declaration
+        line: 3
+        type_spec:
+          TypeSpecifier
+            line: 3
+            name: char
+        declarators:
+          [
+            InitDeclarator
+              line: 3
+              declarator:
+                Declarator
+                  line: 3
+                  name: msg
+                  kind_name: array
+                  dimensions:
+                    [
+                      ArrayDimension
+                        line: 3,
+                    ]
+              initializer:
+                Literal
+                  line: 3
+                  literal_type: string
+                  value: "world",
+          ],
+      FunctionDefinition
+        line: 4
+        return_type:
+          TypeSpecifier
+            line: 4
+            name: int
+        declarator:
+          Declarator
+            line: 4
+            name: len
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 4
+                  type_spec:
+                    TypeSpecifier
+                      line: 4
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 4
+                      name: s
+                      kind_name: variable
+                      pointer_level: 1,
+              ]
+        body:
+          CompoundStatement
+            line: 4
+            items:
+              [
+                Declaration
+                  line: 4
+                  type_spec:
+                    TypeSpecifier
+                      line: 4
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 4
+                        declarator:
+                          Declarator
+                            line: 4
+                            name: n
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 4
+                            literal_type: int
+                            value: 0,
+                    ],
+                WhileStatement
+                  line: 4
+                  condition:
+                    ArrayAccess
+                      line: 4
+                      array:
+                        Identifier
+                          line: 4
+                          name: s
+                      index:
+                        Identifier
+                          line: 4
+                          name: n
+                  body:
+                    ExpressionStatement
+                      line: 4
+                      expression:
+                        UnaryOp
+                          line: 4
+                          operator: ++
+                          operand:
+                            Identifier
+                              line: 4
+                              name: n
+                          position: postfix,
+                ReturnStatement
+                  line: 4
+                  value:
+                    Identifier
+                      line: 4
+                      name: n,
+              ],
+      FunctionDefinition
+        line: 5
+        return_type:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarator:
+          Declarator
+            line: 5
+            name: same
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 5
+                  type_spec:
+                    TypeSpecifier
+                      line: 5
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 5
+                      name: a
+                      kind_name: array
+                      dimensions:
+                        [
+                          ArrayDimension
+                            line: 5,
+                        ],
+                Parameter
+                  line: 5
+                  type_spec:
+                    TypeSpecifier
+                      line: 5
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 5
+                      name: b
+                      kind_name: array
+                      dimensions:
+                        [
+                          ArrayDimension
+                            line: 5,
+                        ],
+              ]
+        body:
+          CompoundStatement
+            line: 5
+            items:
+              [
+                Declaration
+                  line: 5
+                  type_spec:
+                    TypeSpecifier
+                      line: 5
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 5
+                        declarator:
+                          Declarator
+                            line: 5
+                            name: i
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 5
+                            literal_type: int
+                            value: 0,
+                    ],
+                WhileStatement
+                  line: 5
+                  condition:
+                    BinaryOp
+                      line: 5
+                      operator: &&
+                      left:
+                        ArrayAccess
+                          line: 5
+                          array:
+                            Identifier
+                              line: 5
+                              name: a
+                          index:
+                            Identifier
+                              line: 5
+                              name: i
+                      right:
+                        BinaryOp
+                          line: 5
+                          operator: ==
+                          left:
+                            ArrayAccess
+                              line: 5
+                              array:
+                                Identifier
+                                  line: 5
+                                  name: a
+                              index:
+                                Identifier
+                                  line: 5
+                                  name: i
+                          right:
+                            ArrayAccess
+                              line: 5
+                              array:
+                                Identifier
+                                  line: 5
+                                  name: b
+                              index:
+                                Identifier
+                                  line: 5
+                                  name: i
+                  body:
+                    ExpressionStatement
+                      line: 5
+                      expression:
+                        UnaryOp
+                          line: 5
+                          operator: ++
+                          operand:
+                            Identifier
+                              line: 5
+                              name: i
+                          position: postfix,
+                ReturnStatement
+                  line: 5
+                  value:
+                    BinaryOp
+                      line: 5
+                      operator: ==
+                      left:
+                        ArrayAccess
+                          line: 5
+                          array:
+                            Identifier
+                              line: 5
+                              name: a
+                          index:
+                            Identifier
+                              line: 5
+                              name: i
+                      right:
+                        ArrayAccess
+                          line: 5
+                          array:
+                            Identifier
+                              line: 5
+                              name: b
+                          index:
+                            Identifier
+                              line: 5
+                              name: i,
+              ],
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: void
+        declarator:
+          Declarator
+            line: 6
+            name: rev
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 6
+                      name: s
+                      kind_name: array
+                      dimensions:
+                        [
+                          ArrayDimension
+                            line: 6,
+                        ],
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                Declaration
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 6
+                        declarator:
+                          Declarator
+                            line: 6
+                            name: n
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 6
+                            callee:
+                              Identifier
+                                line: 6
+                                name: len
+                            args:
+                              [
+                                Identifier
+                                  line: 6
+                                  name: s,
+                              ],
+                      InitDeclarator
+                        line: 6
+                        declarator:
+                          Declarator
+                            line: 6
+                            name: i
+                            kind_name: variable,
+                    ],
+                ForStatement
+                  line: 6
+                  init:
+                    Assignment
+                      line: 6
+                      operator: =
+                      target:
+                        Identifier
+                          line: 6
+                          name: i
+                      value:
+                        Literal
+                          line: 6
+                          literal_type: int
+                          value: 0
+                  condition:
+                    BinaryOp
+                      line: 6
+                      operator: <
+                      left:
+                        Identifier
+                          line: 6
+                          name: i
+                      right:
+                        BinaryOp
+                          line: 6
+                          operator: /
+                          left:
+                            Identifier
+                              line: 6
+                              name: n
+                          right:
+                            Literal
+                              line: 6
+                              literal_type: int
+                              value: 2
+                  update:
+                    UnaryOp
+                      line: 6
+                      operator: ++
+                      operand:
+                        Identifier
+                          line: 6
+                          name: i
+                      position: postfix
+                  body:
+                    CompoundStatement
+                      line: 6
+                      items:
+                        [
+                          Declaration
+                            line: 6
+                            type_spec:
+                              TypeSpecifier
+                                line: 6
+                                name: char
+                            declarators:
+                              [
+                                InitDeclarator
+                                  line: 6
+                                  declarator:
+                                    Declarator
+                                      line: 6
+                                      name: t
+                                      kind_name: variable
+                                  initializer:
+                                    ArrayAccess
+                                      line: 6
+                                      array:
+                                        Identifier
+                                          line: 6
+                                          name: s
+                                      index:
+                                        Identifier
+                                          line: 6
+                                          name: i,
+                              ],
+                          ExpressionStatement
+                            line: 6
+                            expression:
+                              Assignment
+                                line: 6
+                                operator: =
+                                target:
+                                  ArrayAccess
+                                    line: 6
+                                    array:
+                                      Identifier
+                                        line: 6
+                                        name: s
+                                    index:
+                                      Identifier
+                                        line: 6
+                                        name: i
+                                value:
+                                  ArrayAccess
+                                    line: 6
+                                    array:
+                                      Identifier
+                                        line: 6
+                                        name: s
+                                    index:
+                                      BinaryOp
+                                        line: 6
+                                        operator: -
+                                        left:
+                                          BinaryOp
+                                            line: 6
+                                            operator: -
+                                            left:
+                                              Identifier
+                                                line: 6
+                                                name: n
+                                            right:
+                                              Literal
+                                                line: 6
+                                                literal_type: int
+                                                value: 1
+                                        right:
+                                          Identifier
+                                            line: 6
+                                            name: i,
+                          ExpressionStatement
+                            line: 6
+                            expression:
+                              Assignment
+                                line: 6
+                                operator: =
+                                target:
+                                  ArrayAccess
+                                    line: 6
+                                    array:
+                                      Identifier
+                                        line: 6
+                                        name: s
+                                    index:
+                                      BinaryOp
+                                        line: 6
+                                        operator: -
+                                        left:
+                                          BinaryOp
+                                            line: 6
+                                            operator: -
+                                            left:
+                                              Identifier
+                                                line: 6
+                                                name: n
+                                            right:
+                                              Literal
+                                                line: 6
+                                                literal_type: int
+                                                value: 1
+                                        right:
+                                          Identifier
+                                            line: 6
+                                            name: i
+                                value:
+                                  Identifier
+                                    line: 6
+                                    name: t,
+                        ],
+              ],
+      FunctionDefinition
+        line: 7
+        return_type:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarator:
+          Declarator
+            line: 7
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 7
+                      name: argc
+                      kind_name: variable,
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: char
+                  declarator:
+                    Declarator
+                      line: 7
+                      name: argv
+                      kind_name: array
+                      dimensions:
+                        [
+                          ArrayDimension
+                            line: 7,
+                        ]
+                      pointer_level: 1,
+              ]
+        body:
+          CompoundStatement
+            line: 7
+            items:
+              [
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: p
+                            kind_name: variable
+                            pointer_level: 1
+                        initializer:
+                          Literal
+                            line: 8
+                            literal_type: string
+                            value: "literal",
+                    ],
+                ExpressionStatement
+                  line: 8
+                  expression:
+                    FunctionCall
+                      line: 8
+                      callee:
+                        Identifier
+                          line: 8
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 8
+                            literal_type: string
+                            value: "%s %d %c\n",
+                          Identifier
+                            line: 8
+                            name: p,
+                          FunctionCall
+                            line: 8
+                            callee:
+                              Identifier
+                                line: 8
+                                name: len
+                            args:
+                              [
+                                Identifier
+                                  line: 8
+                                  name: p,
+                              ],
+                          ArrayAccess
+                            line: 8
+                            array:
+                              Identifier
+                                line: 8
+                                name: p
+                            index:
+                              Literal
+                                line: 8
+                                literal_type: int
+                                value: 1,
+                        ],
+                ExpressionStatement
+                  line: 9
+                  expression:
+                    FunctionCall
+                      line: 9
+                      callee:
+                        Identifier
+                          line: 9
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 9
+                            literal_type: string
+                            value: "%s %s %d\n",
+                          Identifier
+                            line: 9
+                            name: greeting,
+                          Identifier
+                            line: 9
+                            name: msg,
+                          FunctionCall
+                            line: 9
+                            callee:
+                              Identifier
+                                line: 9
+                                name: len
+                            args:
+                              [
+                                Identifier
+                                  line: 9
+                                  name: msg,
+                              ],
+                        ],
+                Declaration
+                  line: 10
+                  type_spec:
+                    TypeSpecifier
+                      line: 10
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 10
+                        declarator:
+                          Declarator
+                            line: 10
+                            name: buf
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 10
+                                  size:
+                                    Literal
+                                      line: 10
+                                      literal_type: int
+                                      value: 20,
+                              ]
+                        initializer:
+                          Literal
+                            line: 10
+                            literal_type: string
+                            value: "abcdef",
+                    ],
+                ExpressionStatement
+                  line: 10
+                  expression:
+                    FunctionCall
+                      line: 10
+                      callee:
+                        Identifier
+                          line: 10
+                          name: rev
+                      args:
+                        [
+                          Identifier
+                            line: 10
+                            name: buf,
+                        ],
+                ExpressionStatement
+                  line: 10
+                  expression:
+                    FunctionCall
+                      line: 10
+                      callee:
+                        Identifier
+                          line: 10
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 10
+                            literal_type: string
+                            value: "%s\n",
+                          Identifier
+                            line: 10
+                            name: buf,
+                        ],
+                ExpressionStatement
+                  line: 11
+                  expression:
+                    FunctionCall
+                      line: 11
+                      callee:
+                        Identifier
+                          line: 11
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 11
+                            literal_type: string
+                            value: "%d %d\n",
+                          FunctionCall
+                            line: 11
+                            callee:
+                              Identifier
+                                line: 11
+                                name: same
+                            args:
+                              [
+                                Literal
+                                  line: 11
+                                  literal_type: string
+                                  value: "ab",
+                                Literal
+                                  line: 11
+                                  literal_type: string
+                                  value: "ab",
+                              ],
+                          FunctionCall
+                            line: 11
+                            callee:
+                              Identifier
+                                line: 11
+                                name: same
+                            args:
+                              [
+                                Literal
+                                  line: 11
+                                  literal_type: string
+                                  value: "ab",
+                                Literal
+                                  line: 11
+                                  literal_type: string
+                                  value: "ac",
+                              ],
+                        ],
+                Declaration
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 12
+                        declarator:
+                          Declarator
+                            line: 12
+                            name: q
+                            kind_name: variable
+                            pointer_level: 1
+                        initializer:
+                          Identifier
+                            line: 12
+                            name: greeting,
+                    ],
+                ExpressionStatement
+                  line: 12
+                  expression:
+                    FunctionCall
+                      line: 12
+                      callee:
+                        Identifier
+                          line: 12
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 12
+                            literal_type: string
+                            value: "%c\n",
+                          ArrayAccess
+                            line: 12
+                            array:
+                              Identifier
+                                line: 12
+                                name: q
+                            index:
+                              Literal
+                                line: 12
+                                literal_type: int
+                                value: 4,
+                        ],
+                ExpressionStatement
+                  line: 13
+                  expression:
+                    FunctionCall
+                      line: 13
+                      callee:
+                        Identifier
+                          line: 13
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 13
+                            literal_type: string
+                            value: "%s\n",
+                          Literal
+                            line: 13
+                            literal_type: string
+                            value: "a\tb\\c\"d",
+                        ],
+                ExpressionStatement
+                  line: 14
+                  expression:
+                    FunctionCall
+                      line: 14
+                      callee:
+                        Identifier
+                          line: 14
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 14
+                            literal_type: string
+                            value: "%d\n",
+                          Identifier
+                            line: 14
+                            name: argc,
+                        ],
+                IfStatement
+                  line: 15
+                  condition:
+                    BinaryOp
+                      line: 15
+                      operator: >
+                      left:
+                        Identifier
+                          line: 15
+                          name: argc
+                      right:
+                        Literal
+                          line: 15
+                          literal_type: int
+                          value: 1
+                  then_branch:
+                    ExpressionStatement
+                      line: 15
+                      expression:
+                        FunctionCall
+                          line: 15
+                          callee:
+                            Identifier
+                              line: 15
+                              name: printf
+                          args:
+                            [
+                              Literal
+                                line: 15
+                                literal_type: string
+                                value: "%s %d\n",
+                              ArrayAccess
+                                line: 15
+                                array:
+                                  Identifier
+                                    line: 15
+                                    name: argv
+                                index:
+                                  Literal
+                                    line: 15
+                                    literal_type: int
+                                    value: 1,
+                              BinaryOp
+                                line: 15
+                                operator: +
+                                left:
+                                  FunctionCall
+                                    line: 15
+                                    callee:
+                                      Identifier
+                                        line: 15
+                                        name: atoi
+                                    args:
+                                      [
+                                        ArrayAccess
+                                          line: 15
+                                          array:
+                                            Identifier
+                                              line: 15
+                                              name: argv
+                                          index:
+                                            Literal
+                                              line: 15
+                                              literal_type: int
+                                              value: 1,
+                                      ]
+                                right:
+                                  Literal
+                                    line: 15
+                                    literal_type: int
+                                    value: 1,
+                            ],
+                Declaration
+                  line: 16
+                  type_spec:
+                    TypeSpecifier
+                      line: 16
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 16
+                        declarator:
+                          Declarator
+                            line: 16
+                            name: e
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 16
+                                  size:
+                                    Literal
+                                      line: 16
+                                      literal_type: int
+                                      value: 1,
+                              ]
+                        initializer:
+                          Literal
+                            line: 16
+                            literal_type: string
+                            value: "",
+                    ],
+                ExpressionStatement
+                  line: 16
+                  expression:
+                    FunctionCall
+                      line: 16
+                      callee:
+                        Identifier
+                          line: 16
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 16
+                            literal_type: string
+                            value: "[%s] %d\n",
+                          Identifier
+                            line: 16
+                            name: e,
+                          FunctionCall
+                            line: 16
+                            callee:
+                              Identifier
+                                line: 16
+                                name: len
+                            args:
+                              [
+                                Identifier
+                                  line: 16
+                                  name: e,
+                              ],
+                        ],
+                ExpressionStatement
+                  line: 17
+                  expression:
+                    FunctionCall
+                      line: 17
+                      callee:
+                        Identifier
+                          line: 17
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 17
+                            literal_type: string
+                            value: "%s",
+                          Literal
+                            line: 17
+                            literal_type: string
+                            value: "no newline",
+                        ],
+                ExpressionStatement
+                  line: 17
+                  expression:
+                    FunctionCall
+                      line: 17
+                      callee:
+                        Identifier
+                          line: 17
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 17
+                            literal_type: string
+                            value: "\n",
+                        ],
+                ExpressionStatement
+                  line: 18
+                  expression:
+                    FunctionCall
+                      line: 18
+                      callee:
+                        Identifier
+                          line: 18
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 18
+                            literal_type: string
+                            value: "%d\n",
+                          FunctionCall
+                            line: 18
+                            callee:
+                              Identifier
+                                line: 18
+                                name: atoi
+                            args:
+                              [
+                                Literal
+                                  line: 18
+                                  literal_type: string
+                                  value: "  -42abc",
+                              ],
+                        ],
+                ExpressionStatement
+                  line: 19
+                  expression:
+                    FunctionCall
+                      line: 19
+                      callee:
+                        Identifier
+                          line: 19
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 19
+                            literal_type: string
+                            value: "%d\n",
+                          FunctionCall
+                            line: 19
+                            callee:
+                              Identifier
+                                line: 19
+                                name: atoi
+                            args:
+                              [
+                                Literal
+                                  line: 19
+                                  literal_type: string
+                                  value: "abc",
+                              ],
+                        ],
+                ReturnStatement
+                  line: 20
+                  value:
+                    Literal
+                      line: 20
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  name      type     size  offset  line
+  --------  -------  ----  ------  ----
+  greeting  char*    4     0       2   
+  msg       char[6]  6     4       3   
+
+Functions
+  name  signature                frame  defined  line
+  ----  -----------------------  -----  -------  ----
+  len   (char*) -> int           8      yes      4   
+  same  (char[], char[]) -> int  12     yes      5   
+  rev   (char[]) -> void         16     yes      6   
+  main  (int, char*[]) -> int    40     yes      7   
+
+Function len: parameters and locals (frame size 8 bytes)
+  ir name  source  kind   type   size  offset  line
+  -------  ------  -----  -----  ----  ------  ----
+  s        s       param  char*  4     0       4   
+  n        n       local  int    4     4       4   
+
+Function same: parameters and locals (frame size 12 bytes)
+  ir name  source  kind   type    size  offset  line
+  -------  ------  -----  ------  ----  ------  ----
+  a        a       param  char[]  4     0       5   
+  b        b       param  char[]  4     4       5   
+  i        i       local  int     4     8       5   
+
+Function rev: parameters and locals (frame size 16 bytes)
+  ir name  source  kind   type    size  offset  line
+  -------  ------  -----  ------  ----  ------  ----
+  s        s       param  char[]  4     0       6   
+  n        n       local  int     4     4       6   
+  i        i       local  int     4     8       6   
+  t        t       local  char    1     12      6   
+
+Function main: parameters and locals (frame size 40 bytes)
+  ir name  source  kind   type      size  offset  line
+  -------  ------  -----  --------  ----  ------  ----
+  argc     argc    param  int       4     0       7   
+  argv     argv    param  char*[]   4     4       7   
+  p        p       local  char*     4     8       8   
+  buf      buf     local  char[20]  20    12      10  
+  q        q       local  char*     4     32      12  
+  e        e       local  char[1]   1     36      16  
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+.data
+str0: "hello"
+str1: "literal"
+str2: " "
+str3: "\n"
+str4: "ab"
+str5: "ac"
+str6: "a\tb\\c\"d"
+str7: "["
+str8: "] "
+str9: "no newline"
+str10: "  -42abc"
+str11: "abc"
+global greeting : str = str0
+global msg : char[6] = {119,111,114,108,100}
+.text
+func len(str s) : int
+    local int n
+    temp t1:char, t2:int
+    n = 0
+L1:
+    t1 = s[n]
+    if t1 != 0 goto L2
+    goto L3
+L2:
+    t2 = n + 1
+    n = t2
+    goto L1
+L3:
+    return n
+endfunc
+
+func same(char a[], char b[]) : int
+    local int i
+    temp t1:char, t2:char, t3:char, t4:int, t5:char, t6:char, t7:int
+    i = 0
+L4:
+    t1 = a[i]
+    if t1 != 0 goto L7
+    goto L6
+L7:
+    t2 = a[i]
+    t3 = b[i]
+    if t2 == t3 goto L5
+    goto L6
+L5:
+    t4 = i + 1
+    i = t4
+    goto L4
+L6:
+    t5 = a[i]
+    t6 = b[i]
+    t7 = t5 == t6
+    return t7
+endfunc
+
+func rev(char s[]) : void
+    local int n
+    local int i
+    local char t
+    temp t1:int, t2:int, t3:char, t4:int, t5:int, t6:char, t7:int, t8:int
+    temp t9:int
+    param s
+    t1 = call len, 1
+    n = t1
+    i = 0
+L8:
+    t2 = n / 2
+    if i < t2 goto L9
+    goto L11
+L9:
+    t3 = s[i]
+    t = t3
+    t4 = n - 1
+    t5 = t4 - i
+    t6 = s[t5]
+    s[i] = t6
+    t7 = n - 1
+    t8 = t7 - i
+    s[t8] = t
+L10:
+    t9 = i + 1
+    i = t9
+    goto L8
+L11:
+    return
+endfunc
+
+func main(int argc, str argv[]) : int
+    local str p
+    local char buf[20]
+    local str q
+    local char e[1]
+    temp t1:int, t2:char, t3:int, t4:int, t5:int, t6:char, t7:str, t8:str
+    temp t9:int, t10:int, t11:int, t12:int, t13:int
+    p = str1
+    param p
+    t1 = call len, 1
+    t2 = p[1]
+    param p
+    call print_str, 1
+    param str2
+    call print_str, 1
+    param t1
+    call print_int, 1
+    param str2
+    call print_str, 1
+    param t2
+    call print_char, 1
+    param str3
+    call print_str, 1
+    param msg
+    t3 = call len, 1
+    param greeting
+    call print_str, 1
+    param str2
+    call print_str, 1
+    param msg
+    call print_str, 1
+    param str2
+    call print_str, 1
+    param t3
+    call print_int, 1
+    param str3
+    call print_str, 1
+    buf[0] = 97
+    buf[1] = 98
+    buf[2] = 99
+    buf[3] = 100
+    buf[4] = 101
+    buf[5] = 102
+    buf[6] = 0
+    buf[7] = 0
+    buf[8] = 0
+    buf[9] = 0
+    buf[10] = 0
+    buf[11] = 0
+    buf[12] = 0
+    buf[13] = 0
+    buf[14] = 0
+    buf[15] = 0
+    buf[16] = 0
+    buf[17] = 0
+    buf[18] = 0
+    buf[19] = 0
+    param buf
+    call rev, 1
+    param buf
+    call print_str, 1
+    param str3
+    call print_str, 1
+    param str4
+    param str4
+    t4 = call same, 2
+    param str4
+    param str5
+    t5 = call same, 2
+    param t4
+    call print_int, 1
+    param str2
+    call print_str, 1
+    param t5
+    call print_int, 1
+    param str3
+    call print_str, 1
+    q = greeting
+    t6 = q[4]
+    param t6
+    call print_char, 1
+    param str3
+    call print_str, 1
+    param str6
+    call print_str, 1
+    param str3
+    call print_str, 1
+    param argc
+    call print_int, 1
+    param str3
+    call print_str, 1
+    if argc > 1 goto L12
+    goto L13
+L12:
+    t7 = argv[4]
+    t8 = argv[4]
+    param t8
+    t9 = call atoi, 1
+    t10 = t9 + 1
+    param t7
+    call print_str, 1
+    param str2
+    call print_str, 1
+    param t10
+    call print_int, 1
+    param str3
+    call print_str, 1
+L13:
+    e[0] = 0
+    param e
+    t11 = call len, 1
+    param str7
+    call print_str, 1
+    param e
+    call print_str, 1
+    param str8
+    call print_str, 1
+    param t11
+    call print_int, 1
+    param str3
+    call print_str, 1
+    param str9
+    call print_str, 1
+    param str3
+    call print_str, 1
+    param str10
+    t12 = call atoi, 1
+    param t12
+    call print_int, 1
+    param str3
+    call print_str, 1
+    param str11
+    t13 = call atoi, 1
+    param t13
+    call print_int, 1
+    param str3
+    call print_str, 1
+    return 0
+endfunc
+######## run
+literal 7 i
+hello world 5
+fedcba
+1 0
+o
+a	b\c"d
+3
+123 124
+[] 0
+no newline
+-42
+0

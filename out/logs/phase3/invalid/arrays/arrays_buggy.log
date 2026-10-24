@@ -1,0 +1,1420 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+array_param_wrong_dim_f   FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_array_param_wrong_dim FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+m                         ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+[                         LBRACKET                 
+4                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+return                    RETURN                   
+array_param_wrong_dim_f   FUNCTION_NAME            
+(                         LPAREN                   
+m                         ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_array_size_missing    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+array_to_scalar_param_f   FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         ARRAY_NAME               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_array_to_scalar_param FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+m                         ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+return                    RETURN                   
+array_to_scalar_param_f   FUNCTION_NAME            
+(                         LPAREN                   
+m                         ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_index_not_integer     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+float                     FLOAT                    
+f                         VARIABLE_NAME            
+=                         ASSIGN                   
+1.0                       FLOAT_CONSTANT           
+;                         SEMI                     
+return                    RETURN                   
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+f                         VARIABLE_NAME            
+]                         RBRACKET                 
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_init_array_by_scalar  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_nonconstant_array_size FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+n                         VARIABLE_NAME            
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+n                         VARIABLE_NAME            
+]                         RBRACKET                 
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_nonpositive_array_size FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+scalar_to_array_param_f   FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+]                         RBRACKET                 
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scalar_to_array_param FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         ARRAY_NAME               
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+scalar_to_array_param_f   FUNCTION_NAME            
+(                         LPAREN                   
+x                         ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_string_too_long       FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+char                      CHAR                     
+s                         ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+"abc"                     STRING_LITERAL           
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_subscript_non_array   FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         ARRAY_NAME               
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+x                         ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_too_many_initializers FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+{                         LBRACE                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+,                         COMMA                    
+3                         INTEGER_CONSTANT         
+}                         RBRACE                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_too_many_subscripts   FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+int                       INT                      
+x                         ARRAY_NAME               
+=                         ASSIGN                   
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+[                         LBRACKET                 
+1                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+return                    RETURN                   
+x                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    array        int        function:array_param_wrong_dim_f dims: []            
+array_param_wrong_dim_f function     int        global                 params: (int)       
+array_to_scalar_param_f function     int        global                 params: (int)       
+bug_array_param_wrong_dim function     int        global                 params: (void)      
+bug_array_size_missing function     int        global                 params: (void)      
+bug_array_to_scalar_param function     int        global                 params: (void)      
+bug_index_not_integer function     int        global                 params: (void)      
+bug_init_array_by_scalar function     int        global                 params: (void)      
+bug_nonconstant_array_size function     int        global                 params: (void)      
+bug_nonpositive_array_size function     int        global                 params: (void)      
+bug_scalar_to_array_param function     int        global                 params: (void)      
+bug_string_too_long  function     int        global                 params: (void)      
+bug_subscript_non_array function     int        global                 params: (void)      
+bug_too_many_initializers function     int        global                 params: (void)      
+bug_too_many_subscripts function     int        global                 params: (void)      
+f                    variable     float      function:bug_index_not_integer                     
+m                    array        int        function:bug_array_param_wrong_dim dims: [2][4]        
+main                 function     int        global                 params: (void)      
+n                    variable     int        function:bug_nonconstant_array_size                     
+s                    array        char       function:bug_string_too_long dims: [2]           
+scalar_to_array_param_f function     int        global                 params: (int)       
+x                    array        int        function:bug_scalar_to_array_param                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: array_param_wrong_dim_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 6
+                      name: a
+                      kind_name: array
+                      dimensions:
+                        [
+                          ArrayDimension
+                            line: 6,
+                          ArrayDimension
+                            line: 6
+                            size:
+                              Literal
+                                line: 6
+                                literal_type: int
+                                value: 3,
+                        ],
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                ReturnStatement
+                  line: 6
+                  value:
+                    ArrayAccess
+                      line: 6
+                      array:
+                        ArrayAccess
+                          line: 6
+                          array:
+                            Identifier
+                              line: 6
+                              name: a
+                          index:
+                            Literal
+                              line: 6
+                              literal_type: int
+                              value: 0
+                      index:
+                        Literal
+                          line: 6
+                          literal_type: int
+                          value: 0,
+              ],
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: bug_array_param_wrong_dim
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                Declaration
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 6
+                        declarator:
+                          Declarator
+                            line: 6
+                            name: m
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 6
+                                  size:
+                                    Literal
+                                      line: 6
+                                      literal_type: int
+                                      value: 2,
+                                ArrayDimension
+                                  line: 6
+                                  size:
+                                    Literal
+                                      line: 6
+                                      literal_type: int
+                                      value: 4,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 6
+                  value:
+                    FunctionCall
+                      line: 6
+                      callee:
+                        Identifier
+                          line: 6
+                          name: array_param_wrong_dim_f
+                      args:
+                        [
+                          Identifier
+                            line: 6
+                            name: m,
+                        ],
+              ],
+      FunctionDefinition
+        line: 9
+        return_type:
+          TypeSpecifier
+            line: 9
+            name: int
+        declarator:
+          Declarator
+            line: 9
+            name: bug_array_size_missing
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 9
+                  type_spec:
+                    TypeSpecifier
+                      line: 9
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 9
+            items:
+              [
+                Declaration
+                  line: 10
+                  type_spec:
+                    TypeSpecifier
+                      line: 10
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 10
+                        declarator:
+                          Declarator
+                            line: 10
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 10,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 11
+                  value:
+                    Literal
+                      line: 11
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 15
+        return_type:
+          TypeSpecifier
+            line: 15
+            name: int
+        declarator:
+          Declarator
+            line: 15
+            name: array_to_scalar_param_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 15
+                  type_spec:
+                    TypeSpecifier
+                      line: 15
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 15
+                      name: a
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 15
+            items:
+              [
+                ReturnStatement
+                  line: 15
+                  value:
+                    Identifier
+                      line: 15
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 15
+        return_type:
+          TypeSpecifier
+            line: 15
+            name: int
+        declarator:
+          Declarator
+            line: 15
+            name: bug_array_to_scalar_param
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 15
+                  type_spec:
+                    TypeSpecifier
+                      line: 15
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 15
+            items:
+              [
+                Declaration
+                  line: 15
+                  type_spec:
+                    TypeSpecifier
+                      line: 15
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 15
+                        declarator:
+                          Declarator
+                            line: 15
+                            name: m
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 15
+                                  size:
+                                    Literal
+                                      line: 15
+                                      literal_type: int
+                                      value: 3,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 15
+                  value:
+                    FunctionCall
+                      line: 15
+                      callee:
+                        Identifier
+                          line: 15
+                          name: array_to_scalar_param_f
+                      args:
+                        [
+                          Identifier
+                            line: 15
+                            name: m,
+                        ],
+              ],
+      FunctionDefinition
+        line: 18
+        return_type:
+          TypeSpecifier
+            line: 18
+            name: int
+        declarator:
+          Declarator
+            line: 18
+            name: bug_index_not_integer
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 18
+                  type_spec:
+                    TypeSpecifier
+                      line: 18
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 18
+            items:
+              [
+                Declaration
+                  line: 19
+                  type_spec:
+                    TypeSpecifier
+                      line: 19
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 19
+                        declarator:
+                          Declarator
+                            line: 19
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 19
+                                  size:
+                                    Literal
+                                      line: 19
+                                      literal_type: int
+                                      value: 3,
+                              ],
+                    ],
+                Declaration
+                  line: 20
+                  type_spec:
+                    TypeSpecifier
+                      line: 20
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 20
+                        declarator:
+                          Declarator
+                            line: 20
+                            name: f
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 20
+                            literal_type: float
+                            value: 1.0,
+                    ],
+                ReturnStatement
+                  line: 21
+                  value:
+                    ArrayAccess
+                      line: 21
+                      array:
+                        Identifier
+                          line: 21
+                          name: a
+                      index:
+                        Identifier
+                          line: 21
+                          name: f,
+              ],
+      FunctionDefinition
+        line: 25
+        return_type:
+          TypeSpecifier
+            line: 25
+            name: int
+        declarator:
+          Declarator
+            line: 25
+            name: bug_init_array_by_scalar
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 25
+                  type_spec:
+                    TypeSpecifier
+                      line: 25
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 25
+            items:
+              [
+                Declaration
+                  line: 25
+                  type_spec:
+                    TypeSpecifier
+                      line: 25
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 25
+                        declarator:
+                          Declarator
+                            line: 25
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 25
+                                  size:
+                                    Literal
+                                      line: 25
+                                      literal_type: int
+                                      value: 3,
+                              ]
+                        initializer:
+                          Literal
+                            line: 25
+                            literal_type: int
+                            value: 5,
+                    ],
+                ReturnStatement
+                  line: 25
+                  value:
+                    Literal
+                      line: 25
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 28
+        return_type:
+          TypeSpecifier
+            line: 28
+            name: int
+        declarator:
+          Declarator
+            line: 28
+            name: bug_nonconstant_array_size
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 28
+                  type_spec:
+                    TypeSpecifier
+                      line: 28
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 28
+            items:
+              [
+                Declaration
+                  line: 29
+                  type_spec:
+                    TypeSpecifier
+                      line: 29
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 29
+                        declarator:
+                          Declarator
+                            line: 29
+                            name: n
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 29
+                            literal_type: int
+                            value: 3,
+                    ],
+                Declaration
+                  line: 30
+                  type_spec:
+                    TypeSpecifier
+                      line: 30
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 30
+                        declarator:
+                          Declarator
+                            line: 30
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 30
+                                  size:
+                                    Identifier
+                                      line: 30
+                                      name: n,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 31
+                  value:
+                    Literal
+                      line: 31
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 35
+        return_type:
+          TypeSpecifier
+            line: 35
+            name: int
+        declarator:
+          Declarator
+            line: 35
+            name: bug_nonpositive_array_size
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 35
+                  type_spec:
+                    TypeSpecifier
+                      line: 35
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 35
+            items:
+              [
+                Declaration
+                  line: 36
+                  type_spec:
+                    TypeSpecifier
+                      line: 36
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 36
+                        declarator:
+                          Declarator
+                            line: 36
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 36
+                                  size:
+                                    Literal
+                                      line: 36
+                                      literal_type: int
+                                      value: 0,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 37
+                  value:
+                    Literal
+                      line: 37
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 41
+        return_type:
+          TypeSpecifier
+            line: 41
+            name: int
+        declarator:
+          Declarator
+            line: 41
+            name: scalar_to_array_param_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 41
+                  type_spec:
+                    TypeSpecifier
+                      line: 41
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 41
+                      name: a
+                      kind_name: array
+                      dimensions:
+                        [
+                          ArrayDimension
+                            line: 41,
+                        ],
+              ]
+        body:
+          CompoundStatement
+            line: 41
+            items:
+              [
+                ReturnStatement
+                  line: 41
+                  value:
+                    ArrayAccess
+                      line: 41
+                      array:
+                        Identifier
+                          line: 41
+                          name: a
+                      index:
+                        Literal
+                          line: 41
+                          literal_type: int
+                          value: 0,
+              ],
+      FunctionDefinition
+        line: 41
+        return_type:
+          TypeSpecifier
+            line: 41
+            name: int
+        declarator:
+          Declarator
+            line: 41
+            name: bug_scalar_to_array_param
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 41
+                  type_spec:
+                    TypeSpecifier
+                      line: 41
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 41
+            items:
+              [
+                Declaration
+                  line: 41
+                  type_spec:
+                    TypeSpecifier
+                      line: 41
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 41
+                        declarator:
+                          Declarator
+                            line: 41
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 41
+                            literal_type: int
+                            value: 3,
+                    ],
+                ReturnStatement
+                  line: 41
+                  value:
+                    FunctionCall
+                      line: 41
+                      callee:
+                        Identifier
+                          line: 41
+                          name: scalar_to_array_param_f
+                      args:
+                        [
+                          Identifier
+                            line: 41
+                            name: x,
+                        ],
+              ],
+      FunctionDefinition
+        line: 44
+        return_type:
+          TypeSpecifier
+            line: 44
+            name: int
+        declarator:
+          Declarator
+            line: 44
+            name: bug_string_too_long
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 44
+                  type_spec:
+                    TypeSpecifier
+                      line: 44
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 44
+            items:
+              [
+                Declaration
+                  line: 45
+                  type_spec:
+                    TypeSpecifier
+                      line: 45
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 45
+                        declarator:
+                          Declarator
+                            line: 45
+                            name: s
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 45
+                                  size:
+                                    Literal
+                                      line: 45
+                                      literal_type: int
+                                      value: 2,
+                              ]
+                        initializer:
+                          Literal
+                            line: 45
+                            literal_type: string
+                            value: "abc",
+                    ],
+                ReturnStatement
+                  line: 46
+                  value:
+                    Literal
+                      line: 46
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 50
+        return_type:
+          TypeSpecifier
+            line: 50
+            name: int
+        declarator:
+          Declarator
+            line: 50
+            name: bug_subscript_non_array
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 50
+                  type_spec:
+                    TypeSpecifier
+                      line: 50
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 50
+            items:
+              [
+                Declaration
+                  line: 51
+                  type_spec:
+                    TypeSpecifier
+                      line: 51
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 51
+                        declarator:
+                          Declarator
+                            line: 51
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 51
+                            literal_type: int
+                            value: 1,
+                    ],
+                ReturnStatement
+                  line: 52
+                  value:
+                    ArrayAccess
+                      line: 52
+                      array:
+                        Identifier
+                          line: 52
+                          name: x
+                      index:
+                        Literal
+                          line: 52
+                          literal_type: int
+                          value: 0,
+              ],
+      FunctionDefinition
+        line: 56
+        return_type:
+          TypeSpecifier
+            line: 56
+            name: int
+        declarator:
+          Declarator
+            line: 56
+            name: bug_too_many_initializers
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 56
+                  type_spec:
+                    TypeSpecifier
+                      line: 56
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 56
+            items:
+              [
+                Declaration
+                  line: 57
+                  type_spec:
+                    TypeSpecifier
+                      line: 57
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 57
+                        declarator:
+                          Declarator
+                            line: 57
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 57
+                                  size:
+                                    Literal
+                                      line: 57
+                                      literal_type: int
+                                      value: 2,
+                              ]
+                        initializer:
+                          InitializerList
+                            line: 57
+                            values:
+                              [
+                                Literal
+                                  line: 57
+                                  literal_type: int
+                                  value: 1,
+                                Literal
+                                  line: 57
+                                  literal_type: int
+                                  value: 2,
+                                Literal
+                                  line: 57
+                                  literal_type: int
+                                  value: 3,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 58
+                  value:
+                    Literal
+                      line: 58
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 62
+        return_type:
+          TypeSpecifier
+            line: 62
+            name: int
+        declarator:
+          Declarator
+            line: 62
+            name: bug_too_many_subscripts
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 62
+                  type_spec:
+                    TypeSpecifier
+                      line: 62
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 62
+            items:
+              [
+                Declaration
+                  line: 62
+                  type_spec:
+                    TypeSpecifier
+                      line: 62
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 62
+                        declarator:
+                          Declarator
+                            line: 62
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 62
+                                  size:
+                                    Literal
+                                      line: 62
+                                      literal_type: int
+                                      value: 3,
+                              ],
+                    ],
+                Declaration
+                  line: 62
+                  type_spec:
+                    TypeSpecifier
+                      line: 62
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 62
+                        declarator:
+                          Declarator
+                            line: 62
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          ArrayAccess
+                            line: 62
+                            array:
+                              ArrayAccess
+                                line: 62
+                                array:
+                                  Identifier
+                                    line: 62
+                                    name: a
+                                index:
+                                  Literal
+                                    line: 62
+                                    literal_type: int
+                                    value: 0
+                            index:
+                              Literal
+                                line: 62
+                                literal_type: int
+                                value: 1,
+                    ],
+                ReturnStatement
+                  line: 62
+                  value:
+                    Identifier
+                      line: 62
+                      name: x,
+              ],
+      FunctionDefinition
+        line: 64
+        return_type:
+          TypeSpecifier
+            line: 64
+            name: int
+        declarator:
+          Declarator
+            line: 64
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 64
+                  type_spec:
+                    TypeSpecifier
+                      line: 64
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 64
+            items:
+              [
+                ReturnStatement
+                  line: 64
+                  value:
+                    Literal
+                      line: 64
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/arrays/arrays_buggy.c:6: semantic error: argument 1 of 'array_param_wrong_dim_f': cannot pass int[2][4] where int[][3] is expected
+     6 | int array_param_wrong_dim_f(int a[][3]) { return a[0][0]; } int bug_array_param_wrong_dim(void) { int m[2][4]; return array_param_wrong_dim_f(m); }
+test/phase3_tac/invalid/arrays/arrays_buggy.c:10: semantic error: array size missing in declaration of 'a'
+    10 |     int a[];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:15: semantic error: argument 1 of 'array_to_scalar_param_f': cannot pass int[3] where int is expected
+    15 | int array_to_scalar_param_f(int a) { return a; } int bug_array_to_scalar_param(void) { int m[3]; return array_to_scalar_param_f(m); }
+test/phase3_tac/invalid/arrays/arrays_buggy.c:21: semantic error: array index must be an int or char (got float)
+    21 |     return a[f];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:25: semantic error: array 'a' needs a brace-enclosed initializer
+    25 | int bug_init_array_by_scalar(void) { int a[3] = 5; return 0; }
+test/phase3_tac/invalid/arrays/arrays_buggy.c:30: semantic error: array size of 'a' must be a constant expression
+    30 |     int a[n];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:36: semantic error: array size of 'a' must be a positive integer
+    36 |     int a[0];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:41: semantic error: argument 1 of 'scalar_to_array_param_f': cannot pass int where int[] is expected
+    41 | int scalar_to_array_param_f(int a[]) { return a[0]; } int bug_scalar_to_array_param(void) { int x = 3; return scalar_to_array_param_f(x); }
+test/phase3_tac/invalid/arrays/arrays_buggy.c:45: semantic error: string initializer is too long for 's'
+    45 |     char s[2] = "abc";
+test/phase3_tac/invalid/arrays/arrays_buggy.c:52: semantic error: subscripted value is not an array (type int)
+    52 |     return x[0];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:57: semantic error: too many initializers for 'a'
+    57 |     int a[2] = {1, 2, 3};
+test/phase3_tac/invalid/arrays/arrays_buggy.c:62: semantic error: subscripted value is not an array (type int)
+    62 | int bug_too_many_subscripts(void) { int a[3]; int x = a[0][1]; return x; }
+12 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/arrays/arrays_buggy.c:6: semantic error: argument 1 of 'array_param_wrong_dim_f': cannot pass int[2][4] where int[][3] is expected
+     6 | int array_param_wrong_dim_f(int a[][3]) { return a[0][0]; } int bug_array_param_wrong_dim(void) { int m[2][4]; return array_param_wrong_dim_f(m); }
+test/phase3_tac/invalid/arrays/arrays_buggy.c:10: semantic error: array size missing in declaration of 'a'
+    10 |     int a[];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:15: semantic error: argument 1 of 'array_to_scalar_param_f': cannot pass int[3] where int is expected
+    15 | int array_to_scalar_param_f(int a) { return a; } int bug_array_to_scalar_param(void) { int m[3]; return array_to_scalar_param_f(m); }
+test/phase3_tac/invalid/arrays/arrays_buggy.c:21: semantic error: array index must be an int or char (got float)
+    21 |     return a[f];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:25: semantic error: array 'a' needs a brace-enclosed initializer
+    25 | int bug_init_array_by_scalar(void) { int a[3] = 5; return 0; }
+test/phase3_tac/invalid/arrays/arrays_buggy.c:30: semantic error: array size of 'a' must be a constant expression
+    30 |     int a[n];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:36: semantic error: array size of 'a' must be a positive integer
+    36 |     int a[0];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:41: semantic error: argument 1 of 'scalar_to_array_param_f': cannot pass int where int[] is expected
+    41 | int scalar_to_array_param_f(int a[]) { return a[0]; } int bug_scalar_to_array_param(void) { int x = 3; return scalar_to_array_param_f(x); }
+test/phase3_tac/invalid/arrays/arrays_buggy.c:45: semantic error: string initializer is too long for 's'
+    45 |     char s[2] = "abc";
+test/phase3_tac/invalid/arrays/arrays_buggy.c:52: semantic error: subscripted value is not an array (type int)
+    52 |     return x[0];
+test/phase3_tac/invalid/arrays/arrays_buggy.c:57: semantic error: too many initializers for 'a'
+    57 |     int a[2] = {1, 2, 3};
+test/phase3_tac/invalid/arrays/arrays_buggy.c:62: semantic error: subscripted value is not an array (type int)
+    62 | int bug_too_many_subscripts(void) { int a[3]; int x = a[0][1]; return x; }
+12 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

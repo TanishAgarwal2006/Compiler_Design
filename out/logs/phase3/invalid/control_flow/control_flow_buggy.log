@@ -1,0 +1,860 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+bug_break_outside_loop    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+break                     BREAK                    
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_case_not_constant     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+y                         VARIABLE_NAME            
+=                         ASSIGN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+switch                    SWITCH                   
+(                         LPAREN                   
+x                         VARIABLE_NAME            
+)                         RPAREN                   
+{                         LBRACE                   
+case                      CASE                     
+y                         VARIABLE_NAME            
+:                         COLON                    
+break                     BREAK                    
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_continue_in_switch    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+switch                    SWITCH                   
+(                         LPAREN                   
+x                         VARIABLE_NAME            
+)                         RPAREN                   
+{                         LBRACE                   
+case                      CASE                     
+1                         INTEGER_CONSTANT         
+:                         COLON                    
+continue                  CONTINUE                 
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_continue_outside_loop FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+continue                  CONTINUE                 
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_duplicate_case        FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+switch                    SWITCH                   
+(                         LPAREN                   
+x                         VARIABLE_NAME            
+)                         RPAREN                   
+{                         LBRACE                   
+case                      CASE                     
+1                         INTEGER_CONSTANT         
+:                         COLON                    
+break                     BREAK                    
+;                         SEMI                     
+case                      CASE                     
+1                         INTEGER_CONSTANT         
+:                         COLON                    
+break                     BREAK                    
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_duplicate_default     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+switch                    SWITCH                   
+(                         LPAREN                   
+x                         VARIABLE_NAME            
+)                         RPAREN                   
+{                         LBRACE                   
+default                   DEFAULT                  
+:                         COLON                    
+break                     BREAK                    
+;                         SEMI                     
+default                   DEFAULT                  
+:                         COLON                    
+break                     BREAK                    
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_duplicate_label       FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+again                     LABEL_NAME               
+:                         COLON                    
+;                         SEMI                     
+again                     LABEL_NAME               
+:                         COLON                    
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_goto_undefined_label  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+goto                      GOTO                     
+nowhere                   LABEL_NAME               
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+void                      VOID                     
+f                         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+goto                      GOTO                     
+L                         LABEL_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_label_scope_other_func FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+L                         LABEL_NAME               
+:                         COLON                    
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+L                    label        void       function:f                                 
+again                label        void       function:bug_duplicate_label                     
+bug_break_outside_loop function     int        global                 params: (void)      
+bug_case_not_constant function     int        global                 params: (void)      
+bug_continue_in_switch function     int        global                 params: (void)      
+bug_continue_outside_loop function     int        global                 params: (void)      
+bug_duplicate_case   function     int        global                 params: (void)      
+bug_duplicate_default function     int        global                 params: (void)      
+bug_duplicate_label  function     int        global                 params: (void)      
+bug_goto_undefined_label function     int        global                 params: (void)      
+bug_label_scope_other_func function     int        global                 params: (void)      
+f                    function     void       global                 params: (void)      
+main                 function     int        global                 params: (void)      
+nowhere              label        void       function:bug_goto_undefined_label                     
+x                    variable     int        function:bug_case_not_constant                     
+y                    variable     int        function:bug_case_not_constant                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: bug_break_outside_loop
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                JumpStatement
+                  line: 7
+                  keyword: break,
+                ReturnStatement
+                  line: 8
+                  value:
+                    Literal
+                      line: 8
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 12
+        return_type:
+          TypeSpecifier
+            line: 12
+            name: int
+        declarator:
+          Declarator
+            line: 12
+            name: bug_case_not_constant
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 12
+            items:
+              [
+                Declaration
+                  line: 13
+                  type_spec:
+                    TypeSpecifier
+                      line: 13
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 13
+                        declarator:
+                          Declarator
+                            line: 13
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 13
+                            literal_type: int
+                            value: 1,
+                      InitDeclarator
+                        line: 13
+                        declarator:
+                          Declarator
+                            line: 13
+                            name: y
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 13
+                            literal_type: int
+                            value: 2,
+                    ],
+                SwitchStatement
+                  line: 14
+                  expression:
+                    Identifier
+                      line: 14
+                      name: x
+                  cases:
+                    [
+                      SwitchCase
+                        line: 15
+                        value:
+                          Identifier
+                            line: 15
+                            name: y
+                        body:
+                          [
+                            JumpStatement
+                              line: 15
+                              keyword: break,
+                          ],
+                    ],
+                ReturnStatement
+                  line: 17
+                  value:
+                    Literal
+                      line: 17
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 21
+        return_type:
+          TypeSpecifier
+            line: 21
+            name: int
+        declarator:
+          Declarator
+            line: 21
+            name: bug_continue_in_switch
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 21
+                  type_spec:
+                    TypeSpecifier
+                      line: 21
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 21
+            items:
+              [
+                Declaration
+                  line: 22
+                  type_spec:
+                    TypeSpecifier
+                      line: 22
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 22
+                        declarator:
+                          Declarator
+                            line: 22
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 22
+                            literal_type: int
+                            value: 1,
+                    ],
+                SwitchStatement
+                  line: 23
+                  expression:
+                    Identifier
+                      line: 23
+                      name: x
+                  cases:
+                    [
+                      SwitchCase
+                        line: 24
+                        value:
+                          Literal
+                            line: 24
+                            literal_type: int
+                            value: 1
+                        body:
+                          [
+                            JumpStatement
+                              line: 24
+                              keyword: continue,
+                          ],
+                    ],
+                ReturnStatement
+                  line: 26
+                  value:
+                    Literal
+                      line: 26
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 30
+        return_type:
+          TypeSpecifier
+            line: 30
+            name: int
+        declarator:
+          Declarator
+            line: 30
+            name: bug_continue_outside_loop
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 30
+                  type_spec:
+                    TypeSpecifier
+                      line: 30
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 30
+            items:
+              [
+                JumpStatement
+                  line: 31
+                  keyword: continue,
+                ReturnStatement
+                  line: 32
+                  value:
+                    Literal
+                      line: 32
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 36
+        return_type:
+          TypeSpecifier
+            line: 36
+            name: int
+        declarator:
+          Declarator
+            line: 36
+            name: bug_duplicate_case
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 36
+                  type_spec:
+                    TypeSpecifier
+                      line: 36
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 36
+            items:
+              [
+                Declaration
+                  line: 37
+                  type_spec:
+                    TypeSpecifier
+                      line: 37
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 37
+                        declarator:
+                          Declarator
+                            line: 37
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 37
+                            literal_type: int
+                            value: 1,
+                    ],
+                SwitchStatement
+                  line: 38
+                  expression:
+                    Identifier
+                      line: 38
+                      name: x
+                  cases:
+                    [
+                      SwitchCase
+                        line: 39
+                        value:
+                          Literal
+                            line: 39
+                            literal_type: int
+                            value: 1
+                        body:
+                          [
+                            JumpStatement
+                              line: 39
+                              keyword: break,
+                          ],
+                      SwitchCase
+                        line: 40
+                        value:
+                          Literal
+                            line: 40
+                            literal_type: int
+                            value: 1
+                        body:
+                          [
+                            JumpStatement
+                              line: 40
+                              keyword: break,
+                          ],
+                    ],
+                ReturnStatement
+                  line: 42
+                  value:
+                    Literal
+                      line: 42
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 46
+        return_type:
+          TypeSpecifier
+            line: 46
+            name: int
+        declarator:
+          Declarator
+            line: 46
+            name: bug_duplicate_default
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 46
+                  type_spec:
+                    TypeSpecifier
+                      line: 46
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 46
+            items:
+              [
+                Declaration
+                  line: 47
+                  type_spec:
+                    TypeSpecifier
+                      line: 47
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 47
+                        declarator:
+                          Declarator
+                            line: 47
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 47
+                            literal_type: int
+                            value: 1,
+                    ],
+                SwitchStatement
+                  line: 48
+                  expression:
+                    Identifier
+                      line: 48
+                      name: x
+                  cases:
+                    [
+                      SwitchCase
+                        line: 49
+                        body:
+                          [
+                            JumpStatement
+                              line: 49
+                              keyword: break,
+                          ],
+                      SwitchCase
+                        line: 50
+                        body:
+                          [
+                            JumpStatement
+                              line: 50
+                              keyword: break,
+                          ],
+                    ],
+                ReturnStatement
+                  line: 52
+                  value:
+                    Literal
+                      line: 52
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 56
+        return_type:
+          TypeSpecifier
+            line: 56
+            name: int
+        declarator:
+          Declarator
+            line: 56
+            name: bug_duplicate_label
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 56
+                  type_spec:
+                    TypeSpecifier
+                      line: 56
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 56
+            items:
+              [
+                LabeledStatement
+                  line: 57
+                  label: again
+                  statement:
+                    ExpressionStatement
+                      line: 58,
+                LabeledStatement
+                  line: 59
+                  label: again
+                  statement:
+                    ReturnStatement
+                      line: 60
+                      value:
+                        Literal
+                          line: 60
+                          literal_type: int
+                          value: 0,
+              ],
+      FunctionDefinition
+        line: 64
+        return_type:
+          TypeSpecifier
+            line: 64
+            name: int
+        declarator:
+          Declarator
+            line: 64
+            name: bug_goto_undefined_label
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 64
+                  type_spec:
+                    TypeSpecifier
+                      line: 64
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 64
+            items:
+              [
+                JumpStatement
+                  line: 65
+                  keyword: goto
+                  target: nowhere,
+                ReturnStatement
+                  line: 66
+                  value:
+                    Literal
+                      line: 66
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 70
+        return_type:
+          TypeSpecifier
+            line: 70
+            name: void
+        declarator:
+          Declarator
+            line: 70
+            name: f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 70
+                  type_spec:
+                    TypeSpecifier
+                      line: 70
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 70
+            items:
+              [
+                JumpStatement
+                  line: 70
+                  keyword: goto
+                  target: L,
+              ],
+      FunctionDefinition
+        line: 70
+        return_type:
+          TypeSpecifier
+            line: 70
+            name: int
+        declarator:
+          Declarator
+            line: 70
+            name: bug_label_scope_other_func
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 70
+                  type_spec:
+                    TypeSpecifier
+                      line: 70
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 70
+            items:
+              [
+                LabeledStatement
+                  line: 70
+                  label: L
+                  statement:
+                    ReturnStatement
+                      line: 70
+                      value:
+                        Literal
+                          line: 70
+                          literal_type: int
+                          value: 0,
+              ],
+      FunctionDefinition
+        line: 72
+        return_type:
+          TypeSpecifier
+            line: 72
+            name: int
+        declarator:
+          Declarator
+            line: 72
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 72
+                  type_spec:
+                    TypeSpecifier
+                      line: 72
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 72
+            items:
+              [
+                ReturnStatement
+                  line: 72
+                  value:
+                    Literal
+                      line: 72
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:7: semantic error: 'break' outside a loop or switch
+     7 |     break;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:15: semantic error: case value must be a constant expression
+    15 |         case y: break;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:24: semantic error: 'continue' outside a loop
+    24 |         case 1: continue;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:31: semantic error: 'continue' outside a loop
+    31 |     continue;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:40: semantic error: duplicate case value 1
+    40 |         case 1: break;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:50: semantic error: duplicate 'default' label in switch
+    50 |         default: break;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:59: semantic error: duplicate label 'again'
+    59 | again:
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:65: semantic error: goto to undefined label 'nowhere'
+    65 |     goto nowhere;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:70: semantic error: goto to undefined label 'L'
+    70 | void f(void) { goto L; } int bug_label_scope_other_func(void) { L: return 0; }
+9 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:7: semantic error: 'break' outside a loop or switch
+     7 |     break;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:15: semantic error: case value must be a constant expression
+    15 |         case y: break;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:24: semantic error: 'continue' outside a loop
+    24 |         case 1: continue;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:31: semantic error: 'continue' outside a loop
+    31 |     continue;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:40: semantic error: duplicate case value 1
+    40 |         case 1: break;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:50: semantic error: duplicate 'default' label in switch
+    50 |         default: break;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:59: semantic error: duplicate label 'again'
+    59 | again:
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:65: semantic error: goto to undefined label 'nowhere'
+    65 |     goto nowhere;
+test/phase3_tac/invalid/control_flow/control_flow_buggy.c:70: semantic error: goto to undefined label 'L'
+    70 | void f(void) { goto L; } int bug_label_scope_other_func(void) { L: return 0; }
+9 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

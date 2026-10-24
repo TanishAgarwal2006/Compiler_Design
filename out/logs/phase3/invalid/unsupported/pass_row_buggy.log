@@ -1,0 +1,282 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+row_taker                 FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+r                         ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+r                         ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+m                         ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+{                         LBRACE                   
+{                         LBRACE                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+}                         RBRACE                   
+,                         COMMA                    
+{                         LBRACE                   
+3                         INTEGER_CONSTANT         
+,                         COMMA                    
+4                         INTEGER_CONSTANT         
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+return                    RETURN                   
+row_taker                 FUNCTION_NAME            
+(                         LPAREN                   
+m                         ARRAY_NAME               
+[                         LBRACKET                 
+1                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+m                    array        int        function:main          dims: [2][2]        
+main                 function     int        global                 params: (void)      
+r                    array        int        function:row_taker                         
+row_taker            function     int        global                 params: (int)       
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 2
+        return_type:
+          TypeSpecifier
+            line: 2
+            name: int
+        declarator:
+          Declarator
+            line: 2
+            name: row_taker
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 2
+                  type_spec:
+                    TypeSpecifier
+                      line: 2
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 2
+                      name: r
+                      kind_name: array
+                      dimensions:
+                        [
+                          ArrayDimension
+                            line: 2
+                            size:
+                              Literal
+                                line: 2
+                                literal_type: int
+                                value: 2,
+                        ],
+              ]
+        body:
+          CompoundStatement
+            line: 2
+            items:
+              [
+                ReturnStatement
+                  line: 2
+                  value:
+                    ArrayAccess
+                      line: 2
+                      array:
+                        Identifier
+                          line: 2
+                          name: r
+                      index:
+                        Literal
+                          line: 2
+                          literal_type: int
+                          value: 0,
+              ],
+      FunctionDefinition
+        line: 3
+        return_type:
+          TypeSpecifier
+            line: 3
+            name: int
+        declarator:
+          Declarator
+            line: 3
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 3
+                  type_spec:
+                    TypeSpecifier
+                      line: 3
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 3
+            items:
+              [
+                Declaration
+                  line: 3
+                  type_spec:
+                    TypeSpecifier
+                      line: 3
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 3
+                        declarator:
+                          Declarator
+                            line: 3
+                            name: m
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 3
+                                  size:
+                                    Literal
+                                      line: 3
+                                      literal_type: int
+                                      value: 2,
+                                ArrayDimension
+                                  line: 3
+                                  size:
+                                    Literal
+                                      line: 3
+                                      literal_type: int
+                                      value: 2,
+                              ]
+                        initializer:
+                          InitializerList
+                            line: 3
+                            values:
+                              [
+                                InitializerList
+                                  line: 3
+                                  values:
+                                    [
+                                      Literal
+                                        line: 3
+                                        literal_type: int
+                                        value: 1,
+                                      Literal
+                                        line: 3
+                                        literal_type: int
+                                        value: 2,
+                                    ],
+                                InitializerList
+                                  line: 3
+                                  values:
+                                    [
+                                      Literal
+                                        line: 3
+                                        literal_type: int
+                                        value: 3,
+                                      Literal
+                                        line: 3
+                                        literal_type: int
+                                        value: 4,
+                                    ],
+                              ],
+                    ],
+                ReturnStatement
+                  line: 3
+                  value:
+                    FunctionCall
+                      line: 3
+                      callee:
+                        Identifier
+                          line: 3
+                          name: row_taker
+                      args:
+                        [
+                          ArrayAccess
+                            line: 3
+                            array:
+                              Identifier
+                                line: 3
+                                name: m
+                            index:
+                              Literal
+                                line: 3
+                                literal_type: int
+                                value: 1,
+                        ],
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  (none)
+
+Functions
+  name       signature        frame  defined  line
+  ---------  ---------------  -----  -------  ----
+  row_taker  (int[2]) -> int  8      yes      2   
+  main       () -> int        16     yes      3   
+
+Function row_taker: parameters and locals (frame size 8 bytes)
+  ir name  source  kind   type    size  offset  line
+  -------  ------  -----  ------  ----  ------  ----
+  r        r       param  int[2]  8     0       2   
+
+Function main: parameters and locals (frame size 16 bytes)
+  ir name  source  kind   type       size  offset  line
+  -------  ------  -----  ---------  ----  ------  ----
+  m        m       local  int[2][2]  16    0       3   
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+test/phase3_tac/invalid/unsupported/pass_row_buggy.c:3: semantic error: unsupported feature: passing a row of a multi-dimensional array (only whole arrays can be passed)
+     3 | int main(void) { int m[2][2] = {{1, 2}, {3, 4}}; return row_taker(m[1]); }
+1 error found. No output was produced.
+######## run
+(not compiled: see the errors above)

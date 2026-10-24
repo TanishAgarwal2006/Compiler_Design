@@ -1,0 +1,1285 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+conflicting_prototype_f   FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+;                         SEMI                     
+float                     FLOAT                    
+conflicting_prototype_f   FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+bug_conflicting_prototype FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+enum                      ENUM                     
+E                         IDENTIFIER               
+{                         LBRACE                   
+A                         VARIABLE_NAME            
+,                         COMMA                    
+B                         VARIABLE_NAME            
+,                         COMMA                    
+A                         VARIABLE_NAME            
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+bug_enum_dup              FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+extern                    EXTERN                   
+int                       INT                      
+x                         VARIABLE_NAME            
+;                         SEMI                     
+int                       INT                      
+bug_extern_never_defined  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+x                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+h                         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+g                         VARIABLE_NAME            
+=                         ASSIGN                   
+h                         FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+bug_global_nonconst_init  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_multiple_errors       FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         PARAMETER_NAME           
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+a                         PARAMETER_NAME           
+=                         ASSIGN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+b                         VARIABLE_NAME            
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d\n"                    STRING_LITERAL           
+,                         COMMA                    
+undefined_name            VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+redecl_param_f            FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         PARAMETER_NAME           
+=                         ASSIGN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_redecl_param          FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+redecl_param_f            FUNCTION_NAME            
+(                         LPAREN                   
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_redeclaration         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         PARAMETER_NAME           
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+a                         PARAMETER_NAME           
+=                         ASSIGN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+redefinition_function_f   FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+redefinition_function_f   FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_redefinition_function FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+redefinition_function_f   FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+atoi                      FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_reserved_name         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_undeclared_identifier FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+y                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_undeclared_out_of_scope FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+{                         LBRACE                   
+int                       INT                      
+a                         PARAMETER_NAME           
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_void_variable         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+void                      VOID                     
+v                         VARIABLE_NAME            
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+A                    variable     int        global                 enum constant       
+B                    variable     int        global                 enum constant       
+a                    parameter    int        function:bug_multiple_errors                     
+atoi                 function     int        global                 params: (int)       
+b                    variable     int        function:bug_multiple_errors                     
+bug_conflicting_prototype function     int        global                 params: (void)      
+bug_enum_dup         function     int        global                 params: (void)      
+bug_extern_never_defined function     int        global                 params: (void)      
+bug_global_nonconst_init function     int        global                 params: (void)      
+bug_multiple_errors  function     int        global                 params: (void)      
+bug_redecl_param     function     int        global                 params: (void)      
+bug_redeclaration    function     int        global                 params: (void)      
+bug_redefinition_function function     int        global                 params: (void)      
+bug_reserved_name    function     int        global                 params: (void)      
+bug_undeclared_identifier function     int        global                 params: (void)      
+bug_undeclared_out_of_scope function     int        global                 params: (void)      
+bug_void_variable    function     int        global                 params: (void)      
+conflicting_prototype_f function     float      global                 params: ()          
+g                    variable     int        global                                     
+h                    function     int        global                 params: (void)      
+main                 function     int        global                 params: (void)      
+printf               function     int        global                 params: (format, ...)
+redecl_param_f       function     int        global                 params: (int)       
+redefinition_function_f function     int        global                 params: (void)      
+undefined_name       variable     int        function:bug_multiple_errors                     
+v                    variable     void       function:bug_void_variable                     
+x                    variable     int        global                                     
+y                    variable     int        function:bug_undeclared_identifier                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 6
+        type_spec:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 6
+              declarator:
+                Declarator
+                  line: 6
+                  name: conflicting_prototype_f
+                  kind_name: function
+                  params:
+                    [
+                      Parameter
+                        line: 6
+                        type_spec:
+                          TypeSpecifier
+                            line: 6
+                            name: int
+                        declarator:
+                          Declarator
+                            line: 6
+                            name: a
+                            kind_name: variable,
+                    ],
+          ],
+      Declaration
+        line: 7
+        type_spec:
+          TypeSpecifier
+            line: 7
+            name: float
+        declarators:
+          [
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: conflicting_prototype_f
+                  kind_name: function
+                  params:
+                    [
+                      Parameter
+                        line: 7
+                        type_spec:
+                          TypeSpecifier
+                            line: 7
+                            name: int
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: a
+                            kind_name: variable,
+                    ],
+          ],
+      FunctionDefinition
+        line: 8
+        return_type:
+          TypeSpecifier
+            line: 8
+            name: int
+        declarator:
+          Declarator
+            line: 8
+            name: bug_conflicting_prototype
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 8
+            items:
+              [
+                ReturnStatement
+                  line: 8
+                  value:
+                    Literal
+                      line: 8
+                      literal_type: int
+                      value: 0,
+              ],
+      Declaration
+        line: 11
+        type_spec:
+          EnumSpecifier
+            line: 11
+            tag: E
+            enumerators:
+              [
+                Enumerator
+                  line: 11
+                  name: A,
+                Enumerator
+                  line: 11
+                  name: B,
+                Enumerator
+                  line: 11
+                  name: A,
+              ],
+      FunctionDefinition
+        line: 11
+        return_type:
+          TypeSpecifier
+            line: 11
+            name: int
+        declarator:
+          Declarator
+            line: 11
+            name: bug_enum_dup
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 11
+                  type_spec:
+                    TypeSpecifier
+                      line: 11
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 11
+            items:
+              [
+                ReturnStatement
+                  line: 11
+                  value:
+                    Literal
+                      line: 11
+                      literal_type: int
+                      value: 0,
+              ],
+      Declaration
+        line: 14
+        type_spec:
+          TypeSpecifier
+            line: 14
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 14
+              declarator:
+                Declarator
+                  line: 14
+                  name: x
+                  kind_name: variable,
+          ]
+        storage: extern,
+      FunctionDefinition
+        line: 15
+        return_type:
+          TypeSpecifier
+            line: 15
+            name: int
+        declarator:
+          Declarator
+            line: 15
+            name: bug_extern_never_defined
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 15
+                  type_spec:
+                    TypeSpecifier
+                      line: 15
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 15
+            items:
+              [
+                ReturnStatement
+                  line: 15
+                  value:
+                    Identifier
+                      line: 15
+                      name: x,
+              ],
+      FunctionDefinition
+        line: 18
+        return_type:
+          TypeSpecifier
+            line: 18
+            name: int
+        declarator:
+          Declarator
+            line: 18
+            name: h
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 18
+                  type_spec:
+                    TypeSpecifier
+                      line: 18
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 18
+            items:
+              [
+                ReturnStatement
+                  line: 18
+                  value:
+                    Literal
+                      line: 18
+                      literal_type: int
+                      value: 1,
+              ],
+      Declaration
+        line: 18
+        type_spec:
+          TypeSpecifier
+            line: 18
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 18
+              declarator:
+                Declarator
+                  line: 18
+                  name: g
+                  kind_name: variable
+              initializer:
+                FunctionCall
+                  line: 18
+                  callee:
+                    Identifier
+                      line: 18
+                      name: h,
+          ],
+      FunctionDefinition
+        line: 18
+        return_type:
+          TypeSpecifier
+            line: 18
+            name: int
+        declarator:
+          Declarator
+            line: 18
+            name: bug_global_nonconst_init
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 18
+                  type_spec:
+                    TypeSpecifier
+                      line: 18
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 18
+            items:
+              [
+                ReturnStatement
+                  line: 18
+                  value:
+                    Literal
+                      line: 18
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 21
+        return_type:
+          TypeSpecifier
+            line: 21
+            name: int
+        declarator:
+          Declarator
+            line: 21
+            name: bug_multiple_errors
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 21
+                  type_spec:
+                    TypeSpecifier
+                      line: 21
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 21
+            items:
+              [
+                Declaration
+                  line: 22
+                  type_spec:
+                    TypeSpecifier
+                      line: 22
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 22
+                        declarator:
+                          Declarator
+                            line: 22
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 22
+                            literal_type: int
+                            value: 1,
+                    ],
+                Declaration
+                  line: 23
+                  type_spec:
+                    TypeSpecifier
+                      line: 23
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 23
+                        declarator:
+                          Declarator
+                            line: 23
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 23
+                            literal_type: int
+                            value: 2,
+                    ],
+                ExpressionStatement
+                  line: 24
+                  expression:
+                    Assignment
+                      line: 24
+                      operator: =
+                      target:
+                        Identifier
+                          line: 24
+                          name: b
+                      value:
+                        Literal
+                          line: 24
+                          literal_type: int
+                          value: 3,
+                ExpressionStatement
+                  line: 25
+                  expression:
+                    FunctionCall
+                      line: 25
+                      callee:
+                        Identifier
+                          line: 25
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 25
+                            literal_type: string
+                            value: "%d\n",
+                          Identifier
+                            line: 25
+                            name: undefined_name,
+                        ],
+                ReturnStatement
+                  line: 26
+                  value:
+                    Literal
+                      line: 26
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 30
+        return_type:
+          TypeSpecifier
+            line: 30
+            name: int
+        declarator:
+          Declarator
+            line: 30
+            name: redecl_param_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 30
+                  type_spec:
+                    TypeSpecifier
+                      line: 30
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 30
+                      name: a
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 30
+            items:
+              [
+                Declaration
+                  line: 30
+                  type_spec:
+                    TypeSpecifier
+                      line: 30
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 30
+                        declarator:
+                          Declarator
+                            line: 30
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 30
+                            literal_type: int
+                            value: 2,
+                    ],
+                ReturnStatement
+                  line: 30
+                  value:
+                    Identifier
+                      line: 30
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 30
+        return_type:
+          TypeSpecifier
+            line: 30
+            name: int
+        declarator:
+          Declarator
+            line: 30
+            name: bug_redecl_param
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 30
+                  type_spec:
+                    TypeSpecifier
+                      line: 30
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 30
+            items:
+              [
+                ReturnStatement
+                  line: 30
+                  value:
+                    FunctionCall
+                      line: 30
+                      callee:
+                        Identifier
+                          line: 30
+                          name: redecl_param_f
+                      args:
+                        [
+                          Literal
+                            line: 30
+                            literal_type: int
+                            value: 1,
+                        ],
+              ],
+      FunctionDefinition
+        line: 33
+        return_type:
+          TypeSpecifier
+            line: 33
+            name: int
+        declarator:
+          Declarator
+            line: 33
+            name: bug_redeclaration
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 33
+                  type_spec:
+                    TypeSpecifier
+                      line: 33
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 33
+            items:
+              [
+                Declaration
+                  line: 34
+                  type_spec:
+                    TypeSpecifier
+                      line: 34
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 34
+                        declarator:
+                          Declarator
+                            line: 34
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 34
+                            literal_type: int
+                            value: 1,
+                    ],
+                Declaration
+                  line: 35
+                  type_spec:
+                    TypeSpecifier
+                      line: 35
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 35
+                        declarator:
+                          Declarator
+                            line: 35
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 35
+                            literal_type: int
+                            value: 2,
+                    ],
+                ReturnStatement
+                  line: 36
+                  value:
+                    Identifier
+                      line: 36
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 40
+        return_type:
+          TypeSpecifier
+            line: 40
+            name: int
+        declarator:
+          Declarator
+            line: 40
+            name: redefinition_function_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 40
+                  type_spec:
+                    TypeSpecifier
+                      line: 40
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 40
+            items:
+              [
+                ReturnStatement
+                  line: 40
+                  value:
+                    Literal
+                      line: 40
+                      literal_type: int
+                      value: 1,
+              ],
+      FunctionDefinition
+        line: 41
+        return_type:
+          TypeSpecifier
+            line: 41
+            name: int
+        declarator:
+          Declarator
+            line: 41
+            name: redefinition_function_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 41
+                  type_spec:
+                    TypeSpecifier
+                      line: 41
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 41
+            items:
+              [
+                ReturnStatement
+                  line: 41
+                  value:
+                    Literal
+                      line: 41
+                      literal_type: int
+                      value: 2,
+              ],
+      FunctionDefinition
+        line: 42
+        return_type:
+          TypeSpecifier
+            line: 42
+            name: int
+        declarator:
+          Declarator
+            line: 42
+            name: bug_redefinition_function
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 42
+                  type_spec:
+                    TypeSpecifier
+                      line: 42
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 42
+            items:
+              [
+                ReturnStatement
+                  line: 42
+                  value:
+                    FunctionCall
+                      line: 42
+                      callee:
+                        Identifier
+                          line: 42
+                          name: redefinition_function_f,
+              ],
+      FunctionDefinition
+        line: 45
+        return_type:
+          TypeSpecifier
+            line: 45
+            name: int
+        declarator:
+          Declarator
+            line: 45
+            name: atoi
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 45
+                  type_spec:
+                    TypeSpecifier
+                      line: 45
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 45
+                      name: a
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 45
+            items:
+              [
+                ReturnStatement
+                  line: 46
+                  value:
+                    Identifier
+                      line: 46
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 48
+        return_type:
+          TypeSpecifier
+            line: 48
+            name: int
+        declarator:
+          Declarator
+            line: 48
+            name: bug_reserved_name
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 48
+                  type_spec:
+                    TypeSpecifier
+                      line: 48
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 48
+            items:
+              [
+                ReturnStatement
+                  line: 49
+                  value:
+                    Literal
+                      line: 49
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 53
+        return_type:
+          TypeSpecifier
+            line: 53
+            name: int
+        declarator:
+          Declarator
+            line: 53
+            name: bug_undeclared_identifier
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 53
+                  type_spec:
+                    TypeSpecifier
+                      line: 53
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 53
+            items:
+              [
+                ReturnStatement
+                  line: 54
+                  value:
+                    Identifier
+                      line: 54
+                      name: y,
+              ],
+      FunctionDefinition
+        line: 58
+        return_type:
+          TypeSpecifier
+            line: 58
+            name: int
+        declarator:
+          Declarator
+            line: 58
+            name: bug_undeclared_out_of_scope
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 58
+                  type_spec:
+                    TypeSpecifier
+                      line: 58
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 58
+            items:
+              [
+                CompoundStatement
+                  line: 59
+                  items:
+                    [
+                      Declaration
+                        line: 60
+                        type_spec:
+                          TypeSpecifier
+                            line: 60
+                            name: int
+                        declarators:
+                          [
+                            InitDeclarator
+                              line: 60
+                              declarator:
+                                Declarator
+                                  line: 60
+                                  name: a
+                                  kind_name: variable
+                              initializer:
+                                Literal
+                                  line: 60
+                                  literal_type: int
+                                  value: 1,
+                          ],
+                    ],
+                ReturnStatement
+                  line: 62
+                  value:
+                    Identifier
+                      line: 62
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 66
+        return_type:
+          TypeSpecifier
+            line: 66
+            name: int
+        declarator:
+          Declarator
+            line: 66
+            name: bug_void_variable
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 66
+                  type_spec:
+                    TypeSpecifier
+                      line: 66
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 66
+            items:
+              [
+                Declaration
+                  line: 67
+                  type_spec:
+                    TypeSpecifier
+                      line: 67
+                      name: void
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 67
+                        declarator:
+                          Declarator
+                            line: 67
+                            name: v
+                            kind_name: variable,
+                    ],
+                ReturnStatement
+                  line: 68
+                  value:
+                    Literal
+                      line: 68
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 71
+        return_type:
+          TypeSpecifier
+            line: 71
+            name: int
+        declarator:
+          Declarator
+            line: 71
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 71
+                  type_spec:
+                    TypeSpecifier
+                      line: 71
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 71
+            items:
+              [
+                ReturnStatement
+                  line: 71
+                  value:
+                    Literal
+                      line: 71
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/declarations/declarations_buggy.c:7: semantic error: conflicting types for 'conflicting_prototype_f' (previous: (int) -> int)
+     7 | float conflicting_prototype_f(int a);
+test/phase3_tac/invalid/declarations/declarations_buggy.c:11: semantic error: redeclaration of 'A'
+    11 | enum E { A, B, A }; int bug_enum_dup(void) { return 0; }
+test/phase3_tac/invalid/declarations/declarations_buggy.c:14: semantic error: extern variable 'x' is declared but never defined
+    14 | extern int x;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:18: semantic error: initializer of global 'g' is not a constant expression
+    18 | int h(void) { return 1; } int g = h(); int bug_global_nonconst_init(void) { return 0; }
+test/phase3_tac/invalid/declarations/declarations_buggy.c:23: semantic error: redeclaration of 'a' (previous declaration at line 22)
+    23 |     int a = 2;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:24: semantic error: use of undeclared identifier 'b'
+    24 |     b = 3;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:25: semantic error: use of undeclared identifier 'undefined_name'
+    25 |     printf("%d\n", undefined_name);
+test/phase3_tac/invalid/declarations/declarations_buggy.c:30: semantic error: redeclaration of 'a' (previous declaration at line 30)
+    30 | int redecl_param_f(int a) { int a = 2; return a; } int bug_redecl_param(void) { return redecl_param_f(1); }
+test/phase3_tac/invalid/declarations/declarations_buggy.c:35: semantic error: redeclaration of 'a' (previous declaration at line 34)
+    35 |     int a = 2;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:41: semantic error: redefinition of function 'redefinition_function_f'
+    41 | int redefinition_function_f(void) { return 2; }
+test/phase3_tac/invalid/declarations/declarations_buggy.c:45: semantic error: 'atoi' is a reserved name and cannot be redefined
+    45 | int atoi(int a) {
+test/phase3_tac/invalid/declarations/declarations_buggy.c:54: semantic error: use of undeclared identifier 'y'
+    54 |     return y;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:62: semantic error: use of undeclared identifier 'a'
+    62 |     return a;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:67: semantic error: variable 'v' declared void
+    67 |     void v;
+14 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/declarations/declarations_buggy.c:7: semantic error: conflicting types for 'conflicting_prototype_f' (previous: (int) -> int)
+     7 | float conflicting_prototype_f(int a);
+test/phase3_tac/invalid/declarations/declarations_buggy.c:11: semantic error: redeclaration of 'A'
+    11 | enum E { A, B, A }; int bug_enum_dup(void) { return 0; }
+test/phase3_tac/invalid/declarations/declarations_buggy.c:14: semantic error: extern variable 'x' is declared but never defined
+    14 | extern int x;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:18: semantic error: initializer of global 'g' is not a constant expression
+    18 | int h(void) { return 1; } int g = h(); int bug_global_nonconst_init(void) { return 0; }
+test/phase3_tac/invalid/declarations/declarations_buggy.c:23: semantic error: redeclaration of 'a' (previous declaration at line 22)
+    23 |     int a = 2;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:24: semantic error: use of undeclared identifier 'b'
+    24 |     b = 3;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:25: semantic error: use of undeclared identifier 'undefined_name'
+    25 |     printf("%d\n", undefined_name);
+test/phase3_tac/invalid/declarations/declarations_buggy.c:30: semantic error: redeclaration of 'a' (previous declaration at line 30)
+    30 | int redecl_param_f(int a) { int a = 2; return a; } int bug_redecl_param(void) { return redecl_param_f(1); }
+test/phase3_tac/invalid/declarations/declarations_buggy.c:35: semantic error: redeclaration of 'a' (previous declaration at line 34)
+    35 |     int a = 2;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:41: semantic error: redefinition of function 'redefinition_function_f'
+    41 | int redefinition_function_f(void) { return 2; }
+test/phase3_tac/invalid/declarations/declarations_buggy.c:45: semantic error: 'atoi' is a reserved name and cannot be redefined
+    45 | int atoi(int a) {
+test/phase3_tac/invalid/declarations/declarations_buggy.c:54: semantic error: use of undeclared identifier 'y'
+    54 |     return y;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:62: semantic error: use of undeclared identifier 'a'
+    62 |     return a;
+test/phase3_tac/invalid/declarations/declarations_buggy.c:67: semantic error: variable 'v' declared void
+    67 |     void v;
+14 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

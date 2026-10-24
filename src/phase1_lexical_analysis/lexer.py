@@ -5,10 +5,13 @@ Converts raw C source text into a stream of tokens using PLY
 Lexer states used for - comments, strings, characters, so that unterminated constructs are reported cleanly
 instead of desynchronizing the rest of the token stream.
 """
+import re
+
 import ply.lex as lex
 
 from phase1_lexical_analysis.token_defs import tokens, reserved
 from common.errors import add_lex_error
+from common.literals import ESCAPE, bad_escapes
 
 # States for constructs that span multiple characters or lines.
 states = (
@@ -39,7 +42,7 @@ def t_COMMENT_newline(t):
 
 
 def t_COMMENT_eof(t):
-    add_lex_error(f"Unterminated block comment starting at line {t.lexer.comment_start}")
+    add_lex_error(f"Unterminated block comment at line {t.lexer.comment_start}")
 
 
 def t_COMMENT_error(t):
@@ -66,6 +69,8 @@ def t_STRING_char(t):
 def t_STRING_end(t):
     r"\""
     t.lexer.string_buf += '"'
+    for bad in bad_escapes(t.lexer.string_buf[1:-1]):
+        add_lex_error(f"Lexical Error: Invalid escape sequence '{bad}' in string literal at line {t.lexer.string_start}")
     t.value = t.lexer.string_buf
     t.type = "STRING_LITERAL"
     t.lexer.begin("INITIAL")
@@ -100,38 +105,34 @@ def t_CHAR_content(t):
     t.lexer.char_buf += t.value
 
 
-_VALID_ESCAPES = set("nrtbfv0\\'\"a")
-
-
 def t_CHAR_end(t):
     r"\'"
     t.lexer.char_buf += "'"
     inner = t.lexer.char_buf[1:-1]
+    line = t.lexer.char_start
+    t.lexer.begin("INITIAL")
 
     if inner == "":
-        add_lex_error(f"Lexical Error: Empty character constant at line {t.lexer.char_start}")
-        t.lexer.begin("INITIAL")
+        add_lex_error(f"Lexical Error: Empty character constant at line {line}")
         return  # malformed token is dropped, not returned to the parser
 
     if inner.startswith("\\"):
-        if len(inner) != 2 or inner[1] not in _VALID_ESCAPES:
-            add_lex_error(
-                f"Lexical Error: Invalid escape sequence '{inner}' in character "
-                f"constant at line {t.lexer.char_start}"
-            )
-            t.lexer.begin("INITIAL")
+        if not ESCAPE.fullmatch(inner):
+            bad = bad_escapes(inner)
+            if bad:
+                add_lex_error(f"Lexical Error: Invalid escape sequence '{bad[0]}' in character constant at line {line}")
+            else:
+                add_lex_error(f"Lexical Error: Multi-character constant {t.lexer.char_buf} (only single characters are allowed) at line {line}")
             return
     elif len(inner) != 1:
-        add_lex_error(
-            f"Lexical Error: Multi-character constant {t.lexer.char_buf} at "
-            f"line {t.lexer.char_start} (only single characters are allowed)"
-        )
-        t.lexer.begin("INITIAL")
+        add_lex_error(f"Lexical Error: Multi-character constant {t.lexer.char_buf} (only single characters are allowed) at line {line}")
+        return
+    elif ord(inner) > 127:
+        add_lex_error(f"Lexical Error: Non-ASCII character {t.lexer.char_buf} in character constant at line {line}")
         return
 
     t.value = t.lexer.char_buf
     t.type = "CHAR_CONSTANT"
-    t.lexer.begin("INITIAL")
     return t
 
 
@@ -197,8 +198,16 @@ def t_INVALID_FLOAT(t):
     add_lex_error(f"Lexical Error: Malformed floating-point literal '{t.value}' at line {t.lexer.lineno}")
 
 
+# Integer suffixes (u, l, ul, ll, ull in any case/order) are accepted and dropped:
+# "long" and "unsigned" are plain int in this compiler. A number glued to
+# letters that are not a valid suffix ("45abc", "0x1G") is one lexical error,
+# not a number followed by an identifier. (?![A-Za-z0-9_]) enforces that.
+_INT_SUFFIX = r"(?:[uU](?:ll|LL|[lL])?|(?:ll|LL|[lL])[uU]?)?(?![A-Za-z0-9_])"
+_NUMBER_END = r"(?![A-Za-z0-9_])"
+
+
+@lex.TOKEN(r"(?:\d+\.\d*(?:[eE][+-]?\d+)?|\.\d+(?:[eE][+-]?\d+)?|\d+[eE][+-]?\d+)[fFlL]?" + _NUMBER_END)
 def t_FLOAT_CONSTANT(t):
-    r"(?:\d+\.\d*(?:[eE][+-]?\d+)?|\.\d+(?:[eE][+-]?\d+)?|\d+[eE][+-]?\d+)[fFlL]?"
     text = t.value
     suffix = ""
     if text[-1] in "fFlL":
@@ -209,25 +218,29 @@ def t_FLOAT_CONSTANT(t):
     return t
 
 
+def _strip_suffix(text):
+    return text.rstrip("uUlL")
+
+
 # Base-specific integer rules precede the decimal rule.
 
+@lex.TOKEN(r"0[xX][0-9a-fA-F]+" + _INT_SUFFIX)
 def t_INTEGER_HEX(t):
-    r"0[xX][0-9a-fA-F]+"
-    t.value = int(t.value, 16)
+    t.value = int(_strip_suffix(t.value), 16)
     t.type = "INTEGER_CONSTANT"
     return t
 
 
+@lex.TOKEN(r"0[bB][01]+" + _INT_SUFFIX)
 def t_INTEGER_BIN(t):
-    r"0[bB][01]+"
-    t.value = int(t.value, 2)
+    t.value = int(_strip_suffix(t.value), 2)
     t.type = "INTEGER_CONSTANT"
     return t
 
 
+@lex.TOKEN(r"0[0-7]+" + _INT_SUFFIX)
 def t_INTEGER_OCT(t):
-    r"0[0-7]+"
-    t.value = int(t.value, 8)
+    t.value = int(_strip_suffix(t.value), 8)
     t.type = "INTEGER_CONSTANT"
     return t
 
@@ -235,14 +248,33 @@ def t_INTEGER_OCT(t):
 def t_INVALID_OCTAL(t):
     r"0[0-7]*[89][0-9]*"
     add_lex_error(f"Lexical Error: Invalid octal literal '{t.value}' at line {t.lexer.lineno}")
-    t.lexer.skip(len(t.value))
 
 
+@lex.TOKEN(r"([1-9]\d*|0)" + _INT_SUFFIX)
 def t_INTEGER_DEC(t):
-    r"([1-9]\d*|0)"
-    t.value = int(t.value, 10)
+    t.value = int(_strip_suffix(t.value), 10)
     t.type = "INTEGER_CONSTANT"
     return t
+
+
+def t_INVALID_NUMBER(t):
+    r"(?:0[xX][0-9a-fA-F]*|0[bB][01]*|\d+\.?\d*(?:[eE][+-]?\d+)?|\.\d+)[A-Za-z_0-9]+"
+    v = t.value
+    if v[:2] in ("0x", "0X"):
+        what = "hex literal (digits 0-9 and a-f only, at least one needed)"
+    elif v[:2] in ("0b", "0B"):
+        what = "binary literal (digits 0 and 1 only, at least one needed)"
+    else:
+        what = "number (letters directly after digits are only allowed as the suffixes u, l, ul, ll, f)"
+    add_lex_error(f"Lexical Error: Invalid {what}: '{v}' at line {t.lexer.lineno}")
+
+
+# A class name directly followed by '(' (but not "(*", a function-pointer
+# declarator) is a constructor/destructor name, e.g. "Dog(int n)" or "~Dog()".
+# The grammar cannot tell it from a type name without looking one token ahead,
+# so the lexer does that look-ahead, the same way it already tells TYPENAME
+# from IDENTIFIER.
+_CTOR_AHEAD = re.compile(r"\s*\((?!\s*\*)")
 
 
 def t_IDENTIFIER(t):
@@ -251,6 +283,8 @@ def t_IDENTIFIER(t):
 
     if t.type == "IDENTIFIER" and hasattr(t.lexer, "typedefs") and t.value in t.lexer.typedefs:
         t.type = "TYPENAME"
+        if t.value in t.lexer.class_names and _CTOR_AHEAD.match(t.lexer.lexdata, t.lexer.lexpos):
+            t.type = "CTOR_NAME"
 
     return t
 
@@ -327,6 +361,7 @@ def build_lexer():
     """Create an isolated lexer for one source input."""
     new_lexer = lex.lex()
     new_lexer.typedefs = set(_BUILTIN_TYPEDEFS)
+    new_lexer.class_names = set()   # names introduced by 'class X' (the parser fills this in)
     new_lexer.directives = []
     return new_lexer
 

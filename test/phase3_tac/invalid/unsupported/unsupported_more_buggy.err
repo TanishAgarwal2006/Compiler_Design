@@ -1,0 +1,7 @@
+unsupported feature: classes
+unsupported feature: 'auto' type deduction (write the type out)
+unsupported feature: lambda functions
+unsupported feature: new
+unsupported feature: struct and union
+unsupported feature: casts to pointer types
+unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)

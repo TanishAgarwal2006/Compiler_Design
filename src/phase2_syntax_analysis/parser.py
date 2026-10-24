@@ -46,6 +46,8 @@ from phase2_syntax_analysis.ast_nodes import (
     StructSpecifier,
     SwitchCase,
     SwitchStatement,
+    ThisExpression,
+    LambdaExpression,
     TypeSpecifier,
     UnaryOp,
     UntilStatement,
@@ -119,13 +121,32 @@ def p_external_declaration_error(p):
     parser.errok()
 
 
+def p_external_declaration_error_brace(p):
+    "external_declaration : error RBRACE"
+    p[0] = None
+    parser.errok()
+
+
 def p_function_definition(p):
-    "function_definition : type_specifier function_declarator compound_statement"
+    "function_definition : type_specifier function_head compound_statement"
     p[0] = FunctionDefinition(p[1], p[2], p[3], storage=None, line=p[1].line)
 
 
+# "Dog::Dog(int n) { ... }" and "Dog::~Dog() { ... }" defined outside the class.
+def p_function_definition_constructor(p):
+    "function_definition : class_name SCOPE CTOR_NAME LPAREN parameter_list_opt RPAREN compound_statement"
+    d = Declarator(str(p[3]), kind_name="constructor", params=p[5], line=p.lineno(2), scope=p[1])
+    p[0] = FunctionDefinition(None, d, p[7], line=p.lineno(2))
+
+
+def p_function_definition_destructor(p):
+    "function_definition : class_name SCOPE BIT_NOT CTOR_NAME LPAREN RPAREN compound_statement"
+    d = Declarator(str(p[4]), kind_name="destructor", params=[], line=p.lineno(2), scope=p[1])
+    p[0] = FunctionDefinition(None, d, p[7], line=p.lineno(2))
+
+
 def p_function_definition_storage(p):
-    "function_definition : storage_class type_specifier function_declarator compound_statement"
+    "function_definition : storage_class type_specifier function_head compound_statement"
     p[0] = FunctionDefinition(p[2], p[3], p[4], storage=p[1], line=p[2].line)
 
 
@@ -138,13 +159,19 @@ def p_storage_class(p):
 
 
 # Record typedef names in the lexer so they can be recognized as TYPENAME later.
+# The names are registered by an empty rule BEFORE the ';' is shifted: registering
+# after the whole declaration is reduced is too late, because the parser has already
+# read (and lexed as IDENTIFIER) the token after the ';' - "typedef int T; T x;" failed.
 def p_typedef_declaration(p):
-    "typedef_declaration : TYPEDEF type_specifier declarator_list SEMI"
-    active_lexer = p.lexer  # the lexer instance this parse() call is using
-    for declarator in p[3]:
-        active_lexer.typedefs.add(declarator.name)
+    "typedef_declaration : TYPEDEF type_specifier declarator_list typedef_names SEMI"
     init_declarators = [InitDeclarator(declarator, None, declarator.line) for declarator in p[3]]
     p[0] = Declaration(p[2], init_declarators, storage="typedef", line=p.lineno(1))
+
+
+def p_typedef_names(p):
+    "typedef_names :"
+    for declarator in p[-1]:
+        p.lexer.typedefs.add(declarator.name)
 
 
 def p_declaration(p):
@@ -175,12 +202,14 @@ def p_type_specifier_typename(p):
 def p_builtin_type_seq_recursive(p):
     "builtin_type_seq : builtin_type_seq builtin_type"
     names, line = p[1]
-    p[0] = (names + [p[2]], line)
+    p[0] = (names + [p[2][0]], line)
 
 
 def p_builtin_type_seq_single(p):
     "builtin_type_seq : builtin_type"
-    p[0] = ([p[1]], p.lineno(1))
+    # p[1] is (keyword, line): p.lineno() is 0 for a nonterminal, so the
+    # keyword's line is carried up explicitly.
+    p[0] = ([p[1][0]], p[1][1])
 
 
 def p_builtin_type(p):
@@ -193,8 +222,9 @@ def p_builtin_type(p):
                     | SHORT
                     | LONG
                     | SIGNED
-                    | UNSIGNED"""
-    p[0] = str(p[1])
+                    | UNSIGNED
+                    | AUTO"""
+    p[0] = (str(p[1]), p.lineno(1))
 
 
 # "const int x" - the qualifier is folded into the type name so that every
@@ -206,6 +236,15 @@ def p_type_specifier_const(p):
         p[0] = TypeSpecifier("const " + inner.name, p.lineno(1))
     else:
         inner.is_const = True
+        p[0] = inner
+
+
+def p_type_specifier_volatile(p):
+    "type_specifier : VOLATILE type_specifier"
+    inner = p[2]
+    if isinstance(inner, TypeSpecifier):
+        p[0] = TypeSpecifier("volatile " + inner.name, p.lineno(1))
+    else:
         p[0] = inner
 
 
@@ -264,6 +303,33 @@ def p_member_declaration(p):
     p[0] = p[1]
 
 
+# Constructor and destructor: no return type, the name is the class name.
+def p_member_constructor(p):
+    "member_declaration : CTOR_NAME LPAREN parameter_list_opt RPAREN compound_statement"
+    d = Declarator(str(p[1]), kind_name="constructor", params=p[3], line=p.lineno(1))
+    p[0] = FunctionDefinition(None, d, p[5], line=p.lineno(1))
+
+
+def p_member_constructor_prototype(p):
+    "member_declaration : CTOR_NAME LPAREN parameter_list_opt RPAREN SEMI"
+    p[0] = Declaration(None, [InitDeclarator(
+        Declarator(str(p[1]), kind_name="constructor", params=p[3], line=p.lineno(1)), None, p.lineno(1))],
+        line=p.lineno(1))
+
+
+def p_member_destructor(p):
+    "member_declaration : BIT_NOT CTOR_NAME LPAREN RPAREN compound_statement"
+    d = Declarator(str(p[2]), kind_name="destructor", params=[], line=p.lineno(1))
+    p[0] = FunctionDefinition(None, d, p[5], line=p.lineno(1))
+
+
+def p_member_destructor_prototype(p):
+    "member_declaration : BIT_NOT CTOR_NAME LPAREN RPAREN SEMI"
+    p[0] = Declaration(None, [InitDeclarator(
+        Declarator(str(p[2]), kind_name="destructor", params=[], line=p.lineno(1)), None, p.lineno(1))],
+        line=p.lineno(1))
+
+
 def p_member_declaration_access(p):
     "member_declaration : access_specifier COLON"
     p[0] = AccessLabel(p[1], p.lineno(2))
@@ -287,7 +353,14 @@ def p_access_specifier(p):
 def p_class_head(p):
     "class_head : CLASS IDENTIFIER"
     p.lexer.typedefs.add(p[2])
+    p.lexer.class_names.add(p[2])
     p[0] = (p[2], p.lineno(1))
+
+
+# "class Dog d;" after Dog is already known: the name now lexes as TYPENAME.
+def p_class_head_known(p):
+    "class_head : CLASS TYPENAME"
+    p[0] = (str(p[2]), p.lineno(1))
 
 
 def p_class_specifier_plain_body(p):
@@ -446,12 +519,46 @@ def p_function_declarator(p):
     p[0] = Declarator(p[1], kind_name="function", params=p[3], line=p.lineno(1))
 
 
+# "int Dog::bark()" - a member function named with its class.
+def p_function_declarator_qualified(p):
+    "function_declarator : class_name SCOPE IDENTIFIER LPAREN parameter_list_opt RPAREN"
+    p[0] = Declarator(p[3], kind_name="function", params=p[5], line=p.lineno(2), scope=p[1])
+
+
+# What follows the return type in a function definition. Leading '*' mean the
+# function returns a pointer ("int *make()"); it is kept separate from the
+# declarator rule so that a '{' after it can only start a function body.
+def p_function_head(p):
+    "function_head : function_declarator"
+    p[0] = p[1]
+
+
+def p_function_head_reference(p):
+    "function_head : ADDRESS function_head"
+    p[2].is_reference = True
+    p[0] = p[2]
+
+
+def p_function_head_pointer(p):
+    "function_head : MULTIPLY function_head"
+    p[2].pointer_level += 1
+    p[0] = p[2]
+
+
 # Each leading '*' wraps the inner declarator, so "int **pp" and "int *arr[3]"
 # fall out of this single rule without touching the identifier/array/function ones above.
 def p_declarator_pointer(p):
     "declarator : MULTIPLY declarator"
     inner = p[2]
     inner.pointer_level += 1
+    p[0] = inner
+
+
+# reference declarator, e.g. "int &r" (parsed here, rejected by the semantic pass).
+def p_declarator_reference(p):
+    "declarator : ADDRESS declarator"
+    inner = p[2]
+    inner.is_reference = True
     p[0] = inner
 
 
@@ -536,6 +643,13 @@ def p_statement(p):
 # reported error list to one entry per genuine problem.
 def p_statement_error(p):
     "statement : error SEMI"
+    p[0] = None
+    parser.errok()
+
+
+# Second resynchronisation point: a malformed block is skipped up to its '}'.
+def p_statement_error_brace(p):
+    "statement : error RBRACE"
     p[0] = None
     parser.errok()
 
@@ -951,6 +1065,12 @@ def p_unary_expression_new_args(p):
 
 
 # "delete p" / "delete[] p" - free-store deallocation (C++ subset).
+# "new Dog(5)": a class name followed by '(' is lexed as CTOR_NAME.
+def p_unary_expression_new_ctor(p):
+    "unary_expression : NEW CTOR_NAME LPAREN argument_expression_list_opt RPAREN %prec NEW"
+    p[0] = NewExpression(TypeSpecifier(str(p[2]), p.lineno(2)), args=p[4], line=p.lineno(1))
+
+
 def p_unary_expression_delete(p):
     "unary_expression : DELETE unary_expression %prec DELETE"
     p[0] = DeleteExpression(p[2], is_array=False, line=p.lineno(1))
@@ -1067,6 +1187,54 @@ def p_primary_expression_qualified(p):
     p[0] = QualifiedName(p[1], p[3], p.lineno(2))
 
 
+def p_primary_expression_this(p):
+    "primary_expression : THIS"
+    p[0] = ThisExpression(p.lineno(1))
+
+
+# Lambda: "[captures](params) -> type { body }". The parameter list and the
+# return type are optional.
+def p_primary_expression_lambda(p):
+    "primary_expression : LBRACKET capture_list_opt RBRACKET LPAREN parameter_list_opt RPAREN lambda_return_opt compound_statement"
+    p[0] = LambdaExpression(p[2], p[5], p[7], p[8], p.lineno(1))
+
+
+def p_primary_expression_lambda_noparams(p):
+    "primary_expression : LBRACKET capture_list_opt RBRACKET compound_statement"
+    p[0] = LambdaExpression(p[2], [], None, p[4], p.lineno(1))
+
+
+def p_lambda_return_opt(p):
+    """lambda_return_opt : ARROW type_specifier pointer_opt
+                         | empty"""
+    p[0] = p[2] if len(p) == 4 else None
+
+
+def p_capture_list_opt(p):
+    """capture_list_opt : capture_list
+                        | empty"""
+    p[0] = p[1] if p[1] is not None else []
+
+
+def p_capture_list_recursive(p):
+    "capture_list : capture_list COMMA capture"
+    p[0] = p[1] + [p[3]]
+
+
+def p_capture_list_single(p):
+    "capture_list : capture"
+    p[0] = [p[1]]
+
+
+def p_capture(p):
+    """capture : IDENTIFIER
+               | ADDRESS IDENTIFIER
+               | ADDRESS
+               | ASSIGN
+               | THIS"""
+    p[0] = "".join(str(x) for x in p[1:])
+
+
 def p_empty(p):
     "empty :"
     p[0] = None
@@ -1074,10 +1242,17 @@ def p_empty(p):
 
 def p_error(p):
     if p is None:
-        add_syntax_error("Syntax Error: unexpected end of input")
+        add_syntax_error(f"Syntax Error: unexpected end of file, a '}}' or ';' is probably missing at line {_current_lexer.lineno}")
         return
 
-    add_syntax_error(f"Syntax Error: unexpected token '{p.value}' at line {p.lineno}")
+    # A statement that ends without ';' is reported at the NEXT token, which is
+    # usually on the next line. Point at the line that really needs the ';'.
+    text = p.lexer.lexdata[:p.lexpos].rstrip()
+    prev_line = text.count("\n") + 1
+    hint = ""
+    if text and text[-1] not in ";{}" and p.lineno > prev_line:
+        hint = f" (is a ';' missing at the end of line {prev_line}?)"
+    add_syntax_error(f"Syntax Error: unexpected token '{p.value}'{hint} at line {p.lineno}")
     # Deliberately no parser.errok() here: calling it in p_error() itself
     # tells PLY "treat this as already resolved", which just discards the
     # one offending token and keeps parsing in the same (still-broken)
@@ -1088,6 +1263,7 @@ def p_error(p):
     # errok() is called in those rules' own actions once that has happened.
 
 
+_current_lexer = None   # lexer of the file being parsed (p_error reads its line number)
 _TABLE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 parser = yacc.yacc(
@@ -1102,6 +1278,7 @@ parser = yacc.yacc(
 def parse_source(source_code: str):
     """Parses one complete source file using a brand-new lexer instance
     (see build_lexer()'s docstring for why this matters)."""
-    fresh_lexer = build_lexer()
-    fresh_lexer.lineno = 1
-    return parser.parse(source_code, lexer=fresh_lexer)
+    global _current_lexer
+    _current_lexer = build_lexer()
+    _current_lexer.lineno = 1
+    return parser.parse(source_code, lexer=_current_lexer)

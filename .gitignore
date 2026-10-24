@@ -15,3 +15,8 @@ env/
 .idea/
 
 
+bin/
+out/x.ir
+__pycache__/
+src/phase2_syntax_analysis/parsetab.py
+src/phase2_syntax_analysis/parser.out

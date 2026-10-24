@@ -1,0 +1,686 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+bug_printf_arg_count      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d %d"                   STRING_LITERAL           
+,                         COMMA                    
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_printf_nonliteral_format FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+char                      CHAR                     
+s                         ARRAY_NAME               
+[                         LBRACKET                 
+4                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+=                         ASSIGN                   
+"ab"                      STRING_LITERAL           
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+s                         ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_printf_type_mismatch  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d"                      STRING_LITERAL           
+,                         COMMA                    
+1.5                       FLOAT_CONSTANT           
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_printf_unsupported_specifier FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+printf                    PRINTF                   
+(                         LPAREN                   
+"%.2f"                    STRING_LITERAL           
+,                         COMMA                    
+1.5                       FLOAT_CONSTANT           
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scanf_missing_address FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+;                         SEMI                     
+scanf                     SCANF                    
+(                         LPAREN                   
+"%d"                      STRING_LITERAL           
+,                         COMMA                    
+x                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scanf_no_args         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+;                         SEMI                     
+scanf                     SCANF                    
+(                         LPAREN                   
+"%d"                      STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scanf_wrong_type      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+float                     FLOAT                    
+f                         VARIABLE_NAME            
+;                         SEMI                     
+scanf                     SCANF                    
+(                         LPAREN                   
+"%d"                      STRING_LITERAL           
+,                         COMMA                    
+&                         ADDRESS                  
+f                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+bug_printf_arg_count function     int        global                 params: (void)      
+bug_printf_nonliteral_format function     int        global                 params: (void)      
+bug_printf_type_mismatch function     int        global                 params: (void)      
+bug_printf_unsupported_specifier function     int        global                 params: (void)      
+bug_scanf_missing_address function     int        global                 params: (void)      
+bug_scanf_no_args    function     int        global                 params: (void)      
+bug_scanf_wrong_type function     int        global                 params: (void)      
+f                    variable     float      function:bug_scanf_wrong_type                     
+main                 function     int        global                 params: (void)      
+printf               function     int        global                 params: (format, ...)
+s                    array        char       function:bug_printf_nonliteral_format dims: [4]           
+scanf                function     int        global                 params: (format, ...)
+x                    variable     int        function:bug_scanf_missing_address                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: bug_printf_arg_count
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                ExpressionStatement
+                  line: 7
+                  expression:
+                    FunctionCall
+                      line: 7
+                      callee:
+                        Identifier
+                          line: 7
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 7
+                            literal_type: string
+                            value: "%d %d",
+                          Literal
+                            line: 7
+                            literal_type: int
+                            value: 1,
+                        ],
+                ReturnStatement
+                  line: 8
+                  value:
+                    Literal
+                      line: 8
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 12
+        return_type:
+          TypeSpecifier
+            line: 12
+            name: int
+        declarator:
+          Declarator
+            line: 12
+            name: bug_printf_nonliteral_format
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 12
+            items:
+              [
+                Declaration
+                  line: 13
+                  type_spec:
+                    TypeSpecifier
+                      line: 13
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 13
+                        declarator:
+                          Declarator
+                            line: 13
+                            name: s
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 13
+                                  size:
+                                    Literal
+                                      line: 13
+                                      literal_type: int
+                                      value: 4,
+                              ]
+                        initializer:
+                          Literal
+                            line: 13
+                            literal_type: string
+                            value: "ab",
+                    ],
+                ExpressionStatement
+                  line: 14
+                  expression:
+                    FunctionCall
+                      line: 14
+                      callee:
+                        Identifier
+                          line: 14
+                          name: printf
+                      args:
+                        [
+                          Identifier
+                            line: 14
+                            name: s,
+                        ],
+                ReturnStatement
+                  line: 15
+                  value:
+                    Literal
+                      line: 15
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 19
+        return_type:
+          TypeSpecifier
+            line: 19
+            name: int
+        declarator:
+          Declarator
+            line: 19
+            name: bug_printf_type_mismatch
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 19
+                  type_spec:
+                    TypeSpecifier
+                      line: 19
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 19
+            items:
+              [
+                ExpressionStatement
+                  line: 20
+                  expression:
+                    FunctionCall
+                      line: 20
+                      callee:
+                        Identifier
+                          line: 20
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 20
+                            literal_type: string
+                            value: "%d",
+                          Literal
+                            line: 20
+                            literal_type: float
+                            value: 1.5,
+                        ],
+                ReturnStatement
+                  line: 21
+                  value:
+                    Literal
+                      line: 21
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 25
+        return_type:
+          TypeSpecifier
+            line: 25
+            name: int
+        declarator:
+          Declarator
+            line: 25
+            name: bug_printf_unsupported_specifier
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 25
+                  type_spec:
+                    TypeSpecifier
+                      line: 25
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 25
+            items:
+              [
+                ExpressionStatement
+                  line: 26
+                  expression:
+                    FunctionCall
+                      line: 26
+                      callee:
+                        Identifier
+                          line: 26
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 26
+                            literal_type: string
+                            value: "%.2f",
+                          Literal
+                            line: 26
+                            literal_type: float
+                            value: 1.5,
+                        ],
+                ReturnStatement
+                  line: 27
+                  value:
+                    Literal
+                      line: 27
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 31
+        return_type:
+          TypeSpecifier
+            line: 31
+            name: int
+        declarator:
+          Declarator
+            line: 31
+            name: bug_scanf_missing_address
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 31
+                  type_spec:
+                    TypeSpecifier
+                      line: 31
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 31
+            items:
+              [
+                Declaration
+                  line: 32
+                  type_spec:
+                    TypeSpecifier
+                      line: 32
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 32
+                        declarator:
+                          Declarator
+                            line: 32
+                            name: x
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 33
+                  expression:
+                    FunctionCall
+                      line: 33
+                      callee:
+                        Identifier
+                          line: 33
+                          name: scanf
+                      args:
+                        [
+                          Literal
+                            line: 33
+                            literal_type: string
+                            value: "%d",
+                          Identifier
+                            line: 33
+                            name: x,
+                        ],
+                ReturnStatement
+                  line: 34
+                  value:
+                    Literal
+                      line: 34
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 38
+        return_type:
+          TypeSpecifier
+            line: 38
+            name: int
+        declarator:
+          Declarator
+            line: 38
+            name: bug_scanf_no_args
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 38
+                  type_spec:
+                    TypeSpecifier
+                      line: 38
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 38
+            items:
+              [
+                Declaration
+                  line: 38
+                  type_spec:
+                    TypeSpecifier
+                      line: 38
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 38
+                        declarator:
+                          Declarator
+                            line: 38
+                            name: x
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 38
+                  expression:
+                    FunctionCall
+                      line: 38
+                      callee:
+                        Identifier
+                          line: 38
+                          name: scanf
+                      args:
+                        [
+                          Literal
+                            line: 38
+                            literal_type: string
+                            value: "%d",
+                        ],
+                ReturnStatement
+                  line: 38
+                  value:
+                    Literal
+                      line: 38
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 41
+        return_type:
+          TypeSpecifier
+            line: 41
+            name: int
+        declarator:
+          Declarator
+            line: 41
+            name: bug_scanf_wrong_type
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 41
+                  type_spec:
+                    TypeSpecifier
+                      line: 41
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 41
+            items:
+              [
+                Declaration
+                  line: 42
+                  type_spec:
+                    TypeSpecifier
+                      line: 42
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 42
+                        declarator:
+                          Declarator
+                            line: 42
+                            name: f
+                            kind_name: variable,
+                    ],
+                ExpressionStatement
+                  line: 43
+                  expression:
+                    FunctionCall
+                      line: 43
+                      callee:
+                        Identifier
+                          line: 43
+                          name: scanf
+                      args:
+                        [
+                          Literal
+                            line: 43
+                            literal_type: string
+                            value: "%d",
+                          UnaryOp
+                            line: 43
+                            operator: &
+                            operand:
+                              Identifier
+                                line: 43
+                                name: f
+                            position: prefix,
+                        ],
+                ReturnStatement
+                  line: 44
+                  value:
+                    Literal
+                      line: 44
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 47
+        return_type:
+          TypeSpecifier
+            line: 47
+            name: int
+        declarator:
+          Declarator
+            line: 47
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 47
+                  type_spec:
+                    TypeSpecifier
+                      line: 47
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 47
+            items:
+              [
+                ReturnStatement
+                  line: 47
+                  value:
+                    Literal
+                      line: 47
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/input_output/input_output_buggy.c:7: semantic error: printf format has 2 conversion(s) but 1 argument(s) were given
+     7 |     printf("%d %d", 1);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:14: semantic error: the format of printf must be a string literal
+    14 |     printf(s);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:20: semantic error: printf %d cannot print a value of type float
+    20 |     printf("%d", 1.5);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:26: semantic error: printf: unsupported format specifier '%.2f' (supported: %d %i %c %f %s %%)
+    26 |     printf("%.2f", 1.5);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:33: semantic error: scanf %d needs the address of a variable (write &name)
+    33 |     scanf("%d", x);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:38: semantic error: scanf format has 1 conversion(s) but 0 argument(s) were given
+    38 | int bug_scanf_no_args(void) { int x; scanf("%d"); return 0; }
+test/phase3_tac/invalid/input_output/input_output_buggy.c:43: semantic error: scanf %d needs the address of a int variable (got float)
+    43 |     scanf("%d", &f);
+7 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/input_output/input_output_buggy.c:7: semantic error: printf format has 2 conversion(s) but 1 argument(s) were given
+     7 |     printf("%d %d", 1);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:14: semantic error: the format of printf must be a string literal
+    14 |     printf(s);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:20: semantic error: printf %d cannot print a value of type float
+    20 |     printf("%d", 1.5);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:26: semantic error: printf: unsupported format specifier '%.2f' (supported: %d %i %c %f %s %%)
+    26 |     printf("%.2f", 1.5);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:33: semantic error: scanf %d needs the address of a variable (write &name)
+    33 |     scanf("%d", x);
+test/phase3_tac/invalid/input_output/input_output_buggy.c:38: semantic error: scanf format has 1 conversion(s) but 0 argument(s) were given
+    38 | int bug_scanf_no_args(void) { int x; scanf("%d"); return 0; }
+test/phase3_tac/invalid/input_output/input_output_buggy.c:43: semantic error: scanf %d needs the address of a int variable (got float)
+    43 |     scanf("%d", &f);
+7 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

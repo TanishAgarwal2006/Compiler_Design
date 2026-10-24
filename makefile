@@ -1,42 +1,28 @@
-VENV_PYTHON = ./venv/bin/python
-PYTHON ?= $(shell if [ -x "$(VENV_PYTHON)" ]; then echo "$(VENV_PYTHON)"; else echo "python3"; fi)
-MAIN    = src/main.py
-LEXER   = src/phase1_lexical_analysis/run_lexer.py
-PARSER  = src/phase2_syntax_analysis/run_parser.py
+PYTHON ?= $(shell [ -x venv/bin/python ] && echo venv/bin/python || echo python3)
 
-lex:
-	$(PYTHON) $(LEXER) $(FILE)
+all: bin/tacgen          # build the compiler launcher
 
-lex-phase1:
-	$(PYTHON) $(LEXER) --phase1
+bin/tacgen: src/main.py
+	mkdir -p bin
+	printf '#!/bin/sh\nPY=$$(dirname "$$0")/../venv/bin/python\n[ -x "$$PY" ] || PY=python3\nexec "$$PY" "$$(dirname "$$0")/../src/main.py" "$$@"\n' > $@
+	chmod +x $@
 
-lex-all:
-	$(PYTHON) $(LEXER) --all
+setup:                   # one-time: virtual environment + PLY
+	python3 -m venv venv
+	./venv/bin/pip install -r requirements.txt
 
-parse:
-	$(PYTHON) $(PARSER) $(FILE)
+test: all                # run every test case
+	./run.sh bin/tacgen
 
-parse-phase2:
-	$(PYTHON) $(PARSER) --phase2
-
-parse-all:
-	$(PYTHON) $(PARSER) --all
-
-run:
-	$(PYTHON) $(MAIN) $(FILE) --all
-
-run-all:
-	./run.sh
-
-test:
-	$(PYTHON) tests/run_tests.py
+show:                    # make show FILE=prog.c  -> tokens, tree, symbols
+	$(PYTHON) src/main.py $(FILE) --all
 
 clean:
-	find . -type d -name "__pycache__" -exec rm -rf {} +
-	find . -name "*.pyc" -delete
-	find . -name "parsetab.py" -delete
-	find . -name "parser.out" -delete
-	rm -rf logs/ output.txt ast_log.txt *.log *_tokens.txt
-.PHONY: lex lex-phase1 lex-all parse parse-phase2 parse-all run run-all test clean
+	find . -type d -name __pycache__ -exec rm -rf {} +
+	rm -rf bin out src/phase2_syntax_analysis/parsetab.py src/phase2_syntax_analysis/parser.out
 
+log1 log2 log3 logall: bin/tacgen   # one log file per test case of that phase -> out/logs/ (see tools/mklog.sh)
+	tools/mklog.sh $(patsubst logall,all,$(subst log,,$@))
 
+logcase: bin/tacgen                 # make logcase FILE=test/phase3_tac/valid/functions/functions.c
+	tools/mklog.sh $(FILE)

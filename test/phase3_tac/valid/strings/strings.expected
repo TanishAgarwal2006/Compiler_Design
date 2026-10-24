@@ -1,0 +1,7 @@
+== string_literals
+banana 3 2
+apple a
+== string_variables
+global string hello
+world hello
+changed

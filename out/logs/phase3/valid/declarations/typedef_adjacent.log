@@ -1,0 +1,515 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+typedef                   TYPEDEF                  
+int                       INT                      
+Number                    TYPENAME                 
+;                         SEMI                     
+Number                    TYPENAME                 
+total                     VARIABLE_NAME            
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+;                         SEMI                     
+typedef                   TYPEDEF                  
+int                       INT                      
+Row                       ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+Row                       TYPENAME                 
+grid                      ARRAY_NAME               
+=                         ASSIGN                   
+{                         LBRACE                   
+1                         INTEGER_CONSTANT         
+,                         COMMA                    
+2                         INTEGER_CONSTANT         
+,                         COMMA                    
+3                         INTEGER_CONSTANT         
+}                         RBRACE                   
+;                         SEMI                     
+typedef                   TYPEDEF                  
+Number                    TYPENAME                 
+Count                     TYPENAME                 
+,                         COMMA                    
+Size                      TYPENAME                 
+;                         SEMI                     
+Size                      TYPENAME                 
+size                      VARIABLE_NAME            
+=                         ASSIGN                   
+7                         INTEGER_CONSTANT         
+;                         SEMI                     
+volatile                  VOLATILE                 
+int                       INT                      
+vol                       VARIABLE_NAME            
+=                         ASSIGN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+_Bool                     BOOL                     
+flag                      VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+Count                     TYPENAME                 
+c                         VARIABLE_NAME            
+=                         ASSIGN                   
+total                     VARIABLE_NAME            
++                         PLUS                     
+size                      VARIABLE_NAME            
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d %d %d %d %d\n"        STRING_LITERAL           
+,                         COMMA                    
+c                         VARIABLE_NAME            
+,                         COMMA                    
+grid                      ARRAY_NAME               
+[                         LBRACKET                 
+0                         INTEGER_CONSTANT         
+]                         RBRACKET                 
++                         PLUS                     
+grid                      ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+,                         COMMA                    
+vol                       VARIABLE_NAME            
+,                         COMMA                    
+flag                      VARIABLE_NAME            
+,                         COMMA                    
+(                         LPAREN                   
+int                       INT                      
+)                         RPAREN                   
+sizeof                    SIZEOF                   
+(                         LPAREN                   
+Row                       TYPENAME                 
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+Count                typedef      Number     global                                     
+Number               typedef      int        global                                     
+Row                  array        int        global                 dims: [3]           
+Size                 typedef      Number     global                                     
+c                    variable     Count      function:main                              
+flag                 variable     _Bool      global                                     
+grid                 array        Row        global                                     
+main                 function     int        global                 params: (void)      
+printf               function     int        global                 params: (format, ...)
+size                 variable     Size       global                                     
+total                variable     Number     global                                     
+vol                  variable     volatile int global                                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 3
+        type_spec:
+          TypeSpecifier
+            line: 3
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 3
+              declarator:
+                Declarator
+                  line: 3
+                  name: Number
+                  kind_name: variable,
+          ]
+        storage: typedef,
+      Declaration
+        line: 4
+        type_spec:
+          TypeSpecifier
+            line: 4
+            name: Number
+        declarators:
+          [
+            InitDeclarator
+              line: 4
+              declarator:
+                Declarator
+                  line: 4
+                  name: total
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 4
+                  literal_type: int
+                  value: 5,
+          ],
+      Declaration
+        line: 5
+        type_spec:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 5
+              declarator:
+                Declarator
+                  line: 5
+                  name: Row
+                  kind_name: array
+                  dimensions:
+                    [
+                      ArrayDimension
+                        line: 5
+                        size:
+                          Literal
+                            line: 5
+                            literal_type: int
+                            value: 3,
+                    ],
+          ]
+        storage: typedef,
+      Declaration
+        line: 6
+        type_spec:
+          TypeSpecifier
+            line: 6
+            name: Row
+        declarators:
+          [
+            InitDeclarator
+              line: 6
+              declarator:
+                Declarator
+                  line: 6
+                  name: grid
+                  kind_name: variable
+              initializer:
+                InitializerList
+                  line: 6
+                  values:
+                    [
+                      Literal
+                        line: 6
+                        literal_type: int
+                        value: 1,
+                      Literal
+                        line: 6
+                        literal_type: int
+                        value: 2,
+                      Literal
+                        line: 6
+                        literal_type: int
+                        value: 3,
+                    ],
+          ],
+      Declaration
+        line: 7
+        type_spec:
+          TypeSpecifier
+            line: 7
+            name: Number
+        declarators:
+          [
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: Count
+                  kind_name: variable,
+            InitDeclarator
+              line: 7
+              declarator:
+                Declarator
+                  line: 7
+                  name: Size
+                  kind_name: variable,
+          ]
+        storage: typedef,
+      Declaration
+        line: 8
+        type_spec:
+          TypeSpecifier
+            line: 8
+            name: Size
+        declarators:
+          [
+            InitDeclarator
+              line: 8
+              declarator:
+                Declarator
+                  line: 8
+                  name: size
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 8
+                  literal_type: int
+                  value: 7,
+          ],
+      Declaration
+        line: 9
+        type_spec:
+          TypeSpecifier
+            line: 9
+            name: volatile int
+        declarators:
+          [
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: vol
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 9
+                  literal_type: int
+                  value: 2,
+          ],
+      Declaration
+        line: 10
+        type_spec:
+          TypeSpecifier
+            line: 10
+            name: _Bool
+        declarators:
+          [
+            InitDeclarator
+              line: 10
+              declarator:
+                Declarator
+                  line: 10
+                  name: flag
+                  kind_name: variable
+              initializer:
+                Literal
+                  line: 10
+                  literal_type: int
+                  value: 1,
+          ],
+      FunctionDefinition
+        line: 12
+        return_type:
+          TypeSpecifier
+            line: 12
+            name: int
+        declarator:
+          Declarator
+            line: 12
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 12
+            items:
+              [
+                Declaration
+                  line: 13
+                  type_spec:
+                    TypeSpecifier
+                      line: 13
+                      name: Count
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 13
+                        declarator:
+                          Declarator
+                            line: 13
+                            name: c
+                            kind_name: variable
+                        initializer:
+                          BinaryOp
+                            line: 13
+                            operator: +
+                            left:
+                              Identifier
+                                line: 13
+                                name: total
+                            right:
+                              Identifier
+                                line: 13
+                                name: size,
+                    ],
+                ExpressionStatement
+                  line: 14
+                  expression:
+                    FunctionCall
+                      line: 14
+                      callee:
+                        Identifier
+                          line: 14
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 14
+                            literal_type: string
+                            value: "%d %d %d %d %d\n",
+                          Identifier
+                            line: 14
+                            name: c,
+                          BinaryOp
+                            line: 14
+                            operator: +
+                            left:
+                              ArrayAccess
+                                line: 14
+                                array:
+                                  Identifier
+                                    line: 14
+                                    name: grid
+                                index:
+                                  Literal
+                                    line: 14
+                                    literal_type: int
+                                    value: 0
+                            right:
+                              ArrayAccess
+                                line: 14
+                                array:
+                                  Identifier
+                                    line: 14
+                                    name: grid
+                                index:
+                                  Literal
+                                    line: 14
+                                    literal_type: int
+                                    value: 2,
+                          Identifier
+                            line: 14
+                            name: vol,
+                          Identifier
+                            line: 14
+                            name: flag,
+                          CastExpression
+                            line: 14
+                            type_spec:
+                              TypeSpecifier
+                                line: 14
+                                name: int
+                            operand:
+                              UnaryOp
+                                line: 14
+                                operator: sizeof
+                                operand:
+                                  TypeSpecifier
+                                    line: 14
+                                    name: Row
+                                position: prefix,
+                        ],
+                ReturnStatement
+                  line: 15
+                  value:
+                    Literal
+                      line: 15
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  name   type    size  offset  line
+  -----  ------  ----  ------  ----
+  total  int     4     0       4   
+  grid   int[3]  12    4       6   
+  size   int     4     16      8   
+  vol    int     4     20      9   
+  flag   bool    4     24      10  
+
+Functions
+  name  signature  frame  defined  line
+  ----  ---------  -----  -------  ----
+  main  () -> int  4      yes      12  
+
+Function main: parameters and locals (frame size 4 bytes)
+  ir name  source  kind   type  size  offset  line
+  -------  ------  -----  ----  ----  ------  ----
+  c        c       local  int   4     0       13  
+
+Typedefs
+  name    type  
+  ------  ------
+  Number  int   
+  Row     int[3]
+  Count   int   
+  Size    int   
+
+Enum constants
+  (none)
+
+######## --tac
+.data
+str0: " "
+str1: "\n"
+global total : int = 5
+global grid : int[3] = {1,2,3}
+global size : int = 7
+global vol : int = 2
+global flag : int = 1
+.text
+func main() : int
+    local int c
+    temp t1:int, t2:int, t3:int, t4:int
+    t1 = total + size
+    c = t1
+    t2 = grid[0]
+    t3 = grid[8]
+    t4 = t2 + t3
+    param c
+    call print_int, 1
+    param str0
+    call print_str, 1
+    param t4
+    call print_int, 1
+    param str0
+    call print_str, 1
+    param vol
+    call print_int, 1
+    param str0
+    call print_str, 1
+    param flag
+    call print_int, 1
+    param str0
+    call print_str, 1
+    param 12
+    call print_int, 1
+    param str1
+    call print_str, 1
+    return 0
+endfunc
+######## run
+12 4 2 1 12

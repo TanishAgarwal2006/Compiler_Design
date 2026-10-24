@@ -1,0 +1,40 @@
+== deep_recursion
+12502500
+9
+21
+610
+== float_and_array_parameters
+10 14 12.000000
+15 -1
+10 mixed Case MIXED CASE 3
+6.000000 b 99
+hello
+13
+6
+7
+5.000000
+== functions
+hello
+120 55 1 1
+10 6 9
+== mutual_recursion
+1 1 2 6 24 120 720 5040 40320 362880 3628800 
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 
+1 0 0 12
+9
+123
+== edge_funcs
+55
+610
+9
+1 1
+1.500000
+3 4.000000 b
+noret
+1 1
+8 5
+9
+5
+5
+== edge_printfn
+<42>

@@ -1,0 +1,616 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+enum                      ENUM                     
+Color                     IDENTIFIER               
+{                         LBRACE                   
+RED                       VARIABLE_NAME            
+,                         COMMA                    
+GREEN                     VARIABLE_NAME            
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+bug_unknown_enum          FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+enum                      ENUM                     
+Nope                      IDENTIFIER               
+v                         VARIABLE_NAME            
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scalar_in_braces      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         PARAMETER_NAME           
+=                         ASSIGN                   
+{                         LBRACE                   
+1                         INTEGER_CONSTANT         
+}                         RBRACE                   
+;                         SEMI                     
+return                    RETURN                   
+x                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_name_clash            FUNCTION_NAME            
+;                         SEMI                     
+int                       INT                      
+bug_name_clash            FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+;                         SEMI                     
+int                       INT                      
+bug_void_param            FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+x                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_unnamed_param         FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_duplicate_param       FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         PARAMETER_NAME           
+,                         COMMA                    
+int                       INT                      
+a                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         PARAMETER_NAME           
+;                         SEMI                     
+}                         RBRACE                   
+typedef                   TYPEDEF                  
+int                       INT                      
+Row                       ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+Row                       TYPENAME                 
+bug_function_returns_array FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+Row                       TYPENAME                 
+r                         VARIABLE_NAME            
+;                         SEMI                     
+return                    RETURN                   
+r                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+taken                     TYPENAME                 
+;                         SEMI                     
+typedef                   TYPEDEF                  
+int                       INT                      
+taken                     TYPENAME                 
+;                         SEMI                     
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+GREEN                variable     int        global                 enum constant       
+RED                  variable     int        global                 enum constant       
+Row                  array        int        global                 dims: [3]           
+a                    parameter    int        function:bug_duplicate_param                     
+bug_duplicate_param  function     int        global                 params: (int, int)  
+bug_function_returns_array function     Row        global                 params: (void)      
+bug_name_clash       function     int        global                 params: ()          
+bug_scalar_in_braces function     int        global                 params: (void)      
+bug_unknown_enum     function     int        global                 params: (void)      
+bug_unnamed_param    function     int        global                 params: (int)       
+bug_void_param       function     int        global                 params: (void)      
+main                 function     int        global                 params: (void)      
+r                    variable     Row        function:bug_function_returns_array                     
+taken                typedef      int        global                                     
+v                    variable     enum Nope  function:bug_unknown_enum                     
+x                    parameter    void       function:bug_scalar_in_braces                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      Declaration
+        line: 4
+        type_spec:
+          EnumSpecifier
+            line: 4
+            tag: Color
+            enumerators:
+              [
+                Enumerator
+                  line: 4
+                  name: RED,
+                Enumerator
+                  line: 4
+                  name: GREEN,
+              ],
+      FunctionDefinition
+        line: 5
+        return_type:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarator:
+          Declarator
+            line: 5
+            name: bug_unknown_enum
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 5
+                  type_spec:
+                    TypeSpecifier
+                      line: 5
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 5
+            items:
+              [
+                Declaration
+                  line: 5
+                  type_spec:
+                    EnumSpecifier
+                      line: 5
+                      tag: Nope
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 5
+                        declarator:
+                          Declarator
+                            line: 5
+                            name: v
+                            kind_name: variable,
+                    ],
+                ReturnStatement
+                  line: 5
+                  value:
+                    Literal
+                      line: 5
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: bug_scalar_in_braces
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                Declaration
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 6
+                        declarator:
+                          Declarator
+                            line: 6
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          InitializerList
+                            line: 6
+                            values:
+                              [
+                                Literal
+                                  line: 6
+                                  literal_type: int
+                                  value: 1,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 6
+                  value:
+                    Identifier
+                      line: 6
+                      name: x,
+              ],
+      Declaration
+        line: 8
+        type_spec:
+          TypeSpecifier
+            line: 8
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 8
+              declarator:
+                Declarator
+                  line: 8
+                  name: bug_name_clash
+                  kind_name: variable,
+          ],
+      Declaration
+        line: 9
+        type_spec:
+          TypeSpecifier
+            line: 9
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 9
+              declarator:
+                Declarator
+                  line: 9
+                  name: bug_name_clash
+                  kind_name: function
+                  params:
+                    [
+                      Parameter
+                        line: 9
+                        type_spec:
+                          TypeSpecifier
+                            line: 9
+                            name: void,
+                    ],
+          ],
+      FunctionDefinition
+        line: 11
+        return_type:
+          TypeSpecifier
+            line: 11
+            name: int
+        declarator:
+          Declarator
+            line: 11
+            name: bug_void_param
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 11
+                  type_spec:
+                    TypeSpecifier
+                      line: 11
+                      name: void
+                  declarator:
+                    Declarator
+                      line: 11
+                      name: x
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 11
+            items:
+              [
+                ReturnStatement
+                  line: 11
+                  value:
+                    Literal
+                      line: 11
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 12
+        return_type:
+          TypeSpecifier
+            line: 12
+            name: int
+        declarator:
+          Declarator
+            line: 12
+            name: bug_unnamed_param
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: int,
+              ]
+        body:
+          CompoundStatement
+            line: 12
+            items:
+              [
+                ReturnStatement
+                  line: 12
+                  value:
+                    Literal
+                      line: 12
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 13
+        return_type:
+          TypeSpecifier
+            line: 13
+            name: int
+        declarator:
+          Declarator
+            line: 13
+            name: bug_duplicate_param
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 13
+                  type_spec:
+                    TypeSpecifier
+                      line: 13
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 13
+                      name: a
+                      kind_name: variable,
+                Parameter
+                  line: 13
+                  type_spec:
+                    TypeSpecifier
+                      line: 13
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 13
+                      name: a
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 13
+            items:
+              [
+                ReturnStatement
+                  line: 13
+                  value:
+                    Identifier
+                      line: 13
+                      name: a,
+              ],
+      Declaration
+        line: 15
+        type_spec:
+          TypeSpecifier
+            line: 15
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 15
+              declarator:
+                Declarator
+                  line: 15
+                  name: Row
+                  kind_name: array
+                  dimensions:
+                    [
+                      ArrayDimension
+                        line: 15
+                        size:
+                          Literal
+                            line: 15
+                            literal_type: int
+                            value: 3,
+                    ],
+          ]
+        storage: typedef,
+      FunctionDefinition
+        line: 16
+        return_type:
+          TypeSpecifier
+            line: 16
+            name: Row
+        declarator:
+          Declarator
+            line: 16
+            name: bug_function_returns_array
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 16
+                  type_spec:
+                    TypeSpecifier
+                      line: 16
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 16
+            items:
+              [
+                Declaration
+                  line: 16
+                  type_spec:
+                    TypeSpecifier
+                      line: 16
+                      name: Row
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 16
+                        declarator:
+                          Declarator
+                            line: 16
+                            name: r
+                            kind_name: variable,
+                    ],
+                ReturnStatement
+                  line: 16
+                  value:
+                    Identifier
+                      line: 16
+                      name: r,
+              ],
+      Declaration
+        line: 18
+        type_spec:
+          TypeSpecifier
+            line: 18
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 18
+              declarator:
+                Declarator
+                  line: 18
+                  name: taken
+                  kind_name: variable,
+          ],
+      Declaration
+        line: 19
+        type_spec:
+          TypeSpecifier
+            line: 19
+            name: int
+        declarators:
+          [
+            InitDeclarator
+              line: 19
+              declarator:
+                Declarator
+                  line: 19
+                  name: taken
+                  kind_name: variable,
+          ]
+        storage: typedef,
+      FunctionDefinition
+        line: 21
+        return_type:
+          TypeSpecifier
+            line: 21
+            name: int
+        declarator:
+          Declarator
+            line: 21
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 21
+                  type_spec:
+                    TypeSpecifier
+                      line: 21
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 21
+            items:
+              [
+                ReturnStatement
+                  line: 21
+                  value:
+                    Literal
+                      line: 21
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:5: semantic error: unknown enum 'Nope'
+     5 | int bug_unknown_enum(void) { enum Nope v; return 0; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:6: semantic error: braces around scalar initializer of 'x'
+     6 | int bug_scalar_in_braces(void) { int x = {1}; return x; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:9: semantic error: 'bug_name_clash' redeclared as a different kind of symbol
+     9 | int bug_name_clash(void);
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:11: semantic error: parameter cannot have type void
+    11 | int bug_void_param(void x) { return 0; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:12: semantic error: parameter name omitted in definition of 'bug_unnamed_param'
+    12 | int bug_unnamed_param(int) { return 0; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:13: semantic error: duplicate parameter 'a'
+    13 | int bug_duplicate_param(int a, int a) { return a; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:16: semantic error: function 'bug_function_returns_array' cannot return an array
+    16 | Row bug_function_returns_array(void) { Row r; return r; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:19: semantic error: redeclaration of 'taken'
+    19 | typedef int taken;
+8 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:5: semantic error: unknown enum 'Nope'
+     5 | int bug_unknown_enum(void) { enum Nope v; return 0; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:6: semantic error: braces around scalar initializer of 'x'
+     6 | int bug_scalar_in_braces(void) { int x = {1}; return x; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:9: semantic error: 'bug_name_clash' redeclared as a different kind of symbol
+     9 | int bug_name_clash(void);
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:11: semantic error: parameter cannot have type void
+    11 | int bug_void_param(void x) { return 0; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:12: semantic error: parameter name omitted in definition of 'bug_unnamed_param'
+    12 | int bug_unnamed_param(int) { return 0; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:13: semantic error: duplicate parameter 'a'
+    13 | int bug_duplicate_param(int a, int a) { return a; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:16: semantic error: function 'bug_function_returns_array' cannot return an array
+    16 | Row bug_function_returns_array(void) { Row r; return r; }
+test/phase3_tac/invalid/declarations/declarations_more_buggy.c:19: semantic error: redeclaration of 'taken'
+    19 | typedef int taken;
+8 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

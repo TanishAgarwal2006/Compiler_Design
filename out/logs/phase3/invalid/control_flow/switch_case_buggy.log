@@ -1,0 +1,157 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+bug_case_float            FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+x                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+switch                    SWITCH                   
+(                         LPAREN                   
+x                         PARAMETER_NAME           
+)                         RPAREN                   
+{                         LBRACE                   
+case                      CASE                     
+1.5                       FLOAT_CONSTANT           
+:                         COLON                    
+break                     BREAK                    
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+bug_case_float       function     int        global                 params: (int)       
+main                 function     int        global                 params: (void)      
+x                    parameter    int        function:bug_case_float                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 2
+        return_type:
+          TypeSpecifier
+            line: 2
+            name: int
+        declarator:
+          Declarator
+            line: 2
+            name: bug_case_float
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 2
+                  type_spec:
+                    TypeSpecifier
+                      line: 2
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 2
+                      name: x
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 2
+            items:
+              [
+                SwitchStatement
+                  line: 2
+                  expression:
+                    Identifier
+                      line: 2
+                      name: x
+                  cases:
+                    [
+                      SwitchCase
+                        line: 2
+                        value:
+                          Literal
+                            line: 2
+                            literal_type: float
+                            value: 1.5
+                        body:
+                          [
+                            JumpStatement
+                              line: 2
+                              keyword: break,
+                          ],
+                    ],
+                ReturnStatement
+                  line: 2
+                  value:
+                    Literal
+                      line: 2
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 3
+        return_type:
+          TypeSpecifier
+            line: 3
+            name: int
+        declarator:
+          Declarator
+            line: 3
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 3
+                  type_spec:
+                    TypeSpecifier
+                      line: 3
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 3
+            items:
+              [
+                ReturnStatement
+                  line: 3
+                  value:
+                    Literal
+                      line: 3
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/control_flow/switch_case_buggy.c:2: semantic error: case value must be an integer constant
+     2 | int bug_case_float(int x) { switch (x) { case 1.5: break; } return 0; }
+1 error found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/control_flow/switch_case_buggy.c:2: semantic error: case value must be an integer constant
+     2 | int bug_case_float(int x) { switch (x) { case 1.5: break; } return 0; }
+1 error found. No output was produced.
+######## run
+(not compiled: see the errors above)

@@ -1,0 +1,2473 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+bug_auto_type             FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+auto                      AUTO                     
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+x                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+class                     CLASS                    
+class_method_outside_A    IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+class_method_outside_f    FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+class_method_outside_A    IDENTIFIER               
+::                        SCOPE                    
+class_method_outside_f    FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_class_method_outside  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+class                     CLASS                    
+X                         IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+a                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+bug_class_object          FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+class                     CLASS                    
+X                         IDENTIFIER               
+x                         VARIABLE_NAME            
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+class                     CLASS                    
+constructor_A             FUNCTION_NAME            
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+x                         VARIABLE_NAME            
+;                         SEMI                     
+constructor_A             FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+bug_constructor           FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_delete_expression     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+delete                    DELETE                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+a                         ARRAY_NAME               
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+class                     CLASS                    
+destructor_A              FUNCTION_NAME            
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+x                         VARIABLE_NAME            
+;                         SEMI                     
+~                         BIT_NOT                  
+destructor_A              FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+}                         RBRACE                   
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+bug_destructor            FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_fclose_call           FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+fclose                    FUNCTION_NAME            
+(                         LPAREN                   
+0                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_fopen_call            FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+FILE                      TYPENAME                 
+*                         MULTIPLY                 
+f                         VARIABLE_NAME            
+=                         ASSIGN                   
+fopen                     FUNCTION_NAME            
+(                         LPAREN                   
+"a"                       STRING_LITERAL           
+,                         COMMA                    
+"r"                       STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_free_call             FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+free                      FUNCTION_NAME            
+(                         LPAREN                   
+0                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_lambda_expression     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+auto                      AUTO                     
+f                         VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+a                         ARRAY_NAME               
+)                         RPAREN                   
+->                        ARROW                    
+int                       INT                      
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_lambda_immediate_call FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+k                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+[                         LBRACKET                 
+k                         VARIABLE_NAME            
+]                         RBRACKET                 
+(                         LPAREN                   
+int                       INT                      
+a                         ARRAY_NAME               
+)                         RPAREN                   
+->                        ARROW                    
+int                       INT                      
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
++                         PLUS                     
+k                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+(                         LPAREN                   
+2                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+r                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_malloc_call           FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+=                         ASSIGN                   
+malloc                    FUNCTION_NAME            
+(                         LPAREN                   
+4                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_new_expression        FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+*                         MULTIPLY                 
+p                         VARIABLE_NAME            
+=                         ASSIGN                   
+new                       NEW                      
+int                       INT                      
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+reference_param_f         FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+&                         ADDRESS                  
+a                         ARRAY_NAME               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_reference_param       FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+reference_param_f         FUNCTION_NAME            
+(                         LPAREN                   
+x                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+&                         ADDRESS                  
+reference_return_f        FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+&                         ADDRESS                  
+a                         ARRAY_NAME               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_reference_return      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_reference_variable    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+&                         ADDRESS                  
+r                         VARIABLE_NAME            
+=                         ASSIGN                   
+x                         VARIABLE_NAME            
+;                         SEMI                     
+return                    RETURN                   
+r                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+Dog                       IDENTIFIER               
+::                        SCOPE                    
+bark                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scope_without_class   FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_this_keyword          FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+this                      THIS                     
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_unsupported_address_of FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+int                       INT                      
+y                         VARIABLE_NAME            
+=                         ASSIGN                   
+&                         ADDRESS                  
+x                         VARIABLE_NAME            
+;                         SEMI                     
+return                    RETURN                   
+y                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+class                     CLASS                    
+unsupported_class_A       IDENTIFIER               
+{                         LBRACE                   
+public                    PUBLIC                   
+:                         COLON                    
+int                       INT                      
+x                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+bug_unsupported_class     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_unsupported_deref     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+*                         MULTIPLY                 
+x                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_unsupported_pointer_var FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+*                         MULTIPLY                 
+p                         VARIABLE_NAME            
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_unsupported_static_local FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+static                    STATIC                   
+int                       INT                      
+n                         VARIABLE_NAME            
+=                         ASSIGN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+n                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+struct                    STRUCT                   
+P                         IDENTIFIER               
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+;                         SEMI                     
+int                       INT                      
+bug_unsupported_struct    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+unsupported_variadic_f    FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         ARRAY_NAME               
+,                         COMMA                    
+...                       ELLIPSIS                 
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_unsupported_variadic  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    array        int        class:X                dims: [2]           
+bark                 function     int        global                 params: ()          
+bug_auto_type        function     int        global                 params: (void)      
+bug_class_method_outside function     int        global                 params: (void)      
+bug_class_object     function     int        global                 params: (void)      
+bug_constructor      function     int        global                 params: (void)      
+bug_delete_expression function     int        global                 params: (void)      
+bug_destructor       function     int        global                 params: (void)      
+bug_fclose_call      function     int        global                 params: (void)      
+bug_fopen_call       function     int        global                 params: (void)      
+bug_free_call        function     int        global                 params: (void)      
+bug_lambda_expression function     int        global                 params: (void)      
+bug_lambda_immediate_call function     int        global                 params: (void)      
+bug_malloc_call      function     int        global                 params: (void)      
+bug_new_expression   function     int        global                 params: (void)      
+bug_reference_param  function     int        global                 params: (void)      
+bug_reference_return function     int        global                 params: (void)      
+bug_reference_variable function     int        global                 params: (void)      
+bug_scope_without_class function     int        global                 params: (void)      
+bug_this_keyword     function     int        global                 params: (void)      
+bug_unsupported_address_of function     int        global                 params: (void)      
+bug_unsupported_class function     int        global                 params: (void)      
+bug_unsupported_deref function     int        global                 params: (void)      
+bug_unsupported_pointer_var function     int        global                 params: (void)      
+bug_unsupported_static_local function     int        global                 params: (void)      
+bug_unsupported_struct function     int        global                 params: (void)      
+bug_unsupported_variadic function     int        global                 params: (void)      
+class_method_outside_f function     int        global                 params: ()          
+constructor_A        function     int        global                 params: ()          
+destructor_A         function     int        global                 params: ()          
+f                    variable     auto       function:bug_fopen_call pointer (*f)        
+fclose               function     int        function:bug_fclose_call                     
+fopen                function     int        function:bug_fopen_call                     
+free                 function     int        function:bug_free_call                     
+k                    variable     int        function:bug_lambda_immediate_call                     
+main                 function     int        global                 params: (void)      
+malloc               function     int        function:bug_malloc_call                     
+n                    variable     int        function:bug_unsupported_static_local static              
+p                    variable     int        function:bug_new_expression pointer (*p)        
+r                    variable     int        function:bug_lambda_immediate_call                     
+reference_param_f    function     int        global                 params: (int)       
+reference_return_f   function     int        global                 params: (int)       
+unsupported_variadic_f function     int        global                 params: (int, ...)  
+x                    variable     class X    function:bug_auto_type                     
+y                    variable     int        function:bug_unsupported_address_of                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 7
+        return_type:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarator:
+          Declarator
+            line: 7
+            name: bug_auto_type
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 7
+            items:
+              [
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 8
+                            literal_type: int
+                            value: 5,
+                    ],
+                ReturnStatement
+                  line: 9
+                  value:
+                    Identifier
+                      line: 9
+                      name: x,
+              ],
+      Declaration
+        line: 13
+        type_spec:
+          ClassSpecifier
+            line: 13
+            tag: class_method_outside_A
+            members:
+              [
+                AccessLabel
+                  line: 14
+                  access: public,
+                Declaration
+                  line: 15
+                  type_spec:
+                    TypeSpecifier
+                      line: 15
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 15
+                        declarator:
+                          Declarator
+                            line: 15
+                            name: class_method_outside_f
+                            kind_name: function,
+                    ],
+              ],
+      FunctionDefinition
+        line: 17
+        return_type:
+          TypeSpecifier
+            line: 17
+            name: int
+        declarator:
+          Declarator
+            line: 17
+            name: class_method_outside_f
+            kind_name: function
+            scope: class_method_outside_A
+        body:
+          CompoundStatement
+            line: 17
+            items:
+              [
+                ReturnStatement
+                  line: 17
+                  value:
+                    Literal
+                      line: 17
+                      literal_type: int
+                      value: 1,
+              ],
+      FunctionDefinition
+        line: 18
+        return_type:
+          TypeSpecifier
+            line: 18
+            name: int
+        declarator:
+          Declarator
+            line: 18
+            name: bug_class_method_outside
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 18
+                  type_spec:
+                    TypeSpecifier
+                      line: 18
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 18
+            items:
+              [
+                ReturnStatement
+                  line: 18
+                  value:
+                    Literal
+                      line: 18
+                      literal_type: int
+                      value: 0,
+              ],
+      Declaration
+        line: 21
+        type_spec:
+          ClassSpecifier
+            line: 21
+            tag: X
+            members:
+              [
+                AccessLabel
+                  line: 22
+                  access: public,
+                Declaration
+                  line: 23
+                  type_spec:
+                    TypeSpecifier
+                      line: 23
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 23
+                        declarator:
+                          Declarator
+                            line: 23
+                            name: a
+                            kind_name: variable,
+                    ],
+              ],
+      FunctionDefinition
+        line: 25
+        return_type:
+          TypeSpecifier
+            line: 25
+            name: int
+        declarator:
+          Declarator
+            line: 25
+            name: bug_class_object
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 25
+                  type_spec:
+                    TypeSpecifier
+                      line: 25
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 25
+            items:
+              [
+                Declaration
+                  line: 26
+                  type_spec:
+                    ClassSpecifier
+                      line: 26
+                      tag: X
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 26
+                        declarator:
+                          Declarator
+                            line: 26
+                            name: x
+                            kind_name: variable,
+                    ],
+                ReturnStatement
+                  line: 27
+                  value:
+                    Literal
+                      line: 27
+                      literal_type: int
+                      value: 0,
+              ],
+      Declaration
+        line: 31
+        type_spec:
+          ClassSpecifier
+            line: 31
+            tag: constructor_A
+            members:
+              [
+                AccessLabel
+                  line: 32
+                  access: public,
+                Declaration
+                  line: 33
+                  type_spec:
+                    TypeSpecifier
+                      line: 33
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 33
+                        declarator:
+                          Declarator
+                            line: 33
+                            name: x
+                            kind_name: variable,
+                    ],
+                FunctionDefinition
+                  line: 34
+                  declarator:
+                    Declarator
+                      line: 34
+                      name: constructor_A
+                      kind_name: constructor
+                  body:
+                    CompoundStatement
+                      line: 34
+                      items:
+                        [
+                          ExpressionStatement
+                            line: 34
+                            expression:
+                              Assignment
+                                line: 34
+                                operator: =
+                                target:
+                                  Identifier
+                                    line: 34
+                                    name: x
+                                value:
+                                  Literal
+                                    line: 34
+                                    literal_type: int
+                                    value: 1,
+                        ],
+              ],
+      FunctionDefinition
+        line: 36
+        return_type:
+          TypeSpecifier
+            line: 36
+            name: int
+        declarator:
+          Declarator
+            line: 36
+            name: bug_constructor
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 36
+                  type_spec:
+                    TypeSpecifier
+                      line: 36
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 36
+            items:
+              [
+                ReturnStatement
+                  line: 36
+                  value:
+                    Literal
+                      line: 36
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 39
+        return_type:
+          TypeSpecifier
+            line: 39
+            name: int
+        declarator:
+          Declarator
+            line: 39
+            name: bug_delete_expression
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 39
+                  type_spec:
+                    TypeSpecifier
+                      line: 39
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 39
+            items:
+              [
+                Declaration
+                  line: 40
+                  type_spec:
+                    TypeSpecifier
+                      line: 40
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 40
+                        declarator:
+                          Declarator
+                            line: 40
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 40
+                                  size:
+                                    Literal
+                                      line: 40
+                                      literal_type: int
+                                      value: 2,
+                              ],
+                    ],
+                ExpressionStatement
+                  line: 41
+                  expression:
+                    DeleteExpression
+                      line: 41
+                      operand:
+                        Identifier
+                          line: 41
+                          name: a
+                      is_array: True,
+                ReturnStatement
+                  line: 42
+                  value:
+                    Literal
+                      line: 42
+                      literal_type: int
+                      value: 0,
+              ],
+      Declaration
+        line: 46
+        type_spec:
+          ClassSpecifier
+            line: 46
+            tag: destructor_A
+            members:
+              [
+                AccessLabel
+                  line: 47
+                  access: public,
+                Declaration
+                  line: 48
+                  type_spec:
+                    TypeSpecifier
+                      line: 48
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 48
+                        declarator:
+                          Declarator
+                            line: 48
+                            name: x
+                            kind_name: variable,
+                    ],
+                FunctionDefinition
+                  line: 49
+                  declarator:
+                    Declarator
+                      line: 49
+                      name: destructor_A
+                      kind_name: destructor
+                  body:
+                    CompoundStatement
+                      line: 49,
+              ],
+      FunctionDefinition
+        line: 51
+        return_type:
+          TypeSpecifier
+            line: 51
+            name: int
+        declarator:
+          Declarator
+            line: 51
+            name: bug_destructor
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 51
+                  type_spec:
+                    TypeSpecifier
+                      line: 51
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 51
+            items:
+              [
+                ReturnStatement
+                  line: 51
+                  value:
+                    Literal
+                      line: 51
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 54
+        return_type:
+          TypeSpecifier
+            line: 54
+            name: int
+        declarator:
+          Declarator
+            line: 54
+            name: bug_fclose_call
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 54
+                  type_spec:
+                    TypeSpecifier
+                      line: 54
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 54
+            items:
+              [
+                ExpressionStatement
+                  line: 55
+                  expression:
+                    FunctionCall
+                      line: 55
+                      callee:
+                        Identifier
+                          line: 55
+                          name: fclose
+                      args:
+                        [
+                          Literal
+                            line: 55
+                            literal_type: int
+                            value: 0,
+                        ],
+                ReturnStatement
+                  line: 56
+                  value:
+                    Literal
+                      line: 56
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 60
+        return_type:
+          TypeSpecifier
+            line: 60
+            name: int
+        declarator:
+          Declarator
+            line: 60
+            name: bug_fopen_call
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 60
+                  type_spec:
+                    TypeSpecifier
+                      line: 60
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 60
+            items:
+              [
+                Declaration
+                  line: 61
+                  type_spec:
+                    TypeSpecifier
+                      line: 61
+                      name: FILE
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 61
+                        declarator:
+                          Declarator
+                            line: 61
+                            name: f
+                            kind_name: variable
+                            pointer_level: 1
+                        initializer:
+                          FunctionCall
+                            line: 61
+                            callee:
+                              Identifier
+                                line: 61
+                                name: fopen
+                            args:
+                              [
+                                Literal
+                                  line: 61
+                                  literal_type: string
+                                  value: "a",
+                                Literal
+                                  line: 61
+                                  literal_type: string
+                                  value: "r",
+                              ],
+                    ],
+                ReturnStatement
+                  line: 62
+                  value:
+                    Literal
+                      line: 62
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 66
+        return_type:
+          TypeSpecifier
+            line: 66
+            name: int
+        declarator:
+          Declarator
+            line: 66
+            name: bug_free_call
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 66
+                  type_spec:
+                    TypeSpecifier
+                      line: 66
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 66
+            items:
+              [
+                ExpressionStatement
+                  line: 67
+                  expression:
+                    FunctionCall
+                      line: 67
+                      callee:
+                        Identifier
+                          line: 67
+                          name: free
+                      args:
+                        [
+                          Literal
+                            line: 67
+                            literal_type: int
+                            value: 0,
+                        ],
+                ReturnStatement
+                  line: 68
+                  value:
+                    Literal
+                      line: 68
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 72
+        return_type:
+          TypeSpecifier
+            line: 72
+            name: int
+        declarator:
+          Declarator
+            line: 72
+            name: bug_lambda_expression
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 72
+                  type_spec:
+                    TypeSpecifier
+                      line: 72
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 72
+            items:
+              [
+                Declaration
+                  line: 73
+                  type_spec:
+                    TypeSpecifier
+                      line: 73
+                      name: auto
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 73
+                        declarator:
+                          Declarator
+                            line: 73
+                            name: f
+                            kind_name: variable
+                        initializer:
+                          LambdaExpression
+                            line: 73
+                            params:
+                              [
+                                Parameter
+                                  line: 73
+                                  type_spec:
+                                    TypeSpecifier
+                                      line: 73
+                                      name: int
+                                  declarator:
+                                    Declarator
+                                      line: 73
+                                      name: a
+                                      kind_name: variable,
+                              ]
+                            return_type:
+                              TypeSpecifier
+                                line: 73
+                                name: int
+                            body:
+                              CompoundStatement
+                                line: 73
+                                items:
+                                  [
+                                    ReturnStatement
+                                      line: 73
+                                      value:
+                                        Identifier
+                                          line: 73
+                                          name: a,
+                                  ],
+                    ],
+                ReturnStatement
+                  line: 74
+                  value:
+                    Literal
+                      line: 74
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 78
+        return_type:
+          TypeSpecifier
+            line: 78
+            name: int
+        declarator:
+          Declarator
+            line: 78
+            name: bug_lambda_immediate_call
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 78
+                  type_spec:
+                    TypeSpecifier
+                      line: 78
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 78
+            items:
+              [
+                Declaration
+                  line: 79
+                  type_spec:
+                    TypeSpecifier
+                      line: 79
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 79
+                        declarator:
+                          Declarator
+                            line: 79
+                            name: k
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 79
+                            literal_type: int
+                            value: 1,
+                    ],
+                Declaration
+                  line: 80
+                  type_spec:
+                    TypeSpecifier
+                      line: 80
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 80
+                        declarator:
+                          Declarator
+                            line: 80
+                            name: r
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 80
+                            callee:
+                              LambdaExpression
+                                line: 80
+                                captures:
+                                  [
+                                    k,
+                                  ]
+                                params:
+                                  [
+                                    Parameter
+                                      line: 80
+                                      type_spec:
+                                        TypeSpecifier
+                                          line: 80
+                                          name: int
+                                      declarator:
+                                        Declarator
+                                          line: 80
+                                          name: a
+                                          kind_name: variable,
+                                  ]
+                                return_type:
+                                  TypeSpecifier
+                                    line: 80
+                                    name: int
+                                body:
+                                  CompoundStatement
+                                    line: 80
+                                    items:
+                                      [
+                                        ReturnStatement
+                                          line: 80
+                                          value:
+                                            BinaryOp
+                                              line: 80
+                                              operator: +
+                                              left:
+                                                Identifier
+                                                  line: 80
+                                                  name: a
+                                              right:
+                                                Identifier
+                                                  line: 80
+                                                  name: k,
+                                      ]
+                            args:
+                              [
+                                Literal
+                                  line: 80
+                                  literal_type: int
+                                  value: 2,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 81
+                  value:
+                    Identifier
+                      line: 81
+                      name: r,
+              ],
+      FunctionDefinition
+        line: 85
+        return_type:
+          TypeSpecifier
+            line: 85
+            name: int
+        declarator:
+          Declarator
+            line: 85
+            name: bug_malloc_call
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 85
+                  type_spec:
+                    TypeSpecifier
+                      line: 85
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 85
+            items:
+              [
+                Declaration
+                  line: 86
+                  type_spec:
+                    TypeSpecifier
+                      line: 86
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 86
+                        declarator:
+                          Declarator
+                            line: 86
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 86
+                            callee:
+                              Identifier
+                                line: 86
+                                name: malloc
+                            args:
+                              [
+                                Literal
+                                  line: 86
+                                  literal_type: int
+                                  value: 4,
+                              ],
+                    ],
+                ReturnStatement
+                  line: 87
+                  value:
+                    Literal
+                      line: 87
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 91
+        return_type:
+          TypeSpecifier
+            line: 91
+            name: int
+        declarator:
+          Declarator
+            line: 91
+            name: bug_new_expression
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 91
+                  type_spec:
+                    TypeSpecifier
+                      line: 91
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 91
+            items:
+              [
+                Declaration
+                  line: 92
+                  type_spec:
+                    TypeSpecifier
+                      line: 92
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 92
+                        declarator:
+                          Declarator
+                            line: 92
+                            name: p
+                            kind_name: variable
+                            pointer_level: 1
+                        initializer:
+                          NewExpression
+                            line: 92
+                            type_spec:
+                              TypeSpecifier
+                                line: 92
+                                name: int,
+                    ],
+                ReturnStatement
+                  line: 93
+                  value:
+                    Literal
+                      line: 93
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 97
+        return_type:
+          TypeSpecifier
+            line: 97
+            name: int
+        declarator:
+          Declarator
+            line: 97
+            name: reference_param_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 97
+                  type_spec:
+                    TypeSpecifier
+                      line: 97
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 97
+                      name: a
+                      kind_name: variable
+                      is_reference: True,
+              ]
+        body:
+          CompoundStatement
+            line: 97
+            items:
+              [
+                ReturnStatement
+                  line: 97
+                  value:
+                    Identifier
+                      line: 97
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 98
+        return_type:
+          TypeSpecifier
+            line: 98
+            name: int
+        declarator:
+          Declarator
+            line: 98
+            name: bug_reference_param
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 98
+                  type_spec:
+                    TypeSpecifier
+                      line: 98
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 98
+            items:
+              [
+                Declaration
+                  line: 99
+                  type_spec:
+                    TypeSpecifier
+                      line: 99
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 99
+                        declarator:
+                          Declarator
+                            line: 99
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 99
+                            literal_type: int
+                            value: 1,
+                    ],
+                ReturnStatement
+                  line: 100
+                  value:
+                    FunctionCall
+                      line: 100
+                      callee:
+                        Identifier
+                          line: 100
+                          name: reference_param_f
+                      args:
+                        [
+                          Identifier
+                            line: 100
+                            name: x,
+                        ],
+              ],
+      FunctionDefinition
+        line: 104
+        return_type:
+          TypeSpecifier
+            line: 104
+            name: int
+        declarator:
+          Declarator
+            line: 104
+            name: reference_return_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 104
+                  type_spec:
+                    TypeSpecifier
+                      line: 104
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 104
+                      name: a
+                      kind_name: variable
+                      is_reference: True,
+              ]
+            is_reference: True
+        body:
+          CompoundStatement
+            line: 104
+            items:
+              [
+                ReturnStatement
+                  line: 104
+                  value:
+                    Identifier
+                      line: 104
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 105
+        return_type:
+          TypeSpecifier
+            line: 105
+            name: int
+        declarator:
+          Declarator
+            line: 105
+            name: bug_reference_return
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 105
+                  type_spec:
+                    TypeSpecifier
+                      line: 105
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 105
+            items:
+              [
+                ReturnStatement
+                  line: 105
+                  value:
+                    Literal
+                      line: 105
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 108
+        return_type:
+          TypeSpecifier
+            line: 108
+            name: int
+        declarator:
+          Declarator
+            line: 108
+            name: bug_reference_variable
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 108
+                  type_spec:
+                    TypeSpecifier
+                      line: 108
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 108
+            items:
+              [
+                Declaration
+                  line: 109
+                  type_spec:
+                    TypeSpecifier
+                      line: 109
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 109
+                        declarator:
+                          Declarator
+                            line: 109
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 109
+                            literal_type: int
+                            value: 1,
+                    ],
+                Declaration
+                  line: 110
+                  type_spec:
+                    TypeSpecifier
+                      line: 110
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 110
+                        declarator:
+                          Declarator
+                            line: 110
+                            name: r
+                            kind_name: variable
+                            is_reference: True
+                        initializer:
+                          Identifier
+                            line: 110
+                            name: x,
+                    ],
+                ReturnStatement
+                  line: 111
+                  value:
+                    Identifier
+                      line: 111
+                      name: r,
+              ],
+      FunctionDefinition
+        line: 115
+        return_type:
+          TypeSpecifier
+            line: 115
+            name: int
+        declarator:
+          Declarator
+            line: 115
+            name: bark
+            kind_name: function
+            scope: Dog
+        body:
+          CompoundStatement
+            line: 115
+            items:
+              [
+                ReturnStatement
+                  line: 115
+                  value:
+                    Literal
+                      line: 115
+                      literal_type: int
+                      value: 1,
+              ],
+      FunctionDefinition
+        line: 116
+        return_type:
+          TypeSpecifier
+            line: 116
+            name: int
+        declarator:
+          Declarator
+            line: 116
+            name: bug_scope_without_class
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 116
+                  type_spec:
+                    TypeSpecifier
+                      line: 116
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 116
+            items:
+              [
+                ReturnStatement
+                  line: 116
+                  value:
+                    Literal
+                      line: 116
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 119
+        return_type:
+          TypeSpecifier
+            line: 119
+            name: int
+        declarator:
+          Declarator
+            line: 119
+            name: bug_this_keyword
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 119
+                  type_spec:
+                    TypeSpecifier
+                      line: 119
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 119
+            items:
+              [
+                ReturnStatement
+                  line: 120
+                  value:
+                    ThisExpression
+                      line: 120,
+              ],
+      FunctionDefinition
+        line: 124
+        return_type:
+          TypeSpecifier
+            line: 124
+            name: int
+        declarator:
+          Declarator
+            line: 124
+            name: bug_unsupported_address_of
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 124
+                  type_spec:
+                    TypeSpecifier
+                      line: 124
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 124
+            items:
+              [
+                Declaration
+                  line: 125
+                  type_spec:
+                    TypeSpecifier
+                      line: 125
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 125
+                        declarator:
+                          Declarator
+                            line: 125
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 125
+                            literal_type: int
+                            value: 1,
+                    ],
+                Declaration
+                  line: 126
+                  type_spec:
+                    TypeSpecifier
+                      line: 126
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 126
+                        declarator:
+                          Declarator
+                            line: 126
+                            name: y
+                            kind_name: variable
+                        initializer:
+                          UnaryOp
+                            line: 126
+                            operator: &
+                            operand:
+                              Identifier
+                                line: 126
+                                name: x
+                            position: prefix,
+                    ],
+                ReturnStatement
+                  line: 127
+                  value:
+                    Identifier
+                      line: 127
+                      name: y,
+              ],
+      Declaration
+        line: 131
+        type_spec:
+          ClassSpecifier
+            line: 131
+            tag: unsupported_class_A
+            members:
+              [
+                AccessLabel
+                  line: 132
+                  access: public,
+                Declaration
+                  line: 133
+                  type_spec:
+                    TypeSpecifier
+                      line: 133
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 133
+                        declarator:
+                          Declarator
+                            line: 133
+                            name: x
+                            kind_name: variable,
+                    ],
+              ],
+      FunctionDefinition
+        line: 135
+        return_type:
+          TypeSpecifier
+            line: 135
+            name: int
+        declarator:
+          Declarator
+            line: 135
+            name: bug_unsupported_class
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 135
+                  type_spec:
+                    TypeSpecifier
+                      line: 135
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 135
+            items:
+              [
+                ReturnStatement
+                  line: 136
+                  value:
+                    Literal
+                      line: 136
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 140
+        return_type:
+          TypeSpecifier
+            line: 140
+            name: int
+        declarator:
+          Declarator
+            line: 140
+            name: bug_unsupported_deref
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 140
+                  type_spec:
+                    TypeSpecifier
+                      line: 140
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 140
+            items:
+              [
+                Declaration
+                  line: 141
+                  type_spec:
+                    TypeSpecifier
+                      line: 141
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 141
+                        declarator:
+                          Declarator
+                            line: 141
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 141
+                            literal_type: int
+                            value: 1,
+                    ],
+                ReturnStatement
+                  line: 142
+                  value:
+                    UnaryOp
+                      line: 142
+                      operator: *
+                      operand:
+                        Identifier
+                          line: 142
+                          name: x
+                      position: prefix,
+              ],
+      FunctionDefinition
+        line: 146
+        return_type:
+          TypeSpecifier
+            line: 146
+            name: int
+        declarator:
+          Declarator
+            line: 146
+            name: bug_unsupported_pointer_var
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 146
+                  type_spec:
+                    TypeSpecifier
+                      line: 146
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 146
+            items:
+              [
+                Declaration
+                  line: 147
+                  type_spec:
+                    TypeSpecifier
+                      line: 147
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 147
+                        declarator:
+                          Declarator
+                            line: 147
+                            name: p
+                            kind_name: variable
+                            pointer_level: 1,
+                    ],
+                ReturnStatement
+                  line: 148
+                  value:
+                    Literal
+                      line: 148
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 152
+        return_type:
+          TypeSpecifier
+            line: 152
+            name: int
+        declarator:
+          Declarator
+            line: 152
+            name: bug_unsupported_static_local
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 152
+                  type_spec:
+                    TypeSpecifier
+                      line: 152
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 152
+            items:
+              [
+                Declaration
+                  line: 153
+                  type_spec:
+                    TypeSpecifier
+                      line: 153
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 153
+                        declarator:
+                          Declarator
+                            line: 153
+                            name: n
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 153
+                            literal_type: int
+                            value: 0,
+                    ]
+                  storage: static,
+                ReturnStatement
+                  line: 154
+                  value:
+                    Identifier
+                      line: 154
+                      name: n,
+              ],
+      Declaration
+        line: 158
+        type_spec:
+          StructSpecifier
+            line: 158
+            tag: P
+            members:
+              [
+                Declaration
+                  line: 159
+                  type_spec:
+                    TypeSpecifier
+                      line: 159
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 159
+                        declarator:
+                          Declarator
+                            line: 159
+                            name: x
+                            kind_name: variable,
+                    ],
+              ]
+            is_union: False,
+      FunctionDefinition
+        line: 161
+        return_type:
+          TypeSpecifier
+            line: 161
+            name: int
+        declarator:
+          Declarator
+            line: 161
+            name: bug_unsupported_struct
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 161
+                  type_spec:
+                    TypeSpecifier
+                      line: 161
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 161
+            items:
+              [
+                ReturnStatement
+                  line: 162
+                  value:
+                    Literal
+                      line: 162
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 166
+        return_type:
+          TypeSpecifier
+            line: 166
+            name: int
+        declarator:
+          Declarator
+            line: 166
+            name: unsupported_variadic_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 166
+                  type_spec:
+                    TypeSpecifier
+                      line: 166
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 166
+                      name: a
+                      kind_name: variable,
+                VarArgsParameter
+                  line: 166,
+              ]
+        body:
+          CompoundStatement
+            line: 166
+            items:
+              [
+                ReturnStatement
+                  line: 167
+                  value:
+                    Identifier
+                      line: 167
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 169
+        return_type:
+          TypeSpecifier
+            line: 169
+            name: int
+        declarator:
+          Declarator
+            line: 169
+            name: bug_unsupported_variadic
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 169
+                  type_spec:
+                    TypeSpecifier
+                      line: 169
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 169
+            items:
+              [
+                ReturnStatement
+                  line: 170
+                  value:
+                    Literal
+                      line: 170
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 173
+        return_type:
+          TypeSpecifier
+            line: 173
+            name: int
+        declarator:
+          Declarator
+            line: 173
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 173
+                  type_spec:
+                    TypeSpecifier
+                      line: 173
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 173
+            items:
+              [
+                ReturnStatement
+                  line: 173
+                  value:
+                    Literal
+                      line: 173
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:8: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+     8 |     auto x = 5;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:13: semantic error: unsupported feature: classes
+    13 | class class_method_outside_A {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:17: semantic error: unsupported feature: member functions, constructors and destructors
+    17 | int class_method_outside_A::class_method_outside_f() { return 1; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:21: semantic error: unsupported feature: classes
+    21 | class X {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:26: semantic error: unsupported feature: classes
+    26 |     class X x;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:31: semantic error: unsupported feature: classes
+    31 | class constructor_A {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:41: semantic error: unsupported feature: delete
+    41 |     delete[] a;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:46: semantic error: unsupported feature: classes
+    46 | class destructor_A {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:55: semantic error: unsupported feature: file I/O ('fclose')
+    55 |     fclose(0);
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:61: semantic error: unsupported feature: file I/O ('fopen')
+    61 |     FILE *f = fopen("a", "r");
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:61: semantic error: unsupported feature: library type 'FILE'
+    61 |     FILE *f = fopen("a", "r");
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:67: semantic error: unsupported feature: dynamic memory ('free')
+    67 |     free(0);
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:73: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    73 |     auto f = [](int a) -> int { return a; };
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:73: semantic error: unsupported feature: lambda functions
+    73 |     auto f = [](int a) -> int { return a; };
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:80: semantic error: only direct calls by function name are supported
+    80 |     int r = [k](int a) -> int { return a + k; }(2);
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:86: semantic error: unsupported feature: dynamic memory ('malloc')
+    86 |     int a = malloc(4);
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:92: semantic error: unsupported feature: new
+    92 |     int *p = new int;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:92: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+    92 |     int *p = new int;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:97: semantic error: unsupported feature: references ('&' in the declaration of 'a')
+    97 | int reference_param_f(int &a) { return a; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:104: semantic error: unsupported feature: references ('&' in the declaration of 'a')
+   104 | int &reference_return_f(int &a) { return a; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:104: semantic error: unsupported feature: references ('&' in the declaration of 'reference_return_f')
+   104 | int &reference_return_f(int &a) { return a; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:110: semantic error: unsupported feature: references ('&' in the declaration of 'r')
+   110 |     int &r = x;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:115: semantic error: unsupported feature: member functions, constructors and destructors
+   115 | int Dog::bark() { return 1; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:120: semantic error: unsupported feature: 'this'
+   120 |     return this;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:126: semantic error: address-of '&' is only supported inside scanf arguments
+   126 |     int y = &x;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:131: semantic error: unsupported feature: classes
+   131 | class unsupported_class_A {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:142: semantic error: unsupported feature: pointer dereference '*'
+   142 |     return *x;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:147: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+   147 |     int *p;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:153: semantic error: unsupported feature: static local variables
+   153 |     static int n = 0;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:158: semantic error: unsupported feature: struct and union
+   158 | struct P {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:166: semantic error: unsupported feature: variadic functions
+   166 | int unsupported_variadic_f(int a, ...) {
+31 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:8: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+     8 |     auto x = 5;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:13: semantic error: unsupported feature: classes
+    13 | class class_method_outside_A {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:17: semantic error: unsupported feature: member functions, constructors and destructors
+    17 | int class_method_outside_A::class_method_outside_f() { return 1; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:21: semantic error: unsupported feature: classes
+    21 | class X {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:26: semantic error: unsupported feature: classes
+    26 |     class X x;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:31: semantic error: unsupported feature: classes
+    31 | class constructor_A {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:41: semantic error: unsupported feature: delete
+    41 |     delete[] a;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:46: semantic error: unsupported feature: classes
+    46 | class destructor_A {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:55: semantic error: unsupported feature: file I/O ('fclose')
+    55 |     fclose(0);
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:61: semantic error: unsupported feature: file I/O ('fopen')
+    61 |     FILE *f = fopen("a", "r");
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:61: semantic error: unsupported feature: library type 'FILE'
+    61 |     FILE *f = fopen("a", "r");
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:67: semantic error: unsupported feature: dynamic memory ('free')
+    67 |     free(0);
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:73: semantic error: unsupported feature: 'auto' type deduction (write the type out)
+    73 |     auto f = [](int a) -> int { return a; };
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:73: semantic error: unsupported feature: lambda functions
+    73 |     auto f = [](int a) -> int { return a; };
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:80: semantic error: only direct calls by function name are supported
+    80 |     int r = [k](int a) -> int { return a + k; }(2);
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:86: semantic error: unsupported feature: dynamic memory ('malloc')
+    86 |     int a = malloc(4);
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:92: semantic error: unsupported feature: new
+    92 |     int *p = new int;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:92: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+    92 |     int *p = new int;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:97: semantic error: unsupported feature: references ('&' in the declaration of 'a')
+    97 | int reference_param_f(int &a) { return a; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:104: semantic error: unsupported feature: references ('&' in the declaration of 'a')
+   104 | int &reference_return_f(int &a) { return a; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:104: semantic error: unsupported feature: references ('&' in the declaration of 'reference_return_f')
+   104 | int &reference_return_f(int &a) { return a; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:110: semantic error: unsupported feature: references ('&' in the declaration of 'r')
+   110 |     int &r = x;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:115: semantic error: unsupported feature: member functions, constructors and destructors
+   115 | int Dog::bark() { return 1; }
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:120: semantic error: unsupported feature: 'this'
+   120 |     return this;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:126: semantic error: address-of '&' is only supported inside scanf arguments
+   126 |     int y = &x;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:131: semantic error: unsupported feature: classes
+   131 | class unsupported_class_A {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:142: semantic error: unsupported feature: pointer dereference '*'
+   142 |     return *x;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:147: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+   147 |     int *p;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:153: semantic error: unsupported feature: static local variables
+   153 |     static int n = 0;
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:158: semantic error: unsupported feature: struct and union
+   158 | struct P {
+test/phase3_tac/invalid/unsupported/unsupported_buggy.c:166: semantic error: unsupported feature: variadic functions
+   166 | int unsupported_variadic_f(int a, ...) {
+31 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

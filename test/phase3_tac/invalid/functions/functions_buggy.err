@@ -1,0 +1,7 @@
+argument 1 of 'arg_type_mismatch_f'
+expects 1 argument(s) but 2 were given
+call to undeclared function 'foo'
+should return a value
+cannot return a value of type char*
+should not return a value
+expects 1 argument(s) but 2 were given

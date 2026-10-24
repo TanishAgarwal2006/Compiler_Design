@@ -1,0 +1,361 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         VARIABLE_NAME            
+=                         ASSIGN                   
+5                         INTEGER_CONSTANT         
+;                         SEMI                     
+char                      CHAR                     
+ch                        VARIABLE_NAME            
+=                         ASSIGN                   
+'z'                       CHAR_CONSTANT            
+;                         SEMI                     
+int                       INT                      
+n                         VARIABLE_NAME            
+=                         ASSIGN                   
+scanf                     SCANF                    
+(                         LPAREN                   
+"%d"                      STRING_LITERAL           
+,                         COMMA                    
+&                         ADDRESS                  
+a                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d %d\n"                 STRING_LITERAL           
+,                         COMMA                    
+n                         VARIABLE_NAME            
+,                         COMMA                    
+a                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+n                         VARIABLE_NAME            
+=                         ASSIGN                   
+scanf                     SCANF                    
+(                         LPAREN                   
+" %c"                     STRING_LITERAL           
+,                         COMMA                    
+&                         ADDRESS                  
+ch                        VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+printf                    PRINTF                   
+(                         LPAREN                   
+"%d %c\n"                 STRING_LITERAL           
+,                         COMMA                    
+n                         VARIABLE_NAME            
+,                         COMMA                    
+ch                        VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    variable     int        function:main                              
+ch                   variable     char       function:main                              
+main                 function     int        global                 params: (void)      
+n                    variable     int        function:main                              
+printf               function     int        global                 params: (format, ...)
+scanf                function     int        global                 params: (format, ...)
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 5
+        return_type:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarator:
+          Declarator
+            line: 5
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 5
+                  type_spec:
+                    TypeSpecifier
+                      line: 5
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 5
+            items:
+              [
+                Declaration
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 6
+                        declarator:
+                          Declarator
+                            line: 6
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 6
+                            literal_type: int
+                            value: 5,
+                    ],
+                Declaration
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: ch
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 7
+                            literal_type: char
+                            value: 'z',
+                    ],
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: n
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 8
+                            callee:
+                              Identifier
+                                line: 8
+                                name: scanf
+                            args:
+                              [
+                                Literal
+                                  line: 8
+                                  literal_type: string
+                                  value: "%d",
+                                UnaryOp
+                                  line: 8
+                                  operator: &
+                                  operand:
+                                    Identifier
+                                      line: 8
+                                      name: a
+                                  position: prefix,
+                              ],
+                    ],
+                ExpressionStatement
+                  line: 9
+                  expression:
+                    FunctionCall
+                      line: 9
+                      callee:
+                        Identifier
+                          line: 9
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 9
+                            literal_type: string
+                            value: "%d %d\n",
+                          Identifier
+                            line: 9
+                            name: n,
+                          Identifier
+                            line: 9
+                            name: a,
+                        ],
+                ExpressionStatement
+                  line: 10
+                  expression:
+                    Assignment
+                      line: 10
+                      operator: =
+                      target:
+                        Identifier
+                          line: 10
+                          name: n
+                      value:
+                        FunctionCall
+                          line: 10
+                          callee:
+                            Identifier
+                              line: 10
+                              name: scanf
+                          args:
+                            [
+                              Literal
+                                line: 10
+                                literal_type: string
+                                value: " %c",
+                              UnaryOp
+                                line: 10
+                                operator: &
+                                operand:
+                                  Identifier
+                                    line: 10
+                                    name: ch
+                                position: prefix,
+                            ],
+                ExpressionStatement
+                  line: 11
+                  expression:
+                    FunctionCall
+                      line: 11
+                      callee:
+                        Identifier
+                          line: 11
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 11
+                            literal_type: string
+                            value: "%d %c\n",
+                          Identifier
+                            line: 11
+                            name: n,
+                          Identifier
+                            line: 11
+                            name: ch,
+                        ],
+                ReturnStatement
+                  line: 12
+                  value:
+                    Literal
+                      line: 12
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+
+Syntax analysis: OK
+Semantic analysis: OK
+
+Global variables
+  (none)
+
+Functions
+  name  signature  frame  defined  line
+  ----  ---------  -----  -------  ----
+  main  () -> int  12     yes      5   
+
+Function main: parameters and locals (frame size 12 bytes)
+  ir name  source  kind   type  size  offset  line
+  -------  ------  -----  ----  ----  ------  ----
+  a        a       local  int   4     0       6   
+  ch       ch      local  char  1     4       7   
+  n        n       local  int   4     8       8   
+
+Typedefs
+  (none)
+
+Enum constants
+  (none)
+
+######## --tac
+.data
+str0: " "
+str1: "\n"
+.text
+func main() : int
+    local int a
+    local char ch
+    local int n
+    temp t1:int, t2:int, t3:int, t4:int, t5:char, t6:int
+    a = 5
+    ch = 122
+    t1 = 0
+    t2 = call read_int, 0
+    t3 = call scan_status, 0
+    if t3 == 0 goto L2
+    if t3 != 2 goto L1
+    if t1 != 0 goto L1
+    t1 = -1
+    goto L1
+L2:
+    a = t2
+    t1 = t1 + 1
+L1:
+    n = t1
+    param n
+    call print_int, 1
+    param str0
+    call print_str, 1
+    param a
+    call print_int, 1
+    param str1
+    call print_str, 1
+    t4 = 0
+L4:
+    t5 = call read_char, 0
+    if t5 == 32 goto L4
+    if t5 == 9 goto L4
+    if t5 == 10 goto L4
+    if t5 == 13 goto L4
+    t6 = call scan_status, 0
+    if t6 == 0 goto L5
+    if t6 != 2 goto L3
+    if t4 != 0 goto L3
+    t4 = -1
+    goto L3
+L5:
+    ch = t5
+    t4 = t4 + 1
+L3:
+    n = t4
+    param n
+    call print_int, 1
+    param str0
+    call print_str, 1
+    param ch
+    call print_char, 1
+    param str1
+    call print_str, 1
+    return 0
+endfunc
+######## run
+-1 5
+-1 z

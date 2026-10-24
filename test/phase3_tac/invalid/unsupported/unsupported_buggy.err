@@ -1,0 +1,31 @@
+'auto' type deduction
+unsupported feature: classes
+member functions, constructors and destructors
+unsupported feature: classes
+unsupported feature: classes
+unsupported feature: classes
+unsupported feature: delete
+unsupported feature: classes
+file I/O ('fclose')
+file I/O ('fopen')
+library type 'FILE'
+dynamic memory ('free')
+'auto' type deduction
+lambda functions
+only direct calls by function name
+dynamic memory ('malloc')
+unsupported feature: new
+unsupported feature: pointers
+references ('&' in the declaration of 'a')
+declaration of 'a'
+declaration of 'reference_return_f'
+references ('&' in the declaration of 'r')
+member functions, constructors and destructors
+unsupported feature: 'this'
+address-of '&' is only supported inside scanf arguments
+unsupported feature: classes
+unsupported feature: pointer dereference '*'
+unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
+unsupported feature: static local variables
+unsupported feature: struct and union
+unsupported feature: variadic functions

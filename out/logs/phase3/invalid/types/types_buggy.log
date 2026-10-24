@@ -1,0 +1,1477 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+bug_assign_to_array       FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+int                       INT                      
+b                         ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+a                         ARRAY_NAME               
+=                         ASSIGN                   
+b                         ARRAY_NAME               
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_assign_to_const       FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+const                     CONST                    
+int                       INT                      
+k                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+k                         VARIABLE_NAME            
+=                         ASSIGN                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_assign_to_literal     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+5                         INTEGER_CONSTANT         
+=                         ASSIGN                   
+3                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_bool_array_assign     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+bool                      BOOL                     
+b                         ARRAY_NAME               
+[                         LBRACKET                 
+2                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+b                         ARRAY_NAME               
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_bool_string_init      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+bool                      BOOL                     
+b                         ARRAY_NAME               
+=                         ASSIGN                   
+"hi"                      STRING_LITERAL           
+;                         SEMI                     
+return                    RETURN                   
+b                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_char_string_assign    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+char                      CHAR                     
+c                         VARIABLE_NAME            
+=                         ASSIGN                   
+"abc"                     STRING_LITERAL           
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_condition_not_scalar  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+if                        IF                       
+(                         LPAREN                   
+a                         ARRAY_NAME               
+)                         RPAREN                   
+return                    RETURN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_division_by_zero      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+/                         DIVIDE                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+x                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_float_bitwise         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+float                     FLOAT                    
+f                         VARIABLE_NAME            
+=                         ASSIGN                   
+1.0                       FLOAT_CONSTANT           
+;                         SEMI                     
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+f                         VARIABLE_NAME            
+&                         ADDRESS                  
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+x                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_incr_non_lvalue       FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+=                         ASSIGN                   
+1                         INTEGER_CONSTANT         
+;                         SEMI                     
+(                         LPAREN                   
+a                         ARRAY_NAME               
++                         PLUS                     
+1                         INTEGER_CONSTANT         
+)                         RPAREN                   
+++                        INCREMENT                
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_modulo_float          FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+float                     FLOAT                    
+f                         VARIABLE_NAME            
+=                         ASSIGN                   
+1.0                       FLOAT_CONSTANT           
+;                         SEMI                     
+float                     FLOAT                    
+g                         FUNCTION_NAME            
+=                         ASSIGN                   
+f                         VARIABLE_NAME            
+%                         MODULO                   
+2                         INTEGER_CONSTANT         
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_switch_float          FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+float                     FLOAT                    
+f                         VARIABLE_NAME            
+=                         ASSIGN                   
+1.0                       FLOAT_CONSTANT           
+;                         SEMI                     
+switch                    SWITCH                   
+(                         LPAREN                   
+f                         VARIABLE_NAME            
+)                         RPAREN                   
+{                         LBRACE                   
+case                      CASE                     
+1                         INTEGER_CONSTANT         
+:                         COLON                    
+break                     BREAK                    
+;                         SEMI                     
+}                         RBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+void                      VOID                     
+g                         FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+}                         RBRACE                   
+int                       INT                      
+use_void_arg_f            FUNCTION_NAME            
+(                         LPAREN                   
+int                       INT                      
+a                         ARRAY_NAME               
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+a                         ARRAY_NAME               
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_use_void_arg          FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+use_void_arg_f            FUNCTION_NAME            
+(                         LPAREN                   
+g                         FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+void                      VOID                     
+void_in_expression_f      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+}                         RBRACE                   
+int                       INT                      
+bug_void_in_expression    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+x                         VARIABLE_NAME            
+=                         ASSIGN                   
+void_in_expression_f      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+x                         VARIABLE_NAME            
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    array        int        function:bug_assign_to_array dims: [3]           
+b                    array        bool       function:bug_assign_to_array dims: [3]           
+bug_assign_to_array  function     int        global                 params: (void)      
+bug_assign_to_const  function     int        global                 params: (void)      
+bug_assign_to_literal function     int        global                 params: (void)      
+bug_bool_array_assign function     int        global                 params: (void)      
+bug_bool_string_init function     int        global                 params: (void)      
+bug_char_string_assign function     int        global                 params: (void)      
+bug_condition_not_scalar function     int        global                 params: (void)      
+bug_division_by_zero function     int        global                 params: (void)      
+bug_float_bitwise    function     int        global                 params: (void)      
+bug_incr_non_lvalue  function     int        global                 params: (void)      
+bug_modulo_float     function     int        global                 params: (void)      
+bug_switch_float     function     int        global                 params: (void)      
+bug_use_void_arg     function     int        global                 params: (void)      
+bug_void_in_expression function     int        global                 params: (void)      
+c                    variable     char       function:bug_char_string_assign                     
+f                    variable     float      function:bug_float_bitwise                     
+g                    function     void       global                 params: (void)      
+k                    variable     const int  function:bug_assign_to_const                     
+main                 function     int        global                 params: (void)      
+use_void_arg_f       function     int        global                 params: (int)       
+void_in_expression_f function     void       global                 params: (void)      
+x                    variable     int        function:bug_division_by_zero                     
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: bug_assign_to_array
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                Declaration
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 7
+                                  size:
+                                    Literal
+                                      line: 7
+                                      literal_type: int
+                                      value: 3,
+                              ],
+                    ],
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: b
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 8
+                                  size:
+                                    Literal
+                                      line: 8
+                                      literal_type: int
+                                      value: 3,
+                              ],
+                    ],
+                ExpressionStatement
+                  line: 9
+                  expression:
+                    Assignment
+                      line: 9
+                      operator: =
+                      target:
+                        Identifier
+                          line: 9
+                          name: a
+                      value:
+                        Identifier
+                          line: 9
+                          name: b,
+                ReturnStatement
+                  line: 10
+                  value:
+                    Literal
+                      line: 10
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 14
+        return_type:
+          TypeSpecifier
+            line: 14
+            name: int
+        declarator:
+          Declarator
+            line: 14
+            name: bug_assign_to_const
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 14
+                  type_spec:
+                    TypeSpecifier
+                      line: 14
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 14
+            items:
+              [
+                Declaration
+                  line: 15
+                  type_spec:
+                    TypeSpecifier
+                      line: 15
+                      name: const int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 15
+                        declarator:
+                          Declarator
+                            line: 15
+                            name: k
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 15
+                            literal_type: int
+                            value: 1,
+                    ],
+                ExpressionStatement
+                  line: 16
+                  expression:
+                    Assignment
+                      line: 16
+                      operator: =
+                      target:
+                        Identifier
+                          line: 16
+                          name: k
+                      value:
+                        Literal
+                          line: 16
+                          literal_type: int
+                          value: 2,
+                ReturnStatement
+                  line: 17
+                  value:
+                    Literal
+                      line: 17
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 21
+        return_type:
+          TypeSpecifier
+            line: 21
+            name: int
+        declarator:
+          Declarator
+            line: 21
+            name: bug_assign_to_literal
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 21
+                  type_spec:
+                    TypeSpecifier
+                      line: 21
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 21
+            items:
+              [
+                ExpressionStatement
+                  line: 21
+                  expression:
+                    Assignment
+                      line: 21
+                      operator: =
+                      target:
+                        Literal
+                          line: 21
+                          literal_type: int
+                          value: 5
+                      value:
+                        Literal
+                          line: 21
+                          literal_type: int
+                          value: 3,
+                ReturnStatement
+                  line: 21
+                  value:
+                    Literal
+                      line: 21
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 24
+        return_type:
+          TypeSpecifier
+            line: 24
+            name: int
+        declarator:
+          Declarator
+            line: 24
+            name: bug_bool_array_assign
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 24
+                  type_spec:
+                    TypeSpecifier
+                      line: 24
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 24
+            items:
+              [
+                Declaration
+                  line: 25
+                  type_spec:
+                    TypeSpecifier
+                      line: 25
+                      name: bool
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 25
+                        declarator:
+                          Declarator
+                            line: 25
+                            name: b
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 25
+                                  size:
+                                    Literal
+                                      line: 25
+                                      literal_type: int
+                                      value: 2,
+                              ],
+                    ],
+                ExpressionStatement
+                  line: 26
+                  expression:
+                    Assignment
+                      line: 26
+                      operator: =
+                      target:
+                        Identifier
+                          line: 26
+                          name: b
+                      value:
+                        Literal
+                          line: 26
+                          literal_type: int
+                          value: 1,
+                ReturnStatement
+                  line: 27
+                  value:
+                    Literal
+                      line: 27
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 31
+        return_type:
+          TypeSpecifier
+            line: 31
+            name: int
+        declarator:
+          Declarator
+            line: 31
+            name: bug_bool_string_init
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 31
+                  type_spec:
+                    TypeSpecifier
+                      line: 31
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 31
+            items:
+              [
+                Declaration
+                  line: 32
+                  type_spec:
+                    TypeSpecifier
+                      line: 32
+                      name: bool
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 32
+                        declarator:
+                          Declarator
+                            line: 32
+                            name: b
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 32
+                            literal_type: string
+                            value: "hi",
+                    ],
+                ReturnStatement
+                  line: 33
+                  value:
+                    Identifier
+                      line: 33
+                      name: b,
+              ],
+      FunctionDefinition
+        line: 37
+        return_type:
+          TypeSpecifier
+            line: 37
+            name: int
+        declarator:
+          Declarator
+            line: 37
+            name: bug_char_string_assign
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 37
+                  type_spec:
+                    TypeSpecifier
+                      line: 37
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 37
+            items:
+              [
+                Declaration
+                  line: 37
+                  type_spec:
+                    TypeSpecifier
+                      line: 37
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 37
+                        declarator:
+                          Declarator
+                            line: 37
+                            name: c
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 37
+                            literal_type: string
+                            value: "abc",
+                    ],
+                ReturnStatement
+                  line: 37
+                  value:
+                    Literal
+                      line: 37
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 40
+        return_type:
+          TypeSpecifier
+            line: 40
+            name: int
+        declarator:
+          Declarator
+            line: 40
+            name: bug_condition_not_scalar
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 40
+                  type_spec:
+                    TypeSpecifier
+                      line: 40
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 40
+            items:
+              [
+                Declaration
+                  line: 41
+                  type_spec:
+                    TypeSpecifier
+                      line: 41
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 41
+                        declarator:
+                          Declarator
+                            line: 41
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 41
+                                  size:
+                                    Literal
+                                      line: 41
+                                      literal_type: int
+                                      value: 3,
+                              ],
+                    ],
+                IfStatement
+                  line: 42
+                  condition:
+                    Identifier
+                      line: 42
+                      name: a
+                  then_branch:
+                    ReturnStatement
+                      line: 42
+                      value:
+                        Literal
+                          line: 42
+                          literal_type: int
+                          value: 1,
+                ReturnStatement
+                  line: 43
+                  value:
+                    Literal
+                      line: 43
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 47
+        return_type:
+          TypeSpecifier
+            line: 47
+            name: int
+        declarator:
+          Declarator
+            line: 47
+            name: bug_division_by_zero
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 47
+                  type_spec:
+                    TypeSpecifier
+                      line: 47
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 47
+            items:
+              [
+                Declaration
+                  line: 48
+                  type_spec:
+                    TypeSpecifier
+                      line: 48
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 48
+                        declarator:
+                          Declarator
+                            line: 48
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          BinaryOp
+                            line: 48
+                            operator: /
+                            left:
+                              Literal
+                                line: 48
+                                literal_type: int
+                                value: 1
+                            right:
+                              Literal
+                                line: 48
+                                literal_type: int
+                                value: 0,
+                    ],
+                ReturnStatement
+                  line: 49
+                  value:
+                    Identifier
+                      line: 49
+                      name: x,
+              ],
+      FunctionDefinition
+        line: 53
+        return_type:
+          TypeSpecifier
+            line: 53
+            name: int
+        declarator:
+          Declarator
+            line: 53
+            name: bug_float_bitwise
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 53
+                  type_spec:
+                    TypeSpecifier
+                      line: 53
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 53
+            items:
+              [
+                Declaration
+                  line: 53
+                  type_spec:
+                    TypeSpecifier
+                      line: 53
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 53
+                        declarator:
+                          Declarator
+                            line: 53
+                            name: f
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 53
+                            literal_type: float
+                            value: 1.0,
+                    ],
+                Declaration
+                  line: 53
+                  type_spec:
+                    TypeSpecifier
+                      line: 53
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 53
+                        declarator:
+                          Declarator
+                            line: 53
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          BinaryOp
+                            line: 53
+                            operator: &
+                            left:
+                              Identifier
+                                line: 53
+                                name: f
+                            right:
+                              Literal
+                                line: 53
+                                literal_type: int
+                                value: 1,
+                    ],
+                ReturnStatement
+                  line: 53
+                  value:
+                    Identifier
+                      line: 53
+                      name: x,
+              ],
+      FunctionDefinition
+        line: 56
+        return_type:
+          TypeSpecifier
+            line: 56
+            name: int
+        declarator:
+          Declarator
+            line: 56
+            name: bug_incr_non_lvalue
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 56
+                  type_spec:
+                    TypeSpecifier
+                      line: 56
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 56
+            items:
+              [
+                Declaration
+                  line: 56
+                  type_spec:
+                    TypeSpecifier
+                      line: 56
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 56
+                        declarator:
+                          Declarator
+                            line: 56
+                            name: a
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 56
+                            literal_type: int
+                            value: 1,
+                    ],
+                ExpressionStatement
+                  line: 56
+                  expression:
+                    UnaryOp
+                      line: 56
+                      operator: ++
+                      operand:
+                        BinaryOp
+                          line: 56
+                          operator: +
+                          left:
+                            Identifier
+                              line: 56
+                              name: a
+                          right:
+                            Literal
+                              line: 56
+                              literal_type: int
+                              value: 1
+                      position: postfix,
+                ReturnStatement
+                  line: 56
+                  value:
+                    Literal
+                      line: 56
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 59
+        return_type:
+          TypeSpecifier
+            line: 59
+            name: int
+        declarator:
+          Declarator
+            line: 59
+            name: bug_modulo_float
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 59
+                  type_spec:
+                    TypeSpecifier
+                      line: 59
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 59
+            items:
+              [
+                Declaration
+                  line: 60
+                  type_spec:
+                    TypeSpecifier
+                      line: 60
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 60
+                        declarator:
+                          Declarator
+                            line: 60
+                            name: f
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 60
+                            literal_type: float
+                            value: 1.0,
+                    ],
+                Declaration
+                  line: 61
+                  type_spec:
+                    TypeSpecifier
+                      line: 61
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 61
+                        declarator:
+                          Declarator
+                            line: 61
+                            name: g
+                            kind_name: variable
+                        initializer:
+                          BinaryOp
+                            line: 61
+                            operator: %
+                            left:
+                              Identifier
+                                line: 61
+                                name: f
+                            right:
+                              Literal
+                                line: 61
+                                literal_type: int
+                                value: 2,
+                    ],
+                ReturnStatement
+                  line: 62
+                  value:
+                    Literal
+                      line: 62
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 66
+        return_type:
+          TypeSpecifier
+            line: 66
+            name: int
+        declarator:
+          Declarator
+            line: 66
+            name: bug_switch_float
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 66
+                  type_spec:
+                    TypeSpecifier
+                      line: 66
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 66
+            items:
+              [
+                Declaration
+                  line: 67
+                  type_spec:
+                    TypeSpecifier
+                      line: 67
+                      name: float
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 67
+                        declarator:
+                          Declarator
+                            line: 67
+                            name: f
+                            kind_name: variable
+                        initializer:
+                          Literal
+                            line: 67
+                            literal_type: float
+                            value: 1.0,
+                    ],
+                SwitchStatement
+                  line: 68
+                  expression:
+                    Identifier
+                      line: 68
+                      name: f
+                  cases:
+                    [
+                      SwitchCase
+                        line: 69
+                        value:
+                          Literal
+                            line: 69
+                            literal_type: int
+                            value: 1
+                        body:
+                          [
+                            JumpStatement
+                              line: 69
+                              keyword: break,
+                          ],
+                    ],
+                ReturnStatement
+                  line: 71
+                  value:
+                    Literal
+                      line: 71
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 75
+        return_type:
+          TypeSpecifier
+            line: 75
+            name: void
+        declarator:
+          Declarator
+            line: 75
+            name: g
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 75
+                  type_spec:
+                    TypeSpecifier
+                      line: 75
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 75,
+      FunctionDefinition
+        line: 75
+        return_type:
+          TypeSpecifier
+            line: 75
+            name: int
+        declarator:
+          Declarator
+            line: 75
+            name: use_void_arg_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 75
+                  type_spec:
+                    TypeSpecifier
+                      line: 75
+                      name: int
+                  declarator:
+                    Declarator
+                      line: 75
+                      name: a
+                      kind_name: variable,
+              ]
+        body:
+          CompoundStatement
+            line: 75
+            items:
+              [
+                ReturnStatement
+                  line: 75
+                  value:
+                    Identifier
+                      line: 75
+                      name: a,
+              ],
+      FunctionDefinition
+        line: 75
+        return_type:
+          TypeSpecifier
+            line: 75
+            name: int
+        declarator:
+          Declarator
+            line: 75
+            name: bug_use_void_arg
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 75
+                  type_spec:
+                    TypeSpecifier
+                      line: 75
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 75
+            items:
+              [
+                ReturnStatement
+                  line: 75
+                  value:
+                    FunctionCall
+                      line: 75
+                      callee:
+                        Identifier
+                          line: 75
+                          name: use_void_arg_f
+                      args:
+                        [
+                          FunctionCall
+                            line: 75
+                            callee:
+                              Identifier
+                                line: 75
+                                name: g,
+                        ],
+              ],
+      FunctionDefinition
+        line: 78
+        return_type:
+          TypeSpecifier
+            line: 78
+            name: void
+        declarator:
+          Declarator
+            line: 78
+            name: void_in_expression_f
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 78
+                  type_spec:
+                    TypeSpecifier
+                      line: 78
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 78,
+      FunctionDefinition
+        line: 79
+        return_type:
+          TypeSpecifier
+            line: 79
+            name: int
+        declarator:
+          Declarator
+            line: 79
+            name: bug_void_in_expression
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 79
+                  type_spec:
+                    TypeSpecifier
+                      line: 79
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 79
+            items:
+              [
+                Declaration
+                  line: 80
+                  type_spec:
+                    TypeSpecifier
+                      line: 80
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 80
+                        declarator:
+                          Declarator
+                            line: 80
+                            name: x
+                            kind_name: variable
+                        initializer:
+                          FunctionCall
+                            line: 80
+                            callee:
+                              Identifier
+                                line: 80
+                                name: void_in_expression_f,
+                    ],
+                ReturnStatement
+                  line: 81
+                  value:
+                    Identifier
+                      line: 81
+                      name: x,
+              ],
+      FunctionDefinition
+        line: 84
+        return_type:
+          TypeSpecifier
+            line: 84
+            name: int
+        declarator:
+          Declarator
+            line: 84
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 84
+                  type_spec:
+                    TypeSpecifier
+                      line: 84
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 84
+            items:
+              [
+                ReturnStatement
+                  line: 84
+                  value:
+                    Literal
+                      line: 84
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/types/types_buggy.c:9: semantic error: cannot assign to an array
+     9 |     a = b;
+test/phase3_tac/invalid/types/types_buggy.c:16: semantic error: cannot assign to read-only variable 'k'
+    16 |     k = 2;
+test/phase3_tac/invalid/types/types_buggy.c:21: semantic error: cannot assign to this expression (it is not a modifiable variable)
+    21 | int bug_assign_to_literal(void) { 5 = 3; return 0; }
+test/phase3_tac/invalid/types/types_buggy.c:26: semantic error: cannot assign to an array
+    26 |     b = 1;
+test/phase3_tac/invalid/types/types_buggy.c:32: semantic error: cannot initialize 'b' of type bool with a value of type char*
+    32 |     bool b = "hi";
+test/phase3_tac/invalid/types/types_buggy.c:37: semantic error: cannot initialize 'c' of type char with a value of type char*
+    37 | int bug_char_string_assign(void) { char c = "abc"; return 0; }
+test/phase3_tac/invalid/types/types_buggy.c:42: semantic error: condition of 'if' must be an int, char or float value (got int[3])
+    42 |     if (a) return 1;
+test/phase3_tac/invalid/types/types_buggy.c:48: semantic error: division by zero
+    48 |     int x = 1 / 0;
+test/phase3_tac/invalid/types/types_buggy.c:53: semantic error: operator '&' needs int or char operands (got float and int)
+    53 | int bug_float_bitwise(void) { float f = 1.0f; int x = f & 1; return x; }
+test/phase3_tac/invalid/types/types_buggy.c:56: semantic error: cannot apply '++' to this expression (it is not a modifiable variable)
+    56 | int bug_incr_non_lvalue(void) { int a = 1; (a + 1)++; return 0; }
+test/phase3_tac/invalid/types/types_buggy.c:61: semantic error: operator '%' needs int or char operands (got float and int)
+    61 |     float g = f % 2;
+test/phase3_tac/invalid/types/types_buggy.c:68: semantic error: switch expression must be an int or char (got float)
+    68 |     switch (f) {
+test/phase3_tac/invalid/types/types_buggy.c:75: semantic error: argument 1 of 'use_void_arg_f': cannot pass void where int is expected
+    75 | void g(void) {} int use_void_arg_f(int a) { return a; } int bug_use_void_arg(void) { return use_void_arg_f(g()); }
+test/phase3_tac/invalid/types/types_buggy.c:80: semantic error: cannot initialize 'x' of type int with a value of type void
+    80 |     int x = void_in_expression_f();
+14 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/types/types_buggy.c:9: semantic error: cannot assign to an array
+     9 |     a = b;
+test/phase3_tac/invalid/types/types_buggy.c:16: semantic error: cannot assign to read-only variable 'k'
+    16 |     k = 2;
+test/phase3_tac/invalid/types/types_buggy.c:21: semantic error: cannot assign to this expression (it is not a modifiable variable)
+    21 | int bug_assign_to_literal(void) { 5 = 3; return 0; }
+test/phase3_tac/invalid/types/types_buggy.c:26: semantic error: cannot assign to an array
+    26 |     b = 1;
+test/phase3_tac/invalid/types/types_buggy.c:32: semantic error: cannot initialize 'b' of type bool with a value of type char*
+    32 |     bool b = "hi";
+test/phase3_tac/invalid/types/types_buggy.c:37: semantic error: cannot initialize 'c' of type char with a value of type char*
+    37 | int bug_char_string_assign(void) { char c = "abc"; return 0; }
+test/phase3_tac/invalid/types/types_buggy.c:42: semantic error: condition of 'if' must be an int, char or float value (got int[3])
+    42 |     if (a) return 1;
+test/phase3_tac/invalid/types/types_buggy.c:48: semantic error: division by zero
+    48 |     int x = 1 / 0;
+test/phase3_tac/invalid/types/types_buggy.c:53: semantic error: operator '&' needs int or char operands (got float and int)
+    53 | int bug_float_bitwise(void) { float f = 1.0f; int x = f & 1; return x; }
+test/phase3_tac/invalid/types/types_buggy.c:56: semantic error: cannot apply '++' to this expression (it is not a modifiable variable)
+    56 | int bug_incr_non_lvalue(void) { int a = 1; (a + 1)++; return 0; }
+test/phase3_tac/invalid/types/types_buggy.c:61: semantic error: operator '%' needs int or char operands (got float and int)
+    61 |     float g = f % 2;
+test/phase3_tac/invalid/types/types_buggy.c:68: semantic error: switch expression must be an int or char (got float)
+    68 |     switch (f) {
+test/phase3_tac/invalid/types/types_buggy.c:75: semantic error: argument 1 of 'use_void_arg_f': cannot pass void where int is expected
+    75 | void g(void) {} int use_void_arg_f(int a) { return a; } int bug_use_void_arg(void) { return use_void_arg_f(g()); }
+test/phase3_tac/invalid/types/types_buggy.c:80: semantic error: cannot initialize 'x' of type int with a value of type void
+    80 |     int x = void_in_expression_f();
+14 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

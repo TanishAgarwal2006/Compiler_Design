@@ -1,0 +1,7 @@
+printf needs a format string
+printf: format string ends with a lone '%'
+scanf format may contain only conversions and white space
+scanf %s needs a char array name
+scanf %s needs a char array name
+function 'atoi' expects 1 argument but 0 were given
+argument 1 of 'atoi': cannot pass int where char* is expected

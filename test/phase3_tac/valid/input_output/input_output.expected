@@ -1,0 +1,37 @@
+== printf
+plain text only
+42
+abc
+2.500000
+left|right
+100%
+tab	here "quoted" back\slash
+123
+-5
+n=-5 c=q f=3.250000 done
+same same
+== printf_scanf
+n=42 c=x f=2.500000 word=hello 100%
+7 8 9
+== scanf_i_format
+42 + -7 = 35
+== scanf_string_then_char
+[hello] [x]
+42 [y]
+== scanf_variants
+3 4 [10] x 2.250000 word
+610
+== edge_io
+2 3 4
+1 q
+1 2.500000
+1 hello
+3 7 8 9
+3 42 z word
+1 31
+0 31
+0
+5%|x|str|1.500000|
+== scanf_return_value
+read 0: 5 6
+sum=0 last=5

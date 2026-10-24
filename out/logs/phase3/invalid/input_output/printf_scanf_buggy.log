@@ -1,0 +1,586 @@
+######## --all
+Token table (lexical analysis + classification):
+=======================================================
+Token                     Token_Type               
+--------------------------------------------------
+int                       INT                      
+bug_printf_without_format FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+printf                    PRINTF                   
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_printf_lone_percent   FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+printf                    PRINTF                   
+(                         LPAREN                   
+"100%"                    STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scanf_literal_text    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+scanf                     SCANF                    
+(                         LPAREN                   
+"a"                       STRING_LITERAL           
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scanf_s_on_pointer    FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+char                      CHAR                     
+*                         MULTIPLY                 
+p                         VARIABLE_NAME            
+;                         SEMI                     
+scanf                     SCANF                    
+(                         LPAREN                   
+"%s"                      STRING_LITERAL           
+,                         COMMA                    
+p                         VARIABLE_NAME            
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_scanf_s_on_int_array  FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+int                       INT                      
+a                         ARRAY_NAME               
+[                         LBRACKET                 
+3                         INTEGER_CONSTANT         
+]                         RBRACKET                 
+;                         SEMI                     
+scanf                     SCANF                    
+(                         LPAREN                   
+"%s"                      STRING_LITERAL           
+,                         COMMA                    
+a                         ARRAY_NAME               
+)                         RPAREN                   
+;                         SEMI                     
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_atoi_no_argument      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+atoi                      FUNCTION_NAME            
+(                         LPAREN                   
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+bug_atoi_int_argument     FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+atoi                      FUNCTION_NAME            
+(                         LPAREN                   
+5                         INTEGER_CONSTANT         
+)                         RPAREN                   
+;                         SEMI                     
+}                         RBRACE                   
+int                       INT                      
+main                      FUNCTION_NAME            
+(                         LPAREN                   
+void                      VOID                     
+)                         RPAREN                   
+{                         LBRACE                   
+return                    RETURN                   
+0                         INTEGER_CONSTANT         
+;                         SEMI                     
+}                         RBRACE                   
+
+Syntax analysis: OK
+
+Symbol report:
+Identifier           Role         Type       Scope                  Details             
+------------------------------------------------------------------------------------
+a                    array        int        function:bug_scanf_s_on_int_array dims: [3]           
+atoi                 function     int        function:bug_atoi_no_argument                     
+bug_atoi_int_argument function     int        global                 params: (void)      
+bug_atoi_no_argument function     int        global                 params: (void)      
+bug_printf_lone_percent function     int        global                 params: (void)      
+bug_printf_without_format function     int        global                 params: (void)      
+bug_scanf_literal_text function     int        global                 params: (void)      
+bug_scanf_s_on_int_array function     int        global                 params: (void)      
+bug_scanf_s_on_pointer function     int        global                 params: (void)      
+main                 function     int        global                 params: (void)      
+p                    variable     char       function:bug_scanf_s_on_pointer pointer (*p)        
+printf               function     int        global                 params: (format, ...)
+scanf                function     int        global                 params: (format, ...)
+
+Abstract syntax tree:
+Program
+  declarations:
+    [
+      FunctionDefinition
+        line: 4
+        return_type:
+          TypeSpecifier
+            line: 4
+            name: int
+        declarator:
+          Declarator
+            line: 4
+            name: bug_printf_without_format
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 4
+                  type_spec:
+                    TypeSpecifier
+                      line: 4
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 4
+            items:
+              [
+                ExpressionStatement
+                  line: 4
+                  expression:
+                    FunctionCall
+                      line: 4
+                      callee:
+                        Identifier
+                          line: 4
+                          name: printf,
+                ReturnStatement
+                  line: 4
+                  value:
+                    Literal
+                      line: 4
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 5
+        return_type:
+          TypeSpecifier
+            line: 5
+            name: int
+        declarator:
+          Declarator
+            line: 5
+            name: bug_printf_lone_percent
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 5
+                  type_spec:
+                    TypeSpecifier
+                      line: 5
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 5
+            items:
+              [
+                ExpressionStatement
+                  line: 5
+                  expression:
+                    FunctionCall
+                      line: 5
+                      callee:
+                        Identifier
+                          line: 5
+                          name: printf
+                      args:
+                        [
+                          Literal
+                            line: 5
+                            literal_type: string
+                            value: "100%",
+                        ],
+                ReturnStatement
+                  line: 5
+                  value:
+                    Literal
+                      line: 5
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 6
+        return_type:
+          TypeSpecifier
+            line: 6
+            name: int
+        declarator:
+          Declarator
+            line: 6
+            name: bug_scanf_literal_text
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 6
+                  type_spec:
+                    TypeSpecifier
+                      line: 6
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 6
+            items:
+              [
+                ExpressionStatement
+                  line: 6
+                  expression:
+                    FunctionCall
+                      line: 6
+                      callee:
+                        Identifier
+                          line: 6
+                          name: scanf
+                      args:
+                        [
+                          Literal
+                            line: 6
+                            literal_type: string
+                            value: "a",
+                        ],
+                ReturnStatement
+                  line: 6
+                  value:
+                    Literal
+                      line: 6
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 7
+        return_type:
+          TypeSpecifier
+            line: 7
+            name: int
+        declarator:
+          Declarator
+            line: 7
+            name: bug_scanf_s_on_pointer
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 7
+            items:
+              [
+                Declaration
+                  line: 7
+                  type_spec:
+                    TypeSpecifier
+                      line: 7
+                      name: char
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 7
+                        declarator:
+                          Declarator
+                            line: 7
+                            name: p
+                            kind_name: variable
+                            pointer_level: 1,
+                    ],
+                ExpressionStatement
+                  line: 7
+                  expression:
+                    FunctionCall
+                      line: 7
+                      callee:
+                        Identifier
+                          line: 7
+                          name: scanf
+                      args:
+                        [
+                          Literal
+                            line: 7
+                            literal_type: string
+                            value: "%s",
+                          Identifier
+                            line: 7
+                            name: p,
+                        ],
+                ReturnStatement
+                  line: 7
+                  value:
+                    Literal
+                      line: 7
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 8
+        return_type:
+          TypeSpecifier
+            line: 8
+            name: int
+        declarator:
+          Declarator
+            line: 8
+            name: bug_scanf_s_on_int_array
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 8
+            items:
+              [
+                Declaration
+                  line: 8
+                  type_spec:
+                    TypeSpecifier
+                      line: 8
+                      name: int
+                  declarators:
+                    [
+                      InitDeclarator
+                        line: 8
+                        declarator:
+                          Declarator
+                            line: 8
+                            name: a
+                            kind_name: array
+                            dimensions:
+                              [
+                                ArrayDimension
+                                  line: 8
+                                  size:
+                                    Literal
+                                      line: 8
+                                      literal_type: int
+                                      value: 3,
+                              ],
+                    ],
+                ExpressionStatement
+                  line: 8
+                  expression:
+                    FunctionCall
+                      line: 8
+                      callee:
+                        Identifier
+                          line: 8
+                          name: scanf
+                      args:
+                        [
+                          Literal
+                            line: 8
+                            literal_type: string
+                            value: "%s",
+                          Identifier
+                            line: 8
+                            name: a,
+                        ],
+                ReturnStatement
+                  line: 8
+                  value:
+                    Literal
+                      line: 8
+                      literal_type: int
+                      value: 0,
+              ],
+      FunctionDefinition
+        line: 9
+        return_type:
+          TypeSpecifier
+            line: 9
+            name: int
+        declarator:
+          Declarator
+            line: 9
+            name: bug_atoi_no_argument
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 9
+                  type_spec:
+                    TypeSpecifier
+                      line: 9
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 9
+            items:
+              [
+                ReturnStatement
+                  line: 9
+                  value:
+                    FunctionCall
+                      line: 9
+                      callee:
+                        Identifier
+                          line: 9
+                          name: atoi,
+              ],
+      FunctionDefinition
+        line: 10
+        return_type:
+          TypeSpecifier
+            line: 10
+            name: int
+        declarator:
+          Declarator
+            line: 10
+            name: bug_atoi_int_argument
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 10
+                  type_spec:
+                    TypeSpecifier
+                      line: 10
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 10
+            items:
+              [
+                ReturnStatement
+                  line: 10
+                  value:
+                    FunctionCall
+                      line: 10
+                      callee:
+                        Identifier
+                          line: 10
+                          name: atoi
+                      args:
+                        [
+                          Literal
+                            line: 10
+                            literal_type: int
+                            value: 5,
+                        ],
+              ],
+      FunctionDefinition
+        line: 12
+        return_type:
+          TypeSpecifier
+            line: 12
+            name: int
+        declarator:
+          Declarator
+            line: 12
+            name: main
+            kind_name: function
+            params:
+              [
+                Parameter
+                  line: 12
+                  type_spec:
+                    TypeSpecifier
+                      line: 12
+                      name: void,
+              ]
+        body:
+          CompoundStatement
+            line: 12
+            items:
+              [
+                ReturnStatement
+                  line: 12
+                  value:
+                    Literal
+                      line: 12
+                      literal_type: int
+                      value: 0,
+              ],
+    ]
+######## --semantic
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:4: semantic error: printf needs a format string
+     4 | int bug_printf_without_format(void) { printf(); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:5: semantic error: printf: format string ends with a lone '%'
+     5 | int bug_printf_lone_percent(void) { printf("100%"); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:6: semantic error: scanf format may contain only conversions and white space
+     6 | int bug_scanf_literal_text(void) { scanf("a"); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:7: semantic error: scanf %s needs a char array name
+     7 | int bug_scanf_s_on_pointer(void) { char *p; scanf("%s", p); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:8: semantic error: scanf %s needs a char array name
+     8 | int bug_scanf_s_on_int_array(void) { int a[3]; scanf("%s", a); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:9: semantic error: function 'atoi' expects 1 argument but 0 were given
+     9 | int bug_atoi_no_argument(void) { return atoi(); }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:10: semantic error: argument 1 of 'atoi': cannot pass int where char* is expected
+    10 | int bug_atoi_int_argument(void) { return atoi(5); }
+7 errors found. No output was produced.
+
+Syntax analysis: OK
+######## --tac
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:4: semantic error: printf needs a format string
+     4 | int bug_printf_without_format(void) { printf(); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:5: semantic error: printf: format string ends with a lone '%'
+     5 | int bug_printf_lone_percent(void) { printf("100%"); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:6: semantic error: scanf format may contain only conversions and white space
+     6 | int bug_scanf_literal_text(void) { scanf("a"); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:7: semantic error: scanf %s needs a char array name
+     7 | int bug_scanf_s_on_pointer(void) { char *p; scanf("%s", p); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:8: semantic error: scanf %s needs a char array name
+     8 | int bug_scanf_s_on_int_array(void) { int a[3]; scanf("%s", a); return 0; }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:9: semantic error: function 'atoi' expects 1 argument but 0 were given
+     9 | int bug_atoi_no_argument(void) { return atoi(); }
+test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:10: semantic error: argument 1 of 'atoi': cannot pass int where char* is expected
+    10 | int bug_atoi_int_argument(void) { return atoi(5); }
+7 errors found. No output was produced.
+######## run
+(not compiled: see the errors above)

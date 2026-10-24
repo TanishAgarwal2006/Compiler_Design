@@ -34,13 +34,16 @@ reserved = {
 
     # Qualifiers and storage classes
     "const": "CONST",
+    "volatile": "VOLATILE",
     "extern": "EXTERN",
+    "auto": "AUTO",
 
     # C++ subset: classes, access control, free store
     "class": "CLASS",
     "public": "PUBLIC",
     "private": "PRIVATE",
     "protected": "PROTECTED",
+    "this": "THIS",
     "new": "NEW",
     "delete": "DELETE",
 
@@ -63,6 +66,7 @@ tokens = [
     "INTEGER_CONSTANT",
     "FLOAT_CONSTANT",
     "TYPENAME",
+    "CTOR_NAME",   # a class name directly followed by '(' - a constructor or destructor name
     "CHAR_CONSTANT",
     "STRING_LITERAL",
 

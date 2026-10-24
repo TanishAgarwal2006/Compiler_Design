@@ -1,55 +1,39 @@
-# Phase 1: Lexical Analysis
+# Phase 1: Lexical analysis (cutting the text into tokens)
 
-`lexer.py` uses PLY to scan the supported C subset and produce `(lexeme,
-token_type)` pairs. It reports lexical errors with line numbers instead of
-passing invalid input to the parser.
+**Job:** read the C file and cut it into small pieces called *tokens*: a keyword like `while`, a name like `count`,
+a number like `42`, a symbol like `+`. Every token gets a type name, for example `42` is `INTEGER_CONSTANT`.
+Text that cannot be a token is a *lexical error*; it is reported with its line number and the later phases never see the file.
 
-## Supported tokens
+| File | What it does |
+| --- | --- |
+| `token_defs.py` | the keyword table (`while` -> `WHILE`) and the list of all token type names |
+| `lexer.py` | the token rules, written with the PLY library (`ply.lex`) |
 
-- **Keywords:** `int`, `char`, `void`, `float`, `double`, `bool`/`_Bool`,
-  `true`, `false`, `short`, `long`, `signed`, `unsigned`, `const`, `extern`,
-  `static`, `typedef`, control-flow keywords (`if`/`else`, `for`, `while`,
-  `do`, `until`, `switch`/`case`/`default`, `goto`, `break`, `continue`),
-  `struct`, `union`, `enum`, `class`, `public`/`private`/`protected`, `new`,
-  `delete`, `return`, `printf`, `scanf`, and `sizeof`.
-- Identifiers and typedef names (recognised as `TYPENAME` once declared).
-- Decimal, hexadecimal, octal, and binary integer constants; float constants
-  (plain, exponent form, and leading-dot).
-- Character and string literals, including supported single-character
-  escapes; multi-character constants (`'AB'`) and empty constants (`''`) are
-  rejected as lexical errors.
-- Arithmetic, compound-assignment (including bitwise `&= |= ^= <<= >>=`),
-  relational, logical, bitwise (`| ^ ~ << >>`), increment/decrement, ternary
-  (`?`), variadic (`...`), scope-resolution (`::`), member-access (`.`/`->`),
-  and delimiter tokens needed by Phase 2.
+**Run it alone:** `bin/tacgen prog.c --tokens` prints the token table. The parser is not started, so this works even when the grammar is wrong.
 
-Line comments and block comments are skipped. `#include`/`#define`-style
-preprocessor lines are recognised and consumed (so preprocessor-looking
-source still lexes cleanly) but have no macro-expansion effect. Unterminated
-comments, strings, and character constants are errors. Each analysis creates
-a fresh lexer so state from one source file cannot affect the next one.
+## What the lexer accepts
+- **Keywords:** types (`int char float double void bool short long signed unsigned auto`), `true false`, qualifiers and storage (`const volatile static extern typedef enum`),
+  statements (`if else for while do until switch case default goto break continue return`), `sizeof`, `printf`, `scanf`.
+  Words of features the compiler does not support (`struct union class public private protected this new delete`) are still recognised,
+  so Phase 3 can say `unsupported feature` instead of a confusing syntax error.
+- **Names:** letters, digits and `_`, not starting with a digit. A name introduced by `typedef` (or by `class X`) is a type name (`TYPENAME`) from then on.
+  A class name directly followed by `(` becomes `CTOR_NAME` (a constructor or destructor name such as `Dog(` or `~Dog(`).
+- **Numbers:** decimal `42`, hex `0x2A`, octal `052`, binary `0b101`, floats `3.14 .5 5. 1e3 2.5e-1 1.5f`. Integer suffixes `u l ul lu ll ull` (any case) are accepted and dropped.
+- **Characters and strings:** `'a'`, `"hi\n"`. Escapes: `\n \t \r \a \b \f \v \? \\ \' \"`, octal `\101`, hex `\x41`.
+- **Operators and punctuation:** all the C ones the project uses, including `::`, `->`, `...`.
+- **Skipped:** `// ...` and `/* ... */` comments and preprocessor lines (`#include`, `#define`, `#ifdef` ...). There is no macro expansion: `#define` is read and ignored.
 
-## Design decisions and C-specific implementation choices
+## Lexical errors (each is reported with its line)
+illegal character (`@ $` and the like) · unterminated string · unterminated character · empty character `''` · more than one character `'AB'` ·
+invalid escape (`'\q'`, `"\xz"`, `"\89"`) · non-ASCII character in a character constant · bad octal (`089`) · bad binary or hex (`0b12`, `0x`, `0xFG`) ·
+malformed float (`1.2.3`, `1e`) · letters glued to a number (`12abc`, `45UU`) · unknown `#` directive · stray `#` · unterminated `/* ...` comment.
 
-| Implementation choice | Standard C behaviour | Choice in this project and reason |
-| --- | --- | --- |
-| `printf` and `scanf` are reserved tokens | They are library functions in C, so a normal compiler lexes them as identifiers and resolves declarations through headers and semantic analysis. | They are reserved as `PRINTF` and `SCANF` because they are required course features. The parser accepts them as callable names without implementing headers or a full library symbol table. |
-| `sizeof` is reserved | `sizeof` is a C operator with special grammar: it can take an expression or a parenthesised type. | It has its own token and parser rules for `sizeof expr` and `sizeof(type)`. Its value is not calculated yet because storage layout belongs to later phases. |
-| Typedef names can become `TYPENAME` tokens | C's grammar is context-sensitive around typedef names. Real C implementations communicate typedef information between the parser and lexer. | Once the parser accepts `typedef int Count;`, it records `Count` on that lexer instance. Later occurrences are emitted as `TYPENAME`, which allows aliases to be used as types without a full C front end. A small set of common library type names (`FILE`, `size_t`, `ptrdiff_t`, `va_list`) is pre-seeded the same way. |
-| Multi-character character constants are rejected | C permits values such as `'AB'`; their numeric value is implementation-defined. | The project accepts exactly one ordinary character or one supported escape sequence. Rejecting multi-character constants gives predictable `char` behaviour for the future TAC/MIPS stages. |
-| Integer bases include binary | Standard C supports decimal, octal (`012`), and hexadecimal (`0x12`). Binary (`0b1010`) was introduced only in newer C standards and is not universally supported by older compilers. | Decimal, octal, hexadecimal, and binary integers are recognised because they are useful test cases. Invalid octal values such as `09` are lexical errors. |
-| `123abc` is split into two tokens | C requires token boundaries; this sequence is not a valid single integer or identifier token. | The lexer returns `INTEGER_CONSTANT(123)` then `IDENTIFIER(abc)`. The parser rejects the sequence when it cannot form a valid expression or declaration. This keeps token rules simple and leaves grammar validation to Phase 2. |
-| `&` is both address-of and bitwise AND | C resolves this purely by grammar position (unary vs. binary). | A single `ADDRESS` token is used for both; Phase 2's grammar (not the lexer) decides which meaning applies based on position, exactly as real C does. |
-| Lexer state is isolated per file | Lexers retain internal state while processing comments and quoted literals. | `build_lexer()` creates a fresh lexer for each source input. An unterminated comment or string in one test cannot cause the next test file to be scanned in the wrong state. |
-
-## Use
-
-```bash
-python3 src/phase1_lexical_analysis/run_lexer.py path/to/program.c
-python3 src/phase1_lexical_analysis/run_lexer.py path/to/program.c --output tokens.txt
-make lex FILE=path/to/program.c
-make lex-phase1
-make lex-all
-```
-
-The batch commands print a summary and write per-case reports under `logs/`.
+## Choices that differ from standard C
+| Choice | Reason |
+| --- | --- |
+| `printf`, `scanf` are keywords | they are required features and no header files are read |
+| one character (or one escape) between single quotes | gives a clear, predictable `char` value |
+| `0b101` binary numbers accepted | handy in tests; recent C compilers accept them |
+| `&` is one token for "address of" and "bitwise and" | the parser decides from the position, like C |
+| class names followed by `(` are `CTOR_NAME` | lets the grammar tell a constructor from a type name |
+| a new lexer is built for every file | an error in one file cannot affect the next |

@@ -1,0 +1,12 @@
+cannot pass int[2][4] where int[][3]
+array size missing in declaration of 'a'
+cannot pass int[3] where int is expected
+array index must be an int or char
+needs a brace-enclosed initializer
+array size of 'a' must be a constant expression
+must be a positive integer
+cannot pass int where int[] is expected
+string initializer is too long
+subscripted value is not an array
+too many initializers for 'a'
+subscripted value is not an array
