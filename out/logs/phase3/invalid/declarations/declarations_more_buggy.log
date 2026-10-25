@@ -575,6 +575,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/declarations/declarations_more_buggy.c:5: semantic error: unknown enum 'Nope'
      5 | int bug_unknown_enum(void) { enum Nope v; return 0; }
 test/phase3_tac/invalid/declarations/declarations_more_buggy.c:6: semantic error: braces around scalar initializer of 'x'
@@ -592,8 +594,6 @@ test/phase3_tac/invalid/declarations/declarations_more_buggy.c:16: semantic erro
 test/phase3_tac/invalid/declarations/declarations_more_buggy.c:19: semantic error: redeclaration of 'taken'
     19 | typedef int taken;
 8 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/declarations/declarations_more_buggy.c:5: semantic error: unknown enum 'Nope'
      5 | int bug_unknown_enum(void) { enum Nope v; return 0; }

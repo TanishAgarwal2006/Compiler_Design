@@ -992,6 +992,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase1_lexical/valid/keywords_classes_lambdas.c:12: semantic error: unsupported feature: classes
     12 | class Animal {
 test/phase1_lexical/valid/keywords_classes_lambdas.c:35: semantic error: unsupported feature: classes
@@ -1005,8 +1007,6 @@ test/phase1_lexical/valid/keywords_classes_lambdas.c:51: semantic error: unsuppo
 test/phase1_lexical/valid/keywords_classes_lambdas.c:65: semantic error: redefinition of function 'main'
     65 | int main() {
 6 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase1_lexical/valid/keywords_classes_lambdas.c:12: semantic error: unsupported feature: classes
     12 | class Animal {

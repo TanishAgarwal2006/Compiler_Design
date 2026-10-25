@@ -1220,6 +1220,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/declarations/declarations_buggy.c:7: semantic error: conflicting types for 'conflicting_prototype_f' (previous: (int) -> int)
      7 | float conflicting_prototype_f(int a);
 test/phase3_tac/invalid/declarations/declarations_buggy.c:11: semantic error: redeclaration of 'A'
@@ -1249,8 +1251,6 @@ test/phase3_tac/invalid/declarations/declarations_buggy.c:62: semantic error: us
 test/phase3_tac/invalid/declarations/declarations_buggy.c:67: semantic error: variable 'v' declared void
     67 |     void v;
 14 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/declarations/declarations_buggy.c:7: semantic error: conflicting types for 'conflicting_prototype_f' (previous: (int) -> int)
      7 | float conflicting_prototype_f(int a);

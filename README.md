@@ -81,6 +81,7 @@ Lexical errors stop the compiler before Phase 2; syntax errors stop it before Ph
 | `src/phase4_optimization_codegen/` | placeholder with the plan for Phase 4 |
 | `src/common/` | error lists and the one error printer, literal helpers (character/string escapes), a report-only symbol labeller |
 | `test/` | all test programs, the test runner, unit tests; see `test/README.md` |
+| `tools/` | `coverage_audit.py` (is every token, keyword, tree node and error message tested?), `genfuzz.py` + `difftest.py` (random programs compared with gcc), `mklog.sh` (one log file per test case) |
 | `makefile`, `run.sh` | `make` builds `bin/tacgen`; `run.sh` runs every test with it |
 | `requirements.txt` | PLY (3.11 or newer) |
 

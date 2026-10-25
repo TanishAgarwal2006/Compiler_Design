@@ -66,11 +66,11 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/declarations/bad_main_signature_buggy.c:2: semantic error: unsupported signature for 'main' (use main(), main(void) or main(int argc, char *argv[]))
      2 | int main(int a) {
 1 error found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/declarations/bad_main_signature_buggy.c:2: semantic error: unsupported signature for 'main' (use main(), main(void) or main(int argc, char *argv[]))
      2 | int main(int a) {

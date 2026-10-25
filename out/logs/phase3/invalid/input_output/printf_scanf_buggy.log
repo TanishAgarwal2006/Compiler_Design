@@ -549,6 +549,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:4: semantic error: printf needs a format string
      4 | int bug_printf_without_format(void) { printf(); return 0; }
 test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:5: semantic error: printf: format string ends with a lone '%'
@@ -564,8 +566,6 @@ test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:9: semantic error: fun
 test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:10: semantic error: argument 1 of 'atoi': cannot pass int where char* is expected
     10 | int bug_atoi_int_argument(void) { return atoi(5); }
 7 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/input_output/printf_scanf_buggy.c:4: semantic error: printf needs a format string
      4 | int bug_printf_without_format(void) { printf(); return 0; }

@@ -2340,6 +2340,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/unsupported/unsupported_buggy.c:8: semantic error: unsupported feature: 'auto' type deduction (write the type out)
      8 |     auto x = 5;
 test/phase3_tac/invalid/unsupported/unsupported_buggy.c:13: semantic error: unsupported feature: classes
@@ -2403,8 +2405,6 @@ test/phase3_tac/invalid/unsupported/unsupported_buggy.c:158: semantic error: uns
 test/phase3_tac/invalid/unsupported/unsupported_buggy.c:166: semantic error: unsupported feature: variadic functions
    166 | int unsupported_variadic_f(int a, ...) {
 31 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/unsupported/unsupported_buggy.c:8: semantic error: unsupported feature: 'auto' type deduction (write the type out)
      8 |     auto x = 5;

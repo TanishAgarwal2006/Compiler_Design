@@ -2134,6 +2134,8 @@ Program
           ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase1_lexical/valid/keywords_types_qualifiers.c:42: semantic error: unsupported feature: casts to pointer types
     42 |     int *heap = (int *) malloc(10 * sizeof(int));
 test/phase1_lexical/valid/keywords_types_qualifiers.c:42: semantic error: unsupported feature: dynamic memory ('malloc')
@@ -2163,8 +2165,6 @@ test/phase1_lexical/valid/keywords_types_qualifiers.c:73: semantic error: unsupp
 test/phase1_lexical/valid/keywords_types_qualifiers.c:75: semantic error: redefinition of function 'main'
     75 | int main() {
 14 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase1_lexical/valid/keywords_types_qualifiers.c:42: semantic error: unsupported feature: casts to pointer types
     42 |     int *heap = (int *) malloc(10 * sizeof(int));

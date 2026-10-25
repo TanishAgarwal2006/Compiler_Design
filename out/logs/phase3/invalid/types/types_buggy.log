@@ -1412,6 +1412,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/types/types_buggy.c:9: semantic error: cannot assign to an array
      9 |     a = b;
 test/phase3_tac/invalid/types/types_buggy.c:16: semantic error: cannot assign to read-only variable 'k'
@@ -1441,8 +1443,6 @@ test/phase3_tac/invalid/types/types_buggy.c:75: semantic error: argument 1 of 'u
 test/phase3_tac/invalid/types/types_buggy.c:80: semantic error: cannot initialize 'x' of type int with a value of type void
     80 |     int x = void_in_expression_f();
 14 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/types/types_buggy.c:9: semantic error: cannot assign to an array
      9 |     a = b;

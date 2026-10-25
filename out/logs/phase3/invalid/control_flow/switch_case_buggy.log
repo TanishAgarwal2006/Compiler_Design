@@ -144,11 +144,11 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/control_flow/switch_case_buggy.c:2: semantic error: case value must be an integer constant
      2 | int bug_case_float(int x) { switch (x) { case 1.5: break; } return 0; }
 1 error found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/control_flow/switch_case_buggy.c:2: semantic error: case value must be an integer constant
      2 | int bug_case_float(int x) { switch (x) { case 1.5: break; } return 0; }

@@ -1181,6 +1181,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase1_lexical/valid/keywords_functions_memory_file_io.c:11: semantic error: unsupported feature: variadic functions
     11 | int sum(int count, ...) {
 test/phase1_lexical/valid/keywords_functions_memory_file_io.c:16: semantic error: unsupported feature: references ('&' in the declaration of 'value')
@@ -1198,8 +1200,6 @@ test/phase1_lexical/valid/keywords_functions_memory_file_io.c:29: semantic error
 test/phase1_lexical/valid/keywords_functions_memory_file_io.c:47: semantic error: conflicting types for 'main' (previous: (int, char*[]) -> int)
     47 | int main() {
 8 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase1_lexical/valid/keywords_functions_memory_file_io.c:11: semantic error: unsupported feature: variadic functions
     11 | int sum(int count, ...) {

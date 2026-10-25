@@ -2,6 +2,8 @@
 
 Which test covers which feature: see [`COVERAGE.md`](COVERAGE.md) (also explains `tools/coverage_audit.py`).
 
+Logs: `make logall` (or `log1`, `log2`, `log3`, `logcase FILE=...`) writes one file per case to `out/logs/` with the lex table, symbols, tree, symbol table, IR and program output.
+
 Run everything: `make && ./run.sh bin/tacgen` (add `-q` to print failures only, `-k word` to run only cases whose path contains `word`).
 The output is one line per case, `[PASS]` or `[FAIL]` plus the reason, then a table per group and a final `RESULT:` line.
 The exit code is 0 only when everything passes.

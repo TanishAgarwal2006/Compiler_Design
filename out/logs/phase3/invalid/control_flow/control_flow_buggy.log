@@ -815,6 +815,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/control_flow/control_flow_buggy.c:7: semantic error: 'break' outside a loop or switch
      7 |     break;
 test/phase3_tac/invalid/control_flow/control_flow_buggy.c:15: semantic error: case value must be a constant expression
@@ -834,8 +836,6 @@ test/phase3_tac/invalid/control_flow/control_flow_buggy.c:65: semantic error: go
 test/phase3_tac/invalid/control_flow/control_flow_buggy.c:70: semantic error: goto to undefined label 'L'
     70 | void f(void) { goto L; } int bug_label_scope_other_func(void) { L: return 0; }
 9 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/control_flow/control_flow_buggy.c:7: semantic error: 'break' outside a loop or switch
      7 |     break;

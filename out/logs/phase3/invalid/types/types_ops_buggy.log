@@ -1247,6 +1247,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/types/types_ops_buggy.c:7: semantic error: function 'target' used as a value (call it with parentheses)
      7 | int bug_function_as_value(void) { int x = target; return x; }
 test/phase3_tac/invalid/types/types_ops_buggy.c:8: semantic error: cannot assign a value of type char* to int
@@ -1274,8 +1276,6 @@ test/phase3_tac/invalid/types/types_ops_buggy.c:18: semantic error: void value u
 test/phase3_tac/invalid/types/types_ops_buggy.c:19: semantic error: division by zero
     19 | int bug_divide_assign_by_zero(void) { int x = 5; x /= 0; return x; }
 13 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/types/types_ops_buggy.c:7: semantic error: function 'target' used as a value (call it with parentheses)
      7 | int bug_function_as_value(void) { int x = target; return x; }

@@ -1279,6 +1279,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase2_syntax/valid/io_memory_file.c:28: semantic error: unsupported feature: classes
     28 | class Base {
 test/phase2_syntax/valid/io_memory_file.c:34: semantic error: unsupported feature: classes
@@ -1288,8 +1290,6 @@ test/phase2_syntax/valid/io_memory_file.c:39: semantic error: redefinition of fu
 test/phase2_syntax/valid/io_memory_file.c:60: semantic error: redefinition of function 'main'
     60 | int main() {
 4 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase2_syntax/valid/io_memory_file.c:28: semantic error: unsupported feature: classes
     28 | class Base {

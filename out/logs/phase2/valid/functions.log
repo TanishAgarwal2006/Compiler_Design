@@ -1814,6 +1814,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase2_syntax/valid/functions.c:47: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
     47 |     int (*op)(int a, int b);
 test/phase2_syntax/valid/functions.c:48: semantic error: function 'add' used as a value (call it with parentheses)
@@ -1837,8 +1839,6 @@ test/phase2_syntax/valid/functions.c:84: semantic error: conflicting types for '
 test/phase2_syntax/valid/functions.c:88: semantic error: redefinition of function 'main'
     88 | int main() {
 11 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase2_syntax/valid/functions.c:47: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
     47 |     int (*op)(int a, int b);

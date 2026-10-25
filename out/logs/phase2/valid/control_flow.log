@@ -1826,13 +1826,13 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase2_syntax/valid/control_flow.c:107: semantic error: redefinition of function 'classify'
    107 | int classify(int n) {
 test/phase2_syntax/valid/control_flow.c:119: semantic error: redefinition of function 'main'
    119 | int main() {
 2 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase2_syntax/valid/control_flow.c:107: semantic error: redefinition of function 'classify'
    107 | int classify(int n) {

@@ -1463,11 +1463,11 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase1_lexical/valid/operators_punctuation.c:35: semantic error: redefinition of function 'main'
     35 | int main() {
 1 error found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase1_lexical/valid/operators_punctuation.c:35: semantic error: redefinition of function 'main'
     35 | int main() {

@@ -493,6 +493,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/unsupported/unsupported_more_buggy.c:2: semantic error: unsupported feature: classes
      2 | int bug_class_in_function(void) { class Q { public: int z; }; return 0; }
 test/phase3_tac/invalid/unsupported/unsupported_more_buggy.c:3: semantic error: unsupported feature: 'auto' type deduction (write the type out)
@@ -508,8 +510,6 @@ test/phase3_tac/invalid/unsupported/unsupported_more_buggy.c:6: semantic error: 
 test/phase3_tac/invalid/unsupported/unsupported_more_buggy.c:6: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
      6 | int bug_pointer_cast(void) { float f = 1.0; int *p = (int*)f; return 0; }
 7 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/unsupported/unsupported_more_buggy.c:2: semantic error: unsupported feature: classes
      2 | int bug_class_in_function(void) { class Q { public: int z; }; return 0; }

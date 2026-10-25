@@ -999,6 +999,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase2_syntax/valid/structs_unions_enums.c:10: semantic error: unsupported feature: struct and union
     10 | struct Point {
 test/phase2_syntax/valid/structs_unions_enums.c:15: semantic error: unsupported feature: struct and union
@@ -1028,8 +1030,6 @@ test/phase2_syntax/valid/structs_unions_enums.c:56: semantic error: unsupported 
 test/phase2_syntax/valid/structs_unions_enums.c:61: semantic error: redefinition of function 'main'
     61 | int main() {
 14 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase2_syntax/valid/structs_unions_enums.c:10: semantic error: unsupported feature: struct and union
     10 | struct Point {

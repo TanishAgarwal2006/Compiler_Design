@@ -649,6 +649,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/input_output/input_output_buggy.c:7: semantic error: printf format has 2 conversion(s) but 1 argument(s) were given
      7 |     printf("%d %d", 1);
 test/phase3_tac/invalid/input_output/input_output_buggy.c:14: semantic error: the format of printf must be a string literal
@@ -664,8 +666,6 @@ test/phase3_tac/invalid/input_output/input_output_buggy.c:38: semantic error: sc
 test/phase3_tac/invalid/input_output/input_output_buggy.c:43: semantic error: scanf %d needs the address of a int variable (got float)
     43 |     scanf("%d", &f);
 7 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/input_output/input_output_buggy.c:7: semantic error: printf format has 2 conversion(s) but 1 argument(s) were given
      7 |     printf("%d %d", 1);

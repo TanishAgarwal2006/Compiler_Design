@@ -757,6 +757,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/functions/functions_buggy.c:9: semantic error: argument 1 of 'arg_type_mismatch_f': cannot pass int[2] where int is expected
      9 |     return arg_type_mismatch_f(b);
 test/phase3_tac/invalid/functions/functions_buggy.c:13: semantic error: function 'call_too_many_args_f' expects 1 argument(s) but 2 were given
@@ -772,8 +774,6 @@ test/phase3_tac/invalid/functions/functions_buggy.c:39: semantic error: void fun
 test/phase3_tac/invalid/functions/functions_buggy.c:49: semantic error: function 'wrong_arg_count_f' expects 1 argument(s) but 2 were given
     49 |     return wrong_arg_count_f(1, 2);
 7 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/functions/functions_buggy.c:9: semantic error: argument 1 of 'arg_type_mismatch_f': cannot pass int[2] where int is expected
      9 |     return arg_type_mismatch_f(b);

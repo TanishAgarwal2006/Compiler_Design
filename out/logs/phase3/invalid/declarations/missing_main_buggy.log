@@ -60,11 +60,11 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/declarations/missing_main_buggy.c:1: semantic error: no 'main' function defined
      1 | // Expected error: no 'main' function defined
 1 error found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/declarations/missing_main_buggy.c:1: semantic error: no 'main' function defined
      1 | // Expected error: no 'main' function defined

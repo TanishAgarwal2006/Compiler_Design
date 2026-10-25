@@ -1557,6 +1557,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/arrays/arrays_init_buggy.c:4: semantic error: array size missing for dimension 2 of 'a'
      4 | int bug_missing_inner_size(void) { int a[3][]; return 0; }
 test/phase3_tac/invalid/arrays/arrays_init_buggy.c:5: semantic error: array 'a' of void
@@ -1588,8 +1590,6 @@ test/phase3_tac/invalid/arrays/arrays_init_buggy.c:19: semantic error: cannot in
 test/phase3_tac/invalid/arrays/arrays_init_buggy.c:21: semantic error: initializer of global 'bug_global_string_from_variable' must be a string literal
     21 | char *bug_global_string_from_variable = other;
 15 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/arrays/arrays_init_buggy.c:4: semantic error: array size missing for dimension 2 of 'a'
      4 | int bug_missing_inner_size(void) { int a[3][]; return 0; }

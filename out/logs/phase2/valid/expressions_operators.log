@@ -1568,13 +1568,13 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase2_syntax/valid/expressions_operators.c:40: semantic error: unsupported feature: variadic functions
     40 | int sum_all(int count, ...) {
 test/phase2_syntax/valid/expressions_operators.c:51: semantic error: redefinition of function 'main'
     51 | int main() {
 2 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase2_syntax/valid/expressions_operators.c:40: semantic error: unsupported feature: variadic functions
     40 | int sum_all(int count, ...) {

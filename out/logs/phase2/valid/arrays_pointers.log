@@ -2285,6 +2285,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase2_syntax/valid/arrays_pointers.c:37: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
     37 |     int *p;
 test/phase2_syntax/valid/arrays_pointers.c:38: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
@@ -2314,8 +2316,6 @@ test/phase2_syntax/valid/arrays_pointers.c:96: semantic error: unsupported featu
 test/phase2_syntax/valid/arrays_pointers.c:100: semantic error: redefinition of function 'main'
    100 | int main(int argc, char **argv) {
 14 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase2_syntax/valid/arrays_pointers.c:37: semantic error: unsupported feature: pointers (only 'char *' strings and 'argv' are accepted)
     37 |     int *p;

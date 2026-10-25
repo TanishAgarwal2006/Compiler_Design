@@ -1363,6 +1363,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase3_tac/invalid/arrays/arrays_buggy.c:6: semantic error: argument 1 of 'array_param_wrong_dim_f': cannot pass int[2][4] where int[][3] is expected
      6 | int array_param_wrong_dim_f(int a[][3]) { return a[0][0]; } int bug_array_param_wrong_dim(void) { int m[2][4]; return array_param_wrong_dim_f(m); }
 test/phase3_tac/invalid/arrays/arrays_buggy.c:10: semantic error: array size missing in declaration of 'a'
@@ -1388,8 +1390,6 @@ test/phase3_tac/invalid/arrays/arrays_buggy.c:57: semantic error: too many initi
 test/phase3_tac/invalid/arrays/arrays_buggy.c:62: semantic error: subscripted value is not an array (type int)
     62 | int bug_too_many_subscripts(void) { int a[3]; int x = a[0][1]; return x; }
 12 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase3_tac/invalid/arrays/arrays_buggy.c:6: semantic error: argument 1 of 'array_param_wrong_dim_f': cannot pass int[2][4] where int[][3] is expected
      6 | int array_param_wrong_dim_f(int a[][3]) { return a[0][0]; } int bug_array_param_wrong_dim(void) { int m[2][4]; return array_param_wrong_dim_f(m); }

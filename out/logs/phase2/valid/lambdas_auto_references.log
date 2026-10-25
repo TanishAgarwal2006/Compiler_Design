@@ -1112,6 +1112,8 @@ Program
               ],
     ]
 ######## --semantic
+
+Syntax analysis: OK
 test/phase2_syntax/valid/lambdas_auto_references.c:4: semantic error: unsupported feature: references ('&' in the declaration of 'value')
      4 | void by_reference(int &value) { value = value + 1; }
 test/phase2_syntax/valid/lambdas_auto_references.c:5: semantic error: unsupported feature: references ('&' in the declaration of 'identity')
@@ -1163,8 +1165,6 @@ test/phase2_syntax/valid/lambdas_auto_references.c:21: semantic error: 'add' is 
 test/phase2_syntax/valid/lambdas_auto_references.c:21: semantic error: 'mixed' is not a function
     21 |     int result = add(1, 2) + mixed(3);
 25 errors found. No output was produced.
-
-Syntax analysis: OK
 ######## --tac
 test/phase2_syntax/valid/lambdas_auto_references.c:4: semantic error: unsupported feature: references ('&' in the declaration of 'value')
      4 | void by_reference(int &value) { value = value + 1; }
